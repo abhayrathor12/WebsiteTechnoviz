@@ -14,12 +14,14 @@ import SingleBlogPage from './singlepages/blogsinglepage';
 import CompanyPage from './pages/company';
 import BookPage from './pages/bookpage';
 import CoePage from './pages/coepage';
+import ScrollToTop from "./components/ScrollToTop";
 // import WhatsAppWidget from './components/chatsection';
 function App() {
   return (
     <Router>
       <div className="App font-inter">
         <Header />
+        <ScrollToTop />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
