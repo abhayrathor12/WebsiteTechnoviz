@@ -88,7 +88,7 @@ const megaMenuContent = {
 
   },
   solutions: {
-    title: "Our Products",
+    title: "Our Solutions",
     exploreAllLink: "/products",
     exploreAllText: "Explore All Products",
     sections: products.map((p) => ({
