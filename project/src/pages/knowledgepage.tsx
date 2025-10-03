@@ -298,7 +298,7 @@ const KnowledgePage = () => {
               <p className="text-xl text-gray-600">{knowledgeData[2].subtitle}</p>
               <p className="text-lg text-gray-700 leading-relaxed">{knowledgeData[2].about}</p>
               <button className="px-8 py-4 bg-[#203f78] text-white font-semibold rounded-lg hover:bg-[#1a3560] transition-all shadow-lg flex items-center space-x-2">
-                <span>Start Learning</span>
+                <span>Explore Learning</span>
                 <ArrowRight size={20} />
               </button>
             </div>
