@@ -22,6 +22,7 @@ import AzurePage from "./pages/Azurepage";
 import NetworkingPage from "./pages/networkingpage";
 import MysqlPage from "./pages/mysqlpage";
 import AndroidPage from "./pages/andriodpage";
+import KnowledgePage from "./pages/knowledgepage";
 
 // import WhatsAppWidget from './components/chatsection';
 function App() {
@@ -50,6 +51,7 @@ function App() {
             <Route path="/network" element={<NetworkingPage />} />
             <Route path="/mysql" element={<MysqlPage />} />
             <Route path="/android" element={<AndroidPage />} />
+            <Route path="/knowledge" element={<KnowledgePage />} />
             
             {/* Add other routes as needed */}
           </Routes>

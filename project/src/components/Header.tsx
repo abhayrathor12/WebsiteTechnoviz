@@ -121,7 +121,7 @@ const megaMenuContent = {
         title: "SLM",
         description:
           "Streamlined Lifecycle Management methodologies and best practices for optimal project delivery and resource optimization.",
-        link: "/knowledge/slm",
+        link: "/knowledge",
       },
     ],
   },
@@ -305,37 +305,39 @@ const Header: React.FC = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 {item.name === "Knowledge" ? (
-                  <span
-                    className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] cursor-default ${
-                      activeDropdown === "knowledge" ? "text-[#ddaf26]" : "text-gray-700"
-                    }`}
-                  >
-                    <span>{item.name}</span>
-                    {item.hasDropdown && (
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
-                        }`}
-                      />
-                    )}
-                  </span>
-                ) : (
-                  <Link
-                    to={item.path}
-                    className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${
-                      location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
-                    }`}
-                  >
-                    <span>{item.name}</span>
-                    {item.hasDropdown && (
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
-                        }`}
-                      />
-                    )}
-                  </Link>
-                )}
+                <Link
+                  to={item.path}
+                  className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${
+                    location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
+                  }`}
+                >
+                  <span>{item.name}</span>
+                  {item.hasDropdown && (
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </Link>
+              ) : (
+                <Link
+                  to={item.path}
+                  className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${
+                    location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
+                  }`}
+                >
+                  <span>{item.name}</span>
+                  {item.hasDropdown && (
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </Link>
+              )}
+
               </div>
             ))}
           </nav>

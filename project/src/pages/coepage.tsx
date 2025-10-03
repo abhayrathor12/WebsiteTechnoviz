@@ -449,6 +449,114 @@ const CoePage = () => {
           </div>
         </div>
       </div>
+      
+      {/* Related Solutions Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#203f78] mb-4">Explore More</h2>
+            <p className="text-xl text-gray-600">Discover our complementary offerings for holistic learning and development</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* SLM Card */}
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+              <div className="space-y-6">
+                <div>
+                  <div className="inline-block bg-[#203f78] text-white px-4 py-1 rounded-full text-sm font-medium mb-4">
+                    SLM
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#203f78] mb-3">
+                    Smart Learning Module (SLM)
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Empowering learners with interactive, AI-driven, and self-paced digital learning solutions.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-[#203f78] rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="font-semibold text-gray-900">AI-Powered Personalization</p>
+                      <p className="text-sm text-gray-600">Adaptive learning paths tailored to individual needs</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-[#203f78] rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Gamified Learning</p>
+                      <p className="text-sm text-gray-600">Interactive modules and challenges for engagement</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-[#203f78] rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Practical Simulations</p>
+                      <p className="text-sm text-gray-600">Real-world scenarios and virtual labs</p>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  to="/slm"
+                  className="block w-full bg-[#203f78] hover:bg-[#ddaf26] text-white text-center px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  Explore More
+                </Link>
+              </div>
+            </div>
+
+            {/* Book Card */}
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+              <div className="space-y-6">
+                <div>
+                  <div className="inline-block bg-[#203f78] text-white px-4 py-1 rounded-full text-sm font-medium mb-4">
+                    📚 Publication
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#203f78] mb-3">
+                    Digital Revolution Guide
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Navigate the Digital Revolution and master Industry 4.0 & Industrial IoT with expert insights.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-[#ddaf26] rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Comprehensive Coverage</p>
+                      <p className="text-sm text-gray-600">Industry 4.0, IoT, and digital transformation strategies</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-[#ddaf26] rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Practical Insights</p>
+                      <p className="text-sm text-gray-600">Real-world implementation strategies and best practices</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-[#ddaf26] rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <p className="font-semibold text-gray-900">Expert Guidance</p>
+                      <p className="text-sm text-gray-600">Written by industry expert Kapil Khurana</p>
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  to="/book"
+                  className="block w-full bg-[#203f78] hover:bg-[#ddaf26] text-white text-center px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  Explore More
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Contact Section */}
       <div className="bg-gray-50 py-20">

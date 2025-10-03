@@ -163,6 +163,82 @@ const BookPage = () => {
           </div>
         </div>
       </section>
+      <section className="py-16 px-6 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-[#203f78] mb-4">Explore More</h2>
+            <p className="text-xl text-gray-600">Discover our specialized programs and centers of excellence</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* SLM Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <div className="space-y-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#203f78] to-blue-600 rounded-xl flex items-center justify-center">
+                <span className="text-2xl font-bold text-white">SLM</span>
+              </div>
+              <h3 className="text-2xl font-bold text-[#203f78]">Self Learning Module</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Empower learners with interactive, flexible, and engaging modules that promote self-paced learning and skill mastery.
+              </p>
+              <ul className="space-y-2 text-gray-600">
+                <li className="flex items-start space-x-2">
+                  <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                  <span>Interactive Digital Lessons</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                  <span>Self-Paced Learning Activities</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                  <span>Progress Tracking & Assessments</span>
+                </li>
+              </ul>
+              <Link
+                to="/slm"
+                className="inline-block bg-[#203f78] hover:bg-[#ddaf26] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                Explore SLM
+              </Link>
+            </div>
+          </div>
+
+            {/* COE Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="space-y-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-[#203f78] rounded-xl flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">COE</span>
+                </div>
+                <h3 className="text-2xl font-bold text-[#203f78]">Center of Excellence</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Join our innovation hub dedicated to advancing industry best practices and fostering technological excellence.
+                </p>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start space-x-2">
+                    <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                    <span>Research & Innovation</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                    <span>Best Practice Development</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                    <span>Technology Integration</span>
+                  </li>
+                </ul>
+                <Link
+                  to="/coe"
+                  className="inline-block bg-[#203f78] hover:bg-[#ddaf26] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+                >
+                  Explore COE
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 px-6 bg-gradient-to-br from-[#203f78] to-blue-800 text-white">

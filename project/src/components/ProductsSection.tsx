@@ -149,7 +149,7 @@ const ProductsSection: React.FC = () => {
             to="/products"
             className="bg-[#203f78] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#ddaf26] transition-all duration-200 inline-block"
           >
-            View All Products
+            View All Solutions
           </Link>
         </motion.div>
       </div>
