@@ -13,11 +13,36 @@ const ContactPage: React.FC = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://192.168.1.3:8000/api/con/create/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        timeline: "",
+        message: "",
+      });
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } else {
+      console.error("Failed to submit form");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({

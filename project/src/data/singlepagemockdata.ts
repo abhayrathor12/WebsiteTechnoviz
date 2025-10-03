@@ -23,6 +23,7 @@ import IIOT from '../public/IIoT.jpg';
 import Indus from '../public/Indus.jpg';
 import cyber from '../public/Cyber_image.jpg';
 import Automation from '../public/Automation_image.jpeg';
+import Aihero from '../public/aihero.png';
 
 import Oeeimage1 from '../public/Oeeimage.jpg';
 import Oeeimage2 from '../public/oee2.png';
@@ -294,6 +295,57 @@ export const services: Service[] = [
     cta_text: 'Automate Now',
     seo_meta_title: 'Industrial Automation Services',
     seo_description: 'Next-gen automation services for industrial plants and enterprises.',
+  },
+  {
+    id: '6',
+    hero_image: Aihero, // add your image import
+    title: 'AI in Manufacturing',
+    short_description: 'Leverage AI to optimize operations, predict failures, and enhance productivity.',
+    long_description: `
+      Our AI-powered solutions help industries optimize operations, predict equipment failures, 
+      and unlock valuable insights from production data. From predictive maintenance to computer 
+      vision-based quality inspection, we enable smarter and more resilient manufacturing processes.
+    `,
+    category: 'AI',
+    slug: 'ai-manufacturing',
+    icon: Cpu, // or Brain icon if available
+    related_products: [
+      'Predictive Maintenance Tools',
+      'AI Vision Systems',
+      'Digital Twin Platforms',
+    ],
+    features: [
+      'Real-time Dashboards',
+      'Performance Metrics',
+      'Predictive Maintenance',
+      'Computer Vision for Quality',
+      'Comprehensive Reporting',
+    ],
+    detailed_features: [
+      {
+        title: 'Real-time Dashboards',
+        description: 'Monitor production lines and machine health with intuitive AI-driven dashboards.',
+      },
+      {
+        title: 'Predictive Maintenance',
+        description: 'Anticipate equipment failures before they occur, reducing downtime and maintenance costs.',
+      },
+      {
+        title: 'Computer Vision for Quality',
+        description: 'Automated defect detection and quality inspection using advanced vision AI.',
+      },
+      {
+        title: 'Performance Metrics',
+        description: 'Track efficiency, cycle times, and productivity KPIs with AI-driven insights.',
+      },
+      {
+        title: 'Comprehensive Reporting',
+        description: 'AI-powered analytics for actionable insights, trend forecasting, and decision support.',
+      },
+    ],
+    cta_text: 'Explore AI Solutions',
+    seo_meta_title: 'AI in Manufacturing Solutions',
+    seo_description: 'Harness the power of AI in manufacturing to boost efficiency, reduce downtime, and drive innovation.',
   },
 ];
 

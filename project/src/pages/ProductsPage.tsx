@@ -166,7 +166,7 @@ const ProductsPage: React.FC = () => {
                       ></motion.div>
                     </span>
                     <span className="text-transparent bg-clip-text bg-[#ddaf26] block">
-                      Digital Products
+                      Digital Services
                     </span>
                   </h2>
                   <motion.p
@@ -194,7 +194,7 @@ const ProductsPage: React.FC = () => {
                           transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
                         ></motion.div>
                         <span className="relative z-10 flex items-center">
-                          Explore Products
+                          Explore Solutions
                           <motion.div
                             animate={{ x: [0, 10, 0] }}
                             transition={{ duration: 1.5, repeat: Infinity }}

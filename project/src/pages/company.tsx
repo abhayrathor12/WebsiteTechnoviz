@@ -508,7 +508,7 @@ const Company = () => {
       <section id="products" className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-[#203f78] mb-4">Product Brochures</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-4xl font-bold text-[#203f78] mb-4">Solutions Brochures</h2>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
               Explore our comprehensive product catalog and technical specifications
             </p>

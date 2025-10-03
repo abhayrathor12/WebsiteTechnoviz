@@ -15,6 +15,14 @@ import CompanyPage from './pages/company';
 import BookPage from './pages/bookpage';
 import CoePage from './pages/coepage';
 import ScrollToTop from "./components/ScrollToTop";
+import Chatbot from "./components/Chatbot";
+import PythonPage from "./pages/pythonpage";
+import ReactPage from "./pages/reactpage";
+import AzurePage from "./pages/Azurepage";
+import NetworkingPage from "./pages/networkingpage";
+import MysqlPage from "./pages/mysqlpage";
+import AndroidPage from "./pages/andriodpage";
+
 // import WhatsAppWidget from './components/chatsection';
 function App() {
   return (
@@ -36,8 +44,16 @@ function App() {
             <Route path="/company" element={<CompanyPage />} />
             <Route path="/book" element={<BookPage />} />
             <Route path="/coe" element={<CoePage />} />
+            <Route path="/python" element={<PythonPage />} />
+            <Route path="/react" element={<ReactPage />} />
+            <Route path="/azure" element={<AzurePage />} />
+            <Route path="/network" element={<NetworkingPage />} />
+            <Route path="/mysql" element={<MysqlPage />} />
+            <Route path="/android" element={<AndroidPage />} />
+            
             {/* Add other routes as needed */}
           </Routes>
+           <Chatbot />
           {/* <WhatsAppWidget/> */}
         </main>
         <Footer />

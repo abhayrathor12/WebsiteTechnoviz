@@ -92,12 +92,12 @@ const ProductsSection: React.FC = () => {
   <div className="relative flex items-center justify-center mb-6">
     {/* Large background text */}
     <div className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold uppercase tracking-wider text-gray-200 mb-4">
-      PRODUCTS
+      SOLUTIONS
     </div>
     
     {/* Main heading - absolutely positioned to center over background */}
     <h2 className="absolute text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#203f78] font-poppins text-center">
-      Our Products
+      Our Solutions
     </h2>
   </div>
   

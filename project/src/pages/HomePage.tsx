@@ -82,13 +82,13 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Contact */}
-      <div ref={contactRef}>
+      {/* <div ref={contactRef}>
         {contactInView && (
           <SectionLoader>
             <ContactSection />
           </SectionLoader>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

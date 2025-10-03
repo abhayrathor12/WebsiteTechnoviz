@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
 
           {/* Products */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 font-poppins">Products</h3>
+            <h3 className="text-lg font-semibold mb-4 font-poppins">Services</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link to="/products/immersix" className="text-gray-300 hover:text-[#ddaf26] transition-colors">

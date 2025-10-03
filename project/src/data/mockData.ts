@@ -21,6 +21,7 @@ import immerimage from '../public/immersizimage.jpg';
 import utilityimage from '../public/utilityimage.jpg';
 import visionimage from '../public/visionimage.jpg';
 import digital_image from '../public/digital.jpg';
+import aiinn from '../public/aiin.png';
 import IIOT from '../public/IIoT.jpg';
 import Indus from '../public/Indus.jpg';
 import cyber from '../public/Cyber_image.jpg';
@@ -161,29 +162,29 @@ export const services: Service[] = [
       'Next-gen automation services for industrial plants and enterprises.',
   },
   {
-    id: '6',
-    hero_image: '/images/services/analytics.jpg',
-    title: 'Analytics & Monitoring',
-    short_description:
-      'Turn real-time data into actionable insights for smarter decisions.',
-    long_description:
-      'Our analytics solutions help industries track performance, predict failures, and gain deeper insights into production data.',
-    category: 'Analytics',
-    
-    slug: 'analytics-monitoring',
-    icon: BarChart,
-    related_products: [],
-    features: [
-      'Real-time Dashboards',
-      'Performance Metrics',
-      'Alerts & Notifications',
-      'Comprehensive Reporting'
-    ],
-    cta_text: 'View Insights',
-    seo_meta_title: 'Industrial Analytics & Monitoring',
-    seo_description:
-      'Advanced industrial analytics and monitoring systems for data-driven growth.',
-  },
+  id: '6',
+  hero_image: aiinn,
+  title: 'AI in Manufacturing',
+  short_description:
+    'Leverage AI to optimize operations, predict failures, and enhance productivity.',
+  long_description:
+    'Our AI-powered solutions help industries optimize operations, predict equipment failures, and unlock valuable insights from production data.',
+  category: 'AI',
+  
+  slug: 'ai-manufacturing',
+  icon: Cpu,   // you can change this to a relevant AI/automation icon
+  related_products: [],
+  features: [
+    'Real-time Dashboards',
+    'Performance Metrics',
+    'Alerts & Notifications',
+    'Comprehensive Reporting'
+  ],
+  cta_text: 'Explore AI Solutions',
+  seo_meta_title: 'AI in Manufacturing Solutions',
+  seo_description:
+    'Harness the power of AI in manufacturing to boost efficiency, reduce downtime, and drive innovation.',
+}
 ];
 export const products: Product[] = [
   {
