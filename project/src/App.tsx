@@ -23,6 +23,8 @@ import NetworkingPage from "./pages/networkingpage";
 import MysqlPage from "./pages/mysqlpage";
 import AndroidPage from "./pages/andriodpage";
 import KnowledgePage from "./pages/knowledgepage";
+import PopupComponent from './components/PopupComponent';
+import QuickLink from './components/QuickLink';
 
 // import WhatsAppWidget from './components/chatsection';
 function App() {
@@ -51,7 +53,7 @@ function App() {
             <Route path="/network" element={<NetworkingPage />} />
             <Route path="/mysql" element={<MysqlPage />} />
             <Route path="/android" element={<AndroidPage />} />
-            <Route path="/knowledge" element={<KnowledgePage />} />
+            <Route path="/learning" element={<KnowledgePage />} />
             
             {/* Add other routes as needed */}
           </Routes>
@@ -59,6 +61,8 @@ function App() {
           {/* <WhatsAppWidget/> */}
         </main>
         <Footer />
+        <PopupComponent /> 
+        <QuickLink /> 
       </div>
     </Router>
   );

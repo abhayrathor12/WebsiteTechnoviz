@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { 
-  ArrowLeft, 
-  Star, 
-  CheckCircle, 
-  Users, 
-  TrendingUp,
+import {
+  ArrowLeft,
+  Star,
+  CheckCircle,
+  Users,
   Mail,
   ExternalLink,
   Lightbulb,
@@ -13,11 +12,13 @@ import {
   Zap,
   ChevronLeft,
   ChevronRight,
-  ArrowRight
+  ArrowRight,
+  Package,
+  FileText,
+  Download
 } from 'lucide-react';
-import { products } from "../data/singlepagemockdata"
+import { products, productbroucher } from "../data/singlepagemockdata"
 import { useNavigate, useParams } from 'react-router-dom';
-// Mock product data
 
 const SingleProductPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -27,7 +28,6 @@ const SingleProductPage = () => {
 
   // Find product by slug
   const product = products.find((p) => p.slug === slug);
-
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-600">
@@ -36,6 +36,9 @@ const SingleProductPage = () => {
     );
   }
 
+  // Find corresponding brochure by product name
+  const brochure = productbroucher.find((b) => b.title === product.name);
+
   // Get 3 related products (excluding current product)
   const relatedProducts = products
     .filter(p => p.slug !== slug)
@@ -43,17 +46,16 @@ const SingleProductPage = () => {
 
   // Mock multiple images for slider (you can replace these with actual product images)
   const sliderImages = product.all_images && product.all_images.length > 0
-  ? product.all_images
-  : [product.hero_image];
+    ? product.all_images
+    : [product.hero_image];
 
   // Auto-slide effect
   useEffect(() => {
     const slideInterval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         prevIndex === sliderImages.length - 1 ? 0 : prevIndex + 1
       );
     }, 4000); // Change slide every 4 seconds
-
     return () => clearInterval(slideInterval);
   }, [sliderImages.length]);
 
@@ -61,8 +63,8 @@ const SingleProductPage = () => {
     <button
       onClick={() => onClick(id)}
       className={`px-6 py-3 font-medium text-sm transition-all duration-200 border-b-2 ${
-        isActive 
-          ? 'text-blue-600 border-blue-600 bg-blue-50' 
+        isActive
+          ? 'text-blue-600 border-blue-600 bg-blue-50'
           : 'text-gray-600 border-transparent hover:text-blue-500 hover:border-blue-300'
       }`}
     >
@@ -133,13 +135,13 @@ const SingleProductPage = () => {
   );
 
   const nextSlide = () => {
-    setCurrentImageIndex((prevIndex) => 
+    setCurrentImageIndex((prevIndex) =>
       prevIndex === sliderImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentImageIndex((prevIndex) => 
+    setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? sliderImages.length - 1 : prevIndex - 1
     );
   };
@@ -154,7 +156,7 @@ const SingleProductPage = () => {
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-4">
-            <button 
+            <button
               className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
               onClick={() => navigate('/')}
             >
@@ -164,7 +166,6 @@ const SingleProductPage = () => {
           </div>
         </div>
       </div>
-
       {/* Hero Section with Custom Color */}
       <div style={{ backgroundColor: '#203f78' }} className="text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -187,16 +188,15 @@ const SingleProductPage = () => {
                 {product.tagline}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                
-<Link
-  to="/contact"
+                <Link
+                  to="/contact"
                   className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center space-x-2"
                   style={{ color: '#203f78' }}
                 >
                   <Mail className="w-5 h-5" />
                   <span>Get Started</span>
                 </Link>
-                <button 
+                <button
                   className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white transition-colors flex items-center justify-center space-x-2"
                   style={{ '--tw-border-opacity': '1' }}
                   onMouseEnter={(e) => e.target.style.color = '#203f78'}
@@ -207,13 +207,12 @@ const SingleProductPage = () => {
                 </button>
               </div>
             </div>
-            
             {/* Image Slider */}
             <div className="relative">
               <div className="bg-white/10 rounded-2xl p-8 backdrop-blur-sm">
                 <div className="relative overflow-hidden rounded-lg shadow-2xl">
                   {/* Images Container */}
-                  <div 
+                  <div
                     className="flex transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
                   >
@@ -226,7 +225,6 @@ const SingleProductPage = () => {
                       />
                     ))}
                   </div>
-                  
                   {/* Navigation Arrows */}
                   <button
                     onClick={prevSlide}
@@ -240,7 +238,6 @@ const SingleProductPage = () => {
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
-                  
                   {/* Dots Indicator */}
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                     {sliderImages.map((_, index) => (
@@ -248,8 +245,8 @@ const SingleProductPage = () => {
                         key={index}
                         onClick={() => goToSlide(index)}
                         className={`w-3 h-3 rounded-full transition-colors ${
-                          index === currentImageIndex 
-                            ? 'bg-white' 
+                          index === currentImageIndex
+                            ? 'bg-white'
                             : 'bg-white/50 hover:bg-white/75'
                         }`}
                       />
@@ -261,7 +258,6 @@ const SingleProductPage = () => {
           </div>
         </div>
       </div>
-
       {/* Quick Features */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -277,7 +273,6 @@ const SingleProductPage = () => {
           ))}
         </div>
       </div>
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Tab Navigation */}
@@ -289,42 +284,77 @@ const SingleProductPage = () => {
             <TabButton id="applications" label="Applications" isActive={activeTab === 'applications'} onClick={setActiveTab} />
           </nav>
         </div>
-
         {/* Tab Content */}
         <div className="min-h-96">
           {activeTab === 'overview' && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Product Overview</h2>
+                <h2 className="text-3xl font-bold text-[#203f78] mb-6">Product Overview</h2>
                 <div className="prose prose-lg text-gray-700 leading-relaxed">
                   <p>{product.long_description}</p>
                 </div>
               </div>
               <div className="space-y-6">
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center space-x-2">
-                    <TrendingUp className="w-5 h-5 text-blue-600" />
-                    <span>Quick Stats</span>
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Category</span>
-                      <span className="font-semibold text-gray-900">{product.category}</span>
+                <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden">
+                  {/* Header with Icon */}
+                  <div className="bg-[#203f78] p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                        <Package className="w-6 h-6 text-white" />
+                      </div>
+                      <FileText className="w-6 h-6 text-white/70" />
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Features</span>
-                      <span className="font-semibold text-gray-900">{product.key_features?.length || 0}+</span>
+                  </div>
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-[#202f78] mb-3">
+                      {brochure?.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                      {brochure?.description || `Download comprehensive technical specifications, features, and implementation details for ${product.name}.`}
+                    </p>
+                    {/* Features */}
+                    <div className="space-y-2 mb-6">
+                      {brochure?.features?.map((feature, index) => (
+                        <div key={index} className="flex items-center text-gray-600 text-sm">
+                          <div className="w-2 h-2 bg-[#203f78] rounded-full mr-3 flex-shrink-0"></div>
+                          <span>{feature}</span>
+                        </div>
+                      )) || (
+                        <>
+                          <div className="flex items-center text-gray-600 text-sm">
+                            <div className="w-2 h-2 bg-[#203f78] rounded-full mr-3 flex-shrink-0"></div>
+                            <span>Technical Specifications</span>
+                          </div>
+                          <div className="flex items-center text-gray-600 text-sm">
+                            <div className="w-2 h-2 bg-[#203f78] rounded-full mr-3 flex-shrink-0"></div>
+                            <span>Implementation Guide</span>
+                          </div>
+                          <div className="flex items-center text-gray-600 text-sm">
+                            <div className="w-2 h-2 bg-[#203f78] rounded-full mr-3 flex-shrink-0"></div>
+                            <span>Use Cases & Examples</span>
+                          </div>
+                          <div className="flex items-center text-gray-600 text-sm">
+                            <div className="w-2 h-2 bg-[#203f78] rounded-full mr-3 flex-shrink-0"></div>
+                            <span>Pricing Information</span>
+                          </div>
+                        </>
+                      )}
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Applications</span>
-                      <span className="font-semibold text-gray-900">{product.applications?.length || 0}+</span>
-                    </div>
+                    {/* Download Button */}
+                    <a
+                      href={brochure?.pd}
+                      download
+                      className="w-full bg-[#203f78] hover:bg-[#ddaf26] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center group"
+                    >
+                      <Download className="w-5 h-5 mr-2" />
+                      <span>Download Brochure</span>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           )}
-
           {activeTab === 'features' && (
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Key Features</h2>
@@ -340,7 +370,6 @@ const SingleProductPage = () => {
               </div>
             </div>
           )}
-
           {activeTab === 'benefits' && (
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Benefits</h2>
@@ -355,7 +384,6 @@ const SingleProductPage = () => {
               </div>
             </div>
           )}
-
           {activeTab === 'applications' && (
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Applications</h2>
@@ -377,21 +405,38 @@ const SingleProductPage = () => {
             </div>
           )}
         </div>
-
+          {/* Video Section - Smaller Version */}
+          <div className="mt-16 mb-16">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-[#203f78] mb-4">See {product.name} in Action</h2>
+              <p className="text-gray-600 text-lg">Watch how our solution transforms your workflow</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 max-w-4xl mx-auto">
+              <div className="relative" style={{ paddingBottom: '42.5%' }}>
+                {/* Video Embed - Replace the src with your actual video URL */}
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/XUH_k3acpgA"
+                  title={`${product.name} Product Demo`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
         {/* Related Products Section */}
         {relatedProducts.length > 0 && (
           <div className="mt-20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore More Products</h2>
+              <h2 className="text-3xl font-bold text-[#203f78] mb-4">Explore More Products</h2>
               <p className="text-gray-600 text-lg">Discover other solutions that can complement your workflow</p>
             </div>
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {relatedProducts.map((relatedProduct, index) => (
                 <ProductCard key={index} product={relatedProduct} />
               ))}
             </div>
-            
             <div className="text-center">
               <button
                 onClick={() => navigate('/products')}
@@ -403,9 +448,8 @@ const SingleProductPage = () => {
             </div>
           </div>
         )}
-
         {/* CTA Section with Custom Color */}
-        <div 
+        <div
           className="mt-16 rounded-2xl p-8 text-white text-center"
           style={{ backgroundColor: '#203f78' }}
         >

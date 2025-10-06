@@ -32,7 +32,7 @@ const ServicesPage: React.FC = () => {
   }, [cards.length]);
 
   return (
-    <div className="pt-20">
+    <div className="pt-6">
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden bg-black flex flex-col">
         <div className="absolute inset-0">
@@ -73,7 +73,7 @@ const ServicesPage: React.FC = () => {
           ))}
         </div>
         
-        <div className="container mx-auto px-4 relative z-10 h-full flex flex-col pt-20">
+        <div className="container mx-auto px-4 relative z-10 h-full flex flex-col">
           <div className="flex-1 flex items-center">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full items-center">
               <motion.div

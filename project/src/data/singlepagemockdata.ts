@@ -12,8 +12,22 @@ import {
   Battery,
   Gauge,
   Check,
+  Cloud,
+  Zap,
+  Server,
+  
+  
   
 } from "lucide-react";
+
+
+import quality from "../pdfs/Technoviz Quality Inspection brochure.pdf"
+import utility from "../pdfs/Technibiz Utility360 Brochure.pdf"
+import ems from "../pdfs/Technobiz SmartEMS brochure.pdf"
+import arvr from "../pdfs/Technoviz ARVR Application Brochure.pdf"
+import oee from "../pdfs/Technoviz OEE Dashboard brochure.pdf"
+import image from "../pdfs/Image Processing System - Technoviz Automation.pdf"
+
 
 import digital_image from '../public/digital.jpg';
 import digital_image2 from '../public/digital2.png';
@@ -372,7 +386,9 @@ export const products: Product[] = [
     seo_description:
       'Revolutionize workforce training with immersive AR/VR learning experiences.',
 
-    long_description: `Immersix brings a new era of workforce development by integrating AR and VR into industrial training. Instead of relying on traditional classroom-based learning, employees can immerse themselves in highly realistic, risk-free environments that simulate actual workplace scenarios. These interactive modules improve retention, accelerate learning curves, and allow workers to practice and perfect skills before applying them on-site. Immersix enhances safety, reduces training costs, and ensures consistent knowledge delivery across teams.`,
+    long_description: `Immersix redefines workforce learning by merging immersive AR and VR technologies with industrial training practices. Instead of passive, classroom-based instruction, employees are placed in interactive, risk-free 3D environments that replicate real-world challenges and machinery. Trainees can perform virtual hands-on tasks, practice complex procedures, and learn from instant visual feedback — all without operational downtime or safety risks.
+
+The platform supports customizable modules across industries, enabling organizations to train operators, technicians, and engineers efficiently. It integrates performance analytics to track learning progress and measure skill proficiency, helping identify strengths and areas for improvement. Immersix also allows for remote access, enabling global teams to participate in the same training modules simultaneously. This combination of realism, accessibility, and analytics makes Immersix a powerful tool for enhancing workforce competency, safety awareness, and operational excellence.`,
     key_features: [
       'AR/VR immersive training modules',
       'Skill-based learning simulations',
@@ -417,7 +433,12 @@ export const products: Product[] = [
     seo_description:
       'Manage and monitor utilities with AI-powered insights and remote control.',
 
-    long_description: `Utility360 is an IIoT-enabled, cloud-based platform designed to help organizations monitor, control, and optimize their utilities in real-time. From HVAC systems to pumps and compressors, Utility360 integrates directly with critical infrastructure to deliver predictive maintenance, instant alerts, and deep performance analytics. By enabling remote access and automation, businesses can significantly reduce operational costs, prevent downtime, and ensure efficient use of resources across industrial and commercial environments.`,
+    long_description: `Utility360 is an intelligent IIoT-enabled platform that provides comprehensive visibility into an organization’s energy and utility consumption. It continuously collects data from devices such as pumps, compressors, chillers, and HVAC systems, translating it into actionable insights through AI-powered analytics and predictive modeling.
+
+By integrating with existing PLCs and SCADA systems, Utility360 eliminates data silos, providing a unified dashboard for monitoring utility performance across facilities. Its predictive maintenance algorithms detect anomalies before failures occur, reducing costly downtime. The platform also enables remote monitoring and control, empowering facility managers to optimize performance from anywhere.
+
+Designed for scalability, Utility360 adapts to industrial plants, commercial complexes, and municipal infrastructures, ensuring efficient resource utilization, sustainability compliance, and improved ROI. With its smart automation and energy optimization capabilities, Utility360 transforms everyday operations into data-driven, sustainable ecosystems.`,
+
     key_features: [
       'Real-time monitoring of utility systems',
       'Remote device control and automation',
@@ -463,7 +484,12 @@ export const products: Product[] = [
     seo_description:
       'Modernize quality inspection with a smart digital checksheet system.',
 
-    long_description: `Digital Checksheet revolutionizes traditional inspection and quality management by digitizing the entire process. Built on IIoT connectivity, it allows operators and supervisors to capture inspection data directly from the shop floor using connected devices. Automated workflows, real-time analytics, and compliance reports reduce manual errors and speed up decision-making. The system ensures that every inspection is traceable, consistent, and compliant, significantly boosting product quality and operational efficiency.`,
+    long_description: `Digital Checksheet brings digital transformation to quality control and inspection processes by replacing traditional paper-based workflows with smart, connected systems. The platform empowers inspectors to perform checks using mobile or tablet-based forms, ensuring real-time data capture, validation, and traceability across all quality operations.
+
+Its IIoT integration enables seamless data flow from machines and sensors, allowing automated validation of key parameters during inspections. The system’s built-in analytics dashboard provides immediate visibility into non-conformities, trends, and compliance metrics. It supports automated report generation for audits and certifications, significantly reducing administrative workloads.
+
+With customizable templates and automated notifications, Digital Checksheet ensures consistent quality standards across locations. It also enables cross-department collaboration, driving faster root-cause analysis and corrective actions. Ideal for manufacturing, pharma, and process industries, it not only boosts accuracy and efficiency but also builds a culture of accountability and continuous improvement.`,
+
     key_features: [
       'Mobile & tablet-friendly inspection forms',
       'IoT-enabled real-time data capture',
@@ -508,7 +534,12 @@ export const products: Product[] = [
     seo_description:
       'Energy management system for cost savings, efficiency, and sustainability.',
 
-    long_description: `SmartEMS is a next-gen, IIoT-enabled Energy Management System that transforms how industries consume, optimize, and track energy usage. By leveraging AI-driven analytics, SmartEMS delivers deep insights into consumption patterns, predicts peak loads, and automates corrective actions to eliminate energy waste. Its real-time monitoring capabilities empower organizations to meet sustainability targets, cut down on costs, and maintain compliance. From industrial plants to commercial campuses, SmartEMS ensures smarter energy efficiency at scale.`,
+    long_description: `SmartEMS is a cutting-edge Energy Management System that leverages IIoT and AI analytics to help industries monitor, optimize, and reduce energy consumption in real time. It connects directly to energy meters, PLCs, and equipment to collect granular data on electricity, water, gas, and compressed air usage, converting it into intuitive dashboards and actionable insights.
+
+With advanced algorithms for load forecasting and anomaly detection, SmartEMS predicts peak demands and automatically adjusts loads to minimize wastage. It offers sustainability tracking features to measure carbon footprint, generate compliance reports, and align with ESG goals. The system’s AI-driven recommendations empower managers to make data-backed decisions, leading to reduced operational costs and improved equipment life.
+
+Scalable and cloud-compatible, SmartEMS can manage multi-site operations while ensuring centralized monitoring and benchmarking. By promoting responsible energy practices, it helps organizations achieve operational excellence, sustainability, and long-term competitiveness.`,
+
     key_features: [
       'Real-time monitoring of energy usage',
       'AI-powered analytics for optimization',
@@ -553,7 +584,12 @@ export const products: Product[] = [
     seo_description:
       'Maximize production efficiency with live OEE monitoring dashboards.',
 
-    long_description: `The Industrial Internet of Things (IIoT)-enabled OEE (Overall Equipment Effectiveness) Dashboard is a cloud-based solution designed to transform factory performance management. It captures real-time data directly from shop-floor machines, delivering unified visibility into efficiency, quality, and equipment availability. The system provides actionable insights for plant managers, enabling them to minimize downtime, spot inefficiencies instantly, and analyze production trends to make proactive improvements.`,
+    long_description: `The OEE Dashboard is a real-time industrial analytics platform designed to give manufacturers complete control and visibility over their production efficiency. Using IIoT and cloud-based technology, it captures data directly from machines, PLCs, and sensors to calculate OEE (Availability, Performance, and Quality) in real-time.
+
+Plant managers can visualize bottlenecks, analyze downtime causes, and monitor shift-level performance through customizable dashboards. Its intuitive interface provides both macro and micro-level insights — from plant-wide efficiency to individual machine utilization — enabling rapid decision-making and process optimization. 
+
+The platform also includes automated data collection, event logging, and report generation, eliminating manual data entry errors. Its integration capabilities with ERP and MES systems ensure a seamless flow of production intelligence across departments. Whether it’s for daily performance reviews or strategic planning, the OEE Dashboard empowers manufacturing teams to operate at peak productivity, ensuring continuous improvement and lean manufacturing excellence.`,
+
     key_features: [
       'Real-time performance and availability monitoring',
       'Integration with PLCs and machine control systems',
@@ -599,7 +635,12 @@ export const products: Product[] = [
     seo_description:
       'VisionAI enables automated defect detection and visual inspection at scale.',
 
-    long_description: `VisionAI is an AI-driven vision inspection platform designed to automate quality checks and industrial safety monitoring. By combining deep learning with computer vision, it delivers high-speed defect detection, object recognition, and PPE compliance monitoring. Integrated with existing cameras and surveillance systems, VisionAI helps businesses achieve greater accuracy, reduce manual errors, and maintain compliance standards while scaling easily across multiple industrial sites.`,
+    long_description: `VisionAI harnesses the power of artificial intelligence and computer vision to bring automation and precision to industrial inspection and safety monitoring. Designed for high-speed environments, it integrates with existing camera systems to analyze visual data in real-time, identifying product defects, object classifications, and safety compliance issues instantly.
+
+The platform’s deep learning models continuously evolve, improving detection accuracy across diverse materials and lighting conditions. It supports applications like defect detection, component verification, PPE compliance checks, and process monitoring — all without human intervention. VisionAI’s intuitive web dashboard provides centralized monitoring, configurable alerts, and performance analytics to ensure transparency and traceability.
+
+From production lines to warehouse safety zones, VisionAI reduces human error, speeds up quality control, and increases operational efficiency. Its scalability and API-friendly architecture make it ideal for deployment across multiple facilities, enabling industries to maintain consistent quality, safety, and productivity at scale.`,
+
     key_features: [
       'AI-powered defect and anomaly detection',
       'Real-time object and part recognition',
@@ -621,5 +662,94 @@ export const products: Product[] = [
       'Warehousing and logistics hubs',
       'Smart campuses and security facilities',
     ],
+  },
+];
+
+
+
+export const productbroucher = [
+  {
+    id: 1,
+    title: "Immersix (AR/VR Training)",
+    description: "Immersive AR/VR-based industrial training modules designed to enhance workforce skills, safety, and engagement.",
+    features: [
+      "Interactive 3D simulations",
+      "Real-world industrial scenarios",
+      "Faster knowledge retention",
+      "Customizable learning modules",
+    ],
+    icon: Settings,
+    color: "from-blue-600 to-indigo-700",
+    pd: arvr,
+  },
+  {
+    id: 2,
+    title: "Utility360",
+    description: "IIoT-enabled utility monitoring platform offering predictive maintenance, analytics, and remote access.",
+    features: [
+      "Real-time data insights",
+      "Predictive maintenance alerts",
+      "Remote device control",
+      "Customizable dashboards",
+    ],
+    icon: Network,
+    color: "from-green-500 to-emerald-600",
+    pd: utility,
+  },
+  {
+    id: 3,
+    title: "Digital Checksheet",
+    description: "Smart digital inspection system replacing manual checks with automated, connected, and paperless workflows.",
+    features: [
+      "IoT-enabled data capture",
+      "Compliance automation",
+      "Real-time analytics",
+      "Mobile & tablet support",
+    ],
+    icon: ClipboardCheck,
+    color: "from-rose-500 to-red-600",
+    pd: quality,
+  },
+  {
+    id: 4,
+    title: "SmartEMS",
+    description: "AI-powered Energy Management System enabling real-time monitoring, optimization, and sustainability tracking.",
+    features: [
+      "Live energy usage tracking",
+      "AI-driven optimization",
+      "Sustainability analytics",
+      "Carbon footprint reporting",
+    ],
+    icon: Battery,
+    color: "from-yellow-500 to-orange-500",
+    pd: ems,
+  },
+  {
+    id: 5,
+    title: "OEE Dashboard",
+    description: "Real-time production monitoring tool providing actionable insights into efficiency, downtime, and performance.",
+    features: [
+      "Downtime tracking",
+      "Custom KPI dashboards",
+      "Automated data collection",
+      "Performance analysis",
+    ],
+    icon: Gauge,
+    color: "from-indigo-500 to-blue-600",
+    pd: oee,
+  },
+  {
+    id: 6,
+    title: "VisionAI",
+    description: "AI-based visual inspection platform for defect detection, object recognition, and industrial safety monitoring.",
+    features: [
+      "AI defect detection",
+      "Object & PPE recognition",
+      "Real-time video analytics",
+      "Centralized control dashboard",
+    ],
+    icon: Check,
+    color: "from-purple-500 to-violet-600",
+    pd: image,
   },
 ];

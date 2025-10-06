@@ -3,7 +3,7 @@ import { Download, ArrowRight, Factory, Shield, Cpu, Cloud, Eye, X, ChevronLeft,
 import { Link } from "react-router-dom";
 import vid2 from "../public/vid3.mp4"
 import whatwedo from "../public/image122.png"
-import about from "../public/about.png"
+import about from "../public/about2.jpg"
 import our from "../public/our.png"
 import tech from "../pdfs/Technoviz Automation.pdf"
 import quality from "../pdfs/Technoviz Quality Inspection brochure.pdf"

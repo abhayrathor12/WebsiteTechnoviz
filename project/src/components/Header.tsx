@@ -35,56 +35,8 @@ const megaMenuContent = {
       description: s.long_description,
       link: `/services/${s.slug}`,
     })),
-    technologies: [
-  {
-    icon: <SiPython className="w-6 h-6 text-[#3776AB]" />,
-    title: "Python",
-    description:
-      "Utilize Python for versatile and powerful solutions, from web development to data analysis. Our Python expertise ensures efficient and effective project outcomes.",
-    link: "/python",
-  },
-  {
-    icon: <SiReact className="w-6 h-6 text-[#61DAFB]" />,
-    title: "React",
-    description:
-      "Develop engaging and interactive user interfaces with React. Our React services focus on building fast, scalable, and maintainable applications.",
-    link: "/react",
-  },
-  {
-    icon: (
-      <img
-        src={AZuree}
-        alt="Azure"
-        className="w-6 h-6"
-      />
-    ),
-    title: "Azure",
-    description:
-      "Leverage Microsoft Azure to build, deploy, and manage applications through a global network of data centers. Our Azure solutions ensure scalable, secure, and reliable cloud infrastructure.",
-    link: "/azure",
-  },
-  {
-    icon: <span className="w-6 h-6 text-blue-600">🌐</span>,
-    title: "Networking",
-    description:
-      "Enhance connectivity and security with our networking expertise. We design and manage robust network infrastructures to support seamless business operations.",
-    link: "/network",
-  },
-  {
-    icon: <SiMysql  className="w-6 h-6 text-orange-600" />,
-    title: "mysql",
-    description:
-      "Harness the power of MySQL for efficient database management. Our MySQL solutions ensure reliable, scalable, and optimized data storage and retrieval.",
-    link: "/mysql",
-  },
-  {
-    icon: <SiAndroid className="w-6 h-6 text-green-600" />,
-    title: "Android",
-    description:
-      "Build powerful and user-friendly mobile applications with Android. Our Android solutions deliver seamless performance and engaging experiences across devices.",
-    link: "/android",
-  },
-],
+    
+
 
   },
   solutions: {
@@ -98,33 +50,80 @@ const megaMenuContent = {
       link: `/products/${p.slug}`,
     })),
   },
-  knowledge: {
-    title: "Knowledge Center",
-    exploreAllLink: "/knowledge",
-    sections: [
-      {
-        icon: <BookOpen className="w-6 h-6" />,
-        title: "Book",
-        description:
-          "Comprehensive guides, industry reports, and technical documentation to enhance your knowledge and skills.",
-        link: "/book",
-      },
-      {
-        icon: <UserCheck className="w-6 h-6" />,
-        title: "CoE",
-        description:
-          "Center of Excellence insights, frameworks, and strategies to drive innovation, standardization, and organizational excellence.",
-        link: "/coe",
-      },
-      {
-        icon: <Lightbulb className="w-6 h-6" />,
-        title: "SLM",
-        description:
-          "Streamlined Lifecycle Management methodologies and best practices for optimal project delivery and resource optimization.",
-        link: "/knowledge",
-      },
-    ],
-  },
+  learning: {
+  title: "Learning  Center",
+  exploreAllLink: "/Learning ",
+  sections: [
+    {
+      icon: <BookOpen className="w-6 h-6" />,
+      title: "Book",
+      description:
+        "Comprehensive guides, industry reports, and technical documentation to enhance your knowledge and skills.",
+      link: "/book",
+    },
+    {
+      icon: <UserCheck className="w-6 h-6" />,
+      title: "In Person Traning",
+      description:
+        "Center of Excellence insights, frameworks, and strategies to drive innovation, standardization, and organizational excellence.",
+      link: "/coe",
+    },
+    {
+      icon: <Lightbulb className="w-6 h-6" />,
+      title: "Online Training Module",
+      description:
+        "Streamlined Lifecycle Management methodologies and best practices for optimal project delivery and resource optimization.",
+      link: "/Learning ",
+    },
+  ],
+
+  // ✅ moved here
+  technologies: [
+    {
+      icon: <SiPython className="w-6 h-6 text-[#3776AB]" />,
+      title: "Python",
+      description:
+        "Utilize Python for versatile and powerful solutions, from web development to data analysis. Our Python expertise ensures efficient and effective project outcomes.",
+      link: "/python",
+    },
+    {
+      icon: <SiReact className="w-6 h-6 text-[#61DAFB]" />,
+      title: "React",
+      description:
+        "Develop engaging and interactive user interfaces with React. Our React services focus on building fast, scalable, and maintainable applications.",
+      link: "/react",
+    },
+    {
+      icon: <img src={AZuree} alt="Azure" className="w-6 h-6" />,
+      title: "Azure",
+      description:
+        "Leverage Microsoft Azure to build, deploy, and manage applications through a global network of data centers. Our Azure solutions ensure scalable, secure, and reliable cloud infrastructure.",
+      link: "/azure",
+    },
+    {
+      icon: <span className="w-6 h-6 text-blue-600">🌐</span>,
+      title: "Networking",
+      description:
+        "Enhance connectivity and security with our networking expertise. We design and manage robust network infrastructures to support seamless business operations.",
+      link: "/network",
+    },
+    {
+      icon: <SiMysql className="w-6 h-6 text-orange-600" />,
+      title: "MySQL",
+      description:
+        "Harness the power of MySQL for efficient database management. Our MySQL solutions ensure reliable, scalable, and optimized data storage and retrieval.",
+      link: "/mysql",
+    },
+    {
+      icon: <SiAndroid className="w-6 h-6 text-green-600" />,
+      title: "Android",
+      description:
+        "Build powerful and user-friendly mobile applications with Android. Our Android solutions deliver seamless performance and engaging experiences across devices.",
+      link: "/android",
+    },
+  ],
+},
+
 };
 
 const Header: React.FC = () => {
@@ -152,10 +151,10 @@ const Header: React.FC = () => {
   const navItems = [
     { name: "Services", path: "/services", hasDropdown: true },
     { name: "Solutions", path: "/products", hasDropdown: true },
-    { name: "Case Studies", path: "/case-studies", hasDropdown: false },
-    { name: "Blogs", path: "/blogs", hasDropdown: false },
+    { name: "Insights", path: "/case-studies", hasDropdown: false },
+    // { name: "Blogs", path: "/blogs", hasDropdown: false },
     { name: "Company", path: "/company", hasDropdown: false },
-    { name: "Knowledge", path: "/knowledge", hasDropdown: true },
+    { name: "Learning", path: "/learning", hasDropdown: true },
     { name: "Contact", path: "/contact", hasDropdown: false },
   ];
 
@@ -304,7 +303,7 @@ const Header: React.FC = () => {
                 onMouseEnter={() => handleMouseEnter(item.name)}
                 onMouseLeave={handleMouseLeave}
               >
-                {item.name === "Knowledge" ? (
+                {item.name === "Learning " ? (
                 <Link
                   to={item.path}
                   className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${
@@ -312,13 +311,7 @@ const Header: React.FC = () => {
                   }`}
                 >
                   <span>{item.name}</span>
-                  {item.hasDropdown && (
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
-                      }`}
-                    />
-                  )}
+                 
                 </Link>
               ) : (
                 <Link
@@ -328,13 +321,7 @@ const Header: React.FC = () => {
                   }`}
                 >
                   <span>{item.name}</span>
-                  {item.hasDropdown && (
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
-                      }`}
-                    />
-                  )}
+                  
                 </Link>
               )}
 
@@ -374,14 +361,13 @@ const Header: React.FC = () => {
           )}
       </AnimatePresence>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-gray-200"
+            className="lg:hidden bg-white border-t border-gray-200 max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col space-y-2">

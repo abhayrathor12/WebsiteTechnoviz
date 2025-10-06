@@ -52,11 +52,7 @@ export interface CaseStudy {
     value: string;
   }[];
   images: string[];
-  testimonial: {
-    quote: string;
-    author: string;
-    position: string;
-  };
+  
   publish_date: string | number | Date;
   slug: string;
   seo_meta_title: string;

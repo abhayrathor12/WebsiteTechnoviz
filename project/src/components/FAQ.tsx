@@ -3,7 +3,6 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-// 🔹 Types
 type FAQItemType = {
   id: string;
   question: string;
@@ -16,7 +15,6 @@ type FAQItemProps = {
   toggleItem: (itemId: string) => void;
 };
 
-// 🔹 FAQ Item Component
 const FAQItem: React.FC<FAQItemProps> = ({ item, openItem, toggleItem }) => {
   const isOpen = openItem === item.id;
   const questionNumber = item.id.toUpperCase();
@@ -55,7 +53,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, openItem, toggleItem }) => {
       >
         <div className="px-6 pb-6">
           <div className="pl-14">
-            <p className="text-gray-600 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">
               {item.answer}
             </p>
           </div>
@@ -65,9 +63,8 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, openItem, toggleItem }) => {
   );
 };
 
-// 🔹 Main FAQ Component
 const FAQ: React.FC = () => {
-  const [openItem, setOpenItem] = useState<string | null>("q1"); // Q1 open by default
+  const [openItem, setOpenItem] = useState<string | null>("q1");
 
   const toggleItem = (itemId: string) => {
     setOpenItem((prev) => (prev === itemId ? null : itemId));
@@ -78,137 +75,109 @@ const FAQ: React.FC = () => {
     threshold: 0.1,
   });
 
-  const faqData: FAQItemType[][] = [
-    // Left column
-    [
-      {
-        id: "q1",
-        question:
-          "How to choose the right partner for digital transformation services in the UK and India?",
-        answer:
-          "When selecting a partner for digital transformation services in the UK and India, consider Technoviz Automation. Assess our expertise, past projects, industry experience, and cultural fit. We align with your goals, have a proven track record in digital transformation, and possess a strong understanding of both the UK and Indian markets.",
-      },
-      {
-        id: "q2",
-        question: "What factors affect the pricing of software development services?",
-        answer:
-          "At Technoviz Automation, pricing for software development services is influenced by various factors such as project complexity, scope, technology stack, required features, development hours, and the level of customization. Each project is unique, impacting the overall cost.",
-      },
-      {
-        id: "q3",
-        question:
-          "Steps to initiate a digital transformation strategy with a technology company?",
-        answer:
-          "Initiating a digital transformation strategy with Technoviz Automation involves outlining your goals and challenges. Engage in comprehensive discussions with us to align visions and objectives. We create a strategic roadmap emphasizing iterative development and continuous improvement.",
-      },
-      {
-        id: "q4",
-        question: "How to hire software developers for a project with a technology firm?",
-        answer:
-          "Choose Technoviz Automation for your software development needs. We provide access to a pool of skilled developers. Assess their expertise, communication skills, and experience in similar projects. Collaborate closely with us for a seamless onboarding process.",
-      },
-      {
-        id: "q5",
-        question: "What are the estimated costs for software development services?",
-        answer:
-          "For estimated costs of software development services, provide project specifics to Technoviz Automation. Transparently outline your requirements to receive accurate cost estimates tailored to your needs and budget.",
-      },
-      {
-        id: "q6",
-        question: "How much does customized software development cost with a tech company?",
-        answer:
-          "Customized software development costs with Technoviz Automation depend on project complexity, features, technology used, and development time. Contact us to discuss your project requirements for a tailored estimate.",
-      },
-      {
-        id: "q7",
-        question: "Do tech firms offer ongoing support for completed software projects?",
-        answer:
-          "At Technoviz Automation, we offer comprehensive post-development support and maintenance services. We ensure your software operates optimally, providing updates, bug fixes, and technical assistance as needed.",
-      },
-      {
-        id: "q8",
-        question: "Will a tech company help in deploying and integrating software solutions?",
-        answer:
-          "Technoviz Automation specializes in seamless deployment and integration of software solutions. We ensure they integrate smoothly with your existing systems and workflows.",
-      },
-      {
-        id: "q9",
-        question: "Where to find skilled software developers with a technology company?",
-        answer:
-          "Explore Technoviz Automation for a pool of skilled developers. Review our portfolios and engage in discussions to understand our talent pool and expertise.",
-      },
-      {
-        id: "q10",
-        question: "What's the standard timeline for software projects with a tech firm?",
-        answer:
-          "Project timelines with Technoviz Automation vary based on complexity and scope. We provide a project plan outlining milestones, development phases, and estimated delivery timelines after understanding your project requirements thoroughly.",
-      },
-    ],
-    // Right column
-    [
-      {
-        id: "q11",
-        question: "How does Technoviz Automation handle client communication during a project?",
-        answer:
-          "At Technoviz Automation, we prioritize clear and consistent communication with our clients. We use various communication channels, including regular meetings, email updates, and project management tools, to ensure you are always informed about the project's progress and any important developments.",
-      },
-      {
-        id: "q12",
-        question: "Can Technoviz Automation assist with legacy system modernization?",
-        answer:
-          "Yes, Technoviz Automation specializes in modernizing legacy systems. We assess your current systems, identify areas for improvement, and implement modern technologies to enhance performance, security, and scalability.",
-      },
-      {
-        id: "q13",
-        question: "What industries does Technoviz Automation serve?",
-        answer:
-          "Technoviz Automation has experience across various industries, including finance, healthcare, retail, manufacturing, and more. Our diverse expertise allows us to tailor solutions to meet the specific needs of each industry.",
-      },
-      {
-        id: "q14",
-        question: "How does Technoviz Automation approach project management?",
-        answer:
-          "We follow agile project management methodologies to ensure flexibility and transparency. Our approach includes regular updates, collaborative planning, and iterative development to keep you informed and involved throughout the project.",
-      },
-      {
-        id: "q15",
-        question: "What technologies does Technoviz Automation specialize in?",
-        answer:
-          "Technoviz Automation specializes in a wide range of technologies, including AI/ML, cloud computing, IoT, blockchain, mobile app development, and web development. Our team stays updated with the latest technological advancements to deliver cutting-edge solutions.",
-      },
-      {
-        id: "q16",
-        question: "Can Technoviz Automation develop mobile applications?",
-        answer:
-          "Yes, we have extensive experience in developing mobile applications for both iOS and Android platforms. Our team creates user-friendly, high-performance apps tailored to your business needs.",
-      },
-      {
-        id: "q17",
-        question: "How does Technoviz Automation ensure project delivery within budget?",
-        answer:
-          "We provide transparent cost estimates and detailed project plans to ensure budget adherence. Regular monitoring and reporting help us manage resources efficiently and avoid unforeseen expenses.",
-      },
-      {
-        id: "q18",
-        question:
-          "What is the role of AI and ML in software development at Technoviz Automation?",
-        answer:
-          "We leverage AI and ML to enhance software capabilities, automate processes, and provide predictive insights. Our AI/ML solutions help businesses achieve greater efficiency and innovation.",
-      },
-      {
-        id: "q19",
-        question: "How can Technoviz Automation help with cloud migration?",
-        answer:
-          "Technoviz Automation offers comprehensive cloud migration services, including assessment, planning, and execution. We ensure a seamless transition to the cloud, optimizing your infrastructure for performance and cost-efficiency.",
-      },
-      {
-        id: "q20",
-        question: "Does Technoviz Automation provide post-launch support?",
-        answer:
-          "Yes, Technoviz Automation provides ongoing post-launch support, ensuring your software runs smoothly with regular updates, bug fixes, and technical assistance.",
-      },
-    ],
+  const faqData: FAQItemType[] = [
+    {
+      id: "q1",
+      question: "What solutions does Technoviz Automation Solutions provide?",
+      answer: `Technoviz Automation Solutions is your one-stop-shop for technology optimization, offering services in:
+• Digitalization – Production system online, electronic records, ERP integration, reporting, and review.
+• Industrial Internet of Things (IIoT) – IoT cloud and mobile solutions, real-time information, visualization, and protocol conversion.
+• Network Security – DLP, SIEM, endpoint protection, MFA, backup and disaster recovery.
+• Automated Services – SCADA, HMI, energy management, process control systems, RFID/barcode, and IoT controllers.`,
+    },
+    {
+      id: "q2",
+      question: "How can I contact Technoviz Automation Solutions for inquiries or support?",
+      answer: `India Office:
+311, Paras Trade Center, Sector-2, Gurgaon - 122011, Haryana, India
+Phone: +91-9999765380 | Alternate: 0124-4424695
+
+Dubai Office:
+Easy Access Business Center, Al Abbas Building-2, Al Mankhool, Dubai, UAE
+
+Website: https://technovizautomation.com/`,
+    },
+    {
+      id: "q3",
+      question: "Which industries does Technoviz Automation Solutions operate in?",
+      answer: `Technoviz serves multiple sectors including:
+• Manufacturing
+• Energy & Utilities
+• Food & Beverage
+• Pharmaceuticals
+• Oil and Gas
+Our focus is on compliance, automation, and digital transformation tailored to each industry's needs.`,
+    },
+    {
+      id: "q4",
+      question: "Does Technoviz Automation Solutions provide consultancy services?",
+      answer: `Yes. We offer consulting in:
+• Strategic and execution planning
+• Implementation support
+• Training and certification
+We help improve efficiency, cost control, and quality across operations.`,
+    },
+    {
+      id: "q5",
+      question: "What is the Center of Excellence (CoE) at Technoviz Automation Solutions?",
+      answer: `Our CoE fosters innovation in digital technologies, automation, and cybersecurity. It collaborates with academia and industry to bridge skill gaps, offering hands-on training and research opportunities in industrial automation and digital transformation.`,
+    },
+    {
+      id: "q6",
+      question: "How does Technoviz Automation Solutions protect data security in its solutions?",
+      answer: `We implement a complete cybersecurity framework including:
+• DLP and HIPS
+• Endpoint protection and anti-malware
+• SIEM and network monitoring
+• Multi-factor authentication
+• Network segmentation
+• Secure remote access and disaster recovery.`,
+    },
+    {
+      id: "q7",
+      question: "Can Technoviz Automation Solutions assist with legacy system integration?",
+      answer: `Yes. We specialize in integrating legacy systems with modern technologies for better communication, efficiency, and cost savings across business functions like CRM, HR, and finance.`,
+    },
+    {
+      id: "q8",
+      question: "Does Technoviz provide automation solution training services?",
+      answer: `Yes. Through our Center of Excellence (CoE), we offer hands-on training in automation and cybersecurity, encouraging collaboration between academia and industry to build future-ready professionals.`,
+    },
+    {
+      id: "q9",
+      question: "What is the process of launching a project with Technoviz Automation Solutions?",
+      answer: `1. Get in touch:
+India: +91-9999765380 | 0124-4424695
+Dubai: Al Abbas Building-2, Al Mankhool, Dubai, UAE
+2. Schedule consultation.
+3. Receive a detailed proposal.
+4. Finalize agreement and project kick-off.
+More info: https://technovizautomation.com/`,
+    },
+    {
+      id: "q10",
+      question: "Where can I find more information about Technoviz Automation Solutions’ projects and case studies?",
+      answer: `Visit:
+• Our Projects page – for detailed insights
+• Our Experience page – for industry expertise and capabilities
+Website: https://technovizautomation.com/`,
+    },
+    {
+      id: "q11",
+      question: "What is the Digital Revolution?",
+      answer: `The Digital Revolution, or Industry 4.0, is a transformation integrating digital, physical, and biological systems to improve efficiency and productivity. It emphasizes IoT, big data analytics, and AI-driven innovation for industrial growth.`,
+    },
+    {
+      id: "q12",
+      question: "Who is Kapil Khurana?",
+      answer: `Kapil Khurana is the Founder and CEO of Technoviz Automation Solutions and author of “The Digital Revolution.” He advocates for intelligent operations through IoT and cloud technologies, guiding industries in adopting innovation for sustainable growth.`,
+    },
   ];
+
+  // Split evenly into 2 columns
+  const mid = Math.ceil(faqData.length / 2);
+  const leftCol = faqData.slice(0, mid);
+  const rightCol = faqData.slice(mid);
 
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 relative overflow-hidden">
@@ -230,10 +199,9 @@ const FAQ: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* FAQ Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="space-y-6">
-            {faqData[0].map((item) => (
+            {leftCol.map((item) => (
               <FAQItem
                 key={item.id}
                 item={item}
@@ -243,7 +211,7 @@ const FAQ: React.FC = () => {
             ))}
           </div>
           <div className="space-y-6">
-            {faqData[1].map((item) => (
+            {rightCol.map((item) => (
               <FAQItem
                 key={item.id}
                 item={item}

@@ -314,13 +314,13 @@ const ContactPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-[#203f78]/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-6 h-6 text-[#203f78]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">India Office</h4>
+                    <h4 className="font-semibold text-[#203f78] mb-2">India Office</h4>
                     <p className="text-gray-600">311, Paras Trade Center<br />Sector-2, Gurgaon - 122011<br />Haryana, India</p>
                   </div>
                 </div>
@@ -330,7 +330,7 @@ const ContactPage: React.FC = () => {
                     <Building2 className="w-6 h-6 text-[#203f78]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">UAE Office</h4>
+                    <h4 className="font-semibold text-[#203f78] mb-2">UAE Office</h4>
                     <p className="text-gray-600">Easy Access Business Center<br />AI Abbas Building-2, Al Mankhool<br />Dubai, UAE</p>
                   </div>
                 </div>
@@ -340,7 +340,7 @@ const ContactPage: React.FC = () => {
                     <Phone className="w-6 h-6 text-[#203f78]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Phone Numbers</h4>
+                    <h4 className="font-semibold text-[#203f78] mb-1">Phone Numbers</h4>
                     <p className="text-gray-600">+91-9999765380<br />0124-4424695</p>
                   </div>
                 </div>
@@ -350,17 +350,17 @@ const ContactPage: React.FC = () => {
                     <Mail className="w-6 h-6 text-[#203f78]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Email Address</h4>
+                    <h4 className="font-semibold text-[#203f78] mb-1">Email Address</h4>
                     <p className="text-gray-600">support@technovizautomation.com</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4 md:col-span-2">
                   <div className="w-12 h-12 bg-[#203f78]/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Clock className="w-6 h-6 text-[#203f78]" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Business Hours</h4>
+                    <h4 className="font-semibold text-[#203f78] mb-1">Business Hours</h4>
                     <p className="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM IST<br />Weekend: By appointment</p>
                   </div>
                 </div>

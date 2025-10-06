@@ -10,6 +10,11 @@ import CDAC from '../public/cdac.png';
 import Fabcon from '../public/Fabcon.jpeg';
 import Nalco from '../public/nalco-1.png';
 import APL from '../public/Apl.png';
+import DRDO from '../public/DRDO.png';
+import STPI from '../public/STPI.jpeg';
+import MEIT from '../public/MEITT.png';
+import CARRIER from '../public/carrier.png';
+import SMS from '../public/SMS.png';
 
 const Clients = () => {
   const { ref, inView } = useInView({
@@ -55,24 +60,24 @@ const Clients = () => {
       alt: "APL"
     },
     {
-      src: "https://dreamstechnologies.com/wp-content/themes/zakhealth-child/img/clients/mayagreens.png",
-      alt: "Maya Greens"
+      src: DRDO,
+      alt: "DRDO"
     },
     {
-      src: "https://dreamstechnologies.com/wp-content/themes/zakhealth-child/img/clients/wholesale.png",
-      alt: "UK Wholesale"
+      src: STPI,
+      alt: "STPI"
     },
     {
-      src: "https://dreamstechnologies.com/wp-content/themes/zakhealth-child/img/clients/IIT ISM.png",
-      alt: "IIT ISM"
+      src: MEIT,
+      alt: "MEIT"
     },
     {
-      src: "https://dreamstechnologies.com/wp-content/uploads/2025/05/turningwell-logo.svg",
-      alt: "Turning Well"
+      src: CARRIER,
+      alt: "CARRIER"
     },
     {
-      src: "https://dreamstechnologies.com/wp-content/uploads/2025/05/ec-logo.png",
-      alt: "Enhanced Communications"
+      src: SMS,
+      alt: "SMS"
     },
     {
       src: "https://dreamstechnologies.com/wp-content/uploads/2025/05/probitycare-logo-1.png",

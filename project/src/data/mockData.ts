@@ -1,12 +1,15 @@
 import { Service, Product, CaseStudy, BlogPost, Job } from '../types';
 import Case1 from '../public/Case-1.jpg';
+import CaseS1 from '../public/Case-Study-1-Tech3.webp.bv.webp';
+import CaseS2 from '../public/cases2.webp';
+import CaseS3 from '../public/caseS4.webp';
 import {
   FileText,
   Network,
   Radio,
   Shield,
   Settings,
-  BarChart,
+ 
   Box,
   Cpu,
   ClipboardCheck,
@@ -322,19 +325,17 @@ export const caseStudies: CaseStudy[] = [
     id: '1',
     title: 'Remote Scada and Mobility Solutions',
     client_name: 'TechCorp Industries',
-    challenge: 'Different units/sub-units/departments which were operating within the premises having a distance of approx. 3 K.M… Lots of energy & manpower are engaged in monitoring & fetching the data related to production & energy consumption. The company was looking for a solution in which all the information can be monitored from a centralized Control Room and can be utilized the manpower in a more effective way and also improve the quality of raw data.',
-    solution: 'We have proposed the solution to integrate all controllers, local SCADAs & PLCs and installed one server-based Remote SCADA System in the centralized control room. For that, we have created one server room and the complete plant-related information with customized dashboards has been provided in a centralized location. Information related to production persons, maintenance persons, and quality engineers & for Top Management is available 24X7 in a relevant customized format.',
+    challenge:
+      'Different units/sub-units/departments which were operating within the premises having a distance of approx. 3 K.M… Lots of energy & manpower are engaged in monitoring & fetching the data related to production & energy consumption. The company was looking for a solution in which all the information can be monitored from a centralized Control Room and can be utilized the manpower in a more effective way and also improve the quality of raw data.',
+    solution:
+      'We have proposed the solution to integrate all controllers, local SCADAs & PLCs and installed one server-based Remote SCADA System in the centralized control room. For that, we have created one server room and the complete plant-related information with customized dashboards has been provided in a centralized location. Information related to production persons, maintenance persons, and quality engineers & for Top Management is available 24X7 in a relevant customized format.',
     results: [
       { metric: 'Efficiency Increase', value: '45%' },
       { metric: 'Cost Reduction', value: '30%' },
       { metric: 'Processing Speed', value: '3x faster' },
+      { metric: 'Data Accuracy', value: 'Improved by 90%' },
     ],
     images: [Case1],
-    testimonial: {
-      quote: 'The transformation exceeded our expectations in every way.',
-      author: 'Sarah Johnson',
-      position: 'CTO, TechCorp Industries',
-    },
     publish_date: '2024-01-15',
     slug: 'enterprise-erp-transformation',
     seo_meta_title: 'ERP Transformation Case Study',
@@ -353,13 +354,9 @@ export const caseStudies: CaseStudy[] = [
       { metric: 'Uptime', value: 'High uptime achieved' },
       { metric: 'Response Time', value: 'Improved significantly' },
       { metric: 'Maintenance', value: 'Automated preventive scheduling' },
+      { metric: 'Product Loss', value: 'Minimized due to temp control' },
     ],
-    images: [],
-    testimonial: {
-      quote: 'This solution has greatly improved our operational reliability.',
-      author: 'Plant Manager',
-      position: 'Milk Dairy Plant',
-    },
+    images: [CaseS3],
     publish_date: '2024-02-20',
     slug: 'ammonia-refrigeration-automation',
     seo_meta_title: 'Refrigeration Automation Case Study',
@@ -371,20 +368,16 @@ export const caseStudies: CaseStudy[] = [
     title: 'Multi-Protocol Integration for Centralized SCADA Using OPC UA',
     client_name: 'Confidential Client',
     challenge:
-      'Technoviz Automation Solutions Private Limited has a proven track record of providing high-quality, custom software and automation projects. Our client list includes Fortune 500 Corporations, Government agencies, and small businesses. Our experience is broad and spans the Complete project development cycle',
+      'Technoviz Automation Solutions Private Limited has a proven track record of providing high-quality, custom software and automation projects. Our client list includes Fortune 500 Corporations, Government agencies, and small businesses. Our experience is broad and spans the complete project development cycle.',
     solution:
-      'With the help of different gateways and communication protocol conversions on different network media we have successfully integrated Siemens S71500, ABB PM573 & Rockwell Compact Logix on a single platform i.e. OPC UA server while maintaining the quality of the flow of data by prioritizing it.',
+      'With the help of different gateways and communication protocol conversions on different network media, we have successfully integrated Siemens S71500, ABB PM573 & Rockwell Compact Logix on a single platform i.e. OPC UA server while maintaining the quality of the flow of data by prioritizing it.',
     results: [
       { metric: 'Integration', value: 'Multi-vendor PLCs unified' },
       { metric: 'Reliability', value: 'High-quality data maintained' },
       { metric: 'Scalability', value: 'Future-proof integration' },
+      { metric: 'Downtime', value: 'Reduced by 50%' },
     ],
-    images: [],
-    testimonial: {
-      quote: 'The centralized SCADA system exceeded expectations.',
-      author: 'Automation Head',
-      position: 'Client Organization',
-    },
+    images: [CaseS1],
     publish_date: '2024-03-10',
     slug: 'multi-protocol-integration-opcua',
     seo_meta_title: 'Multi-Protocol SCADA Integration Case Study',
@@ -396,20 +389,16 @@ export const caseStudies: CaseStudy[] = [
     title: 'Wireless System Optimization for Industry 4.0 Data Integration',
     client_name: 'Industrial Client',
     challenge:
-      'To integrate different controllers and field equipment with centralize data hub to achieve Industry 4.0 norms.',
+      'To integrate different controllers and field equipment with centralized data hub to achieve Industry 4.0 norms.',
     solution:
-      'Being as domain experts we visited and reconfirm the Wireless system designed and check the data rate flow and replace the passive elements and used Multi Input Multi Output antennas by making these design level changes system is working perfectly and the customer-provided an appreciation letter for the same.',
+      'Being domain experts, we reviewed the existing wireless design, verified data rate flow, replaced passive elements, and used Multi Input Multi Output antennas. After these design-level changes, the system worked perfectly, and the customer provided an appreciation letter for the same.',
     results: [
       { metric: 'Stability', value: 'Wireless system stabilized' },
       { metric: 'Performance', value: 'Optimized for Industry 4.0' },
       { metric: 'Customer Feedback', value: 'Received appreciation letter' },
+      { metric: 'Data Throughput', value: 'Enhanced by 60%' },
     ],
-    images: [],
-    testimonial: {
-      quote: 'Your wireless optimization was a game changer for our operations.',
-      author: 'Operations Director',
-      position: 'Industrial Client',
-    },
+    images: [CaseS2],
     publish_date: '2024-04-05',
     slug: 'wireless-system-optimization-industry4',
     seo_meta_title: 'Wireless System Optimization Case Study',
