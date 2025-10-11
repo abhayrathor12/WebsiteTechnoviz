@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Oeeimage from '../public/Oeeimage.jpg';
 import emsimage from '../public/emsimage.jpg';
 import digitalimage from '../public/Digitalimage.jpg';
@@ -18,7 +18,7 @@ const products = [
     category: 'AR/VR',
     hero_image: immerimage,
     features: ['Immersive AR/VR training', 'Hands-on skill development', 'Realistic simulations'],
-    cta_text: 'Learn More',
+    cta_text: 'Know More',
     slug: 'immersix',
   },
   {
@@ -28,7 +28,7 @@ const products = [
     category: 'Utility',
     hero_image: utilityimage,
     features: ['Real-time utility tracking', 'Predictive maintenance', 'Remote control'],
-    cta_text: 'Learn More',
+    cta_text: 'Know More',
     slug: 'utility360',
   },
   {
@@ -38,7 +38,7 @@ const products = [
     category: 'Quality',
     hero_image: digitalimage,
     features: ['Mobile inspection forms', 'IoT validation', 'Automated reporting'],
-    cta_text: 'Learn More',
+    cta_text: 'Know More',
     slug: 'digital-checksheet',
   },
   {
@@ -48,7 +48,7 @@ const products = [
     category: 'Energy',
     hero_image: emsimage,
     features: ['Real-time monitoring', 'AI analysis', 'Carbon tracking'],
-    cta_text: 'Learn More',
+    cta_text: 'Know More',
     slug: 'smart-ems',
   },
   {
@@ -58,7 +58,7 @@ const products = [
     category: 'Dashboard',
     hero_image: Oeeimage,
     features: ['Real-time monitoring', 'Downtime analysis', 'Custom dashboards'],
-    cta_text: 'Learn More',
+    cta_text: 'Know More',
     slug: 'oee-dashboard',
   },
   {
@@ -68,7 +68,7 @@ const products = [
     category: 'Vision',
     hero_image: visionimage,
     features: ['Defect detection', 'Object recognition', 'High-speed analysis'],
-    cta_text: 'Learn More',
+    cta_text: 'Know More',
     slug: 'vision-ai',
   },
 ];
@@ -132,7 +132,16 @@ const ProductsSection: React.FC = () => {
                   className="inline-flex items-center text-[#203f78] font-medium hover:text-[#ddaf26] transition-colors"
                 >
                   {product.cta_text}
-                  <ArrowRight className="w-4 h-4 ml-1" />
+                  <ArrowUpRight
+  className="
+    w-4 h-4 
+    ml-1 
+    group-hover:translate-x-0.5 
+    group-hover:-translate-y-0.5 
+    transition-transform
+  "
+/>
+
                 </Link>
               </div>
             </motion.div>

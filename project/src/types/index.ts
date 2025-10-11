@@ -6,6 +6,7 @@ export interface Service {
   slug: string;
   short_description: string;
   long_description: string;
+  medium_description?:string;
   category: string;
   hero_image: string;
   icon: LucideIcon;

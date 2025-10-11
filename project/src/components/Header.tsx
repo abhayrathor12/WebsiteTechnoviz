@@ -32,7 +32,7 @@ const megaMenuContent = {
     sections: services.map((s) => ({
       icon: s.icon ? <s.icon className="w-6 h-6" /> : "✨",
       title: s.title,
-      description: s.long_description,
+      description: s.medium_description,
       link: `/services/${s.slug}`,
     })),
     

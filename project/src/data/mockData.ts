@@ -49,7 +49,8 @@ export const services: Service[] = [
     short_description:
       'Replace paperwork with smart digital systems for real-time visibility and smarter decision-making.',
     long_description:
-      'Our digitization services streamline industrial operations by converting manual records into intelligent digital systems. Get transparency, automation, and actionable insights at every step.',
+      'Our Digitization service transforms your traditional paper-based processes into efficient, data-driven digital systems. By integrating smart tools such as electronic logbooks, digital production records, and automated reporting, we help you achieve real-time visibility across all operations. This not only enhances accuracy and traceability but also enables faster decision-making. With a focus on compliance, data integrity, and operational excellence, we ensure your workforce transitions smoothly from manual entries to intelligent, connected platforms that drive measurable improvements.',
+    medium_description: 'Our digitization services streamline industrial operations by converting manual records into intelligent digital systems. Get transparency, automation, and actionable insights at every step.',
     category: 'Digital Transformation',
     slug: 'digitization',
     icon: FileText,
@@ -59,7 +60,6 @@ export const services: Service[] = [
       'E-Logbooks & Digital Records',
       'Reports & Analysis',
       'Maintenance Management',
-      
     ],
     cta_text: 'Transform Now',
     seo_meta_title: 'Digitization Solutions',
@@ -73,9 +73,9 @@ export const services: Service[] = [
     short_description:
       'IoT-powered connectivity for smarter factories and real-time operations monitoring.',
     long_description:
-      'We help industries harness the power of IoT to connect assets, analyze performance, and enable real-time decision-making across the plant floor.',
+      'Our Industrial IoT (IIoT) solutions empower factories to become truly smart and connected. We integrate sensors, controllers, and cloud platforms to collect real-time data from machines, production lines, and utilities. This data is analyzed and visualized through dashboards, enabling predictive maintenance, production optimization, and energy management. Whether you’re modernizing legacy equipment or building a connected factory from the ground up, our IIoT solutions ensure seamless communication, remote monitoring, and intelligent decision-making powered by data-driven insights.',
+    medium_description: 'We help industries harness the power of IoT to connect assets, analyze performance, and enable real-time decision-making across the plant floor.',
     category: 'IoT',
-   
     slug: 'iiot',
     icon: Network,
     related_products: [],
@@ -83,7 +83,7 @@ export const services: Service[] = [
       'IoT Cloud Solutions',
       'Mobility Solutions',
       'Real-time Information',
-      'Visualization & Dashboards'
+      'Visualization & Dashboards',
     ],
     cta_text: 'Connect Devices',
     seo_meta_title: 'Industrial IoT Services',
@@ -97,9 +97,9 @@ export const services: Service[] = [
     short_description:
       'Reliable and secure communication networks for industrial operations.',
     long_description:
-      'We provide scalable and secure communication infrastructure for industries, ensuring real-time connectivity across plants and remote sites.',
+      'In today’s connected world, reliable communication forms the backbone of industrial operations. Our Industrial Communication services deliver secure, scalable, and high-speed networking solutions that keep your machines, systems, and sites interconnected at all times. From industrial gateways and protocol converters to wireless and satellite-based systems, we design infrastructures that guarantee seamless data flow and minimal downtime. Our focus on rugged performance, cybersecurity, and interoperability ensures that your plants remain connected — whether across a single site or multiple remote facilities.',
+    medium_description: 'We provide scalable and secure communication infrastructure for industries, ensuring real-time connectivity across plants and remote sites.',
     category: 'Connectivity',
-  
     slug: 'industrial-communication',
     icon: Radio,
     related_products: [],
@@ -107,7 +107,7 @@ export const services: Service[] = [
       'Industrial Gateways & Protocol Conversions',
       'Wireless Connectivity (2.4GHz / 5GHz)',
       'Satellite Communication Systems',
-      'VSAT Technologies & Services'
+      'VSAT Technologies & Services',
     ],
     cta_text: 'Explore Solutions',
     seo_meta_title: 'Industrial Communication Solutions',
@@ -121,9 +121,9 @@ export const services: Service[] = [
     short_description:
       'Safeguard operations from cyber threats with end-to-end protection.',
     long_description:
-      'Our cybersecurity services protect industrial systems with cutting-edge tools for monitoring, threat prevention, and secure remote access.',
-    category: 'Security',
-
+      'With the rise of connected industrial systems, cybersecurity has become a critical necessity. Our Industrial Cybersecurity solutions are designed to defend your operational technology (OT) environments from evolving threats. We offer comprehensive protection including endpoint security, network monitoring, whitelisting, intrusion prevention, and secure remote access. Our team ensures compliance with international standards and builds layered defense architectures that minimize risks while maintaining uptime. From threat detection to incident response, we help you secure every digital asset in your industrial ecosystem.',
+    medium_description:'Our cybersecurity services protect industrial systems with cutting-edge tools for monitoring, threat prevention, and secure remote access.',
+      category: 'Security',
     slug: 'cybersecurity',
     icon: Shield,
     related_products: [],
@@ -132,7 +132,6 @@ export const services: Service[] = [
       'Endpoint Protection & Anti-malware',
       'SIEM (Security Information & Event Management)',
       'Network Monitoring & Segmentation',
-
     ],
     cta_text: 'Secure Now',
     seo_meta_title: 'Industrial Cybersecurity',
@@ -146,15 +145,14 @@ export const services: Service[] = [
     short_description:
       'Boost productivity with advanced automation and control solutions.',
     long_description:
-      'We design and deploy custom automation systems that integrate seamlessly with existing workflows to improve efficiency and reduce downtime.',
-    category: 'Automation',
-    
+      'Our Automation Services empower industries to achieve higher productivity, improved safety, and consistent product quality. We design and deploy custom automation architectures tailored to your processes — integrating SCADA, PLC, HMI, and IoT controllers to create a unified control environment. With advanced reporting and analytics, you gain full visibility into operations, helping to identify bottlenecks and optimize resource utilization. Whether it’s upgrading existing systems or implementing end-to-end automation, our solutions ensure precision, scalability, and long-term sustainability.',
+    medium_description:'We design and deploy custom automation systems that integrate seamlessly with existing workflows to improve efficiency and reduce downtime.',
+      category: 'Automation',
     slug: 'automation-services',
     icon: Settings,
     related_products: [],
     features: [
       'SCADA, HMI & Historians',
- 
       'IoT Controllers',
       'RFID & Barcode Solutions',
       'Energy Management Systems',
@@ -165,30 +163,31 @@ export const services: Service[] = [
       'Next-gen automation services for industrial plants and enterprises.',
   },
   {
-  id: '6',
-  hero_image: aiinn,
-  title: 'AI in Manufacturing',
-  short_description:
-    'Leverage AI to optimize operations, predict failures, and enhance productivity.',
-  long_description:
-    'Our AI-powered solutions help industries optimize operations, predict equipment failures, and unlock valuable insights from production data.',
-  category: 'AI',
-  
-  slug: 'ai-manufacturing',
-  icon: Cpu,   // you can change this to a relevant AI/automation icon
-  related_products: [],
-  features: [
-    'Real-time Dashboards',
-    'Performance Metrics',
-    'Alerts & Notifications',
-    'Comprehensive Reporting'
-  ],
-  cta_text: 'Explore AI Solutions',
-  seo_meta_title: 'AI in Manufacturing Solutions',
-  seo_description:
-    'Harness the power of AI in manufacturing to boost efficiency, reduce downtime, and drive innovation.',
-}
+    id: '6',
+    hero_image: aiinn,
+    title: 'AI in Manufacturing',
+    short_description:
+      'Leverage AI to optimize operations, predict failures, and enhance productivity.',
+    long_description:
+      'Our AI in Manufacturing solutions bring the power of artificial intelligence and machine learning to the heart of your industrial processes. By analyzing production data, equipment behavior, and quality parameters, our AI models can predict failures before they happen, identify inefficiencies, and suggest optimal operating conditions. We integrate real-time dashboards, intelligent alerts, and performance analytics to help you make data-driven decisions. From predictive maintenance to process optimization, our AI systems unlock new levels of productivity and innovation across your manufacturing ecosystem.',
+    medium_description:'Our AI-powered solutions help industries optimize operations, predict equipment failures, and unlock valuable insights from production data.',
+      category: 'AI',
+    slug: 'ai-manufacturing',
+    icon: Cpu,
+    related_products: [],
+    features: [
+      'Real-time Dashboards',
+      'Performance Metrics',
+      'Alerts & Notifications',
+      'Comprehensive Reporting',
+    ],
+    cta_text: 'Explore AI Solutions',
+    seo_meta_title: 'AI in Manufacturing Solutions',
+    seo_description:
+      'Harness the power of AI in manufacturing to boost efficiency, reduce downtime, and drive innovation.',
+  },
 ];
+
 export const products: Product[] = [
   {
     id: 'immersix',
