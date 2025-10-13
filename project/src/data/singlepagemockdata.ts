@@ -29,15 +29,15 @@ import oee from "../pdfs/Technoviz OEE Dashboard brochure.pdf"
 import image from "../pdfs/Image Processing System - Technoviz Automation.pdf"
 
 
-import digital_image from '../public/digital.jpg';
+import digital_image from '../public/Digitization.webp';
 import digital_image2 from '../public/digital2.png';
 import digital_image3 from '../public/digital3.png';
 import digital_image4 from '../public/digital4.png';
-import IIOT from '../public/IIoT.jpg';
-import Indus from '../public/Indus.jpg';
-import cyber from '../public/Cyber_image.jpg';
-import Automation from '../public/Automation_image.jpeg';
-import Aihero from '../public/aihero.png';
+import IIOT from '../public/Industry4.0 (1).webp';
+import Indus from '../public/comm1.webp';
+import cyber from '../public/cyber.webp';
+import Automation from '../public/automation1.webp';
+import Aihero from '../public/ai2.webp';
 
 import Oeeimage1 from '../public/Oeeimage.jpg';
 import Oeeimage2 from '../public/oee2.png';

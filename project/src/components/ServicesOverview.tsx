@@ -3,99 +3,102 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight,  } from 'lucide-react';
 
 // Mock services data similar to your structure
-import digital from '../public/digital.jpg';
-import IIOT from '../public/IIoT.jpg';
-import Indus from '../public/Indus.jpg';
-import cyber from '../public/Cyber_image.jpg';
-import Automation from '../public/Automation_image.jpeg';
+// import digital from '../public/Digitization.webp';
+// import IIOT from '../public/iiot4.webp';
+// import Indus from '../public/comm1.webp';
+// import cyber from '../public/cyber.webp';
+// import Automation from '../public/automation1.webp';
+// import aiinn from '../public/ai2.webp';
 
-const services = [
-  {
-    id:1,
-    hero_image: digital,
-    title: 'Digitization',
-    short_description: 'Transform your operations with smart digital systems that eliminate paperwork and bring real-time visibility.',
-    features: [
-      'Online Production Systems',
-      'E-Logbooks & Digital Records',
-      'Reports & Analysis',
-      'Maintenance Management',
-      'ERP Integration'
-    ],
-    color: 'from-blue-500 to-blue-600',
-    slug: 'digitization'
-  },
-  {
-    hero_image: IIOT,
-    title: 'Industrial Internet of Things (IIoT)',
-    short_description: 'Leverage IoT-powered intelligence for smarter factories, seamless connectivity, and real-time decision-making.',
-    features: [
-      'IoT Cloud Solutions',
-      'Mobility Solutions',
-      'Real-time Information',
-      'Visualization & Dashboards'
-    ],
-    color: 'from-purple-500 to-purple-600',
-    slug: 'iiot'
-  },
-  {
-    hero_image: Indus,
-    title: 'Industrial Communication Solutions',
-    short_description: 'Robust, secure, and scalable connectivity solutions for modern industrial environments.',
-    features: [
-      'Industrial Gateways & Protocol Conversions',
-      'Wireless Connectivity (2.4GHz / 5GHz)',
-      'Satellite Communication Systems',
-      'VSAT Technologies & Services'
-    ],
-    color: 'from-cyan-500 to-cyan-600',
-    slug: 'industrial-communication'
-  },
-  {
-    hero_image: cyber,
-    title: 'Cybersecurity',
-    short_description: 'End-to-end cybersecurity solutions to safeguard your industrial operations against evolving threats.',
-    features: [
-      'DLP, HIPS & Whitelisting',
-      'Endpoint Protection & Anti-malware',
-      'SIEM (Security Information & Event Management)',
-      'Network Monitoring & Segmentation',
-      'Multi-factor Authentication',
-      'Secure Remote Access & Disaster Recovery'
-    ],
-    color: 'from-green-500 to-green-600',
-    slug: 'cybersecurity'
-  },
-  {
-    hero_image: Automation,
-    title: 'Automation Services',
-    short_description: 'Cutting-edge automation systems that improve efficiency, reduce downtime, and deliver smarter operations.',
-    features: [
-      'SCADA, HMI & Historians',
-      'Electrical Control Systems',
-      'IoT Controllers',
-      'RFID & Barcode Solutions',
-      'Energy Management Systems',
-      'Process Control Systems',
-      'Custom Device Driver Development'
-    ],
-    color: 'from-orange-500 to-orange-600',
-    slug: 'automation-services'
-  },
-  {
-    hero_image: 'https://via.placeholder.com/110?text=Analytics',
-    title: 'Analytics & Monitoring',
-    short_description: 'Turn your industrial data into actionable insights with advanced analytics and dashboards.',
-    features: [
-      'Real-time Dashboards',
-      'Performance Metrics',
-      'Alerts & Notifications',
-      'Comprehensive Reporting'
-    ],
-    color: 'from-red-500 to-red-600',
-    slug: 'analytics-monitoring'
-  }
-];
+import { services } from '../data/mockData';
+// const services = [
+//   {
+//     id:1,
+//     hero_image: digital,
+//     title: 'Digitization',
+//     short_description: 'Transform your operations with smart digital systems that eliminate paperwork and bring real-time visibility.',
+//     features: [
+//       'Online Production Systems',
+//       'E-Logbooks & Digital Records',
+//       'Reports & Analysis',
+//       'Maintenance Management',
+//       'ERP Integration'
+//     ],
+//     color: 'from-blue-500 to-blue-600',
+//     slug: 'digitization'
+//   },
+//   {
+//     hero_image: IIOT,
+//     title: 'Industrial Internet of Things (IIoT)',
+//     short_description: 'Leverage IoT-powered intelligence for smarter factories, seamless connectivity, and real-time decision-making.',
+//     features: [
+//       'IoT Cloud Solutions',
+//       'Mobility Solutions',
+//       'Real-time Information',
+//       'Visualization & Dashboards'
+//     ],
+//     color: 'from-purple-500 to-purple-600',
+//     slug: 'iiot'
+//   },
+//   {
+//     hero_image: Indus,
+//     title: 'Industrial Communication Solutions',
+//     short_description: 'Robust, secure, and scalable connectivity solutions for modern industrial environments.',
+//     features: [
+//       'Industrial Gateways & Protocol Conversions',
+//       'Wireless Connectivity (2.4GHz / 5GHz)',
+//       'Satellite Communication Systems',
+//       'VSAT Technologies & Services'
+//     ],
+//     color: 'from-cyan-500 to-cyan-600',
+//     slug: 'industrial-communication'
+//   },
+//   {
+//     hero_image: cyber,
+//     title: 'Cybersecurity',
+//     short_description: 'End-to-end cybersecurity solutions to safeguard your industrial operations against evolving threats.',
+//     features: [
+//       'DLP, HIPS & Whitelisting',
+//       'Endpoint Protection & Anti-malware',
+//       'SIEM (Security Information & Event Management)',
+//       'Network Monitoring & Segmentation',
+//       'Multi-factor Authentication',
+//       'Secure Remote Access & Disaster Recovery'
+//     ],
+//     color: 'from-green-500 to-green-600',
+//     slug: 'cybersecurity'
+//   },
+//   {
+//     hero_image: Automation,
+//     title: 'Automation Services',
+//     short_description: 'Cutting-edge automation systems that improve efficiency, reduce downtime, and deliver smarter operations.',
+//     features: [
+//       'SCADA, HMI & Historians',
+//       'Electrical Control Systems',
+//       'IoT Controllers',
+//       'RFID & Barcode Solutions',
+//       'Energy Management Systems',
+//       'Process Control Systems',
+//       'Custom Device Driver Development'
+//     ],
+//     color: 'from-orange-500 to-orange-600',
+//     slug: 'automation-services'
+//   },
+//   {
+//   hero_image: aiinn,
+//   title: 'AI in Manufacturing',
+//   short_description: 'Empower your production lines with intelligent automation, predictive insights, and smart quality control.',
+//   features: [
+//     'Predictive Maintenance',
+//     'Defect Detection',
+//     'Process Optimization',
+//     'Smart Robotics'
+//   ],
+//   color: 'from-blue-600 to-blue-700',
+//   slug: 'ai-in-manufacturing'
+// }
+
+// ];
 
 const ServicesOverview: React.FC = () => {
   const [inView, setInView] = React.useState(false);
