@@ -1,6 +1,6 @@
 import { BookOpen, Star, Users, Award, CheckCircle, ShoppingCart, Sparkles, TrendingUp, Lock, Cog } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import bookimg from "../public/bookC.webp";
+import bookimg from "../public/booook2.webp";
 
 const BookSection = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -36,7 +36,7 @@ const BookSection = () => {
           style={{ transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.15}px)` }}
         />
         <div 
-          className="absolute w-96 h-96 bg-[#ddaf26] rounded-full blur-3xl opacity-10 -bottom-48 -right-48"
+          className="absolute w-96 h-96 rounded-full blur-3xl opacity-10 -bottom-48 -right-48"
           style={{ transform: `translate(${-scrollY * 0.1}px, ${-scrollY * 0.15}px)` }}
         />
 
@@ -95,20 +95,22 @@ const BookSection = () => {
               </div>
 
               {/* Book Container */}
-              <div className="relative w-80 h-[480px] mx-auto transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-700">
+              {/* Book Container */}
+              <div className="relative w-full max-w-2xl mx-auto transform group-hover:scale-105 transition-all duration-700">
                 {/* Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#203f78] via-[#ddaf26] to-[#203f78] rounded-2xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 animate-pulse" />
+                <div className="absolute inset-0  rounded-2xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-700 animate-pulse" />
                 
                 {/* Book Cover */}
-                <div className="relative w-full h-full bg-gradient-to-br from-[#203f78] via-[#2d4f88] to-[#203f78] rounded-2xl shadow-2xl overflow-hidden border-2 border-[#ddaf26]/40 transform-gpu">
+                <div className="relative w-full rounded-2xl shadow-2xl overflow-hidden border-2 border-[#ddaf26]/40 transform-gpu">
                   {/* Shimmer Effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
                   
-                  <div className="w-full h-full p-4 flex items-center justify-center">
-                    <div className="relative w-full h-full bg-gradient-to-br from-[#1a3461] to-[#203f78] rounded-xl overflow-hidden group-hover:shadow-inner transition-shadow duration-500">
-                      {/* Content would go here - using placeholder for image */}
-                      <img src={bookimg} alt="" />
-                    </div>
+                  <div className="relative w-full">
+                    <img 
+                      src={bookimg} 
+                      alt="Digital Revolution Book" 
+                      className="w-full h-auto object-cover rounded-xl"
+                    />
                   </div>
 
                   {/* Corner Accent */}

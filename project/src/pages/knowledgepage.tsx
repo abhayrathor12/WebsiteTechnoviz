@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Lightbulb, GraduationCap, Brain, Zap, Users, Award, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from "react-router-dom";
+import book122 from "../public/book122.jpg";
 const knowledgeData = [
   {
     id: "book",
@@ -168,16 +169,12 @@ const KnowledgePage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Book Image */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-[#203f78] to-blue-900 rounded-2xl p-12 shadow-2xl transform hover:scale-105 transition-all duration-500">
-                <div className="bg-white rounded-lg p-8 shadow-xl">
-                  <BookOpen size={200} className="text-[#203f78] mx-auto" />
-                  <div className="mt-6 text-center">
-                    <div className="text-2xl font-bold text-[#203f78]">Industry 4.0</div>
-                    <div className="text-gray-600 mt-2">Digital Transformation Guide</div>
-                  </div>
+              <div className="bg-gradient-to-br from-[#203f78] to-blue-900 rounded-2xl p-2 shadow-2xl transform hover:scale-105 transition-all duration-500">
+                <div className="rounded-lg shadow-xl">
+                  <img className="rounded-2xl" src={book122} alt="" />
                 </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-yellow-400 rounded-full p-6 shadow-xl">
+              <div className="absolute -bottom-4 -right-4 bg-[#ddaf26] rounded-full p-6 shadow-xl">
                 <Award size={48} className="text-white" />
               </div>
             </div>
@@ -195,7 +192,7 @@ const KnowledgePage = () => {
                 <h3 className="font-bold text-lg text-gray-900">What You'll Learn:</h3>
                 {knowledgeData[0].learnings.map((learning, idx) => (
                   <div key={idx} className="flex items-center space-x-3">
-                    <CheckCircle size={20} className="text-green-500 flex-shrink-0" />
+                    <CheckCircle size={20} className="text-[#203f78] flex-shrink-0" />
                     <span className="text-gray-700">{learning}</span>
                   </div>
                 ))}

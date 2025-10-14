@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import vid2 from "../public/vid3.mp4"
 import whatwedo from "../public/image122.png"
 import about from "../public/about2.jpg"
-import our from "../public/our.png"
+import our from "../public/comp01.png"
 import tech from "../pdfs/Technoviz Automation.pdf"
 import quality from "../pdfs/Technoviz Quality Inspection brochure.pdf"
 import utility from "../pdfs/Technibiz Utility360 Brochure.pdf"
@@ -456,20 +456,20 @@ const Company = () => {
 
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div className="relative">
-              <div className="bg-gradient-to-r from-[#203f78]/10 to-[#203f78]/20 rounded-2xl p-4 sm:p-8">
+              {/* <div className="bg-gradient-to-r from-[#203f78]/10 to-[#203f78]/20 rounded-2xl p-4 sm:p-8"> */}
                 <img 
                   src={our} 
                   alt="Company Brochure" 
-                  className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-lg"
+                  className="w-full sm:w-[550px] lg:w-[650px] h-[400px] sm:h-[450px] lg:h-[500px] object-contain rounded-xl "
                 />
-              </div>
+              {/* </div> */}
             </div>
             <div>
               <div className="flex items-center mb-4 sm:mb-6">
                 <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-r from-[#203f78] to-[#1a3566] rounded-full flex items-center justify-center mr-3 sm:mr-4">
                   <FileText className="w-5 sm:w-6 h-5 sm:h-6 text-white" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Complete Company Overview</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#203f78]">Complete Company Overview</h3>
               </div>
               <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed">
                 Get detailed insights into Technoviz Automation Solutions, our vision, mission, and comprehensive service offerings. Learn about our expertise in Industry 4.0 technologies and successful project implementations.

@@ -360,34 +360,30 @@ const CaseStudiesAndBlogsPage: React.FC = () => {
               </div>
               <div className="px-4 mt-8">
                 <div 
-                  className={`bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-4 shadow-lg border transition-all duration-500 ${
-                    hoveredCard === caseStudy.id ? 'shadow-2xl border-blue-200 transform -translate-y-2' : 'border-white/50'
-                  }`}
-                >
-                  <div className="flex items-center mb-3">
-                    <TrendingUp className="w-6 h-6 text-green-600 mr-3 flex-shrink-0" />
-                    <h4 className="text-xl font-bold text-gray-800">Key Results</h4>
-                  </div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                    {caseStudy.results.map((result, idx) => (
-                      <div 
-                        key={idx} 
-                        className="text-center p-4 rounded-xl border transition-all duration-300 hover:shadow-md min-h-[80px] flex flex-col justify-center"
-                        style={{ 
-                          background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-                          borderColor: '#203f78'
-                        }}
-                      >
-                        <div className="text-xl font-bold mb-1 break-words" style={{ color: '#203f78' }}>
-                          {result.value}
-                        </div>
-                        <div className="text-sm text-gray-600 font-medium leading-tight break-words">
-                          {result.metric}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+  className={`bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-4 shadow-lg border transition-all duration-500 ${
+    hoveredCard === caseStudy.id ? 'shadow-2xl border-blue-200 transform -translate-y-2' : 'border-white/50'
+  }`}
+>
+  <div className="flex items-center mb-3">
+    <TrendingUp className="w-6 h-6 text-green-600 mr-3 flex-shrink-0" />
+    <h4 className="text-xl font-bold text-gray-800">Key Results</h4>
+  </div>
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+    {caseStudy.results.map((result, idx) => (
+      <div 
+        key={idx} 
+        className="text-center p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100/50 min-h-[80px] flex flex-col justify-center"
+      >
+        <div className="text-xl font-bold mb-1 break-words text-blue-900">
+          {result.value}
+        </div>
+        <div className="text-sm text-gray-600 font-medium leading-tight break-words">
+          {result.metric}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
               </div>
             </div>
           ))}
@@ -427,30 +423,30 @@ const CaseStudiesAndBlogsPage: React.FC = () => {
                   <ChevronDown className={`h-4 w-4 transition-transform ${isFilterOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {isFilterOpen && (
-  <div className="absolute bottom-full right-0 mb-2 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 p-6 z-50 transform -translate-x-1/4 lg:translate-x-0">
-    <div className="space-y-4">
-      <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Category</label>
-        <select
-          value={selectedTag}
-          onChange={(e) => setSelectedTag(e.target.value)}
-          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-        >
-          <option value="">All Categories</option>
-          {allTags.map(tag => (
-            <option key={tag} value={tag}>{tag}</option>
-          ))}
-        </select>
-      </div>
-      <button
-        onClick={clearFilters}
-        className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 rounded-xl transition-colors font-medium"
-      >
-        Clear All Filters
-      </button>
-    </div>
-  </div>
-)}
+              <div className="absolute bottom-full right-0 mb-2 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 p-6 z-50 transform -translate-x-1/4 lg:translate-x-0">
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Category</label>
+                    <select
+                      value={selectedTag}
+                      onChange={(e) => setSelectedTag(e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    >
+                      <option value="">All Categories</option>
+                      {allTags.map(tag => (
+                        <option key={tag} value={tag}>{tag}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <button
+                    onClick={clearFilters}
+                    className="w-full px-4 py-3 text-blue-600 hover:bg-blue-50 rounded-xl transition-colors font-medium"
+                  >
+                    Clear All Filters
+                  </button>
+                </div>
+              </div>
+            )}
               </div>
               {(searchTerm || selectedTag) && (
                 <button
@@ -572,19 +568,19 @@ const CaseStudiesAndBlogsPage: React.FC = () => {
             {displayedPosts.length > 1 && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {displayedPosts.slice(1).map((post) => (
-                  <article
-                    key={post.id}
-                    className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-200 hover:-translate-y-1"
-                  >
-                    <div className="relative overflow-hidden h-56">
-                      <img
-                        src={post.featured_image}
-                        alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <div className="p-6">
+                    <article
+                key={post.id}
+                className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-200 hover:-translate-y-1 flex flex-col h-full"
+              >
+                <div className="relative overflow-hidden h-56">
+                  <img
+                    src={post.featured_image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
                       <div className="flex flex-wrap gap-2 mb-3">
                         {post.tags.slice(0, 2).map(tag => (
                           <span
@@ -614,6 +610,7 @@ const CaseStudiesAndBlogsPage: React.FC = () => {
                           <span>{formatDate(post.publish_date)}</span>
                         </div>
                       </div>
+                      <div className="mt-auto">
                       <Link 
                         to={`/blogs/${post.slug}`}
                         className="flex items-center gap-3 px-8 py-4 bg-[#203f78] text-white rounded-2xl hover:bg-[#ddaf26] transition-all duration-200 group-hover:shadow-lg font-semibold text-lg"
@@ -621,6 +618,7 @@ const CaseStudiesAndBlogsPage: React.FC = () => {
                         Read Article
                         <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
                       </Link>
+                      </div>
                     </div>
                   </article>
                 ))}

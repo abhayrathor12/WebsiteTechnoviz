@@ -1,7 +1,7 @@
 
 import {  ArrowRight, Star } from 'lucide-react';
 import book12 from "../public/book12.jpg";
-import book122 from "../public/book122.jpg";
+import book122 from "../public/boook4.webp";
 import { Link } from "react-router-dom";
 
 const BookPage = () => {
