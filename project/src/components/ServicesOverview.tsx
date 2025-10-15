@@ -267,7 +267,7 @@ const ServicesOverview: React.FC = () => {
             </div>
             
             {/* Main heading - responsive sizing */}
-            <h2 className="absolute text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-[#203f78] font-poppins text-center px-4">
+            <h2 className="absolute text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#203f78] font-poppins text-center">
               Our Services
             </h2>
           </div>

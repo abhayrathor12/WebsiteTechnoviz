@@ -83,6 +83,23 @@ const services = [
     color: 'from-orange-500 to-orange-600',
     cta: 'Automate Now',
     link: '/services/automation'
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Smart Industry Readiness Index',
+    subtitle: 'SIRI Assessment',
+    description: 'Comprehensive assessment framework to evaluate and benchmark your Industry 4.0 transformation journey.',
+    features: [
+      'Readiness Assessment',
+      'Maturity Benchmarking',
+      'Gap Analysis',
+      'Roadmap Development',
+      'Implementation Support',
+      'Continuous Monitoring'
+    ],
+    color: 'from-indigo-500 to-indigo-600',
+    cta: 'Assess Readiness',
+    link: '/services/siri'
   }
 ];
 
@@ -225,7 +242,7 @@ const Hero: React.FC = () => {
         />
       </div>
       {/* Main Carousel Content */}
-      <div className="carousel-content relative z-10 flex-1 flex items-center">
+      <div className="carousel-content relative z-10 flex-1 flex items-center pb-4">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <AnimatePresence mode="wait">
@@ -332,7 +349,7 @@ const Hero: React.FC = () => {
       <div className="hidden md:block carousel-indicators absolute bottom-8 left-0 right-0 z-20">
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-7xl">
               {services.map((service, index) => {
                 
                 return (

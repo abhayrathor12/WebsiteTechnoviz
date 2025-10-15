@@ -91,7 +91,7 @@ const ProductsSection: React.FC = () => {
   {/* Container for background text and main heading */}
   <div className="relative flex items-center justify-center mb-6">
     {/* Large background text */}
-    <div className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold uppercase tracking-wider text-gray-200 mb-4">
+    <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold uppercase tracking-wider text-gray-200 mb-4">
       SOLUTIONS
     </div>
     

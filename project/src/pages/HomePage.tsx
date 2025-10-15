@@ -8,7 +8,7 @@ const ServicesOverview = lazy(() => import("../components/ServicesOverview"));
 const ProductsSection = lazy(() => import("../components/ProductsSection"));
 const CaseStudiesSection = lazy(() => import("../components/CaseStudiesSection"));
 const BlogsSection = lazy(() => import("../components/BlogsSection"));
-const ContactSection = lazy(() => import("../components/ContactSection"));
+const SIRI = lazy(() => import("../components/siri.tsx"));
 const ClientSection = lazy(() => import("../components/ClientSection"));
 const FAQ = lazy(() => import("../components/FAQ"));
 const CIO = lazy(() => import("../components/Ciosection"));
@@ -27,12 +27,14 @@ const HomePage: React.FC = () => {
   const { ref: casesRef, inView: casesInView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: blogsRef, inView: blogsInView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: bookRef, inView: bookInView } = useInView({ triggerOnce: true, threshold: 0.1 });
-  const { ref: contactRef, inView: contactInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: siriref, inView: siriInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+ 
 
   return (
     <div>
       {/* Hero loads instantly */}
       <Hero />
+     
 
       {/* Products Section */}
       <div ref={productsRef}>
@@ -48,6 +50,13 @@ const HomePage: React.FC = () => {
         {servicesInView && (
           <SectionLoader>
             <ServicesOverview />
+             <div ref={siriref}>
+        {siriInView && (
+          <SectionLoader>
+            <SIRI />
+          </SectionLoader>
+        )}
+      </div>
             <CapabilitiesStrip />
             <ClientSection />
             <FAQ />
@@ -55,6 +64,7 @@ const HomePage: React.FC = () => {
           </SectionLoader>
         )}
       </div>
+      
 
       {/* Case Studies */}
       <div ref={casesRef}>
@@ -81,14 +91,6 @@ const HomePage: React.FC = () => {
         )}
       </div>
 
-      {/* Contact */}
-      {/* <div ref={contactRef}>
-        {contactInView && (
-          <SectionLoader>
-            <ContactSection />
-          </SectionLoader>
-        )}
-      </div> */}
     </div>
   );
 };
