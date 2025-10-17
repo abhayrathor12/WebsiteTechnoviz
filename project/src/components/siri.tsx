@@ -1,9 +1,19 @@
 import React from 'react';
-import kapilsir from "../public/k3.webp";
+import kapilsir from "../public/k31.webp";
 import siri from "../public/siri.jpg";
-import { Award, CheckCircle, Target, BarChart3 } from 'lucide-react';
+import siripdf from "../public/SIRI.pdf";
+import { Award, CheckCircle, Target, Download } from 'lucide-react';
 
 export default function SIRIComponent() {
+  const handleDownloadBrochure = () => {
+  const link = document.createElement("a");
+  link.href = siripdf; // use the imported PDF file
+  link.download = "SIRI_Brochure.pdf"; // file name when downloaded
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -19,21 +29,17 @@ export default function SIRIComponent() {
               INDUSTRIAL TRANSFORMATION
             </h2>
           </div>
+          
         </div>
+
         {/* Single Combined Section */}
-        <div className="bg-white rounded-2xl  overflow-hidden">
+        <div className="bg-white rounded-2xl overflow-hidden">
           {/* SIRI Information - Top Half */}
           <div className="grid md:grid-cols-2 gap-8 p-8 border-b-2 border-gray-100">
             {/* Left - SIRI Image */}
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-md">
-               
-                 
-                 
-                      <img src={siri} alt="" className=" rounded-xl overflow-hidden shadow-lg"/>
-                 
-                 
-                
+                <img src={siri} alt="" className="rounded-xl overflow-hidden shadow-lg"/>
                 <div className="absolute -bottom-4 -right-4 bg-[#ddaf26] text-white px-6 py-3 rounded-full font-bold shadow-lg">
                   Certified
                 </div>
@@ -47,8 +53,8 @@ export default function SIRIComponent() {
               <p className="text-gray-700 mb-6 leading-relaxed">
                 The Smart Industry Readiness Index (SIRI) is a comprehensive framework developed to help organizations assess their Industry 4.0 readiness. It provides a structured approach to evaluate and improve manufacturing capabilities in the digital age.
               </p>
-             
-              <div className="space-y-4">
+              
+              <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#203f78' }} />
                   <div>
@@ -73,6 +79,18 @@ export default function SIRIComponent() {
                   </div>
                 </div>
               </div>
+
+              {/* Download Brochure Button */}
+              <button
+                onClick={handleDownloadBrochure}
+                className="flex items-center justify-center gap-2 bg-[#203f78] hover:bg-[#ddaf26] text-white font-medium py-2 px-4 rounded-full shadow-md transition-all duration-300 w-fit mx-auto"
+
+
+
+              >
+                <Download className="w- h-5" />
+                Download SIRI Brochure
+              </button>
             </div>
           </div>
           {/* Director Section - Bottom Half */}
@@ -116,10 +134,9 @@ export default function SIRIComponent() {
             {/* Right - Director Image */}
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-md">
-                <div >
+                <div>
                   <div className="flex items-center justify-center h-full">
                     <div className="text-center">
-                     
                       <img src={kapilsir} alt="" className="h-[25rem] w-auto mx-auto rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200"/>
                     </div>
                   </div>
