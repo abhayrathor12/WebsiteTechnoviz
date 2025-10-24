@@ -8,7 +8,7 @@ const ContactPage = () => {
     email: '',
     company: '',
     phone: '',
-    timeline: '',
+    interestedIn: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -32,7 +32,7 @@ const ContactPage = () => {
           email: "",
           company: "",
           phone: "",
-          timeline: "",
+          interestedIn: "",
           message: "",
         });
         setTimeout(() => setIsSubmitted(false), 3000);
@@ -94,7 +94,9 @@ const ContactPage = () => {
                 Our experts are here to help you achieve your goals.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
-                <div className="flex items-center gap-2 bg-white bg-opacity-10 px-4 py-2 rounded-full">
+                <div className="flex items-center gap-2 bg
+
+-white bg-opacity-10 px-4 py-2 rounded-full">
                   <Clock className="w-4 h-4" />
                   <span className="text-sm">24h Response</span>
                 </div>
@@ -253,19 +255,33 @@ const ContactPage = () => {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Project Timeline
+                    Interested In
                   </label>
                   <select
-                    name="timeline"
-                    value={formData.timeline}
+                    name="interestedIn"
+                    value={formData.interestedIn}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent transition-colors"
                   >
-                    <option value="">Select timeline</option>
-                    <option value="asap">ASAP</option>
-                    <option value="1-3months">1-3 months</option>
-                    <option value="3-6months">3-6 months</option>
-                    <option value="6months+">6+ months</option>
+                    <option value="">Select an option</option>
+                    <optgroup label="Services">
+                      <option value="Digitization">Digitization</option>
+                      <option value="Industrial IoT">Industrial IoT</option>
+                      <option value="Industrial Communication">Industrial Communication</option>
+                      <option value="Industrial Cybersecurity">Industrial Cybersecurity</option>
+                      <option value="Automation Services">Automation Services</option>
+                      <option value="AI in Manufacturing">AI in Manufacturing</option>
+                      <option value="Other (Services)">Other</option>
+                    </optgroup>
+                    <optgroup label="Solutions">
+                      <option value="Immersix (AR/VR Training)">Immersix (AR/VR Training)</option>
+                      <option value="Utility360">Utility360</option>
+                      <option value="Digital Checksheet">Digital Checksheet</option>
+                      <option value="SmartEMS">SmartEMS</option>
+                      <option value="OEE Dashboard">OEE Dashboard</option>
+                      <option value="VisionAI">VisionAI</option>
+                      <option value="Other (Solutions)">Other</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -403,7 +419,7 @@ const ContactPage = () => {
               className="bg-white rounded-2xl p-8 shadow-lg"
             >
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-14 h-14 bg-blue-100圓-xl flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-7 h-7 text-blue-900" />
                 </div>
                 <div>
