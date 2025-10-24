@@ -61,7 +61,7 @@ function App() {
           {/* <WhatsAppWidget/> */}
         </main>
         <Footer />
-        <PopupComponent /> 
+        {/* <PopupComponent />  */}
         <QuickLink /> 
       </div>
     </Router>
