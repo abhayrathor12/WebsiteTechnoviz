@@ -1,5 +1,5 @@
 import React from 'react';
-import kapilsir from "../public/k31.webp";
+import kapilsir from "../public/k3n.jpg";
 import siri from "../public/siri.jpg";
 import siripdf from "../public/SIRI.pdf";
 import { Award, CheckCircle, Target, Download } from 'lucide-react';
