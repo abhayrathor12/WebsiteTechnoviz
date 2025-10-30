@@ -1,29 +1,12 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, ArrowRight, BookOpen, UserCheck, Lightbulb } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../public/Techlogo.png";
-import { services, products } from "../data/mockData"; // ✅ adjust path if needed
-import { SiPython, SiReact  , SiMysql , SiAndroid } from "react-icons/si";
+import { services, products } from "../data/mockData";
+import { SiPython, SiReact, SiMysql, SiAndroid } from "react-icons/si";
 import AZuree from "../public/az.png";
 
-
-// const AzureIcon = () => (
-//   <svg
-//     className="w-6 h-6 text-[#008AD7]"
-//     viewBox="0 0 128 128"
-//     xmlns="http://www.w3.org/2000/svg"
-//   >
-//     <path
-//       d="M64 0C28.656 0 0 28.656 0 64s28.656 64 64 64 64-28.656 64-64S99.344 0 64 0zm15.14 92.38-11.8-38.56h-7.68L54.28 92.38h-9.16l-4.68-15.44h-7.88l11.72-38.56h10.36l12.36 38.56h-7.68l-1.92-6.08h-.04z"
-//       fill="currentColor"
-//     />
-//   </svg>
-// );
-
-
-
-// 🔹 Build mega menu dynamically from mockdata with technologies
 const megaMenuContent = {
   services: {
     title: "Our Services",
@@ -35,9 +18,6 @@ const megaMenuContent = {
       description: s.medium_description,
       link: `/services/${s.slug}`,
     })),
-    
-
-
   },
   solutions: {
     title: "Our Solutions",
@@ -51,79 +31,67 @@ const megaMenuContent = {
     })),
   },
   learning: {
-  title: "Learning  Center",
-  exploreAllLink: "/Learning ",
-  sections: [
-    {
-      icon: <BookOpen className="w-6 h-6" />,
-      title: "Book",
-      description:
-        "Comprehensive guides, industry reports, and technical documentation to enhance your knowledge and skills.",
-      link: "/book",
-    },
-    {
-      icon: <UserCheck className="w-6 h-6" />,
-      title: "In Person Traning",
-      description:
-        "Center of Excellence insights, frameworks, and strategies to drive innovation, standardization, and organizational excellence.",
-      link: "/coe",
-    },
-    {
-      icon: <Lightbulb className="w-6 h-6" />,
-      title: "Online Training Module",
-      description:
-        "Streamlined Lifecycle Management methodologies and best practices for optimal project delivery and resource optimization.",
-      link: "/Learning ",
-    },
-  ],
-
-  // ✅ moved here
-  technologies: [
-    {
-      icon: <SiPython className="w-6 h-6 text-[#3776AB]" />,
-      title: "Python",
-      description:
-        "Utilize Python for versatile and powerful solutions, from web development to data analysis. Our Python expertise ensures efficient and effective project outcomes.",
-      link: "/python",
-    },
-    {
-      icon: <SiReact className="w-6 h-6 text-[#61DAFB]" />,
-      title: "React",
-      description:
-        "Develop engaging and interactive user interfaces with React. Our React services focus on building fast, scalable, and maintainable applications.",
-      link: "/react",
-    },
-    {
-      icon: <img src={AZuree} alt="Azure" className="w-6 h-6" />,
-      title: "Azure",
-      description:
-        "Leverage Microsoft Azure to build, deploy, and manage applications through a global network of data centers. Our Azure solutions ensure scalable, secure, and reliable cloud infrastructure.",
-      link: "/azure",
-    },
-    {
-      icon: <span className="w-6 h-6 text-blue-600">🌐</span>,
-      title: "Networking",
-      description:
-        "Enhance connectivity and security with our networking expertise. We design and manage robust network infrastructures to support seamless business operations.",
-      link: "/network",
-    },
-    {
-      icon: <SiMysql className="w-6 h-6 text-orange-600" />,
-      title: "MySQL",
-      description:
-        "Harness the power of MySQL for efficient database management. Our MySQL solutions ensure reliable, scalable, and optimized data storage and retrieval.",
-      link: "/mysql",
-    },
-    {
-      icon: <SiAndroid className="w-6 h-6 text-green-600" />,
-      title: "Android",
-      description:
-        "Build powerful and user-friendly mobile applications with Android. Our Android solutions deliver seamless performance and engaging experiences across devices.",
-      link: "/android",
-    },
-  ],
-},
-
+    title: "Learning Center",
+    exploreAllLink: "/Learning",
+    sections: [
+      {
+        icon: <BookOpen className="w-6 h-6" />,
+        title: "Book",
+        description: "Comprehensive guides, industry reports, and technical documentation to enhance your knowledge and skills.",
+        link: "/book",
+      },
+      {
+        icon: <UserCheck className="w-6 h-6" />,
+        title: "In Person Training",
+        description: "Center of Excellence insights, frameworks, and strategies to drive innovation, standardization, and organizational excellence.",
+        link: "/coe",
+      },
+      {
+        icon: <Lightbulb className="w-6 h-6" />,
+        title: "Online Training Module",
+        description: "Streamlined Lifecycle Management methodologies and best practices for optimal project delivery and resource optimization.",
+        link: "/Learning",
+      },
+    ],
+    technologies: [
+      {
+        icon: <SiPython className="w-6 h-6 text-[#3776AB]" />,
+        title: "Python",
+        description: "Utilize Python for versatile and powerful solutions, from web development to data analysis. Our Python expertise ensures efficient and effective project outcomes.",
+        link: "/python",
+      },
+      {
+        icon: <SiReact className="w-6 h-6 text-[#61DAFB]" />,
+        title: "React",
+        description: "Develop engaging and interactive user interfaces with React. Our React services focus on building fast, scalable, and maintainable applications.",
+        link: "/react",
+      },
+      {
+        icon: <img src={AZuree} alt="Azure" className="w-6 h-6" />,
+        title: "Azure",
+        description: "Leverage Microsoft Azure to build, deploy, and manage applications through a global network of data centers. Our Azure solutions ensure scalable, secure, and reliable cloud infrastructure.",
+        link: "/azure",
+      },
+      {
+        icon: <span className="w-6 h-6 text-blue-600">🌐</span>,
+        title: "Networking",
+        description: "Enhance connectivity and security with our networking expertise. We design and manage robust network infrastructures to support seamless business operations.",
+        link: "/network",
+      },
+      {
+        icon: <SiMysql className="w-6 h-6 text-orange-600" />,
+        title: "MySQL",
+        description: "Harness the power of MySQL for efficient database management. Our MySQL solutions ensure reliable, scalable, and optimized data storage and retrieval.",
+        link: "/mysql",
+      },
+      {
+        icon: <SiAndroid className="w-6 h-6 text-green-600" />,
+        title: "Android",
+        description: "Build powerful and user-friendly mobile applications with Android. Our Android solutions deliver seamless performance and engaging experiences across devices.",
+        link: "/android",
+      },
+    ],
+  },
 };
 
 const Header: React.FC = () => {
@@ -142,21 +110,30 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Auto-close dropdown when route changes
   useEffect(() => {
     setActiveDropdown(null);
     setIsMenuOpen(false);
   }, [location.pathname]);
 
   const navItems = [
+    { name: "Home", path: "/", hasDropdown: false },
     { name: "Services", path: "/services", hasDropdown: true },
     { name: "Solutions", path: "/products", hasDropdown: true },
     { name: "Insights", path: "/case-studies", hasDropdown: false },
-    // { name: "Blogs", path: "/blogs", hasDropdown: false },
     { name: "Company", path: "/company", hasDropdown: false },
     { name: "Learning", path: "/learning", hasDropdown: true },
     { name: "Contact", path: "/contact", hasDropdown: false },
   ];
+
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  };
 
   const handleMouseEnter = (itemName: string) => {
     if (hoverTimeout) clearTimeout(hoverTimeout);
@@ -199,7 +176,6 @@ const Header: React.FC = () => {
             <h3 className="text-2xl font-bold text-[#0B2B5A] mb-2">{content.title}</h3>
             <div className="w-20 h-1 bg-[#ddaf26]"></div>
           </div>
-
           {content.exploreAllText && (
             <Link
               to={content.exploreAllLink}
@@ -212,7 +188,6 @@ const Header: React.FC = () => {
           )}
         </div>
 
-        {/* Services Sections */}
         {content.sections && content.sections.length > 0 && (
           <div className={content.technologies && content.technologies.length > 0 ? "mb-8" : ""}>
             {content.technologies && content.technologies.length > 0 && (
@@ -246,7 +221,6 @@ const Header: React.FC = () => {
           </div>
         )}
 
-        {/* Technologies Sections */}
         {content.technologies && content.technologies.length > 0 && (
           <div>
             <h4 className="text-lg font-semibold text-[#0B2B5A] mb-4 flex items-center">
@@ -289,12 +263,10 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 text-[#0B2B5A] font-bold text-xl">
             <img src={logo} alt="TechnoViz Automation" className="h-10 w-auto" />
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <div
@@ -303,33 +275,19 @@ const Header: React.FC = () => {
                 onMouseEnter={() => handleMouseEnter(item.name)}
                 onMouseLeave={handleMouseLeave}
               >
-                {item.name === "Learning " ? (
                 <Link
                   to={item.path}
+                  onClick={item.name === "Home" ? handleHomeClick : undefined}
                   className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${
                     location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
                   }`}
                 >
                   <span>{item.name}</span>
-                 
                 </Link>
-              ) : (
-                <Link
-                  to={item.path}
-                  className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${
-                    location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
-                  }`}
-                >
-                  <span>{item.name}</span>
-                  
-                </Link>
-              )}
-
               </div>
             ))}
           </nav>
 
-          {/* CTA */}
           <div className="hidden lg:block">
             <Link
               to="/contact"
@@ -339,7 +297,6 @@ const Header: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-gray-700"
@@ -349,19 +306,15 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mega Menu */}
       <AnimatePresence>
-        {activeDropdown &&
-          megaMenuContent[activeDropdown as keyof typeof megaMenuContent] && (
-            <MegaMenu
-              content={
-                megaMenuContent[activeDropdown as keyof typeof megaMenuContent]
-              }
-            />
-          )}
+        {activeDropdown && megaMenuContent[activeDropdown as keyof typeof megaMenuContent] && (
+          <MegaMenu
+            content={megaMenuContent[activeDropdown as keyof typeof megaMenuContent]}
+          />
+        )}
       </AnimatePresence>
 
-       <AnimatePresence>
+      <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -396,7 +349,6 @@ const Header: React.FC = () => {
                             />
                           </button>
                         </div>
-
                         <AnimatePresence>
                           {mobileDropdowns[item.name.toLowerCase()] &&
                             megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent] && (
@@ -407,64 +359,72 @@ const Header: React.FC = () => {
                                 transition={{ duration: 0.2 }}
                                 className="ml-4 mt-2 space-y-3 border-l-2 border-[#ddaf26] pl-4"
                               >
-                                {(megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].sections || []).map(
-                                  (section: any, index: number) => (
-                                    <Link
-                                      key={index}
-                                      to={section.link}
-                                      onClick={() => setIsMenuOpen(false)}
-                                      className="block group"
-                                    >
-                                      <div className="flex items-start space-x-3 py-2">
-                                        <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                          {section.icon}
-                                        </div>
-                                        <div className="flex-1">
-                                          <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                            {section.title}
-                                          </h5>
-                                          <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                                            {section.description}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </Link>
-                                  )
-                                )}
-
-                                {/* Technologies for mobile */}
-                                {(megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].technologies || []).map(
-                                  (tech: any, index: number) => (
-                                    <Link
-                                      key={`tech-mobile-${index}`}
-                                      to={tech.link}
-                                      onClick={() => setIsMenuOpen(false)}
-                                      className="block group"
-                                    >
-                                      <div className="flex items-start space-x-3 py-2">
-                                        <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                          {tech.icon}
-                                        </div>
-                                        <div className="flex-1">
-                                          <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                            {tech.title}
-                                          </h5>
-                                          <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                                            {tech.description}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </Link>
-                                  )
-                                )}
-
-                                {megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].exploreAllText && (
+                                {(
+                                  megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent]
+                                    .sections || []
+                                ).map((section: any, index: number) => (
                                   <Link
-                                    to={megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].exploreAllLink}
+                                    key={index}
+                                    to={section.link}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="block group"
+                                  >
+                                    <div className="flex items-start space-x-3 py-2">
+                                      <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                        {section.icon}
+                                      </div>
+                                      <div className="flex-1">
+                                        <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                          {section.title}
+                                        </h5>
+                                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                                          {section.description}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Link>
+                                ))}
+                                {(
+                                  megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent]
+                                    .technologies || []
+                                ).map((tech: any, index: number) => (
+                                  <Link
+                                    key={`tech-mobile-${index}`}
+                                    to={tech.link}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="block group"
+                                  >
+                                    <div className="flex items-start space-x-3 py-2">
+                                      <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                        {tech.icon}
+                                      </div>
+                                      <div className="flex-1">
+                                        <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                          {tech.title}
+                                        </h5>
+                                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                                          {tech.description}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Link>
+                                ))}
+                                {megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent]
+                                  .exploreAllText && (
+                                  <Link
+                                    to={
+                                      megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent]
+                                        .exploreAllLink
+                                    }
                                     onClick={() => setIsMenuOpen(false)}
                                     className="flex items-center space-x-2 text-[#203f78] hover:text-[#ddaf26] font-medium text-sm py-2 group"
                                   >
-                                    <span>{megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].exploreAllText}</span>
+                                    <span>
+                                      {
+                                        megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent]
+                                          .exploreAllText
+                                      }
+                                    </span>
                                     <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
                                   </Link>
                                 )}
@@ -475,7 +435,13 @@ const Header: React.FC = () => {
                     ) : (
                       <Link
                         to={item.path}
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={(e) => {
+                          if (item.name === "Home" && location.pathname === "/") {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }
+                          setIsMenuOpen(false);
+                        }}
                         className={`block text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] py-2 ${
                           location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
                         }`}
@@ -486,7 +452,6 @@ const Header: React.FC = () => {
                   </div>
                 ))}
 
-                {/* Mobile CTA Button */}
                 <Link
                   to="/contact"
                   onClick={() => setIsMenuOpen(false)}

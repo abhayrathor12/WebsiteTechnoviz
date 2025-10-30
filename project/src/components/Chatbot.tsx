@@ -47,12 +47,12 @@ const knowledgeBase = {
 const MenuButtons: React.FC<{ onSelect: (choice: string) => void }> = ({ onSelect }) => {
   const options = ["Services", "Products", "CoE", "Contact", "About"];
   return (
-    <div className="flex flex-wrap gap-2 mt-2">
+    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
       {options.map((opt) => (
         <button
           key={opt}
           onClick={() => onSelect(opt.toLowerCase())}
-          className="px-3 py-2 text-sm bg-[#203f78] text-white rounded-lg hover:bg-[#2a5294] transition"
+          className="px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm bg-[#203f78] text-white rounded-lg hover:bg-[#2a5294] transition"
         >
           {opt}
         </button>
@@ -141,33 +141,33 @@ const Chatbot: React.FC = () => {
 
   // ------------------ Render ------------------
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="relative bg-gradient-to-br from-[#ddaf26] to-[#ddaf26] text-[#203f78] p-5 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 group" 
+          className="relative bg-gradient-to-br from-[#ddaf26] to-[#ddaf26] text-[#203f78] p-4 sm:p-5 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 group"
           style={{ boxShadow: "0 8px 32px rgba(32, 63, 120, 0.4)" }}
         >
-          <AiOutlineRobot size={28} className="animate-pulse" />
+          <AiOutlineRobot size={24} className="sm:w-7 sm:h-7 animate-pulse" />
         </button>
       )}
 
       {open && (
         <div
-          className="w-96 h-[32rem] bg-white shadow-2xl rounded-2xl flex flex-col overflow-hidden"
+          className="w-[calc(100vw-2rem)] sm:w-96 h-[calc(100vh-2rem)] sm:h-[32rem] max-h-[600px] sm:max-h-[32rem] bg-white shadow-2xl rounded-2xl flex flex-col overflow-hidden"
           style={{
             boxShadow: "0 20px 60px rgba(32, 63, 120, 0.3)",
             border: "1px solid rgba(221, 175, 38, 0.2)",
           }}
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#203f78] to-[#2a5294] text-white p-4 flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-[#ddaf26] rounded-full flex items-center justify-center">
-                <AiOutlineRobot size={22} className="text-[#203f78]" />
+          <div className="bg-gradient-to-r from-[#203f78] to-[#2a5294] text-white p-3 sm:p-4 flex justify-between items-center">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#ddaf26] rounded-full flex items-center justify-center">
+                <AiOutlineRobot size={18} className="sm:w-[22px] sm:h-[22px] text-[#203f78]" />
               </div>
               <div>
-                <span className="font-semibold text-lg">TechnoViz Assistant</span>
+                <span className="font-semibold text-base sm:text-lg">TechnoViz Assistant</span>
                 <div className="flex items-center gap-1 text-xs text-[#ddaf26]">
                   <span className="w-2 h-2 bg-[#ddaf26] rounded-full animate-pulse"></span>
                   Online
@@ -178,22 +178,22 @@ const Chatbot: React.FC = () => {
               onClick={() => setOpen(false)}
               className="hover:bg-white/10 p-2 rounded-lg transition-colors"
             >
-              <AiOutlineClose size={22} />
+              <AiOutlineClose size={20} className="sm:w-[22px] sm:h-[22px]" />
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3 bg-gradient-to-b from-gray-50 to-white">
+          <div className="flex-1 p-3 sm:p-4 overflow-y-auto flex flex-col gap-2 sm:gap-3 bg-gradient-to-b from-gray-50 to-white">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.sender === "bot" ? "justify-start" : "justify-end"}`}>
                 <div
-                  className={`px-4 py-3 rounded-2xl max-w-[80%] shadow-md ${
+                  className={`px-3 py-2 sm:px-4 sm:py-3 rounded-2xl max-w-[85%] sm:max-w-[80%] shadow-md ${
                     msg.sender === "bot"
                       ? "bg-white text-gray-800 border border-gray-200 rounded-tl-sm"
                       : "bg-gradient-to-r from-[#203f78] to-[#2a5294] text-white rounded-tr-sm"
                   }`}
                 >
-                  <p className="text-sm leading-relaxed">{msg.text}</p>
+                  <p className="text-xs sm:text-sm leading-relaxed break-words">{msg.text}</p>
                   {msg.sender === "bot" && msg.text.includes("Choose") && (
                     <MenuButtons onSelect={(choice) => handleBotResponse(choice)} />
                   )}
@@ -203,7 +203,7 @@ const Chatbot: React.FC = () => {
 
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-white px-4 py-3 rounded-2xl border border-gray-200 shadow-md">
+                <div className="bg-white px-3 py-2 sm:px-4 sm:py-3 rounded-2xl border border-gray-200 shadow-md">
                   <div className="flex gap-1">
                     <span className="w-2 h-2 bg-[#ddaf26] rounded-full animate-bounce"></span>
                     <span className="w-2 h-2 bg-[#ddaf26] rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></span>
@@ -216,12 +216,12 @@ const Chatbot: React.FC = () => {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-gray-200 bg-white">
+          <div className="p-3 sm:p-4 border-t border-gray-200 bg-white">
             <div className="flex gap-2">
               <input
                 type="text"
                 placeholder="Type your message..."
-                className="flex-1 border-2 border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#ddaf26] transition-colors text-sm"
+                className="flex-1 border-2 border-gray-200 rounded-xl px-3 py-2 sm:px-4 sm:py-3 outline-none focus:border-[#ddaf26] transition-colors text-xs sm:text-sm"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
@@ -229,9 +229,9 @@ const Chatbot: React.FC = () => {
               <button
                 onClick={handleSend}
                 disabled={!input.trim()}
-                className="bg-gradient-to-r from-[#203f78] to-[#2a5294] p-3 rounded-xl text-[#ddaf26] hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
+                className="bg-gradient-to-r from-[#203f78] to-[#2a5294] p-2.5 sm:p-3 rounded-xl text-[#ddaf26] hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
               >
-                <AiOutlineSend size={22} />
+                <AiOutlineSend size={20} className="sm:w-[22px] sm:h-[22px]" />
               </button>
             </div>
           </div>

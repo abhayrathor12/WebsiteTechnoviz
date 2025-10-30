@@ -9,6 +9,6 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',   // listen on all IPs
-    port: 5173,        // optional, can change if 5173 is busy
+    port: 5173,        
   },
 })

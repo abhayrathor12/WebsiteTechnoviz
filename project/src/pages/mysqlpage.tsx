@@ -266,7 +266,7 @@ export default function MySQLPage() {
             Yes. Despite the rise of NoSQL databases, MySQL remains a cornerstone of enterprise and web applications. Its continuous development, cloud integration, and wide adoption ensure that MySQL will remain a reliable and future-ready choice for years to come.
           </p>
           <Link
-              to="/contact" className="px-10 py-5 bg-white text-[#203f78] rounded-xl font-bold text-lg hover:bg-blue-50 transition-all transform hover:scale-105 shadow-2xl">
+              to="/contact" className="px-6 sm:px-10 py-3 sm:py-5 bg-white text-[#203f78] rounded-xl font-bold text-base sm:text-lg hover:bg-blue-50 transition-all transform hover:scale-105 shadow-2xl w-full sm:w-auto text-center">
             Start Your MySQL Journey
           </Link>
         </div>

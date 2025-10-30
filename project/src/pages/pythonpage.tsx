@@ -1,8 +1,8 @@
-
 import { Code, Database, Brain, Zap, Globe, BarChart3, ChevronRight, Check } from 'lucide-react';
-import pyt from "../public/python.webp"
-import jav from "../public/java.png"
+import pyt from "../public/python.webp";
+import jav from "../public/java.png";
 import { Link } from "react-router-dom";
+
 const PythonPage = () => {
   const features = [
     { icon: Globe, title: "Web Development", desc: "Build robust applications with Django and Flask" },
@@ -34,55 +34,54 @@ const PythonPage = () => {
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}
-      <div className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#203f78] via-[#2a5294] to-[#1a3361]">
+      <div className="relative min-h-[60vh] sm:min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#203f78] via-[#2a5294] to-[#1a3361]">
         {/* Animated Background Grid */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
+            backgroundSize: '30px 30px sm:50px 50px',
             animation: 'gridMove 20s linear infinite'
           }} />
         </div>
 
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
             {/* Left Content */}
-            <div className="text-white space-y-8 pt-20">
+            <div className="text-white space-y-6 sm:space-y-8 pt-16 sm:pt-20">
               <div className="space-y-4">
-                <h1 className="text-4xl lg:text-5xl font-bold leading-tight animate-fadeInUp">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight animate-fadeInUp">
                   Discover the Power of
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 animate-pulse">
                     Python
                   </span>
                 </h1>
-                <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+                <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 leading-relaxed animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
                   Leverage Python's versatility to deliver innovative and efficient solutions tailored to your business needs.
                 </p>
               </div>
               
-              <p className="text-lg text-blue-200 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+              <p className="text-base sm:text-lg text-blue-200 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
                 Whether you're building cutting-edge web applications, harnessing data analytics, or creating intelligent systems, Python has the tools to bring your vision to life.
               </p>
 
               <div className="flex flex-wrap gap-4 animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
                 <Link
-                  to="/contact" className="px-8 py-4 bg-yellow-400 text-[#203f78] font-bold rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                  to="/contact" className="px-6 sm:px-8 py-3 sm:py-4 bg-yellow-400 text-[#203f78] font-bold rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl text-sm sm:text-base">
                   Get Started
-                  <ChevronRight className="inline ml-2" size={20} />
+                  <ChevronRight className="inline ml-2" size={16} sm={{size: 20}} />
                 </Link>
-                
               </div>
             </div>
 
             {/* Right Animation - 3D Rotating Python Code */}
-            <div className="relative h-96 lg:h-[600px] flex items-center justify-center">
+            <div className="relative h-48 sm:h-64 lg:h-[600px] flex items-center justify-center">
               {/* Floating Code Blocks */}
               <div className="relative w-full h-full flex items-center justify-center">
                 {/* Center Python Logo */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <svg
                     viewBox="0 0 200 200"
-                    className="w-48 h-48 lg:w-72 lg:h-72 animate-float"
+                    className="w-24 h-24 sm:w-32 sm:h-32 lg:w-72 lg:h-72 animate-float"
                   >
                     <defs>
                       <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -125,12 +124,12 @@ const PythonPage = () => {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="absolute px-4 py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl font-mono text-sm text-[#203f78] font-bold animate-orbit"
+                    className="absolute px-2 sm:px-3 py-1 sm:py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl font-mono text-xs sm:text-sm text-[#203f78] font-bold animate-orbit"
                     style={{
                       animationDelay: `${item.delay}s`,
                       top: '50%',
                       left: '50%',
-                      transform: `rotate(${item.angle}deg) translateX(180px) rotate(-${item.angle}deg)`
+                      transform: `rotate(${item.angle}deg) translateX(80px) sm:translateX(120px) lg:translateX(180px) rotate(-${item.angle}deg)`
                     }}
                   >
                     {item.code}
@@ -138,10 +137,10 @@ const PythonPage = () => {
                 ))}
 
                 {/* Floating Particles */}
-                {[...Array(12)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                   <div
                     key={i}
-                    className="absolute w-2 h-2 bg-yellow-400 rounded-full animate-float"
+                    className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 bg-yellow-400 rounded-full animate-float"
                     style={{
                       top: `${Math.random() * 100}%`,
                       left: `${Math.random() * 100}%`,
@@ -159,7 +158,7 @@ const PythonPage = () => {
           @keyframes fadeInUp {
             from {
               opacity: 0;
-              transform: translateY(30px);
+              transform: translateY(20px);
             }
             to {
               opacity: 1;
@@ -168,15 +167,15 @@ const PythonPage = () => {
           }
           @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) sm:translateY(-15px) rotate(3deg); }
           }
           @keyframes orbit {
-            from { transform: rotate(0deg) translateX(180px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+            from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
           }
           @keyframes gridMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+            100% { transform: translate(30px, 30px); }
           }
           .animate-fadeInUp {
             animation: fadeInUp 0.8s ease-out forwards;
@@ -188,32 +187,44 @@ const PythonPage = () => {
           .animate-orbit {
             animation: orbit 15s linear infinite;
           }
+          @media (min-width: 640px) {
+            @keyframes orbit {
+              from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+              to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+            }
+          }
+          @media (min-width: 1024px) {
+            @keyframes orbit {
+              from { transform: rotate(0deg) translateX(180px) rotate(0deg); }
+              to { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+            }
+          }
         `}</style>
       </div>
 
       {/* Features Section */}
-      <div className="py-20 px-6 lg:px-12 bg-white">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#203f78] mb-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#203f78] mb-4 sm:mb-6">
               How Can Python Address Your Challenges?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-600 max-w-2xl sm:max-w-3xl mx-auto">
               Python is a dynamic, high-level programming language renowned for its readability and efficiency, excelling across various domains.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className="group p-8 bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-blue-100"
+                className="group p-6 sm:p-8 bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-blue-100"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-[#203f78] to-[#2a5294] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                  <feature.icon className="text-white" size={32} />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-[#203f78] to-[#2a5294] rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                  <feature.icon className="text-white" size={24} sm={{size: 32}} />
                 </div>
-                <h3 className="text-2xl font-bold text-[#203f78] mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#203f78] mb-3 sm:mb-4">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -221,14 +232,14 @@ const PythonPage = () => {
       </div>
 
       {/* Purpose Section */}
-      <div className="py-20 px-6 lg:px-12 bg-gradient-to-br from-[#203f78] to-[#1a3361] text-white overflow-hidden">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-[#203f78] to-[#1a3361] text-white overflow-hidden">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
                 What is Python's Purpose?
               </h2>
-              <div className="space-y-4 text-lg text-blue-100">
+              <div className="space-y-4 text-base sm:text-lg text-blue-100">
                 <p>
                   Python is designed with a focus on code readability and simplicity. Its purpose is to provide developers with a language that is easy to learn and use, promoting rapid development and effective problem-solving.
                 </p>
@@ -237,17 +248,17 @@ const PythonPage = () => {
                 </p>
               </div>
             </div>
-            <div className="relative h-96 flex items-center justify-center">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="relative h-64 sm:h-96 flex items-center justify-center">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {['Django', 'Flask', 'Pandas', 'NumPy', 'TensorFlow', 'scikit-learn'].map((lib, idx) => (
                   <div
                     key={idx}
-                    className="px-6 py-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 cursor-pointer"
+                    className="px-4 sm:px-6 py-3 sm:py-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 cursor-pointer"
                     style={{
                       animation: `fadeInScale 0.6s ease-out ${idx * 0.15}s both`
                     }}
                   >
-                    <p className="font-bold text-yellow-300 text-center">{lib}</p>
+                    <p className="font-bold text-yellow-300 text-center text-sm sm:text-base">{lib}</p>
                   </div>
                 ))}
               </div>
@@ -270,25 +281,25 @@ const PythonPage = () => {
       </div>
 
       {/* Benefits Section */}
-      <div className="py-20 px-6 lg:px-12 bg-white">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="container mx-auto">
-          <h2 className="text-4xl lg:text-5xl font-bold text-[#203f78] text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#203f78] text-center mb-10 sm:mb-16">
             What are the Benefits of Python?
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {benefits.map((benefit, idx) => (
               <div
                 key={idx}
-                className="p-6 bg-gradient-to-br from-blue-50 to-slate-50 rounded-xl border-l-4 border-[#203f78] hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-slate-50 rounded-xl border-l-4 border-[#203f78] hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-[#203f78] rounded-full flex items-center justify-center flex-shrink-0 mt-1 animate-bounce" style={{ animationDuration: '2s', animationDelay: `${idx * 0.1}s` }}>
-                    <Check className="text-white" size={18} />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#203f78] rounded-full flex items-center justify-center flex-shrink-0 mt-1 animate-bounce" style={{ animationDuration: '2s', animationDelay: `${idx * 0.1}s` }}>
+                    <Check className="text-white" size={14} sm={{size: 18}} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-[#203f78] mb-2">{benefit.title}</h3>
-                    <p className="text-gray-600">{benefit.desc}</p>
+                    <h3 className="text-lg sm:text-xl font-bold text-[#203f78] mb-2">{benefit.title}</h3>
+                    <p className="text-gray-600 text-sm sm:text-base">{benefit.desc}</p>
                   </div>
                 </div>
               </div>
@@ -298,46 +309,46 @@ const PythonPage = () => {
       </div>
 
       {/* Why Choose Python */}
-      <div className="py-20 px-6 lg:px-12 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold text-[#203f78] mb-8">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="container mx-auto max-w-3xl sm:max-w-4xl text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#203f78] mb-6 sm:mb-8">
             Why Should You Choose Python?
           </h2>
-          <p className="text-xl text-gray-700 leading-relaxed mb-8">
+          <p className="text-base sm:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8">
             Opting for Python means selecting a language that blends simplicity with powerful functionality. Its ease of use and extensive features make it ideal for a wide range of applications, from quick prototypes to sophisticated, production-ready systems.
           </p>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-sm sm:text-lg text-gray-600 leading-relaxed">
             Python's adaptability ensures it can meet diverse project needs, whether you're developing a web application, analyzing data, or creating intelligent algorithms. At Dreams Technologies, we utilize Python's strengths to deliver solutions that drive innovation and efficiency.
           </p>
         </div>
       </div>
 
       {/* Future & Usage Section */}
-      <div className="py-20 px-6 lg:px-12 bg-white">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-white">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16">
             {/* Is Python the Future */}
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-[#203f78]">Is Python the Future?</h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#203f78]">Is Python the Future?</h2>
+              <p className="text-sm sm:text-lg text-gray-700 leading-relaxed">
                 Certainly. Python's influence in modern technology continues to grow, particularly in areas like artificial intelligence, machine learning, and data science. Its increasing popularity and ongoing development solidify Python's role as a crucial tool in the tech industry.
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-lg text-gray-700 leading-relaxed">
                 As businesses increasingly rely on data-driven insights and intelligent systems, Python's versatility and efficiency position it as a key player in shaping the future of technology.
               </p>
             </div>
 
             {/* Where is Python Used */}
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-[#203f78]">Where is Python Used?</h2>
-              <div className="space-y-3">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#203f78]">Where is Python Used?</h2>
+              <div className="space-y-2 sm:space-y-3">
                 {useCases.map((useCase, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-4 bg-gradient-to-r from-[#203f78]/5 to-transparent rounded-lg hover:from-[#203f78]/10 hover:translate-x-2 transition-all duration-300"
+                    className="flex items-center gap-3 p-3 sm:p-4 bg-gradient-to-r from-[#203f78]/5 to-transparent rounded-lg hover:from-[#203f78]/10 hover:translate-x-2 transition-all duration-300"
                   >
-                    <ChevronRight className="text-[#203f78] animate-pulse" size={24} style={{ animationDuration: '2s', animationDelay: `${idx * 0.2}s` }} />
-                    <span className="text-lg font-semibold text-gray-700">{useCase}</span>
+                    <ChevronRight className="text-[#203f78] animate-pulse" size={20} sm={{size: 24}} style={{ animationDuration: '2s', animationDelay: `${idx * 0.2}s` }} />
+                    <span className="text-base sm:text-lg font-semibold text-gray-700">{useCase}</span>
                   </div>
                 ))}
               </div>
@@ -347,13 +358,13 @@ const PythonPage = () => {
       </div>
 
       {/* Real Life Applications */}
-      <div className="py-20 px-6 lg:px-12 bg-gradient-to-br from-[#203f78] to-[#1a3361] text-white">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-[#203f78] to-[#1a3361] text-white">
         <div className="container mx-auto">
-          <h2 className="text-4xl lg:text-5xl font-bold text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-10 sm:mb-16">
             How is Python Useful in Real Life?
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               { title: "Data Analysis", desc: "Process data, generate reports, and make strategic decisions" },
               { title: "Automation", desc: "Automate routine tasks, boosting efficiency and saving time" },
@@ -363,10 +374,10 @@ const PythonPage = () => {
             ].map((app, idx) => (
               <div
                 key={idx}
-                className="p-8 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300"
+                className="p-6 sm:p-8 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300"
               >
-                <h3 className="text-2xl font-bold text-yellow-300 mb-4">{app.title}</h3>
-                <p className="text-blue-100">{app.desc}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-yellow-300 mb-3 sm:mb-4">{app.title}</h3>
+                <p className="text-blue-100 text-sm sm:text-base">{app.desc}</p>
               </div>
             ))}
           </div>
@@ -374,53 +385,53 @@ const PythonPage = () => {
       </div>
 
       {/* Python vs Java */}
-      <div className="py-20 px-6 lg:px-12 bg-white">
-  <div className="container mx-auto max-w-5xl">
-    <h2 className="text-4xl lg:text-5xl font-bold text-[#203f78] text-center mb-16">
-      Python vs. Java: Which is Better?
-    </h2>
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-white">
+        <div className="container mx-auto max-w-4xl sm:max-w-5xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#203f78] text-center mb-10 sm:mb-16">
+            Python vs. Java: Which is Better?
+          </h2>
 
-    <div className="grid md:grid-cols-2 gap-8">
-      {/* Java Card */}
-      <div className="p-8 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl border-2 border-orange-200 hover:shadow-2xl hover:scale-105 transition-all duration-300">
-        <img src={jav} alt="Java Logo" className="w-50 h-16 mb-4" />
-        <h3 className="text-3xl font-bold text-orange-700 mb-6">Java</h3>
-        <p className="text-lg text-gray-700 leading-relaxed">
-          Known for its performance and scalability, Java is often preferred for
-          large-scale enterprise applications due to its statically typed nature,
-          which provides enhanced performance and type safety.
-        </p>
-      </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            {/* Java Card */}
+            <div className="p-6 sm:p-8 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl border-2 border-orange-200 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <img src={jav} alt="Java Logo" className="w-40 h-12 sm:w-50 sm:h-16 mb-3 sm:mb-4" />
+              <h3 className="text-2xl sm:text-3xl font-bold text-orange-700 mb-4 sm:mb-6">Java</h3>
+              <p className="text-sm sm:text-lg text-gray-700 leading-relaxed">
+                Known for its performance and scalability, Java is often preferred for
+                large-scale enterprise applications due to its statically typed nature,
+                which provides enhanced performance and type safety.
+              </p>
+            </div>
 
-      {/* Python Card */}
-      <div className="p-8 bg-gradient-to-br from-blue-50 to-[#203f78]/10 rounded-2xl border-2 border-[#203f78] hover:shadow-2xl hover:scale-105 transition-all duration-300">
-        <img src={pyt} alt="Python Logo" className="w-50 h-16 mb-4" />
-        <h3 className="text-3xl font-bold text-[#203f78] mb-6">Python</h3>
-        <p className="text-lg text-gray-700 leading-relaxed">
-          Celebrated for its ease of use and rapid development capabilities,
-          Python excels in scenarios where speed and flexibility are crucial. It
-          is especially well-suited for startups and projects requiring swift
-          iteration.
-        </p>
+            {/* Python Card */}
+            <div className="p-6 sm:p-8 bg-gradient-to-br from-blue-50 to-[#203f78]/10 rounded-2xl border-2 border-[#203f78] hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <img src={pyt} alt="Python Logo" className="w-40 h-12 sm:w-50 sm:h-16 mb-3 sm:mb-4" />
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#203f78] mb-4 sm:mb-6">Python</h3>
+              <p className="text-sm sm:text-lg text-gray-700 leading-relaxed">
+                Celebrated for its ease of use and rapid development capabilities,
+                Python excels in scenarios where speed and flexibility are crucial. It
+                is especially well-suited for startups and projects requiring swift
+                iteration.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
       {/* CTA Section */}
-      <div className="py-20 px-6 lg:px-12 bg-gradient-to-br from-[#203f78] via-[#2a5294] to-[#1a3361] relative overflow-hidden">
+      <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-[#203f78] via-[#2a5294] to-[#1a3361] relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 opacity-10">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <div
               key={i}
               className="absolute bg-white rounded-full"
               style={{
-                width: '200px',
-                height: '200px',
-                left: `${i * 20}%`,
+                width: '100px',
+                height: '100px',
+                left: `${i * 25}%`,
                 top: `${(i % 2) * 50}%`,
-                animation: `float ${5 + i}s ease-in-out infinite`,
+                animation: `float ${4 + i}s ease-in-out infinite`,
                 animationDelay: `${i * 0.5}s`
               }}
             />
@@ -428,16 +439,16 @@ const PythonPage = () => {
         </div>
 
         <div className="container mx-auto text-center relative z-10">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8">
             Ready to Transform Your Business with Python?
           </h2>
-          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-blue-100 mb-6 sm:mb-10 max-w-xl sm:max-w-2xl mx-auto">
             Let Dreams Technologies help you leverage Python's power to drive innovation and efficiency.
           </p>
-            <Link
-              to="/contact" className="px-12 py-5 bg-yellow-400 text-[#203f78] font-bold text-lg rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-110 shadow-2xl animate-pulse">
+          <Link
+            to="/contact" className="px-8 sm:px-12 py-4 sm:py-5 bg-yellow-400 text-[#203f78] font-bold text-base sm:text-lg rounded-lg hover:bg-yellow-300 transition-all transform hover:scale-110 shadow-2xl animate-pulse">
             Start Your Project Today
-            <ChevronRight className="inline ml-2" size={24} />
+            <ChevronRight className="inline ml-2" size={20} sm={{size: 24}} />
           </Link>
         </div>
       </div>

@@ -38,23 +38,23 @@ const ReactPage = () => {
     return (
       <div className="relative w-full h-full flex items-center justify-center">
         {/* Outer orbiting ellipses representing React's architecture */}
-        <div 
+        <div
           className="absolute w-64 h-64 border-2 border-cyan-400 rounded-full opacity-30"
-          style={{ 
+          style={{
             transform: `rotate(${rotation}deg)`,
             borderStyle: 'dashed'
           }}
         />
-        <div 
+        <div
           className="absolute w-64 h-64 border-2 border-cyan-400 rounded-full opacity-30"
-          style={{ 
+          style={{
             transform: `rotate(${-rotation + 60}deg)`,
             borderStyle: 'dashed'
           }}
         />
-        <div 
+        <div
           className="absolute w-64 h-64 border-2 border-cyan-400 rounded-full opacity-30"
-          style={{ 
+          style={{
             transform: `rotate(${rotation + 120}deg)`,
             borderStyle: 'dashed'
           }}
@@ -65,7 +65,7 @@ const ReactPage = () => {
           const orbitAngle = (rotation + angle) * (Math.PI / 180);
           const x = Math.cos(orbitAngle) * 120;
           const y = Math.sin(orbitAngle) * 120;
-          
+         
           return (
             <div
               key={idx}
@@ -97,7 +97,7 @@ const ReactPage = () => {
           const radius = 140 + Math.sin(rotation * 0.1 + idx) * 20;
           const px = Math.cos(particleAngle) * radius;
           const py = Math.sin(particleAngle) * radius;
-          
+         
           return (
             <div
               key={`particle-${idx}`}
@@ -172,7 +172,7 @@ const ReactPage = () => {
           <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-400 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
         </div>
-        
+       
         <div className="container mx-auto px-6 py-24 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-6">
@@ -187,10 +187,10 @@ const ReactPage = () => {
                   to="/contact" className="bg-cyan-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-300 transition">
                   Get Started
                 </Link>
-                
+               
               </div>
             </div>
-            
+           
             <div className="h-96">
               <FloatingReactLogo />
             </div>
@@ -206,7 +206,7 @@ const ReactPage = () => {
             <p className="text-gray-700 text-lg">
               React is a powerful JavaScript library that revolutionizes how we build user interfaces. It introduces innovative concepts that make development faster, more efficient, and more maintainable.
             </p>
-            
+           
             <div className="space-y-4">
               {features.map((feature, idx) => (
                 <div key={idx} className="flex gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition">
@@ -221,7 +221,7 @@ const ReactPage = () => {
               ))}
             </div>
           </div>
-          
+         
           <div className={`transition-all duration-1000 delay-300 ${isVisible['what-is-react'] ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
             <CodeAnimation />
           </div>
@@ -265,7 +265,7 @@ const ReactPage = () => {
                 React's declarative UI approach enables the creation of highly interactive and responsive interfaces. Breaking down UIs into manageable components ensures a smooth and intuitive user experience.
               </p>
             </div>
-            
+           
             <div className="bg-white p-8 rounded-xl shadow-lg">
               <h3 className="text-2xl font-bold mb-4" style={{ color: '#203f78' }}>Scalability & Future-Proof</h3>
               <p className="text-gray-600 mb-4">
@@ -279,7 +279,7 @@ const ReactPage = () => {
       {/* Advanced Features */}
       <div className="container mx-auto px-6 py-20">
         <h2 className="text-4xl font-bold text-center mb-16" style={{ color: '#203f78' }}>Advanced Features of React</h2>
-        
+       
         <div className="grid md:grid-cols-2 gap-6">
           {advancedFeatures.map((feature, idx) => (
             <div
@@ -303,7 +303,7 @@ const ReactPage = () => {
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-4 text-white">React Ecosystem</h2>
           <p className="text-center text-gray-200 mb-12 text-lg">Powerful tools and frameworks that extend React's capabilities</p>
-          
+         
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {ecosystem.map((tool, idx) => (
               <div
@@ -321,7 +321,7 @@ const ReactPage = () => {
       {/* Development Tools */}
       <div className="container mx-auto px-6 py-20">
         <h2 className="text-4xl font-bold text-center mb-12" style={{ color: '#203f78' }}>Development Tools & Best Practices</h2>
-        
+       
         <div className="grid md:grid-cols-3 gap-8">
           <div className="text-center p-6">
             <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#203f78' }}>
@@ -330,7 +330,7 @@ const ReactPage = () => {
             <h3 className="text-xl font-bold mb-2" style={{ color: '#203f78' }}>React DevTools</h3>
             <p className="text-gray-600">Debug and inspect component hierarchies with ease</p>
           </div>
-          
+         
           <div className="text-center p-6">
             <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#203f78' }}>
               <Box className="text-white" size={36} />
@@ -338,7 +338,7 @@ const ReactPage = () => {
             <h3 className="text-xl font-bold mb-2" style={{ color: '#203f78' }}>Storybook</h3>
             <p className="text-gray-600">Develop and test UI components in isolation</p>
           </div>
-          
+         
           <div className="text-center p-6">
             <div className="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#203f78' }}>
               <Cpu className="text-white" size={36} />
@@ -356,7 +356,7 @@ const ReactPage = () => {
           <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
             We leverage React to create high-performance, scalable, and visually striking web applications tailored to your business needs
           </p>
-          
+         
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
             <div className="bg-white bg-opacity-10 backdrop-blur-lg p-6 rounded-lg">
               <h3 className="text-lg font-bold text-cyan-400 mb-2">Component Optimization</h3>
@@ -371,9 +371,9 @@ const ReactPage = () => {
               <p className="text-gray-200 text-sm">Using Jest and React Testing Library</p>
             </div>
           </div>
-          
+         
            <Link
-              to="/contact" className="bg-cyan-400 text-gray-900 px-12 py-4 rounded-lg font-bold text-lg hover:bg-cyan-300 transition">
+              to="/contact" className="bg-cyan-400 text-gray-900 px-8 sm:px-12 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg hover:bg-cyan-300 transition">
             Start Your React Project Today
           </Link>
         </div>

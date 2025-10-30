@@ -23,7 +23,7 @@ import NetworkingPage from "./pages/networkingpage";
 import MysqlPage from "./pages/mysqlpage";
 import AndroidPage from "./pages/andriodpage";
 import KnowledgePage from "./pages/knowledgepage";
-import PopupComponent from './components/PopupComponent';
+// import PopupComponent from './components/PopupComponent';
 import QuickLink from './components/QuickLink';
 
 // import WhatsAppWidget from './components/chatsection';
