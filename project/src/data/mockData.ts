@@ -3,6 +3,7 @@ import Case1 from '../public/Case-1.jpg';
 import CaseS1 from '../public/Case-Study-1-Tech3.webp.bv.webp';
 import CaseS2 from '../public/cases2.webp';
 import CaseS3 from '../public/caseS4.webp';
+import siri from "../public/siri.jpg";
 import {
   FileText,
   Network,
@@ -16,6 +17,7 @@ import {
   Battery,
   Gauge,
   Check,
+  BarChart,
 } from "lucide-react";
 import Oeeimage from '../public/Oeeimage.jpg';
 import emsimage from '../public/emsimage.jpg';
@@ -186,6 +188,31 @@ export const services: Service[] = [
     seo_description:
       'Harness the power of AI in manufacturing to boost efficiency, reduce downtime, and drive innovation.',
   },
+  {
+  id: '7',
+  hero_image: siri, // add your image import at the top
+  title: 'Smart Industry Readiness Index (SIRI)',
+  short_description:
+    'Assess and accelerate your Industry 4.0 transformation with data-driven insights.',
+  long_description:
+    'Our Smart Industry Readiness Index (SIRI) service helps organizations measure their Industry 4.0 readiness and develop actionable strategies for digital transformation. Through a structured framework that evaluates Process, Technology, and Organization, we provide a clear roadmap for achieving higher efficiency and innovation. Using benchmarking, KPI tracking, and improvement planning, we help industries align investments with strategic goals and move confidently toward smart manufacturing excellence.',
+  medium_description:
+    'We help industries evaluate and enhance their Industry 4.0 readiness using structured assessments and actionable roadmaps.',
+  category: 'Industry 4.0',
+  slug: 'smart-industry-readiness-index',
+  icon: BarChart, // import from lucide-react
+  related_products: [],
+  features: [
+    'Digital Maturity Assessment',
+    'Benchmarking & Roadmapping',
+    'Customized Improvement Plans',
+    'KPI Tracking & Visualization',
+  ],
+  cta_text: 'Assess Now',
+  seo_meta_title: 'Smart Industry Readiness Index (SIRI)',
+  seo_description:
+    'Evaluate and enhance your Industry 4.0 readiness with the Smart Industry Readiness Index (SIRI) framework.',
+},
 ];
 
 export const products: Product[] = [

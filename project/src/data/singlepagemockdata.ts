@@ -15,12 +15,13 @@ import {
   Cloud,
   Zap,
   Server,
+  BarChart,
   
   
   
 } from "lucide-react";
 
-
+import siri from "../public/siri.jpg";
 import quality from "../pdfs/Technoviz Quality Inspection brochure.pdf"
 import utility from "../pdfs/Technibiz Utility360 Brochure.pdf"
 import ems from "../pdfs/Technobiz SmartEMS brochure.pdf"
@@ -361,6 +362,57 @@ export const services: Service[] = [
     seo_meta_title: 'AI in Manufacturing Solutions',
     seo_description: 'Harness the power of AI in manufacturing to boost efficiency, reduce downtime, and drive innovation.',
   },
+  {
+  id: '7',
+  hero_image: siri, // add your image import
+  title: 'Smart Industry Readiness Index (SIRI)',
+  short_description: 'Assess, benchmark, and accelerate your Industry 4.0 transformation journey.',
+  long_description: `
+    The Smart Industry Readiness Index (SIRI) helps industries evaluate their digital maturity 
+    and identify gaps in adopting Industry 4.0 technologies. Through structured assessments and 
+    actionable roadmaps, Technoviz enables organizations to prioritize investments and maximize 
+    their digital transformation outcomes.
+
+    SIRI provides a comprehensive framework across key pillars—Process, Technology, and Organization—
+    ensuring a balanced approach to achieving industrial excellence and future-readiness.
+  `,
+  category: 'Industry 4.0',
+  slug: 'smart-industry-readiness-index',
+  icon: BarChart, // or ClipboardCheck if preferred
+  related_products: [
+    'Assessment Framework Tools',
+    'Digital Roadmap Platform',
+    'Maturity Benchmarking Dashboard',
+  ],
+  features: [
+    'Digital Maturity Assessment',
+    'Benchmarking & Roadmapping',
+    'Customized Transformation Plans',
+    'KPI Tracking & Visualization',
+  ],
+  detailed_features: [
+    {
+      title: 'Digital Maturity Assessment',
+      description: 'Comprehensive evaluation of processes, technology, and organization readiness for Industry 4.0.',
+    },
+    {
+      title: 'Benchmarking & Roadmapping',
+      description: 'Compare your readiness against industry standards and receive a step-by-step transformation roadmap.',
+    },
+    {
+      title: 'Customized Transformation Plans',
+      description: 'Tailored improvement strategies to align digital initiatives with business goals.',
+    },
+    {
+      title: 'KPI Tracking & Visualization',
+      description: 'Monitor key performance indicators and visualize progress toward smart industry maturity.',
+    },
+  ],
+  cta_text: 'Assess Now',
+  seo_meta_title: 'Smart Industry Readiness Index (SIRI)',
+  seo_description: 'Evaluate and enhance your Industry 4.0 readiness with the Smart Industry Readiness Index (SIRI) framework.',
+},
+
 ];
 
 export const products: Product[] = [

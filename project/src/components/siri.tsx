@@ -41,7 +41,7 @@ export default function SIRIComponent() {
                 <img
                   src={siri}
                   alt="SIRI Logo"
-                  className="w-full h-full rounded-xl object-cover shadow-lg"
+                  className="w-full h-full rounded-xl object-contain shadow-lg"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-[#ddaf26] text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-bold shadow-lg text-sm sm:text-base">
                   Certified

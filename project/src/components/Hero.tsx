@@ -35,6 +35,23 @@ const services = [
     link: '/services/iiot'
   },
   {
+    icon: ShieldCheck,
+    title: 'Smart Industry Readiness Index',
+    subtitle: 'SIRI Assessment',
+    description: 'Comprehensive assessment framework to evaluate and benchmark your Industry 4.0 transformation journey.',
+    features: [
+      'Readiness Assessment',
+      'Maturity Benchmarking',
+      'Gap Analysis',
+      'Roadmap Development',
+      'Implementation Support',
+      'Continuous Monitoring'
+    ],
+    color: 'from-indigo-500 to-indigo-600',
+    cta: 'Assess Readiness',
+    link: '/services/smart-industry-readiness-index'
+  },
+  {
     icon: Wifi,
     title: 'Industrial Communication Solutions',
     subtitle: 'Robust Connectivity',
@@ -47,7 +64,7 @@ const services = [
     ],
     color: 'from-cyan-500 to-cyan-600',
     cta: 'Learn More',
-    link: '/services/communication'
+    link: '/services/industrial-communication'
   },
   {
     icon: ShieldCheck,
@@ -82,25 +99,9 @@ const services = [
     ],
     color: 'from-orange-500 to-orange-600',
     cta: 'Automate Now',
-    link: '/services/automation'
+    link: '/services/automation-services'
   },
-  {
-    icon: ShieldCheck,
-    title: 'Smart Industry Readiness Index',
-    subtitle: 'SIRI Assessment',
-    description: 'Comprehensive assessment framework to evaluate and benchmark your Industry 4.0 transformation journey.',
-    features: [
-      'Readiness Assessment',
-      'Maturity Benchmarking',
-      'Gap Analysis',
-      'Roadmap Development',
-      'Implementation Support',
-      'Continuous Monitoring'
-    ],
-    color: 'from-indigo-500 to-indigo-600',
-    cta: 'Assess Readiness',
-    link: '/services/siri'
-  }
+  
 ];
 
 // Particle Background Component

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ArrowRight, BookOpen, UserCheck, Lightbulb } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, BookOpen, UserCheck, Lightbulb, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../public/Techlogo.png";
 import { services, products } from "../data/mockData";
@@ -101,6 +101,8 @@ const Header: React.FC = () => {
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
   const location = useLocation();
+
+  const phoneNumber = "+91 9999765380"; // Change this to your actual phone number
 
   useEffect(() => {
     const handleScroll = () => {
@@ -288,7 +290,17 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center space-x-4">
+            <a
+              href={`tel:${phoneNumber.replace(/\s/g, '')}`}
+              className="flex items-center space-x-2 text-[#0B2B5A] hover:text-[#ddaf26] transition-colors duration-200 group"
+            >
+              <Phone className="w-4 h-4 flex-shrink-0" />
+              <div className="flex flex-col">
+                <span className="text-sm font-medium">{phoneNumber}</span>
+                <span className="text-xs text-gray-600 group-hover:text-[#ddaf26] transition-colors duration-200">Mr. Kapil Khurana</span>
+              </div>
+            </a>
             <Link
               to="/contact"
               className="bg-[#ddaf26] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#c49a1f] transition-all duration-200 hover:-translate-y-0.5"
@@ -452,10 +464,21 @@ const Header: React.FC = () => {
                   </div>
                 ))}
 
+                <a
+                  href={`tel:${phoneNumber.replace(/\s/g, '')}`}
+                  className="flex items-center justify-center space-x-2 text-[#0B2B5A] hover:text-[#ddaf26] transition-colors duration-200 py-3 border border-[#0B2B5A] rounded-lg mt-2 group"
+                >
+                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  <div className="flex flex-col items-start">
+                    <span className="text-sm font-medium">{phoneNumber}</span>
+                    <span className="text-xs text-gray-600 group-hover:text-[#ddaf26] transition-colors duration-200">Mr. Kapil Khurana</span>
+                  </div>
+                </a>
+
                 <Link
                   to="/contact"
                   onClick={() => setIsMenuOpen(false)}
-                  className="bg-[#0B2B5A] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#ddaf26] transition-colors duration-200 text-center mt-4"
+                  className="bg-[#ddaf26] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#c49a1f] transition-colors duration-200 text-center"
                 >
                   Talk to Us
                 </Link>
