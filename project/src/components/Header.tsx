@@ -298,7 +298,7 @@ const Header: React.FC = () => {
               <Phone className="w-4 h-4 flex-shrink-0" />
               <div className="flex flex-col">
                 <span className="text-sm font-medium">{phoneNumber}</span>
-                <span className="text-xs text-gray-600 group-hover:text-[#ddaf26] transition-colors duration-200">Mr. Kapil Khurana</span>
+           
               </div>
             </a>
             <Link
