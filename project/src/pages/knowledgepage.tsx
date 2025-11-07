@@ -6,7 +6,7 @@ import book122 from "../public/book122.jpg";
 const knowledgeData = [
   {
     id: "book",
-    title: "Guide to Succeed with Technology Integration",
+    title: "Book “Digital Revolution”",
     subtitle: "Navigate the Digital Revolution and master Industry 4.0 & Industrial IoT with expert insights and practical strategies.",
     author: "Kapil Khurana",
     type: "Book",
