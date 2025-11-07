@@ -416,17 +416,25 @@ const SingleProductPage = () => {
             </div>
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 max-w-4xl mx-auto">
               <div className="relative" style={{ paddingBottom: '42.5%' }}>
-                {/* Video Embed - Replace the src with your actual video URL */}
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full"
-                  src="https://www.youtube.com/embed/XUH_k3acpgA"
-                  title={`${product.name} Product Demo`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                {product.vid_url ? (
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src={
+                      product.vid_url.includes("youtube.com/embed/")
+                        ? product.vid_url
+                        : `https://www.youtube.com/embed/${product.vid_url.split("/").pop().split("?")[0]}`
+                    }
+                    title={`${product.name} Product Demo`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <p className="text-center text-gray-500 py-8">Video not available</p>
+                )}
               </div>
             </div>
+
           </div>
         {/* Related Products Section */}
         {relatedProducts.length > 0 && (

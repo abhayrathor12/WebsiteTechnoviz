@@ -432,6 +432,7 @@ export const products: Product[] = [
       'Faster knowledge retention',
     ],
     pricing_link: '/contact',
+    vid_url:'https://youtu.be/D15RgCkqJko?si=Wl85ohE8ElXliQUG',
     cta_text: 'Learn More',
     category: 'AR/VR',
     seo_meta_title: 'Immersix - AR/VR Training Solutions',
@@ -531,6 +532,7 @@ Designed for scalability, Utility360 adapts to industrial plants, commercial com
     ],
     pricing_link: '/contact',
     cta_text: 'Learn More',
+    vid_url:'https://youtu.be/WWtxu-GAFJM?si=YRO_DTq1cYNWMdip',
     category: 'Quality',
     seo_meta_title: 'Digital Checksheet - Quality Inspection System',
     seo_description:
@@ -581,6 +583,7 @@ With customizable templates and automated notifications, Digital Checksheet ensu
     ],
     pricing_link: '/contact',
     cta_text: 'Learn More',
+    vid_url:'https://youtu.be/BSUC_f_hAvI?si=vPshdrdUg_e3gM4G',
     category: 'Energy',
     seo_meta_title: 'SmartEMS - Energy Management System',
     seo_description:

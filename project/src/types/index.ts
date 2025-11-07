@@ -26,6 +26,7 @@ export interface Product {
   name: string;
   icon: LucideIcon;
   slug: string;
+  vid_url?:string;
   tagline: string;
   hero_image: string;
   screenshots: string[];
