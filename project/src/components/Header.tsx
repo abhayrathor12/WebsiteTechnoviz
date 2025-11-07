@@ -102,7 +102,7 @@ const Header: React.FC = () => {
   const [mobileDropdowns, setMobileDropdowns] = useState<{ [key: string]: boolean }>({});
   const location = useLocation();
 
-  const phoneNumber = "+91 9999765380"; // Change this to your actual phone number
+  const phoneNumber = "+91-9999765380"; // Change this to your actual phone number
 
   useEffect(() => {
     const handleScroll = () => {
