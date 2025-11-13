@@ -28,13 +28,12 @@ const HomePage: React.FC = () => {
   const { ref: blogsRef, inView: blogsInView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: bookRef, inView: bookInView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: siriref, inView: siriInView } = useInView({ triggerOnce: true, threshold: 0.1 });
- 
+  const { ref: faqRef, inView: faqInView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <div>
       {/* Hero loads instantly */}
       <Hero />
-     
 
       {/* Products Section */}
       <div ref={productsRef}>
@@ -50,21 +49,19 @@ const HomePage: React.FC = () => {
         {servicesInView && (
           <SectionLoader>
             <ServicesOverview />
-             <div ref={siriref}>
-        {siriInView && (
-          <SectionLoader>
-            <SIRI />
-          </SectionLoader>
-        )}
-      </div>
+            <div ref={siriref}>
+              {siriInView && (
+                <SectionLoader>
+                  <SIRI />
+                </SectionLoader>
+              )}
+            </div>
             <CapabilitiesStrip />
             <ClientSection />
-            <FAQ />
             <CIO />
           </SectionLoader>
         )}
       </div>
-      
 
       {/* Case Studies */}
       <div ref={casesRef}>
@@ -75,14 +72,9 @@ const HomePage: React.FC = () => {
         )}
       </div>
 
-      {/* Blogs */}
-      <div ref={blogsRef}>
-        {blogsInView && (
-          <SectionLoader>
-            <BlogsSection />
-          </SectionLoader>
-        )}
-      </div>
+     
+
+      {/* Book Section */}
       <div ref={bookRef}>
         {bookInView && (
           <SectionLoader>
@@ -90,7 +82,23 @@ const HomePage: React.FC = () => {
           </SectionLoader>
         )}
       </div>
+       {/* Blogs - second last */}
+      <div ref={blogsRef}>
+        {blogsInView && (
+          <SectionLoader>
+            <BlogsSection />
+          </SectionLoader>
+        )}
+      </div>
 
+      {/* FAQ - last section */}
+      <div ref={faqRef}>
+        {faqInView && (
+          <SectionLoader>
+            <FAQ />
+          </SectionLoader>
+        )}
+      </div>
     </div>
   );
 };
