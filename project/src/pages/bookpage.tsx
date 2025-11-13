@@ -1,5 +1,4 @@
-
-import {  ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Star, PlayCircle } from 'lucide-react';
 import book12 from "../public/book12.jpg";
 import book122 from "../public/boook4.webp";
 import { Link } from "react-router-dom";
@@ -62,7 +61,7 @@ const BookPage = () => {
                 <div className="absolute -bottom-10 -right-10 w-16 h-16 bg-blue-400 opacity-20 rounded-full animate-bounce delay-300"></div>
                 <div className="absolute top-1/2 -right-20 w-12 h-12 bg-[#203f78] opacity-15 rounded-full animate-ping delay-500"></div>
 
-                {/* Book Image Instead of Div */}
+                {/* Book Image */}
                 <img 
                   src={book12} 
                   alt="Digital Revolution Book" 
@@ -88,20 +87,16 @@ const BookPage = () => {
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Book Image */}
             <div className="flex justify-center">
-                <div className="relative group">
-                  
-                    
-                    
-                    <div className="relative bg-white rounded-lg shadow-xl">
-                    <img 
-                        src={book122} 
-                        alt="Book Cover" 
-                        className="w-[400px] h-[220px] rounded-md object-cover"
-                    />
-                    </div>
+              <div className="relative group">
+                <div className="relative bg-white rounded-lg shadow-xl">
+                  <img 
+                    src={book122} 
+                    alt="Book Cover" 
+                    className="w-[400px] h-[220px] rounded-md object-cover"
+                  />
                 </div>
-                </div>
-
+              </div>
+            </div>
 
             {/* Book Info */}
             <div className="lg:col-span-2 space-y-8">
@@ -163,6 +158,44 @@ const BookPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Video Section - NEW */}
+      <section className="py-16 px-6 bg-gradient-to-br from-blue-50 to-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-[#203f78] bg-opacity-10 text-[#203f78] rounded-full text-sm font-medium mb-4">
+              <PlayCircle className="w-4 h-4 mr-2" />
+              Book Overview
+            </div>
+            <h2 className="text-4xl font-bold text-[#203f78] mb-4">Watch the Book Introduction</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Get a comprehensive overview of the key concepts and insights covered in the book
+            </p>
+          </div>
+
+          <div className="relative max-w-2xl mx-auto">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black">
+              {/* Replace YOUR_YOUTUBE_VIDEO_ID with your actual YouTube video ID */}
+              <div className="relative pb-[56.25%]">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/RZX9l2ZqxrE?si=qyegdw0_Haw7ZxDV"
+                  title="Book Introduction Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+            
+            {/* Decorative elements */}
+            <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#203f78] opacity-10 rounded-full blur-xl"></div>
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-400 opacity-10 rounded-full blur-xl"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Explore More Section */}
       <section className="py-16 px-6 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -173,36 +206,36 @@ const BookPage = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* SLM Card */}
             <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <div className="space-y-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#203f78] to-blue-600 rounded-xl flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">SLM</span>
+              <div className="space-y-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#203f78] to-blue-600 rounded-xl flex items-center justify-center">
+                  <span className="text-2xl font-bold text-white">SLM</span>
+                </div>
+                <h3 className="text-2xl font-bold text-[#203f78]">Self Learning Module</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Empower learners with interactive, flexible, and engaging modules that promote self-paced learning and skill mastery.
+                </p>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start space-x-2">
+                    <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                    <span>Interactive Digital Lessons</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                    <span>Self-Paced Learning Activities</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
+                    <span>Progress Tracking & Assessments</span>
+                  </li>
+                </ul>
+                <Link
+                  to="/slm"
+                  className="inline-block bg-[#203f78] hover:bg-[#ddaf26] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+                >
+                  Explore SLM
+                </Link>
               </div>
-              <h3 className="text-2xl font-bold text-[#203f78]">Self Learning Module</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Empower learners with interactive, flexible, and engaging modules that promote self-paced learning and skill mastery.
-              </p>
-              <ul className="space-y-2 text-gray-600">
-                <li className="flex items-start space-x-2">
-                  <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
-                  <span>Interactive Digital Lessons</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
-                  <span>Self-Paced Learning Activities</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <ArrowRight className="w-4 h-4 text-[#203f78] mt-1 flex-shrink-0" />
-                  <span>Progress Tracking & Assessments</span>
-                </li>
-              </ul>
-              <Link
-                to="/slm"
-                className="inline-block bg-[#203f78] hover:bg-[#ddaf26] text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
-              >
-                Explore SLM
-              </Link>
             </div>
-          </div>
 
             {/* COE Card */}
             <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
@@ -254,21 +287,18 @@ const BookPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-  to="/contact" className="bg-white text-[#203f78] px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                to="/contact" 
+                className="bg-white text-[#203f78] px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
                 Schedule Consultation
               </Link>
               <button className="border-2 border-white text-white hover:bg-white hover:text-[#203f78] px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
                 Download Free Chapter
               </button>
             </div>
-
-            
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      
     </div>
   );
 };
