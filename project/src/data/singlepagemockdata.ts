@@ -481,6 +481,7 @@ The platform supports customizable modules across industries, enabling organizat
     ],
     pricing_link: '/contact',
     cta_text: 'Learn More',
+    vid_url:'https://youtu.be/2ZHrBhEHa7A?si=AgBZ44oAtQsy4s24',
     category: 'Utility',
     seo_meta_title: 'Utility360 - Smart Utility Monitoring',
     seo_description:
