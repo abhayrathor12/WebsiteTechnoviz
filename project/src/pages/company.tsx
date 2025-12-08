@@ -350,42 +350,52 @@ const Company = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {products.map((product) => (
-              <div key={product.id} className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
-                <div className={`bg-[#203f78] p-3 sm:p-4`}>
-                  <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                      {product.icon}
-                    </div>
-                    <Package className="w-4 h-4 sm:w-5 sm:h-5 text-white/70" />
-                  </div>
-                </div>
-                <div className="p-3 sm:p-4">
-                  <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2 group-hover:text-[#203f78] transition-colors">
-                    {product.title}
-                  </h3>
-                  <p className="text-gray-600 mb-2 sm:mb-3 text-xs sm:text-sm leading-relaxed">
-                    {product.description}
-                  </p>
-                  <div className="space-y-1 sm:space-y-2 mb-3 sm:mb-4">
-                    {product.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center text-gray-600 text-xs">
-                        <div className="w-1.5 h-1.5 bg-[#203f78] rounded-full mr-2 flex-shrink-0"></div>
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <button 
-                    onClick={() => window.open(product.pd, '_blank')}
-                    className="w-full bg-[#203f78] hover:bg-[#ddaf26] text-white hover:text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center text-xs sm:text-sm group"
-                  >
-                    <Download className="w-3 h-3 mr-2" />
-                    <span>Download Brochure</span>
-                  </button>
-                </div>
-              </div>
-            ))}
+  {products.map((product) => (
+    <div
+      key={product.id}
+      className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group flex flex-col h-full"
+    >
+      {/* Header */}
+      <div className={`bg-[#203f78] p-3 sm:p-4`}>
+        <div className="flex items-center justify-between">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+            {product.icon}
           </div>
+          <Package className="w-4 h-4 sm:w-5 sm:h-5 text-white/70" />
+        </div>
+      </div>
+
+      {/* Body - grows to fill space */}
+      <div className="p-3 sm:p-4 flex-grow">
+        <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2 group-hover:text-[#203f78] transition-colors">
+          {product.title}
+        </h3>
+        <p className="text-gray-600 mb-2 sm:mb-3 text-xs sm:text-sm leading-relaxed">
+          {product.description}
+        </p>
+        <div className="space-y-1 sm:space-y-2">
+          {product.features.map((feature, featureIndex) => (
+            <div key={featureIndex} className="flex items-center text-gray-600 text-xs">
+              <div className="w-1.5 h-1.5 bg-[#203f78] rounded-full mr-2 flex-shrink-0"></div>
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer - Button always at bottom */}
+      <div className="p-3 sm:p-4 pt-0 mt-auto">
+        <button
+          onClick={() => window.open(product.pd, '_blank')}
+          className="w-full bg-[#203f78] hover:bg-[#ddaf26] text-white py-2 sm:py-2.5 px-4 rounded-lg font-medium transition-all duration-300 flex items-center justify-center text-xs sm:text-sm shadow-md hover:shadow-lg"
+        >
+          <Download className="w-4 h-4 mr-2" />
+          <span>Download Brochure</span>
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 

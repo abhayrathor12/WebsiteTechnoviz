@@ -12,12 +12,7 @@ import {
   Battery,
   Gauge,
   Check,
-  Cloud,
-  Zap,
-  Server,
   BarChart,
-  
-  
   
 } from "lucide-react";
 
@@ -639,7 +634,7 @@ Scalable and cloud-compatible, SmartEMS can manage multi-site operations while e
     seo_meta_title: 'OEE Dashboard - Production Efficiency',
     seo_description:
       'Maximize production efficiency with live OEE monitoring dashboards.',
-
+      vid_url:'https://youtu.be/2WyzxjfcRFg?si=B-f005ReZ-4UmogZ',
     long_description: `The OEE Dashboard is a real-time industrial analytics platform designed to give manufacturers complete control and visibility over their production efficiency. Using IIoT and cloud-based technology, it captures data directly from machines, PLCs, and sensors to calculate OEE (Availability, Performance, and Quality) in real-time.
 
 Plant managers can visualize bottlenecks, analyze downtime causes, and monitor shift-level performance through customizable dashboards. Its intuitive interface provides both macro and micro-level insights — from plant-wide efficiency to individual machine utilization — enabling rapid decision-making and process optimization. 
@@ -690,7 +685,7 @@ The platform also includes automated data collection, event logging, and report 
     seo_meta_title: 'VisionAI - AI Visual Inspection',
     seo_description:
       'VisionAI enables automated defect detection and visual inspection at scale.',
-
+      vid_url:'https://youtu.be/7O-xiopqXfg?si=iLhI-8CSAqF1h6xR',
     long_description: `VisionAI harnesses the power of artificial intelligence and computer vision to bring automation and precision to industrial inspection and safety monitoring. Designed for high-speed environments, it integrates with existing camera systems to analyze visual data in real-time, identifying product defects, object classifications, and safety compliance issues instantly.
 
 The platform’s deep learning models continuously evolve, improving detection accuracy across diverse materials and lighting conditions. It supports applications like defect detection, component verification, PPE compliance checks, and process monitoring — all without human intervention. VisionAI’s intuitive web dashboard provides centralized monitoring, configurable alerts, and performance analytics to ensure transparency and traceability.
