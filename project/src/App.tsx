@@ -1,21 +1,21 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
-import ContactPage from './pages/ContactPage';
-import ProductsPage from './pages/ProductsPage';
-import BlogPages from './pages/BlogPages';
-import Casestudies from './pages/Casestudies';
-import SingleServicePage from './singlepages/servicesinglepage';
-import SingleProductPage from './singlepages/productsinglepage';
-import SingleBlogPage from './singlepages/blogsinglepage';
-import CompanyPage from './pages/company';
-import BookPage from './pages/bookpage';
-import CoePage from './pages/coepage';
-import ScrollToTop from "./components/ScrollToTop";
-import Chatbot from "./components/Chatbot";
+import MainLayout from "./MainLayout";
+import BlankLayout from "./BlankLayout";
+
+// Pages
+import HomePage from "./pages/HomePage";
+import ServicesPage from "./pages/ServicesPage";
+import ContactPage from "./pages/ContactPage";
+import ProductsPage from "./pages/ProductsPage";
+import BlogPages from "./pages/BlogPages";
+import Casestudies from "./pages/Casestudies";
+import SingleServicePage from "./singlepages/servicesinglepage";
+import SingleProductPage from "./singlepages/productsinglepage";
+import SingleBlogPage from "./singlepages/blogsinglepage";
+import CompanyPage from "./pages/company";
+import BookPage from "./pages/bookpage";
+import CoePage from "./pages/coepage";
 import PythonPage from "./pages/pythonpage";
 import ReactPage from "./pages/reactpage";
 import AzurePage from "./pages/Azurepage";
@@ -23,49 +23,54 @@ import NetworkingPage from "./pages/networkingpage";
 import MysqlPage from "./pages/mysqlpage";
 import AndroidPage from "./pages/andriodpage";
 import KnowledgePage from "./pages/knowledgepage";
-import PopupComponent from './components/PopupComponent';
-import QuickLink from './components/QuickLink';
+import Webinar from "./pages/Webinar";
 
-// import WhatsAppWidget from './components/chatsection';
-function App() {
+// Components
+import ScrollToTop from "./components/ScrollToTop";
+
+const App: React.FC = () => {
   return (
     <Router>
-      <div className="App font-inter">
-        <Header />
-        <ScrollToTop />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/:slug" element={<SingleServicePage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/products/:slug" element={<SingleProductPage />} />
-            <Route path="/blogs" element={<BlogPages />} />
-            <Route path="/blogs/:slug" element={<SingleBlogPage />} />
-            <Route path="/case-studies" element={<Casestudies />} />
-            <Route path="/company" element={<CompanyPage />} />
-            <Route path="/book" element={<BookPage />} />
-            <Route path="/coe" element={<CoePage />} />
-            <Route path="/python" element={<PythonPage />} />
-            <Route path="/react" element={<ReactPage />} />
-            <Route path="/azure" element={<AzurePage />} />
-            <Route path="/network" element={<NetworkingPage />} />
-            <Route path="/mysql" element={<MysqlPage />} />
-            <Route path="/android" element={<AndroidPage />} />
-            <Route path="/learning" element={<KnowledgePage />} />
-            
-            {/* Add other routes as needed */}
-          </Routes>
-           <Chatbot />
-          {/* <WhatsAppWidget/> */}
-        </main>
-        <Footer />
-        {/* <PopupComponent />  */}
-        <QuickLink /> 
-      </div>
+      <ScrollToTop />
+
+      <Routes>
+        {/* ===================== */}
+        {/* ROUTES WITH LAYOUT */}
+        {/* ===================== */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<SingleServicePage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:slug" element={<SingleProductPage />} />
+          <Route path="/blogs" element={<BlogPages />} />
+          <Route path="/blogs/:slug" element={<SingleBlogPage />} />
+          <Route path="/case-studies" element={<Casestudies />} />
+          <Route path="/company" element={<CompanyPage />} />
+          <Route path="/book" element={<BookPage />} />
+          <Route path="/coe" element={<CoePage />} />
+          <Route path="/python" element={<PythonPage />} />
+          <Route path="/react" element={<ReactPage />} />
+          <Route path="/azure" element={<AzurePage />} />
+          <Route path="/network" element={<NetworkingPage />} />
+          <Route path="/mysql" element={<MysqlPage />} />
+          <Route path="/android" element={<AndroidPage />} />
+          <Route path="/learning" element={<KnowledgePage />} />
+        </Route>
+
+        {/* ===================== */}
+        {/* ROUTES WITHOUT LAYOUT */}
+        {/* ===================== */}
+        <Route element={<BlankLayout />}>
+          <Route
+            path="/Webinar-Registration"
+            element={<Webinar />}
+          />
+        </Route>
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;
