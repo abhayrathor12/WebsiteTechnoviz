@@ -102,7 +102,7 @@ const WebinarPage: React.FC = () => {
           >
             <div className="text-center mb-5">
               <h2 className="text-xl sm:text-2xl font-bold text-[#203f78]">Reserve Your Seat</h2>
-              <p className="text-xs sm:text-sm text-gray-600 mt-1">Get exclusive bonus materials</p>
+              {/* <p className="text-xs sm:text-sm text-gray-600 mt-1">Get exclusive bonus materials</p> */}
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
