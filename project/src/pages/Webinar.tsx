@@ -29,7 +29,7 @@ const WebinarPage: React.FC = () => {
   const onSubmit = async (data: FormData) => {
     try {
       const response = await fetch(
-        "http://192.168.1.60:8257/api/webinar/register/",
+        "https://websiteBackend.pythonanywhere.com/api/webinar/register/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
