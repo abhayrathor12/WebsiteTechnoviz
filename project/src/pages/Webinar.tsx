@@ -53,7 +53,7 @@ const WebinarPage: React.FC = () => {
     setStatus("submitting");
     try {
       const response = await fetch(
-        "https://renderwebsiterepo.onrender.com/api/webinar/register/",
+        "https://websiteBackend.pythonanywhere.com/api/webinar/register/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
