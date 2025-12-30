@@ -19,6 +19,7 @@ type FormData = z.infer<typeof formSchema>;
 
 const WebinarPage: React.FC = () => {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [countdown, setCountdown] = useState(6); // Add this state
 
   const {
     register,
@@ -31,10 +32,20 @@ const WebinarPage: React.FC = () => {
   // Auto-redirect after success modal is shown (4 seconds)
   useEffect(() => {
     if (status === "success") {
-      const timer = setTimeout(() => {
-        window.location.href = "https://technovizautomation.com";
-      }, 6000);
-      return () => clearTimeout(timer);
+      setCountdown(6); // Reset countdown when success is triggered
+  
+      const timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            window.location.href = "https://technovizautomation.com";
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+  
+      return () => clearInterval(timer); // Cleanup on unmount
     }
   }, [status]);
 
@@ -120,7 +131,7 @@ const WebinarPage: React.FC = () => {
                   Join us for an insightful webinar on{" "}
                   <span className="font-semibold">
                     Smart Manufacturing Use Case Applications in IIoT and Industry
-                    4.0
+                    4.0auto
                   </span>
                   , where we explore how connected systems and data-driven
                   technologies are transforming modern factories.
@@ -285,17 +296,17 @@ const WebinarPage: React.FC = () => {
               </p>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.location.href = "https://technovizautomation.com"}
-                className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
-              >
-                Continue to Website →
-              </motion.button>
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = "https://technovizautomation.com"}
+              className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
+            >
+              Continue to Website →
+            </motion.button>
 
-              <p className="text-xs text-gray-500 mt-4">
-                (Auto-redirecting in 6 seconds...)
-              </p>
+            <p className="text-xs text-gray-500 mt-4">
+              (Auto-redirecting in {countdown} second{countdown !== 1 ? "s" : ""}...)
+            </p>
             </motion.div>
           </motion.div>
         )}
