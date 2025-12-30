@@ -17,7 +17,7 @@ const ContactPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://websitebackend.pythonanywhere.com/api/con/create/", {
+      const response = await fetch("https://renderwebsiterepo.onrender.com/api/con/create/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

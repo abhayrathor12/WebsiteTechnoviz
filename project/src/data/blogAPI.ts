@@ -1,6 +1,6 @@
 // blogAPI.ts
 
-const API_BASE_URL = "https://websiteBackend.pythonanywhere.com";
+const API_BASE_URL = "https://renderwebsiterepo.onrender.com";
 // const API_BASE_URL = "http://192.168.1.60:8257";
 const MEDIA_BASE_URL = `${API_BASE_URL}/media`;
 
