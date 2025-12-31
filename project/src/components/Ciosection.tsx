@@ -63,10 +63,10 @@ const DirectorCertificateSection = () => {
                   Mr. Kapil Khurana
                 </h3>
                 <p className="text-[#203f78] font-semibold mb-4">
-                  Chief Executive Officer
+                Founder & Director
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  With over 15 years of industry experience, Kapil leads our company with vision, 
+                  With over 20+ years of industry experience, Kapil leads our company with vision, 
                   innovation, and an unwavering commitment to excellence. His strategic leadership 
                   has driven our growth and success in the competitive market.
                 </p>
@@ -108,12 +108,18 @@ const DirectorCertificateSection = () => {
                   className="block"
                 >
                   <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl p-4 shadow-inner transition-transform duration-300 hover:scale-105">
-                    <img 
-                      src={Cio_image}
-                      alt="Company Certificate"
-                      className="w-full h-64 object-cover rounded-lg shadow-md"
-                    />
-                  </div>
+                      <img 
+                        src={Cio_image}
+                        alt="Company Certificate"
+                        className="
+                          w-full h-64 
+                          object-contain 
+                          sm:object-cover 
+                          rounded-lg shadow-md
+                        "
+                      />
+                    </div>
+
                 </a>
 
                 <div className="absolute -top-2 -right-2">

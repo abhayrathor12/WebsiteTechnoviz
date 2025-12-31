@@ -453,7 +453,7 @@ const Header: React.FC = () => {
                   </a>
                   <span className="text-gray-400">|</span>
                   <Link
-  to="/webinar"
+  to="/Webinar-Registration"
   onClick={() => setIsMenuOpen(false)}
   className="border border-[#ddaf26] text-[#ddaf26] px-6 py-2.5 rounded-lg font-medium hover:bg-[#ddaf26] hover:text-white transition-colors duration-200 text-center"
 >
