@@ -3,9 +3,30 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Select from "react-select";
 import * as z from "zod";
-
+import { Controller } from "react-hook-form";
 import logo from "../public/logo.png";
+
+
+
+const stateOptions = [
+  { value: "Andhra Pradesh", label: "Andhra Pradesh" },
+  { value: "Arunachal Pradesh", label: "Arunachal Pradesh" },
+  { value: "Assam", label: "Assam" },
+  { value: "Bihar", label: "Bihar" },
+  { value: "Chhattisgarh", label: "Chhattisgarh" },
+  { value: "Goa", label: "Goa" },
+  { value: "Gujarat", label: "Gujarat" },
+  { value: "Haryana", label: "Haryana" },
+  { value: "Himachal Pradesh", label: "Himachal Pradesh" },
+  { value: "Jharkhand", label: "Jharkhand" },
+  { value: "Karnataka", label: "Karnataka" },
+  { value: "Kerala", label: "Kerala" },
+  { value: "Madhya Pradesh", label: "Madhya Pradesh" },
+  { value: "Maharashtra", label: "Maharashtra" },
+  { value: "West Bengal", label: "West Bengal" },
+];
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -13,21 +34,47 @@ const formSchema = z.object({
   companyName: z.string().min(1, "Company name is required"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
+  city: z.string().optional(),
 });
+
 
 type FormData = z.infer<typeof formSchema>;
 
 const WebinarPage: React.FC = () => {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [countdown, setCountdown] = useState(6); // Add this state
+  const [cityOptions, setCityOptions] = useState<
+  { label: string; value: string }[]
+>([]);
+
 
   const {
     register,
     handleSubmit,
+    control, // ✅ ADD THIS
     formState: { isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
+  
+  
+useEffect(() => {
+  fetch("https://countriesnow.space/api/v0.1/countries/cities", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ country: "India" }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      const cities = data.data.map((city: string) => ({
+        label: city,
+        value: city,
+      }));
+      setCityOptions(cities);
+    })
+    .catch(err => console.error("City fetch error:", err));
+}, []);
+
 
   // Auto-redirect after success modal is shown (4 seconds)
   useEffect(() => {
@@ -63,6 +110,7 @@ const WebinarPage: React.FC = () => {
             company_name: data.companyName,
             email: data.email,
             phone: data.phone,
+            city: data.city,
           }),
         }
       );
@@ -196,20 +244,62 @@ const WebinarPage: React.FC = () => {
                   />
                 </div>
 
-                <input
-                  {...register("companyName")}
-                  placeholder="Company Name *"
-                  className="input"
-                />
+                {/* CHANGE 1: Company + State side by side */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input
+                    {...register("companyName")}
+                    placeholder="Company Name *"
+                    className="input"
+                  />
+<Controller
+  name="city"
+  control={control}
+  defaultValue={undefined}
+  render={({ field }) => (
+    <Select
+      options={cityOptions}
+      placeholder="Select City"
+      isSearchable={true}      // ✅ MUST
+      value={
+        cityOptions.find(c => c.value === field.value) || null
+      }
+      onChange={(option) => field.onChange(option?.value)}
+      menuPlacement="bottom"
+      menuPosition="fixed"
+      menuPortalTarget={document.body}
+      styles={{
+        control: (base) => ({
+          ...base,
+          minHeight: "40px",
+          borderRadius: "8px",
+        }),
+        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+      }}
+    />
+  )}
+/>
+
+                </div>
+
+                {/* CHANGE 2: Professional email placeholder */}
                 <input
                   {...register("email")}
-                  placeholder="Email Address *"
+                  placeholder="Work Email (e.g. name@company.com)"
                   className="input"
                 />
+              <p className="text-xs text-gray-500">
+                  Please use your official / professional email if available
+                </p>
                 <input
                   {...register("phone")}
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   placeholder="Phone Number *"
                   className="input"
+                  onInput={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                  }}
                 />
 
                 <motion.button
@@ -269,7 +359,6 @@ const WebinarPage: React.FC = () => {
               className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl text-center"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Green Tick */}
               <div className="w-20 h-20 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">
                 <svg
                   className="w-12 h-12 text-green-600"
@@ -292,21 +381,20 @@ const WebinarPage: React.FC = () => {
 
               <p className="text-gray-600 mb-6">
                 Thank you for registering for the Smart Manufacturing Webinar.
-            
               </p>
 
               <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.location.href = "https://technovizautomation.com"}
-              className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
-            >
-              Continue to Website →
-            </motion.button>
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.location.href = "https://technovizautomation.com"}
+                className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
+              >
+                Continue to Website →
+              </motion.button>
 
-            <p className="text-xs text-gray-500 mt-4">
-              (Auto-redirecting in {countdown} second{countdown !== 1 ? "s" : ""}...)
-            </p>
+              <p className="text-xs text-gray-500 mt-4">
+                (Auto-redirecting in {countdown} second{countdown !== 1 ? "s" : ""}...)
+              </p>
             </motion.div>
           </motion.div>
         )}
