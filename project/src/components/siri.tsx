@@ -2,7 +2,7 @@ import React from 'react';
 import kapilsir from "../public/k3n.jpg";
 import siri from "../public/siri.jpg";
 import siripdf from "../public/SIRI.pdf";
-import { Award, CheckCircle, Target, Download } from 'lucide-react';
+import { Award, CheckCircle, Target, Download, BadgeCheck } from 'lucide-react';
 
 export default function SIRIComponent() {
   const handleDownloadBrochure = () => {
@@ -101,7 +101,7 @@ export default function SIRIComponent() {
             <div className="flex flex-col justify-center order-2 md:order-1">
               <div className="mb-6">
                 <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#203f78' }}>
-                 Mr. Kapil Khurana
+                  Mr. Kapil Khurana
                 </h2>
                 <p className="text-lg sm:text-xl text-gray-600">Founder & Director</p>
               </div>
@@ -109,11 +109,19 @@ export default function SIRIComponent() {
               <div className="bg-yellow-50 border-l-4 border-[#ddaf26] p-4 mb-6">
                 <div className="flex items-center gap-2 mb-2">
                   <Award className="w-5 h-5 text-[#ddaf26]" />
-                  <span className="font-semibold text-green-900 text-sm sm:text-base">SIRI Certified Professional</span>
+                  <span className="font-semibold text-green-900 text-sm sm:text-base">
+                    SIRI Certified Assessor (CSA) | IIT Delhi
+                  </span>
                 </div>
-                <p className="text-green-800 text-xs sm:text-sm">
+                <p className="text-green-800 text-xs sm:text-sm mb-3">
                   Certified in Smart Industry Readiness Index Assessment and Implementation
                 </p>
+                {/* Assessor ID Badge */}
+                <div className="flex items-center gap-2 bg-white border border-[#ddaf26] rounded-lg px-3 py-2 w-fit">
+                  <BadgeCheck className="w-4 h-4 text-[#203f78] flex-shrink-0" />
+                  <span className="text-xs text-gray-500 font-medium">Assessor ID:</span>
+                  <span className="text-xs font-bold text-[#203f78] tracking-wide">150126SN003</span>
+                </div>
               </div>
 
               <p className="text-gray-700 mb-4 leading-relaxed text-sm sm:text-base">
