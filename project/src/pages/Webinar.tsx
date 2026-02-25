@@ -136,35 +136,32 @@ const WebinarPage: React.FC = () => {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           {/* LOGO */}
+          {/* LOGO */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center justify-between mb-4"
+            className="flex flex-col sm:flex-row items-center justify-between mb-4"
           >
-            {/* Styled website link - top left */}
+            {/* Logo centered on mobile */}
+            <img
+              src={logo}
+              alt="Company Logo"
+              className="h-10 sm:h-14 lg:h-16 object-contain order-1 sm:order-2"
+            />
+
+            {/* Website link */}
             <a
               href="https://www.technovizautomation.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="animated-border-link flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200 text-xs font-medium tracking-wide"
+              className="animated-border-link flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200 text-xs font-medium tracking-wide mt-3 sm:mt-0 order-2 sm:order-1"
             >
-              {/* <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
-              </svg> */}
               Technovizautomation.com
             </a>
 
-            {/* Logo centered */}
-            <img
-              src={logo}
-              alt="Company Logo"
-              className="h-10 sm:h-14 lg:h-16 object-contain"
-            />
-
-            {/* Spacer to balance flex */}
-            <div className="w-40" />
+            {/* Spacer ONLY for desktop */}
+            <div className="hidden sm:block w-40 order-3" />
           </motion.div>
 
           {/* HEADING */}
