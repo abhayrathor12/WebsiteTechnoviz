@@ -157,7 +157,7 @@ const WebinarPage: React.FC = () => {
               rel="noopener noreferrer"
               className="animated-border-link flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200 text-xs font-medium tracking-wide mt-3 sm:mt-0 order-2 sm:order-1"
             >
-              Technovizautomation.com
+              Visit TechnovizAutomation.com →
             </a>
 
             {/* Spacer ONLY for desktop */}
