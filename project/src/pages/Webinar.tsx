@@ -44,8 +44,8 @@ const WebinarPage: React.FC = () => {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [countdown, setCountdown] = useState(6); // Add this state
   const [cityOptions, setCityOptions] = useState<
-  { label: string; value: string }[]
->([]);
+    { label: string; value: string }[]
+  >([]);
 
 
   const {
@@ -56,31 +56,31 @@ const WebinarPage: React.FC = () => {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
-  
-  
-useEffect(() => {
-  fetch("https://countriesnow.space/api/v0.1/countries/cities", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ country: "India" }),
-  })
-    .then(res => res.json())
-    .then(data => {
-      const cities = data.data.map((city: string) => ({
-        label: city,
-        value: city,
-      }));
-      setCityOptions(cities);
+
+
+  useEffect(() => {
+    fetch("https://countriesnow.space/api/v0.1/countries/cities", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country: "India" }),
     })
-    .catch(err => console.error("City fetch error:", err));
-}, []);
+      .then(res => res.json())
+      .then(data => {
+        const cities = data.data.map((city: string) => ({
+          label: city,
+          value: city,
+        }));
+        setCityOptions(cities);
+      })
+      .catch(err => console.error("City fetch error:", err));
+  }, []);
 
 
   // Auto-redirect after success modal is shown (4 seconds)
   useEffect(() => {
     if (status === "success") {
       setCountdown(6); // Reset countdown when success is triggered
-  
+
       const timer = setInterval(() => {
         setCountdown((prev) => {
           if (prev <= 1) {
@@ -91,7 +91,7 @@ useEffect(() => {
           return prev - 1;
         });
       }, 1000);
-  
+
       return () => clearInterval(timer); // Cleanup on unmount
     }
   }, [status]);
@@ -140,13 +140,31 @@ useEffect(() => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center mb-4"
+            className="flex items-center justify-between mb-4"
           >
+            {/* Styled website link - top left */}
+            <a
+              href="https://www.technovizautomation.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="animated-border-link flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200 text-xs font-medium tracking-wide"
+            >
+              {/* <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+              </svg> */}
+              Technovizautomation.com
+            </a>
+
+            {/* Logo centered */}
             <img
               src={logo}
               alt="Company Logo"
               className="h-10 sm:h-14 lg:h-16 object-contain"
             />
+
+            {/* Spacer to balance flex */}
+            <div className="w-40" />
           </motion.div>
 
           {/* HEADING */}
@@ -251,33 +269,33 @@ useEffect(() => {
                     placeholder="Company Name *"
                     className="input"
                   />
-<Controller
-  name="city"
-  control={control}
-  defaultValue={undefined}
-  render={({ field }) => (
-    <Select
-      options={cityOptions}
-      placeholder="Select City"
-      isSearchable={true}      // ✅ MUST
-      value={
-        cityOptions.find(c => c.value === field.value) || null
-      }
-      onChange={(option) => field.onChange(option?.value)}
-      menuPlacement="bottom"
-      menuPosition="fixed"
-      menuPortalTarget={document.body}
-      styles={{
-        control: (base) => ({
-          ...base,
-          minHeight: "40px",
-          borderRadius: "8px",
-        }),
-        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-      }}
-    />
-  )}
-/>
+                  <Controller
+                    name="city"
+                    control={control}
+                    defaultValue={undefined}
+                    render={({ field }) => (
+                      <Select
+                        options={cityOptions}
+                        placeholder="Select City"
+                        isSearchable={true}      // ✅ MUST
+                        value={
+                          cityOptions.find(c => c.value === field.value) || null
+                        }
+                        onChange={(option) => field.onChange(option?.value)}
+                        menuPlacement="bottom"
+                        menuPosition="fixed"
+                        menuPortalTarget={document.body}
+                        styles={{
+                          control: (base) => ({
+                            ...base,
+                            minHeight: "40px",
+                            borderRadius: "8px",
+                          }),
+                          menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                        }}
+                      />
+                    )}
+                  />
 
                 </div>
 
@@ -287,7 +305,7 @@ useEffect(() => {
                   placeholder="Work Email (e.g. name@company.com)"
                   className="input"
                 />
-              <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500">
                   Please use your official / professional email if available
                 </p>
                 <input
@@ -327,6 +345,45 @@ useEffect(() => {
 
         <style>
           {`
+
+         @property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to { --angle: 360deg; }
+}
+
+.animated-border-link {
+  position: relative;
+  border: none !important;
+  z-index: 0;
+}
+
+.animated-border-link::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 9999px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0deg,
+    transparent 300deg,
+    #ddaf26 330deg,
+    #fff8e1 350deg,
+    #ddaf26 360deg
+  );
+  animation: spin-border 2.5s linear infinite;
+  z-index: -1;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
           .input {
             width: 100%;
             padding: 0.65rem 0.75rem;
