@@ -136,32 +136,17 @@ const WebinarPage: React.FC = () => {
 
         <div className="relative z-10 max-w-6xl mx-auto">
           {/* LOGO */}
-          {/* LOGO */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-between mb-4"
+            className="flex justify-center mb-4"
           >
-            {/* Logo centered on mobile */}
             <img
               src={logo}
               alt="Company Logo"
-              className="h-10 sm:h-14 lg:h-16 object-contain order-1 sm:order-2"
+              className="h-10 sm:h-14 lg:h-16 object-contain"
             />
-
-            {/* Website link */}
-            <a
-              href="https://www.technovizautomation.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="animated-border-link flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200 text-xs font-medium tracking-wide mt-3 sm:mt-0 order-2 sm:order-1"
-            >
-              Visit TechnovizAutomation.com →
-            </a>
-
-            {/* Spacer ONLY for desktop */}
-            <div className="hidden sm:block w-40 order-3" />
           </motion.div>
 
           {/* HEADING */}
@@ -342,45 +327,6 @@ const WebinarPage: React.FC = () => {
 
         <style>
           {`
-
-         @property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes spin-border {
-  to { --angle: 360deg; }
-}
-
-.animated-border-link {
-  position: relative;
-  border: none !important;
-  z-index: 0;
-}
-
-.animated-border-link::before {
-  content: '';
-  position: absolute;
-  inset: -1.5px;
-  border-radius: 9999px;
-  padding: 1.5px;
-  background: conic-gradient(
-    from var(--angle),
-    transparent 0deg,
-    transparent 300deg,
-    #ddaf26 330deg,
-    #fff8e1 350deg,
-    #ddaf26 360deg
-  );
-  animation: spin-border 2.5s linear infinite;
-  z-index: -1;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
           .input {
             width: 100%;
             padding: 0.65rem 0.75rem;
@@ -395,64 +341,81 @@ const WebinarPage: React.FC = () => {
           }
         `}
         </style>
-      </div>
+        <footer className="relative z-10 text-center py-2 px-4 mt-6 text-lg text-gray-300/60 border-t border-white/10">
+          For more information, please visit{" "}
+          <a
+            href="https://www.technovizautomation.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#ddaf26]/80 hover:text-[#ddaf26] underline underline-offset-2 font-medium transition-colors duration-200"
+          >
+            www.technovizautomation.com
+          </a>
+        </footer>
+
+      </div >
+
+
+
 
       {/* Success Modal */}
       <AnimatePresence>
-        {status === "success" && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
-          >
+        {
+          status === "success" && (
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl text-center"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
             >
-              <div className="w-20 h-20 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-12 h-12 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                You have successfully registered!
-              </h3>
-
-              <p className="text-gray-600 mb-6">
-                Thank you for registering for the Smart Manufacturing Webinar.
-              </p>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.location.href = "https://technovizautomation.com"}
-                className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl text-center"
+                onClick={(e) => e.stopPropagation()}
               >
-                Continue to Website →
-              </motion.button>
+                <div className="w-20 h-20 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-12 h-12 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
 
-              <p className="text-xs text-gray-500 mt-4">
-                (Auto-redirecting in {countdown} second{countdown !== 1 ? "s" : ""}...)
-              </p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  You have successfully registered!
+                </h3>
+
+                <p className="text-gray-600 mb-6">
+                  Thank you for registering for the Smart Manufacturing Webinar.
+                </p>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => window.location.href = "https://technovizautomation.com"}
+                  className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
+                >
+                  Continue to Website →
+                </motion.button>
+
+                <p className="text-xs text-gray-500 mt-4">
+                  (Auto-redirecting in {countdown} second{countdown !== 1 ? "s" : ""}...)
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )
+        }
+      </AnimatePresence >
     </>
   );
 };
