@@ -97,13 +97,13 @@ const megaMenuContent = {
     sections: [
       {
         icon: <span className="text-2xl">🥽</span>,
-        title: "AR/VR SLM",
+        title: "XRFORGE",
         description: "Augmented and Virtual Reality-based Structured Learning Modules for immersive, hands-on industrial training experiences.",
         link: "https://slm.technovizautomation.com/AR-VR" // external link to AR/VR SLM frontend,
       },
       {
         icon: <span className="text-2xl">🔧</span>,
-        title: "Industry 4.0 SLM",
+        title: "PLC to Cloud IIoT Smart Manufacturing",
         description: "Programmable Logic Controller Structured Learning Modules designed for practical industrial automation and control training.",
         link: "https://slm.technovizautomation.com" // external link to SLM frontend
       },
