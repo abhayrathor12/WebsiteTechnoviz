@@ -24,7 +24,7 @@ import MysqlPage from "./pages/mysqlpage";
 import AndroidPage from "./pages/andriodpage";
 import KnowledgePage from "./pages/knowledgepage";
 import Webinar from "./pages/Webinar";
-
+import SLMPage from "./pages/Slmpage";
 // Components
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -57,6 +57,7 @@ const App: React.FC = () => {
           <Route path="/mysql" element={<MysqlPage />} />
           <Route path="/android" element={<AndroidPage />} />
           <Route path="/learning" element={<KnowledgePage />} />
+          <Route path="/slm" element={<SLMPage />} />
         </Route>
 
         {/* ===================== */}

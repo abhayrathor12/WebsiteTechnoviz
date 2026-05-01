@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ArrowRight, BookOpen, UserCheck, Lightbulb } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, BookOpen, UserCheck, Lightbulb, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../public/Techlogo.png";
 import { services, products } from "../data/mockData";
@@ -69,26 +69,43 @@ const megaMenuContent = {
       {
         icon: <img src={AZuree} alt="Azure" className="w-6 h-6" />,
         title: "Azure",
-        description: "Leverage Microsoft Azure to build, deploy, and manage applications through a global network of data centers. Our Azure solutions ensure scalable, secure, and reliable cloud infrastructure.",
+        description: "Leverage Microsoft Azure to build, deploy, and manage applications through a global network of data centers.",
         link: "/azure",
       },
       {
         icon: <span className="w-6 h-6 text-blue-600">🌐</span>,
         title: "Networking",
-        description: "Enhance connectivity and security with our networking expertise. We design and manage robust network infrastructures to support seamless business operations.",
+        description: "Enhance connectivity and security with our networking expertise.",
         link: "/network",
       },
       {
         icon: <SiMysql className="w-6 h-6 text-orange-600" />,
         title: "MySQL",
-        description: "Harness the power of MySQL for efficient database management. Our MySQL solutions ensure reliable, scalable, and optimized data storage and retrieval.",
+        description: "Harness the power of MySQL for efficient database management.",
         link: "/mysql",
       },
       {
         icon: <SiAndroid className="w-6 h-6 text-green-600" />,
         title: "Android",
-        description: "Build powerful and user-friendly mobile applications with Android. Our Android solutions deliver seamless performance and engaging experiences across devices.",
+        description: "Build powerful and user-friendly mobile applications with Android.",
         link: "/android",
+      },
+    ],
+  },
+  slm: {
+    title: "Self Learning Modules",
+    sections: [
+      {
+        icon: <span className="text-2xl">🥽</span>,
+        title: "AR/VR SLM",
+        description: "Augmented and Virtual Reality-based Structured Learning Modules for immersive, hands-on industrial training experiences.",
+        link: "https://slm.technovizautomation.com/AR-VR" // external link to AR/VR SLM frontend,
+      },
+      {
+        icon: <span className="text-2xl">🔧</span>,
+        title: "Industry 4.0 SLM",
+        description: "Programmable Logic Controller Structured Learning Modules designed for practical industrial automation and control training.",
+        link: "https://slm.technovizautomation.com" // external link to SLM frontend
       },
     ],
   },
@@ -104,9 +121,7 @@ const Header: React.FC = () => {
   const phoneNumber = "+91-9999765380";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -117,22 +132,20 @@ const Header: React.FC = () => {
   }, [location.pathname]);
 
   const navItems = [
-    { name: "Home", path: "/", hasDropdown: false },
-    { name: "Services", path: "/services", hasDropdown: true },
-    { name: "Solutions", path: "/products", hasDropdown: true },
-    { name: "Insights", path: "/case-studies", hasDropdown: false },
-    { name: "Company", path: "/company", hasDropdown: false },
-    { name: "Learning", path: "/learning", hasDropdown: true },
-    { name: "Contact", path: "/contact", hasDropdown: false },
+    { name: "Home", path: "/", hasDropdown: false, isHoverOnly: false },
+    { name: "Services", path: "/services", hasDropdown: true, isHoverOnly: false },
+    { name: "Solutions", path: "/products", hasDropdown: true, isHoverOnly: false },
+    { name: "Insights", path: "/case-studies", hasDropdown: false, isHoverOnly: false },
+    { name: "Company", path: "/company", hasDropdown: false, isHoverOnly: false },
+    { name: "Learning", path: "/learning", hasDropdown: true, isHoverOnly: false },
+    { name: "SLM", path: "/slm", hasDropdown: true, isHoverOnly: true }, // hover only, no link
+    { name: "Contact", path: "/contact", hasDropdown: false, isHoverOnly: false },
   ];
 
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (location.pathname === "/") {
       e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -155,10 +168,7 @@ const Header: React.FC = () => {
 
   const toggleMobileDropdown = (itemName: string) => {
     const key = itemName.toLowerCase();
-    setMobileDropdowns((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
+    setMobileDropdowns((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   const MegaMenu = ({ content }: { content: any }) => (
@@ -197,26 +207,40 @@ const Header: React.FC = () => {
               </h4>
             )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {content.sections.map((section: any, index: number) => (
-                <Link
-                  key={index}
-                  to={section.link}
-                  onClick={() => setActiveDropdown(null)}
-                  className="group p-6 rounded-lg hover:border-[#ddaf26] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-transparent"
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className="text-3xl mb-4 transition-transform duration-300 text-[#203f78] group-hover:text-[#ddaf26]">
-                      {section.icon}
+              {content.sections.map((section: any, index: number) => {
+                const isExternal = section.link.startsWith("http");
+
+                return isExternal ? (
+                  <a
+                    key={index}
+                    href={section.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group p-6 rounded-lg hover:border-[#ddaf26] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-transparent"
+                  >
+                    <div className="flex items-start space-x-4">
+                      <div className="text-3xl mb-4 text-[#203f78] group-hover:text-[#ddaf26]">
+                        {section.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-[#0B2B5A] mb-2 group-hover:text-[#ddaf26]">
+                          {section.title}
+                        </h4>
+                        <p className="text-sm text-gray-600">{section.description}</p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-[#0B2B5A] mb-2 group-hover:text-[#ddaf26] transition-colors duration-300">
-                        {section.title}
-                      </h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">{section.description}</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </a>
+                ) : (
+                  <Link
+                    key={index}
+                    to={section.link}
+                    onClick={() => setActiveDropdown(null)}
+                    className="group p-6 rounded-lg hover:border-[#ddaf26] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-transparent"
+                  >
+                    {/* same content */}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}
@@ -256,17 +280,19 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-lg" : "bg-white/95 backdrop-blur-sm"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-white/95 backdrop-blur-sm"
+        }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link to="/" className="flex items-center space-x-2 text-[#0B2B5A] font-bold text-xl">
+
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2 text-[#0B2B5A] font-bold text-xl shrink-0">
             <img src={logo} alt="TechnoViz Automation" className="h-10 w-auto" />
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-5">
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-5">
             {navItems.map((item) => (
               <div
                 key={item.name}
@@ -274,37 +300,67 @@ const Header: React.FC = () => {
                 onMouseEnter={() => handleMouseEnter(item.name)}
                 onMouseLeave={handleMouseLeave}
               >
-                <Link
-                  to={item.path}
-                  onClick={item.name === "Home" ? handleHomeClick : undefined}
-                  className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${
-                    location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
-                  }`}
-                >
-                  <span>{item.name}</span>
-                  {item.hasDropdown && <ChevronDown className="w-4 h-4 ml-1" />}
-                </Link>
+                {item.isHoverOnly ? (
+                  // ✅ NO CLICK — PURE HOVER
+                  <div className="flex items-center space-x-1 text-sm font-medium text-gray-700 cursor-default select-none">
+                    <span>{item.name}</span>
+                    {item.hasDropdown && (
+                      <ChevronDown
+                        className={`w-4 h-4 ml-1 transition-transform duration-200 ${activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
+                          }`}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  // ✅ NORMAL LINK
+                  <Link
+                    to={item.path}
+                    onClick={item.name === "Home" ? handleHomeClick : undefined}
+                    className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
+                      }`}
+                  >
+                    <span>{item.name}</span>
+                    {item.hasDropdown && (
+                      <ChevronDown
+                        className={`w-4 h-4 ml-1 transition-transform duration-200 ${activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
+                          }`}
+                      />
+                    )}
+                  </Link>
+                )}
               </div>
             ))}
           </nav>
 
-          {/* Combined Phone + Webinar Registration (Desktop) */}
-          <div className="hidden lg:flex items-center space-x-6 text-sm font-medium">
-            <a
-              href={`tel:${phoneNumber.replace(/\s/g, '')}`}
-              className="text-[#0B2B5A] hover:text-[#ddaf26] transition-colors duration-200"
-            >
-              {phoneNumber}
-            </a>
-            <span className="text-gray-400">|</span>
-            <Link
-  to="/Webinar-Registration"
-  className="border border-[#ddaf26] text-[#ddaf26] px-4 py-2 rounded-md text-sm font-medium hover:bg-[#ddaf26] hover:text-white transition-all duration-200"
->
-  Register for Webinar
-</Link>
+          {/* Desktop Right — polished card-style CTA block */}
+          <div className="hidden lg:flex items-center shrink-0">
+            <div className="flex items-center gap-0 rounded-xl overflow-hidden border border-[#ddaf26]/30 shadow-sm">
+              {/* Phone segment */}
+              <a
+                href={`tel:${phoneNumber.replace(/\s/g, "")}`}
+                className="flex items-center gap-2 px-4 py-2.5 bg-[#0B2B5A] hover:bg-[#0a2550] transition-colors duration-200 group"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#ddaf26] shrink-0" />
+                <span className="text-white text-xs font-semibold tracking-wide whitespace-nowrap">
+                  {phoneNumber}
+                </span>
+              </a>
+              {/* Divider */}
+              <div className="w-px h-full bg-[#ddaf26]/40 self-stretch" />
+              {/* Webinar button segment */}
+              <Link
+                to="/Webinar-Registration"
+                className="flex items-center gap-1.5 px-4 py-2.5 bg-[#ddaf26] hover:bg-[#c9a020] transition-colors duration-200 group"
+              >
+                <span className="text-white text-xs font-bold tracking-wide whitespace-nowrap">
+                  Register for Webinar
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 transition-transform duration-200" />
+              </Link>
+            </div>
           </div>
 
+          {/* Mobile hamburger */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-gray-700"
@@ -314,12 +370,14 @@ const Header: React.FC = () => {
         </div>
       </div>
 
+      {/* Mega Menu */}
       <AnimatePresence>
         {activeDropdown && megaMenuContent[activeDropdown as keyof typeof megaMenuContent] && (
           <MegaMenu content={megaMenuContent[activeDropdown as keyof typeof megaMenuContent]} />
         )}
       </AnimatePresence>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -335,23 +393,42 @@ const Header: React.FC = () => {
                     {item.hasDropdown ? (
                       <>
                         <div className="flex items-center justify-between">
-                          <Link
-                            to={item.path}
-                            onClick={() => setIsMenuOpen(false)}
-                            className={`flex-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] py-2 ${
-                              location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
-                            }`}
-                          >
-                            {item.name}
-                          </Link>
+                          {/* SLM on mobile: just label, no link */}
+                          {item.isHoverOnly ? (
+                            <span
+                              className="flex items-center space-x-1 text-sm font-medium text-gray-700 cursor-default"
+                            >
+                              <span>{item.name}</span>
+                              {item.hasDropdown && (
+                                <ChevronDown
+                                  className={`w-4 h-4 ml-1 transition-transform duration-200 ${activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
+                                    }`}
+                                />
+                              )}
+                            </span>
+                          ) : (
+                            <Link
+                              to={item.path}
+                              onClick={item.name === "Home" ? handleHomeClick : undefined}
+                              className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
+                                }`}
+                            >
+                              <span>{item.name}</span>
+                              {item.hasDropdown && (
+                                <ChevronDown
+                                  className={`w-4 h-4 ml-1 transition-transform duration-200 ${activeDropdown === item.name.toLowerCase() ? "rotate-180" : ""
+                                    }`}
+                                />
+                              )}
+                            </Link>
+                          )}
                           <button
                             onClick={() => toggleMobileDropdown(item.name)}
                             className="p-2 text-gray-500 hover:text-[#ddaf26]"
                           >
                             <ChevronDown
-                              className={`w-4 h-4 transition-transform duration-200 ${
-                                mobileDropdowns[item.name.toLowerCase()] ? "rotate-180" : ""
-                              }`}
+                              className={`w-4 h-4 transition-transform duration-200 ${mobileDropdowns[item.name.toLowerCase()] ? "rotate-180" : ""
+                                }`}
                             />
                           </button>
                         </div>
@@ -365,57 +442,63 @@ const Header: React.FC = () => {
                                 transition={{ duration: 0.2 }}
                                 className="ml-4 mt-2 space-y-3 border-l-2 border-[#ddaf26] pl-4"
                               >
-                                {(megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].sections || []).map(
-                                  (section: any, index: number) => (
-                                    <Link
-                                      key={index}
-                                      to={section.link}
-                                      onClick={() => setIsMenuOpen(false)}
-                                      className="block group"
-                                    >
-                                      <div className="flex items-start space-x-3 py-2">
-                                        <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                          {section.icon}
-                                        </div>
-                                        <div className="flex-1">
-                                          <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                            {section.title}
-                                          </h5>
-                                          <p className="text-xs text-gray-500 mt-1 line-clamp-2">{section.description}</p>
-                                        </div>
+                                {(
+                                  megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].sections || []
+                                ).map((section: any, index: number) => (
+                                  <Link
+                                    key={index}
+                                    to={section.link}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="block group"
+                                  >
+                                    <div className="flex items-start space-x-3 py-2">
+                                      <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                        {section.icon}
                                       </div>
-                                    </Link>
-                                  )
-                                )}
-                                {(megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].technologies || []).map(
-                                  (tech: any, index: number) => (
-                                    <Link
-                                      key={`tech-mobile-${index}`}
-                                      to={tech.link}
-                                      onClick={() => setIsMenuOpen(false)}
-                                      className="block group"
-                                    >
-                                      <div className="flex items-start space-x-3 py-2">
-                                        <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                          {tech.icon}
-                                        </div>
-                                        <div className="flex-1">
-                                          <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
-                                            {tech.title}
-                                          </h5>
-                                          <p className="text-xs text-gray-500 mt-1 line-clamp-2">{tech.description}</p>
-                                        </div>
+                                      <div className="flex-1">
+                                        <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                          {section.title}
+                                        </h5>
+                                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                                          {section.description}
+                                        </p>
                                       </div>
-                                    </Link>
-                                  )
-                                )}
+                                    </div>
+                                  </Link>
+                                ))}
+                                {(
+                                  megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].technologies || []
+                                ).map((tech: any, index: number) => (
+                                  <Link
+                                    key={`tech-mobile-${index}`}
+                                    to={tech.link}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="block group"
+                                  >
+                                    <div className="flex items-start space-x-3 py-2">
+                                      <div className="text-[#203f78] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                        {tech.icon}
+                                      </div>
+                                      <div className="flex-1">
+                                        <h5 className="text-sm font-medium text-[#0B2B5A] group-hover:text-[#ddaf26] transition-colors duration-200">
+                                          {tech.title}
+                                        </h5>
+                                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                                          {tech.description}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Link>
+                                ))}
                                 {megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].exploreAllText && (
                                   <Link
                                     to={megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].exploreAllLink}
                                     onClick={() => setIsMenuOpen(false)}
                                     className="flex items-center space-x-2 text-[#203f78] hover:text-[#ddaf26] font-medium text-sm py-2 group"
                                   >
-                                    <span>{megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].exploreAllText}</span>
+                                    <span>
+                                      {megaMenuContent[item.name.toLowerCase() as keyof typeof megaMenuContent].exploreAllText}
+                                    </span>
                                     <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
                                   </Link>
                                 )}
@@ -433,9 +516,8 @@ const Header: React.FC = () => {
                           }
                           setIsMenuOpen(false);
                         }}
-                        className={`block text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] py-2 ${
-                          location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
-                        }`}
+                        className={`block text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] py-2 ${location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
+                          }`}
                       >
                         {item.name}
                       </Link>
@@ -443,31 +525,30 @@ const Header: React.FC = () => {
                   </div>
                 ))}
 
-                {/* Combined Phone + Webinar (Mobile) */}
-                <div className="flex items-center justify-center space-x-4 text-sm font-medium py-4 border-t border-gray-200">
-                  <a
-                    href={`tel:${phoneNumber.replace(/\s/g, '')}`}
-                    className="text-[#0B2B5A] hover:text-[#ddaf26] transition-colors duration-200"
+                {/* Mobile CTA block */}
+                <div className="pt-4 border-t border-gray-200 space-y-3">
+                  <Link
+                    to="/Webinar-Registration"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full bg-[#ddaf26] hover:bg-[#c9a020] text-white px-6 py-3 rounded-lg font-bold text-sm transition-colors duration-200"
                   >
+                    Register for Webinar
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <a
+                    href={`tel:${phoneNumber.replace(/\s/g, "")}`}
+                    className="flex items-center justify-center gap-2 w-full bg-[#0B2B5A] hover:bg-[#0a2550] text-white px-6 py-3 rounded-lg font-semibold text-sm transition-colors duration-200"
+                  >
+                    <Phone className="w-4 h-4 text-[#ddaf26]" />
                     {phoneNumber}
                   </a>
-                  <span className="text-gray-400">|</span>
-                  <Link
-  to="/Webinar-Registration"
-  onClick={() => setIsMenuOpen(false)}
-  className="border border-[#ddaf26] text-[#ddaf26] px-6 py-2.5 rounded-lg font-medium hover:bg-[#ddaf26] hover:text-white transition-colors duration-200 text-center"
->
-  Register for Webinar
-</Link>
-
-
                 </div>
               </nav>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </header >
   );
 };
 
