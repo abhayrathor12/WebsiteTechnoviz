@@ -44,8 +44,8 @@ const WebinarPage: React.FC = () => {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [countdown, setCountdown] = useState(6); // Add this state
   const [cityOptions, setCityOptions] = useState<
-  { label: string; value: string }[]
->([]);
+    { label: string; value: string }[]
+  >([]);
 
 
   const {
@@ -56,31 +56,31 @@ const WebinarPage: React.FC = () => {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
-  
-  
-useEffect(() => {
-  fetch("https://countriesnow.space/api/v0.1/countries/cities", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ country: "India" }),
-  })
-    .then(res => res.json())
-    .then(data => {
-      const cities = data.data.map((city: string) => ({
-        label: city,
-        value: city,
-      }));
-      setCityOptions(cities);
+
+
+  useEffect(() => {
+    fetch("https://countriesnow.space/api/v0.1/countries/cities", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country: "India" }),
     })
-    .catch(err => console.error("City fetch error:", err));
-}, []);
+      .then(res => res.json())
+      .then(data => {
+        const cities = data.data.map((city: string) => ({
+          label: city,
+          value: city,
+        }));
+        setCityOptions(cities);
+      })
+      .catch(err => console.error("City fetch error:", err));
+  }, []);
 
 
   // Auto-redirect after success modal is shown (4 seconds)
   useEffect(() => {
     if (status === "success") {
       setCountdown(6); // Reset countdown when success is triggered
-  
+
       const timer = setInterval(() => {
         setCountdown((prev) => {
           if (prev <= 1) {
@@ -91,7 +91,7 @@ useEffect(() => {
           return prev - 1;
         });
       }, 1000);
-  
+
       return () => clearInterval(timer); // Cleanup on unmount
     }
   }, [status]);
@@ -251,33 +251,33 @@ useEffect(() => {
                     placeholder="Company Name *"
                     className="input"
                   />
-<Controller
-  name="city"
-  control={control}
-  defaultValue={undefined}
-  render={({ field }) => (
-    <Select
-      options={cityOptions}
-      placeholder="Select City"
-      isSearchable={true}      // ✅ MUST
-      value={
-        cityOptions.find(c => c.value === field.value) || null
-      }
-      onChange={(option) => field.onChange(option?.value)}
-      menuPlacement="bottom"
-      menuPosition="fixed"
-      menuPortalTarget={document.body}
-      styles={{
-        control: (base) => ({
-          ...base,
-          minHeight: "40px",
-          borderRadius: "8px",
-        }),
-        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-      }}
-    />
-  )}
-/>
+                  <Controller
+                    name="city"
+                    control={control}
+                    defaultValue={undefined}
+                    render={({ field }) => (
+                      <Select
+                        options={cityOptions}
+                        placeholder="Select City"
+                        isSearchable={true}      // ✅ MUST
+                        value={
+                          cityOptions.find(c => c.value === field.value) || null
+                        }
+                        onChange={(option) => field.onChange(option?.value)}
+                        menuPlacement="bottom"
+                        menuPosition="fixed"
+                        menuPortalTarget={document.body}
+                        styles={{
+                          control: (base) => ({
+                            ...base,
+                            minHeight: "40px",
+                            borderRadius: "8px",
+                          }),
+                          menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                        }}
+                      />
+                    )}
+                  />
 
                 </div>
 
@@ -287,7 +287,7 @@ useEffect(() => {
                   placeholder="Work Email (e.g. name@company.com)"
                   className="input"
                 />
-              <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500">
                   Please use your official / professional email if available
                 </p>
                 <input
@@ -341,64 +341,81 @@ useEffect(() => {
           }
         `}
         </style>
-      </div>
+        <footer className="relative z-10 text-center py-2 px-4 mt-6 text-lg text-gray-300/60 border-t border-white/10">
+          For more information, please visit{" "}
+          <a
+            href="https://www.technovizautomation.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#ddaf26]/80 hover:text-[#ddaf26] underline underline-offset-2 font-medium transition-colors duration-200"
+          >
+            www.technovizautomation.com
+          </a>
+        </footer>
+
+      </div >
+
+
+
 
       {/* Success Modal */}
       <AnimatePresence>
-        {status === "success" && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
-          >
+        {
+          status === "success" && (
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl text-center"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
             >
-              <div className="w-20 h-20 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-12 h-12 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                You have successfully registered!
-              </h3>
-
-              <p className="text-gray-600 mb-6">
-                Thank you for registering for the Smart Manufacturing Webinar.
-              </p>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => window.location.href = "https://technovizautomation.com"}
-                className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl text-center"
+                onClick={(e) => e.stopPropagation()}
               >
-                Continue to Website →
-              </motion.button>
+                <div className="w-20 h-20 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-12 h-12 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
 
-              <p className="text-xs text-gray-500 mt-4">
-                (Auto-redirecting in {countdown} second{countdown !== 1 ? "s" : ""}...)
-              </p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  You have successfully registered!
+                </h3>
+
+                <p className="text-gray-600 mb-6">
+                  Thank you for registering for the Smart Manufacturing Webinar.
+                </p>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => window.location.href = "https://technovizautomation.com"}
+                  className="bg-gradient-to-r from-[#203f78] to-[#1a335a] text-white font-semibold py-3 px-8 rounded-lg"
+                >
+                  Continue to Website →
+                </motion.button>
+
+                <p className="text-xs text-gray-500 mt-4">
+                  (Auto-redirecting in {countdown} second{countdown !== 1 ? "s" : ""}...)
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )
+        }
+      </AnimatePresence >
     </>
   );
 };
