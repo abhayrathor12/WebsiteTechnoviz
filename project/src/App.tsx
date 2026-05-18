@@ -24,7 +24,7 @@ import MysqlPage from "./pages/mysqlpage";
 import AndroidPage from "./pages/andriodpage";
 import KnowledgePage from "./pages/knowledgepage";
 import Webinar from "./pages/Webinar";
-
+import Paymentpage from "./pages/PaymentPage";
 // Components
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -66,6 +66,12 @@ const App: React.FC = () => {
           <Route
             path="/Webinar-Registration"
             element={<Webinar />}
+          />
+        </Route>
+        <Route element={<BlankLayout />}>
+          <Route
+            path="/Aurex-Webinar-Registration"
+            element={<Paymentpage />}
           />
         </Route>
       </Routes>
