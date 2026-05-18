@@ -745,7 +745,7 @@ const WebinarPage: React.FC = () => {
                                     <span className="font-semibold" style={{ color: "#a8042b" }}>Deal Smart</span>.
                                 </p>
                                 <p className="text-gray-500 text-xs mb-5">
-                                    See you on <strong>25th May 2026</strong> at <strong>7:00 PM</strong> IST!
+                                    See you on <strong>31st May 2026</strong> at <strong>7:00 PM</strong> IST!
                                 </p>
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
