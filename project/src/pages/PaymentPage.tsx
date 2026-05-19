@@ -298,7 +298,7 @@ const WebinarPage: React.FC = () => {
                                         <span className="text-white text-xs font-black ml-0.5">₹499</span>
                                     </div>
                                     <div className="bg-[#fff8f8] border-l border-[#a8042b]/20 px-3 py-1.5">
-                                        <span className="text-[#a8042b] text-[11px] font-semibold">Early Bird ₹299 · till 19th May</span>
+                                        <span className="text-[#a8042b] text-[11px] font-semibold">Early Bird ₹299 · till 25th May</span>
                                     </div>
                                 </div>
                             </motion.div>
