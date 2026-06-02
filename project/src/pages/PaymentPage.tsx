@@ -289,16 +289,17 @@ const WebinarPage: React.FC = () => {
                                     alt="Aurex Ventures"
                                     className="h-9 sm:h-14 object-contain"
                                 />
-                                <div className="flex items-center gap-0 rounded-full overflow-hidden shadow border border-[#a8042b]/20" >
-                                    <div className="bg-[#a8042b] flex items-center gap-1.5 px-3 py-1.5 sm:h-9 h-9">
+                                <div className="flex items-center gap-0 rounded-full overflow-hidden shadow border border-[#a8042b]/20">
+                                    <div className="bg-[#a8042b] flex items-center gap-1.5 px-3 sm:h-9 h-9">
                                         <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                             <path fillRule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                                         </svg>
                                         <span className="text-white text-[11px] font-bold uppercase tracking-wider">Registration Fee</span>
-                                        <span className="text-white text-xs font-black ml-0.5">₹499</span>
                                     </div>
-                                    <div className="bg-[#fff8f8] border-l border-[#a8042b]/20 px-3 py-1.5">
-                                        <span className="text-[#a8042b] text-[11px] font-semibold">Early Bird ₹299 · till 25th May</span>
+                                    <div className="bg-[#fff8f8] border-l border-[#a8042b]/20 px-3 sm:h-9 h-9 flex items-center gap-2">
+                                        <span className="text-gray-400 text-xs font-medium line-through">₹499</span>
+                                        <span className="bg-[#a8042b] text-white text-[10px] font-bold px-1.5 py-0.5 rounded">40% OFF</span>
+                                        <span className="text-[#a8042b] text-sm font-black">₹299</span>
                                     </div>
                                 </div>
                             </motion.div>
