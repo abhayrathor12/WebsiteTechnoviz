@@ -281,7 +281,6 @@ const WebinarPage: React.FC = () => {
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
-
                                 className="flex items-center justify-between w-full gap-3 mb-5 "
                             >
                                 <img
@@ -296,10 +295,8 @@ const WebinarPage: React.FC = () => {
                                         </svg>
                                         <span className="text-white text-[11px] font-bold uppercase tracking-wider">Registration Fee</span>
                                     </div>
-                                    <div className="bg-[#fff8f8] border-l border-[#a8042b]/20 px-3 sm:h-9 h-9 flex items-center gap-2">
-                                        <span className="text-gray-400 text-xs font-medium line-through">₹499</span>
-                                        <span className="bg-[#a8042b] text-white text-[10px] font-bold px-1.5 py-0.5 rounded">40% OFF</span>
-                                        <span className="text-[#a8042b] text-sm font-black">₹299</span>
+                                    <div className="bg-[#fff8f8] border-l border-[#a8042b]/20 px-3 sm:h-9 h-9 flex items-center">
+                                        <span className="text-[#a8042b] text-sm font-black">₹99</span>
                                     </div>
                                 </div>
                             </motion.div>
