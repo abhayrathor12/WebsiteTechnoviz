@@ -288,38 +288,47 @@ const WebinarPage: React.FC = () => {
                                     alt="Aurex Ventures"
                                     className="h-9 sm:h-14 object-contain"
                                 />
-                                <div className="flex items-center gap-0 rounded-full overflow-hidden shadow border border-[#a8042b]/20">
-                                    <div className="bg-[#a8042b] flex items-center gap-1.5 px-3 sm:h-9 h-9">
-                                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-                                        </svg>
-                                        <span className="text-white text-[11px] font-bold uppercase tracking-wider">Registration Fee</span>
-                                    </div>
-                                    <div className="bg-[#fff8f8] border-l border-[#a8042b]/20 px-3 sm:h-9 h-9 flex items-center">
-                                        <span className="text-[#a8042b] text-sm font-black">₹99</span>
-                                    </div>
-                                </div>
+
                             </motion.div>
 
 
-                            {/* Heading */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.1 }}
                                 className="mb-4"
                             >
-                                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1a2d5a]">
-                                    Register for
-                                </h1>
-                                <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#a8042b]">
-                                    Deal Smart
-                                </h2>
+                                <div className="flex items-center gap-3">
+                                    <div>
+                                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#1a2d5a]">
+                                            Register for
+                                        </h1>
+                                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-[#a8042b]">
+                                            Deal Smart
+                                        </h2>
+                                    </div>
+
+                                    {/* ₹99 Circle Badge */}
+                                    <div className="flex-shrink-0 self-center" style={{ width: "100px", height: "100px" }}>
+                                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style={{ overflow: "visible", width: "100%", height: "100%" }}>
+                                            {/* Shadow circle */}
+                                            <circle cx="52" cy="54" r="44" fill="#e6a800" opacity="0.4" />
+                                            {/* Main yellow circle */}
+                                            <circle cx="50" cy="50" r="44" fill="#FFC107" />
+                                            {/* Small ₹ symbol top-left */}
+                                            <text x="16" y="34" fill="#1a1a1a" fontSize="13" fontWeight="900" fontFamily="Arial Black, sans-serif">₹</text>
+                                            {/* Big 99 white text */}
+                                            <text x="52" y="68" textAnchor="middle" fill="white" fontSize="52" fontWeight="900" fontFamily="Arial Black, sans-serif">99</text>
+                                            {/* ONLY! dark text bottom */}
+                                            <text x="52" y="88" textAnchor="middle" fill="#1a1a1a" fontSize="14" fontWeight="900" fontFamily="Arial Black, sans-serif" letterSpacing="1">ONLY!</text>
+                                        </svg>
+                                    </div>
+                                </div>
+
                                 <p className="text-[#1a2d5a]/70 text-base sm:text-lg font-medium mt-2 leading-snug">
                                     Master Valuation, Dilution &amp;<br className="hidden sm:block" /> Term Sheets Like an Investor
                                 </p>
                             </motion.div>
-
                             {/* Event meta pills */}
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}

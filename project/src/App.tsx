@@ -27,7 +27,7 @@ import Webinar from "./pages/Webinar";
 import Paymentpage from "./pages/PaymentPage";
 // Components
 import ScrollToTop from "./components/ScrollToTop";
-
+import Ideathon from "./pages/IdeathonPage";
 const App: React.FC = () => {
   return (
     <Router>
@@ -68,6 +68,13 @@ const App: React.FC = () => {
             element={<Webinar />}
           />
         </Route>
+        <Route element={<BlankLayout />}>
+          <Route
+            path="/Ideathon"
+            element={<Ideathon />}
+          />
+        </Route>
+
         <Route element={<BlankLayout />}>
           <Route
             path="/Aurex-Webinar-Registration"
