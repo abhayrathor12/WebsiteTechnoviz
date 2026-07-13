@@ -237,7 +237,17 @@ const Header: React.FC = () => {
                     onClick={() => setActiveDropdown(null)}
                     className="group p-6 rounded-lg hover:border-[#ddaf26] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-transparent"
                   >
-                    {/* same content */}
+                    <div className="flex items-start space-x-4">
+                      <div className="text-3xl mb-4 text-[#203f78] group-hover:text-[#ddaf26]">
+                        {section.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-[#0B2B5A] mb-2 group-hover:text-[#ddaf26]">
+                          {section.title}
+                        </h4>
+                        <p className="text-sm text-gray-600">{section.description}</p>
+                      </div>
+                    </div>
                   </Link>
                 );
               })}
