@@ -84,7 +84,7 @@ const App: React.FC = () => {
         </Route>
         <Route element={<BlankLayout />}>
           <Route
-            path="/PLC-Data"
+            path="/Live-Production"
             element={<MQTTDashboard />}
           />
         </Route>
