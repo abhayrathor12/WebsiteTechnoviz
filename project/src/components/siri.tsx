@@ -101,7 +101,7 @@ export default function SIRIComponent() {
             <div className="flex flex-col justify-center order-2 md:order-1">
               <div className="mb-6">
                 <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#203f78' }}>
-                  Mr. Kapil Khurana
+                  Kapil Khurana
                 </h2>
                 <p className="text-lg sm:text-xl text-gray-600">Founder & Director</p>
               </div>

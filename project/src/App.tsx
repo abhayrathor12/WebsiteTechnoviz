@@ -25,6 +25,7 @@ import AndroidPage from "./pages/andriodpage";
 import KnowledgePage from "./pages/knowledgepage";
 import Webinar from "./pages/Webinar";
 import Paymentpage from "./pages/PaymentPage";
+import MQTTDashboard from "./pages/MqttDashboard";
 // Components
 import ScrollToTop from "./components/ScrollToTop";
 import Ideathon from "./pages/IdeathonPage";
@@ -79,6 +80,12 @@ const App: React.FC = () => {
           <Route
             path="/Aurex-Webinar-Registration"
             element={<Paymentpage />}
+          />
+        </Route>
+        <Route element={<BlankLayout />}>
+          <Route
+            path="/PLC-Data"
+            element={<MQTTDashboard />}
           />
         </Route>
       </Routes>

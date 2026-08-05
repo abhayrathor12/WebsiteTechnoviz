@@ -8,7 +8,7 @@ const DirectorCertificateSection = () => {
   return (
     <section className="py-16 px-4 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -34,17 +34,17 @@ const DirectorCertificateSection = () => {
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
+
           {/* Director Section */}
           <div className="relative group">
             <div className="bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-600 rounded-full opacity-20"></div>
               <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-indigo-600 rounded-full opacity-10"></div>
-              
+
               {/* Director Image Container */}
               <div className="relative mb-6">
                 <div className="w-32 h-32 mx-auto rounded-full overflow-hidden ring-4 ring-blue-100 shadow-lg">
-                  <img 
+                  <img
                     src={Kapil}
                     alt="Company Director"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
@@ -60,25 +60,25 @@ const DirectorCertificateSection = () => {
               {/* Director Info */}
               <div className="text-center">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Mr. Kapil Khurana
+                  Kapil Khurana
                 </h3>
                 <p className="text-[#203f78] font-semibold mb-4">
-                Founder & Director
+                  Founder & Director
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  With over 20+ years of industry experience, Kapil leads our company with vision, 
-                  innovation, and an unwavering commitment to excellence. His strategic leadership 
+                  With over 20+ years of industry experience, Kapil leads our company with vision,
+                  innovation, and an unwavering commitment to excellence. His strategic leadership
                   has driven our growth and success in the competitive market.
                 </p>
                 <a
-                    href="https://www.cioinsiderindia.com/vendor/technoviz-automation-redefining-manufacturing-with-smart-technologies-cid-1301.html"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-[#203f78] text-white font-semibold rounded-full shadow-md 
+                  href="https://www.cioinsiderindia.com/vendor/technoviz-automation-redefining-manufacturing-with-smart-technologies-cid-1301.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 bg-[#203f78] text-white font-semibold rounded-full shadow-md 
                               hover:bg-[#ddaf26] hover:shadow-lg transition-all duration-300 mt-2"
-                  >
-                    Read Full Article
-                  </a>
+                >
+                  Read Full Article
+                </a>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ const DirectorCertificateSection = () => {
             <div className="bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               <div className="absolute -top-4 -right-4 w-8 h-8 bg-amber-500 rounded-full opacity-20"></div>
               <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-yellow-500 rounded-full opacity-10"></div>
-              
+
               {/* Certificate Header */}
               <div className="flex items-center justify-center mb-6">
                 <div className="bg-[#ddaf26] p-3 rounded-full shadow-lg mr-4">
@@ -108,17 +108,17 @@ const DirectorCertificateSection = () => {
                   className="block"
                 >
                   <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl p-4 shadow-inner transition-transform duration-300 hover:scale-105">
-                      <img 
-                        src={Cio_image}
-                        alt="Company Certificate"
-                        className="
+                    <img
+                      src={Cio_image}
+                      alt="Company Certificate"
+                      className="
                           w-full h-64 
                           object-contain 
                           sm:object-cover 
                           rounded-lg shadow-md
                         "
-                      />
-                    </div>
+                    />
+                  </div>
 
                 </a>
 

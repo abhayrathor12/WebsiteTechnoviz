@@ -19,8 +19,9 @@
     "@tsparticles/slim": "^3.9.1",
     "@types/three": "^0.180.0",
     "axios": "^1.15.2",
-    "framer-motion": "^12.23.26",
+    "framer-motion": "^12.43.0",
     "lucide-react": "^0.344.0",
+    "mqtt": "^5.15.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
@@ -30,6 +31,7 @@
     "react-router-dom": "^7.9.1",
     "react-select": "^5.10.2",
     "react-toastify": "^11.1.0",
+    "recharts": "^3.10.1",
     "three": "^0.180.0",
     "zod": "^4.2.1"
   },
