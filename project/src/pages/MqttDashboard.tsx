@@ -149,7 +149,7 @@ const MQTTDashboard: React.FC = () => {
             <MdDashboard className="text-[#ddaf26] text-base sm:text-xl md:text-2xl flex-shrink-0" />
             <div>
               <h1 className="text-xs sm:text-base md:text-xl font-bold text-white font-poppins leading-tight">
-                PLC <span className="text-[#ddaf26]">Live</span>
+                Live <span className="text-[#ddaf26]">Production</span>
                 <span className="hidden xs:inline"> Dashboard</span>
               </h1>
               <p className="text-gray-400 text-[8px] sm:text-xs hidden xs:block">Real-time Production Monitoring</p>
@@ -172,8 +172,8 @@ const MQTTDashboard: React.FC = () => {
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
               className={`flex items-center gap-1 px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border ${connected
-                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
-                  : "bg-red-500/10 border-red-500/30 text-red-400"
+                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                : "bg-red-500/10 border-red-500/30 text-red-400"
                 }`}
             >
               <span className={`w-1 h-1 sm:w-2 sm:h-2 rounded-full ${connected ? "bg-emerald-400" : "bg-red-400"} animate-pulse`} />
