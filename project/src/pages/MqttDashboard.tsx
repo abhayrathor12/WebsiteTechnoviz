@@ -13,7 +13,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { FaIndustry, FaCheckCircle, FaExclamationTriangle, FaChartBar, FaChartPie, FaPowerOff, FaPlay } from "react-icons/fa";
+import { FaIndustry, FaCheckCircle, FaExclamationTriangle, FaChartBar, FaChartPie, FaPowerOff, FaPlay, FaTrashAlt } from "react-icons/fa";
 import { MdDashboard, MdProductionQuantityLimits } from "react-icons/md";
 import { AiFillThunderbolt } from "react-icons/ai";
 import client from "../types/mqtt";
@@ -117,10 +117,10 @@ const MQTTDashboard: React.FC = () => {
     {
       title: "Rejected Production",
       value: Math.max(0, rejectedProduction).toFixed(2),
-      icon: FaExclamationTriangle,
-      color: "text-yellow-400",
-      bgColor: "bg-yellow-500/20",
-      gradient: "from-[#8a6a1a] to-[#6a4a1a]",
+      icon: FaTrashAlt,
+      color: "text-red-400",
+      bgColor: "bg-red-500/20",
+      gradient: "from-[#8a1a1a] to-[#6a1a1a]",
       delay: 0.2,
     },
   ];
@@ -139,13 +139,13 @@ const MQTTDashboard: React.FC = () => {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
 
-      <div className="w-full h-full max-w-[1600px] mx-auto px-1.5 sm:px-3 md:px-4 py-1.5 sm:py-2 relative z-10 flex flex-col">
+      <div className="w-full h-full max-w-[1600px] mx-auto px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 relative z-10 flex flex-col">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex flex-wrap items-center justify-between gap-1 sm:gap-2 mb-1.5 sm:mb-2 bg-white/5 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-1.5 sm:p-3 flex-shrink-0"
+          className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-2.5 bg-white/5 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 flex-shrink-0"
         >
           {/* Left: PLC Live Dashboard */}
           <div className="flex items-center gap-1.5 sm:gap-3 flex-1 min-w-[120px]">
@@ -171,9 +171,9 @@ const MQTTDashboard: React.FC = () => {
             <motion.div
               animate={{ scale: machineRunning ? [1, 1.05, 1] : 1 }}
               transition={{ duration: 2, repeat: machineRunning ? Infinity : 0 }}
-              className={`flex items-center gap-1 px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border ${machineRunning
-                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
-                  : "bg-red-500/10 border-red-500/30 text-red-400"
+              className={`flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border ${machineRunning
+                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                : "bg-red-500/10 border-red-500/30 text-red-400"
                 }`}
             >
               {machineRunning ? (
@@ -181,7 +181,7 @@ const MQTTDashboard: React.FC = () => {
               ) : (
                 <FaPowerOff className="text-[6px] sm:text-[8px] md:text-[10px]" />
               )}
-              <span className={`w-1 h-1 sm:w-2 sm:h-2 rounded-full ${machineRunning ? "bg-emerald-400 animate-pulse" : "bg-red-400"}`} />
+              <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${machineRunning ? "bg-emerald-400 animate-pulse" : "bg-red-400"}`} />
               <span className="text-[8px] sm:text-xs font-semibold hidden xs:inline">
                 {machineRunning ? "Running" : "Stopped"}
               </span>
@@ -195,57 +195,57 @@ const MQTTDashboard: React.FC = () => {
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className={`flex items-center gap-1 px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border ${connected
-                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
-                  : "bg-red-500/10 border-red-500/30 text-red-400"
+              className={`flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border ${connected
+                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                : "bg-red-500/10 border-red-500/30 text-red-400"
                 }`}
             >
-              <span className={`w-1 h-1 sm:w-2 sm:h-2 rounded-full ${connected ? "bg-emerald-400" : "bg-red-400"} animate-pulse`} />
+              <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${connected ? "bg-emerald-400" : "bg-red-400"} animate-pulse`} />
               <span className="text-[8px] sm:text-xs font-semibold">{connected ? "Live" : "Offline"}</span>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Machine Status Card */}
+        {/* Machine Status Card + Metric Cards */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2 flex-shrink-0"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 md:gap-3 mb-2 sm:mb-2.5 flex-shrink-0"
         >
           {/* Machine Status Indicator Card */}
           <motion.div
             whileHover={{ y: -2 }}
-            className={`group relative backdrop-blur-lg border rounded-lg sm:rounded-xl p-1.5 sm:p-3 shadow-lg ${machineRunning
-                ? "bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border-emerald-500/30"
-                : "bg-gradient-to-br from-red-900/30 to-red-800/20 border-red-500/30"
+            className={`group relative backdrop-blur-lg border rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-lg ${machineRunning
+              ? "bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border-emerald-500/30"
+              : "bg-gradient-to-br from-red-900/30 to-red-800/20 border-red-500/30"
               }`}
           >
             <div className={`absolute inset-0 bg-gradient-to-r ${machineRunning ? "from-emerald-500/10 to-emerald-400/5" : "from-red-500/10 to-red-400/5"
               } opacity-5 group-hover:opacity-15 transition-opacity duration-500 rounded-lg sm:rounded-xl`} />
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-0.5 sm:mb-1">
-                <div className={`p-1 sm:p-2 rounded-lg ${machineRunning ? "bg-emerald-500/20" : "bg-red-500/20"
+              <div className="flex items-center justify-between mb-1 sm:mb-1.5">
+                <div className={`p-1.5 sm:p-2 rounded-lg ${machineRunning ? "bg-emerald-500/20" : "bg-red-500/20"
                   }`}>
                   {machineRunning ? (
-                    <FaPlay className="text-emerald-400 text-xs sm:text-base md:text-xl" />
+                    <FaPlay className="text-emerald-400 text-sm sm:text-base md:text-xl" />
                   ) : (
-                    <FaPowerOff className="text-red-400 text-xs sm:text-base md:text-xl" />
+                    <FaPowerOff className="text-red-400 text-sm sm:text-base md:text-xl" />
                   )}
                 </div>
                 <motion.div
-                  className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full ${machineRunning ? "bg-emerald-400" : "bg-red-400"
+                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${machineRunning ? "bg-emerald-400" : "bg-red-400"
                     }`}
                   animate={machineRunning ? { scale: [1, 1.5, 1], opacity: [1, 0.5, 1] } : {}}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </div>
-              <h3 className="text-[6px] sm:text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-0.5 truncate">Machine Status</h3>
+              <h3 className="text-[7px] sm:text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-0.5 truncate">Machine Status</h3>
               <motion.p
                 key={machineRunning ? "running" : "stopped"}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className={`text-xs sm:text-xl md:text-3xl font-bold font-mono ${machineRunning ? "text-emerald-400" : "text-red-400"
+                className={`text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold font-mono ${machineRunning ? "text-emerald-400" : "text-red-400"
                   }`}
               >
                 {machineRunning ? "RUNNING" : "STOPPED"}
@@ -261,26 +261,26 @@ const MQTTDashboard: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: metric.delay + 0.05 }}
               whileHover={{ y: -2 }}
-              className="group relative bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-1.5 sm:p-3 shadow-lg"
+              className="group relative bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-lg"
             >
               <div className={`absolute inset-0 bg-gradient-to-r ${metric.gradient} opacity-5 group-hover:opacity-15 transition-opacity duration-500 rounded-lg sm:rounded-xl`} />
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-0.5 sm:mb-1">
-                  <div className={`p-1 sm:p-2 rounded-lg ${metric.bgColor}`}>
-                    <metric.icon className={`text-xs sm:text-base md:text-xl ${metric.color}`} />
+                <div className="flex items-center justify-between mb-1 sm:mb-1.5">
+                  <div className={`p-1.5 sm:p-2 rounded-lg ${metric.bgColor}`}>
+                    <metric.icon className={`text-sm sm:text-base md:text-xl ${metric.color}`} />
                   </div>
                   <motion.div
-                    className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-[#ddaf26] rounded-full"
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#ddaf26] rounded-full"
                     animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                   />
                 </div>
-                <h3 className="text-[6px] sm:text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-0.5 truncate">{metric.title}</h3>
+                <h3 className="text-[7px] sm:text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-0.5 truncate">{metric.title}</h3>
                 <motion.p
                   key={metric.value}
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  className="text-xs sm:text-xl md:text-3xl font-bold text-white font-mono"
+                  className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold text-white font-mono"
                 >
                   {metric.value}
                 </motion.p>
@@ -294,64 +294,64 @@ const MQTTDashboard: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
-          className="mb-1.5 sm:mb-2 bg-gray-800/80 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-1.5 sm:p-2 flex items-center justify-between flex-shrink-0 shadow-lg"
+          className="mb-2 sm:mb-2.5 bg-gray-800/80 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-2.5 flex items-center justify-between flex-shrink-0 shadow-lg"
         >
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <div className="w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-[#ddaf26]/20 rounded-lg flex items-center justify-center">
-              <FaChartBar className="text-[#ddaf26] text-[10px] sm:text-sm md:text-base" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#ddaf26]/20 rounded-lg flex items-center justify-center">
+              <FaChartBar className="text-[#ddaf26] text-xs sm:text-sm md:text-base" />
             </div>
             <div>
-              <p className="text-gray-400 text-[7px] sm:text-[10px]">Rejection Rate</p>
-              <p className="text-white font-bold text-xs sm:text-sm md:text-base">{rejectionRate}%</p>
+              <p className="text-gray-400 text-[8px] sm:text-[10px]">Rejection Rate</p>
+              <p className="text-white font-bold text-sm sm:text-base md:text-lg">{rejectionRate}%</p>
             </div>
           </div>
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <span className="text-[8px] sm:text-xs text-gray-400 hidden xs:inline">Actual</span>
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#3b6cb0]" />
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#3b6cb0]" />
             <span className="text-[8px] sm:text-xs text-gray-400 hidden xs:inline">Scrap</span>
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ddaf26]" />
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#ddaf26]" />
           </div>
         </motion.div>
 
         {/* Charts Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 md:gap-3 flex-1 min-h-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1 min-h-0">
           {/* Bar Chart */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gray-800/80 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-1.5 sm:p-3 flex flex-col shadow-lg"
+            className="bg-gray-800/80 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-4 flex flex-col shadow-lg"
           >
-            <div className="flex items-center justify-between mb-0.5 sm:mb-2 flex-shrink-0">
-              <h3 className="text-white font-bold text-[8px] sm:text-xs md:text-sm flex items-center gap-1 sm:gap-2">
-                <span className="w-0.5 h-3 sm:h-4 md:h-5 bg-gradient-to-b from-[#203f78] to-[#ddaf26] rounded-full" />
+            <div className="flex items-center justify-between mb-1 sm:mb-3 flex-shrink-0">
+              <h3 className="text-white font-bold text-[9px] sm:text-sm md:text-base flex items-center gap-1.5 sm:gap-2">
+                <span className="w-0.5 h-3 sm:h-5 md:h-6 bg-gradient-to-b from-[#203f78] to-[#ddaf26] rounded-full" />
                 Production Overview
               </h3>
-              <FaChartBar className="text-gray-400 text-xs sm:text-sm md:text-base" />
+              <FaChartBar className="text-gray-400 text-xs sm:text-base md:text-lg" />
             </div>
             <div className="flex-1 min-h-0">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={barData} barGap={4}>
+                <BarChart data={barData} barGap={8} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-                  <XAxis dataKey="name" stroke="#94a3b8" fontSize={8} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#94a3b8" fontSize={8} tickLine={false} axisLine={false} />
+                  <XAxis dataKey="name" stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
+                  <YAxis stroke="#94a3b8" fontSize={10} tickLine={false} axisLine={false} />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: "rgba(26, 51, 90, 0.95)",
                       border: "1px solid rgba(255,255,255,0.1)",
-                      borderRadius: "6px",
+                      borderRadius: "8px",
                       color: "#fff",
-                      fontSize: "10px",
-                      padding: "4px 8px",
+                      fontSize: "12px",
+                      padding: "6px 10px",
                     }}
                     cursor={{ fill: "rgba(255,255,255,0.02)" }}
                   />
                   <Legend
-                    wrapperStyle={{ paddingTop: "0.2rem", fontSize: "8px" }}
-                    formatter={(value) => <span className="text-gray-300 text-[8px]">{value}</span>}
+                    wrapperStyle={{ paddingTop: "0.5rem", fontSize: "10px" }}
+                    formatter={(value) => <span className="text-gray-300 text-[10px] sm:text-xs">{value}</span>}
                   />
-                  <Bar dataKey="Actual" fill="#3b6cb0" radius={[3, 3, 0, 0]} maxBarSize={30} />
-                  <Bar dataKey="Scrap" fill="#ddaf26" radius={[3, 3, 0, 0]} maxBarSize={30} />
+                  <Bar dataKey="Actual" fill="#3b6cb0" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                  <Bar dataKey="Scrap" fill="#ddaf26" radius={[4, 4, 0, 0]} maxBarSize={40} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -362,14 +362,14 @@ const MQTTDashboard: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-gray-800/80 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-1.5 sm:p-3 flex flex-col shadow-lg"
+            className="bg-gray-800/80 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-2 sm:p-4 flex flex-col shadow-lg"
           >
-            <div className="flex items-center justify-between mb-0.5 sm:mb-2 flex-shrink-0">
-              <h3 className="text-white font-bold text-[8px] sm:text-xs md:text-sm flex items-center gap-1 sm:gap-2">
-                <span className="w-0.5 h-3 sm:h-4 md:h-5 bg-gradient-to-b from-[#ddaf26] to-[#203f78] rounded-full" />
+            <div className="flex items-center justify-between mb-1 sm:mb-3 flex-shrink-0">
+              <h3 className="text-white font-bold text-[9px] sm:text-sm md:text-base flex items-center gap-1.5 sm:gap-2">
+                <span className="w-0.5 h-3 sm:h-5 md:h-6 bg-gradient-to-b from-[#ddaf26] to-[#203f78] rounded-full" />
                 Production Distribution
               </h3>
-              <FaChartPie className="text-gray-400 text-xs sm:text-sm md:text-base" />
+              <FaChartPie className="text-gray-400 text-xs sm:text-base md:text-lg" />
             </div>
             <div className="flex-1 min-h-0">
               <ResponsiveContainer width="100%" height="100%">
@@ -378,9 +378,9 @@ const MQTTDashboard: React.FC = () => {
                     data={pieData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={25}
-                    outerRadius={45}
-                    paddingAngle={3}
+                    innerRadius={35}
+                    outerRadius={55}
+                    paddingAngle={4}
                     dataKey="value"
                     stroke="none"
                   >
@@ -392,17 +392,17 @@ const MQTTDashboard: React.FC = () => {
                     contentStyle={{
                       backgroundColor: "rgba(26, 51, 90, 0.95)",
                       border: "1px solid rgba(255,255,255,0.1)",
-                      borderRadius: "6px",
+                      borderRadius: "8px",
                       color: "#fff",
-                      fontSize: "10px",
-                      padding: "4px 8px",
+                      fontSize: "12px",
+                      padding: "6px 10px",
                     }}
                   />
                   <Legend
                     verticalAlign="bottom"
-                    height={20}
-                    wrapperStyle={{ fontSize: "8px" }}
-                    formatter={(value) => <span className="text-gray-300 text-[8px]">{value}</span>}
+                    height={24}
+                    wrapperStyle={{ fontSize: "10px" }}
+                    formatter={(value) => <span className="text-gray-300 text-[10px] sm:text-xs">{value}</span>}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -415,7 +415,7 @@ const MQTTDashboard: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-0.5 sm:mt-1 text-center text-gray-500 text-[6px] sm:text-[10px] flex-shrink-0"
+          className="mt-1 sm:mt-1.5 text-center text-gray-500 text-[7px] sm:text-[10px] flex-shrink-0"
         >
           <p className="flex items-center justify-center gap-0.5 sm:gap-1">
             <AiFillThunderbolt className="text-[#ddaf26] text-[8px] sm:text-xs" />
