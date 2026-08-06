@@ -13,7 +13,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { FaIndustry, FaCheckCircle, FaExclamationTriangle, FaChartBar, FaChartPie } from "react-icons/fa";
+import { FaIndustry, FaCheckCircle, FaExclamationTriangle, FaChartBar, FaChartPie, FaPowerOff, FaPlay } from "react-icons/fa";
 import { MdDashboard, MdProductionQuantityLimits } from "react-icons/md";
 import { AiFillThunderbolt } from "react-icons/ai";
 import client from "../types/mqtt";
@@ -22,6 +22,7 @@ import logo from "../public/logo.jpg";
 interface MQTTStatus {
   ProductionValue: number;
   ActualProduction: number;
+  MachineRunning: boolean;
   timestamp: number;
 }
 
@@ -29,6 +30,7 @@ const MQTTDashboard: React.FC = () => {
   const [connected, setConnected] = useState<boolean>(false);
   const [production, setProduction] = useState<number>(0);
   const [actualProduction, setActualProduction] = useState<number>(0);
+  const [machineRunning, setMachineRunning] = useState<boolean>(false);
   const [timestamp, setTimestamp] = useState<string>("");
 
   useEffect(() => {
@@ -59,6 +61,7 @@ const MQTTDashboard: React.FC = () => {
 
         setProduction(productionValue);
         setActualProduction(actualProductionValue);
+        setMachineRunning(status.MachineRunning);
         setTimestamp(new Date(status.timestamp * 1000).toLocaleString());
       } catch (err) {
         console.error("Invalid MQTT Message:", err);
@@ -162,8 +165,29 @@ const MQTTDashboard: React.FC = () => {
             <span className="text-[10px] sm:text-xs text-gray-300 ml-1 sm:ml-2 font-semibold hidden xs:inline">TechnoViz</span>
           </div>
 
-          {/* Right: Status Badge */}
+          {/* Right: Machine Status & Connection Status */}
           <div className="flex items-center gap-1 sm:gap-3 flex-1 min-w-[100px] justify-end">
+            {/* Machine Running Status */}
+            <motion.div
+              animate={{ scale: machineRunning ? [1, 1.05, 1] : 1 }}
+              transition={{ duration: 2, repeat: machineRunning ? Infinity : 0 }}
+              className={`flex items-center gap-1 px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border ${machineRunning
+                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                  : "bg-red-500/10 border-red-500/30 text-red-400"
+                }`}
+            >
+              {machineRunning ? (
+                <FaPlay className="text-[6px] sm:text-[8px] md:text-[10px]" />
+              ) : (
+                <FaPowerOff className="text-[6px] sm:text-[8px] md:text-[10px]" />
+              )}
+              <span className={`w-1 h-1 sm:w-2 sm:h-2 rounded-full ${machineRunning ? "bg-emerald-400 animate-pulse" : "bg-red-400"}`} />
+              <span className="text-[8px] sm:text-xs font-semibold hidden xs:inline">
+                {machineRunning ? "Running" : "Stopped"}
+              </span>
+            </motion.div>
+
+            {/* MQTT Connection Status */}
             <div className="text-right hidden xs:block">
               <p className="text-gray-400 text-[6px] sm:text-[10px] uppercase tracking-wider">Last Update</p>
               <p className="text-white text-[8px] sm:text-xs font-mono truncate max-w-[60px] sm:max-w-[100px]">{timestamp || "Waiting..."}</p>
@@ -172,8 +196,8 @@ const MQTTDashboard: React.FC = () => {
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
               className={`flex items-center gap-1 px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full border ${connected
-                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
-                : "bg-red-500/10 border-red-500/30 text-red-400"
+                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                  : "bg-red-500/10 border-red-500/30 text-red-400"
                 }`}
             >
               <span className={`w-1 h-1 sm:w-2 sm:h-2 rounded-full ${connected ? "bg-emerald-400" : "bg-red-400"} animate-pulse`} />
@@ -182,14 +206,60 @@ const MQTTDashboard: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Metric Cards */}
-        <div className="grid grid-cols-3 gap-1 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2 flex-shrink-0">
+        {/* Machine Status Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="grid grid-cols-1 sm:grid-cols-4 gap-1 sm:gap-2 md:gap-3 mb-1.5 sm:mb-2 flex-shrink-0"
+        >
+          {/* Machine Status Indicator Card */}
+          <motion.div
+            whileHover={{ y: -2 }}
+            className={`group relative backdrop-blur-lg border rounded-lg sm:rounded-xl p-1.5 sm:p-3 shadow-lg ${machineRunning
+                ? "bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border-emerald-500/30"
+                : "bg-gradient-to-br from-red-900/30 to-red-800/20 border-red-500/30"
+              }`}
+          >
+            <div className={`absolute inset-0 bg-gradient-to-r ${machineRunning ? "from-emerald-500/10 to-emerald-400/5" : "from-red-500/10 to-red-400/5"
+              } opacity-5 group-hover:opacity-15 transition-opacity duration-500 rounded-lg sm:rounded-xl`} />
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                <div className={`p-1 sm:p-2 rounded-lg ${machineRunning ? "bg-emerald-500/20" : "bg-red-500/20"
+                  }`}>
+                  {machineRunning ? (
+                    <FaPlay className="text-emerald-400 text-xs sm:text-base md:text-xl" />
+                  ) : (
+                    <FaPowerOff className="text-red-400 text-xs sm:text-base md:text-xl" />
+                  )}
+                </div>
+                <motion.div
+                  className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full ${machineRunning ? "bg-emerald-400" : "bg-red-400"
+                    }`}
+                  animate={machineRunning ? { scale: [1, 1.5, 1], opacity: [1, 0.5, 1] } : {}}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              </div>
+              <h3 className="text-[6px] sm:text-[10px] md:text-xs text-gray-300 uppercase tracking-wider mb-0.5 truncate">Machine Status</h3>
+              <motion.p
+                key={machineRunning ? "running" : "stopped"}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className={`text-xs sm:text-xl md:text-3xl font-bold font-mono ${machineRunning ? "text-emerald-400" : "text-red-400"
+                  }`}
+              >
+                {machineRunning ? "RUNNING" : "STOPPED"}
+              </motion.p>
+            </div>
+          </motion.div>
+
+          {/* Production Metric Cards */}
           {metrics.map((metric, index) => (
             <motion.div
               key={metric.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: metric.delay }}
+              transition={{ duration: 0.5, delay: metric.delay + 0.05 }}
               whileHover={{ y: -2 }}
               className="group relative bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-lg border border-white/10 rounded-lg sm:rounded-xl p-1.5 sm:p-3 shadow-lg"
             >
@@ -217,7 +287,7 @@ const MQTTDashboard: React.FC = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Rejection Rate Banner */}
         <motion.div
