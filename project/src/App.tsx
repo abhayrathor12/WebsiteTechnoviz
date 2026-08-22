@@ -26,6 +26,7 @@ import KnowledgePage from "./pages/knowledgepage";
 import Webinar from "./pages/Webinar";
 import Paymentpage from "./pages/PaymentPage";
 import MQTTDashboard from "./pages/MqttDashboard";
+import MasterclassPage from "./pages/Masterclass";
 // Components
 import ScrollToTop from "./components/ScrollToTop";
 import Ideathon from "./pages/IdeathonPage";
@@ -86,6 +87,12 @@ const App: React.FC = () => {
           <Route
             path="/Live-Production"
             element={<MQTTDashboard />}
+          />
+        </Route>
+        <Route element={<BlankLayout />}>
+          <Route
+            path="/Smart-Manufacturing-AI-Masterclass"
+            element={<MasterclassPage />}
           />
         </Route>
       </Routes>
