@@ -20,6 +20,44 @@ function loadRazorpayScript(): Promise<boolean> {
 
 const initialForm: RegistrationData = { name: "", email: "", phone: "" };
 
+// Facts shown inline under the subtitle (replaces the old bottom footer strip)
+const facts = [
+  {
+    label: "4 Hours LIVE",
+    icon: (
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
+  },
+  {
+    label: "Limited Seats",
+    icon: (
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+  },
+  {
+    label: "Certificate",
+    icon: (
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+    ),
+  },
+  {
+    label: "Online Session",
+    icon: (
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    ),
+  },
+];
+
+// "You'll learn" strip
 const learnItems = [
   {
     label: "Industry 4.0 to 5.0",
@@ -81,6 +119,18 @@ const learnItems = [
   },
 ];
 
+// The session agenda — a real sequence, so numbering it is meaningful.
+const agenda = [
+  { section: "Manufacturing Evolution", time: "20m" },
+  { section: "Smart Factory Architecture", time: "25m" },
+  { section: "Industry 4.0 Technologies", time: "25m" },
+  { section: "AI in Manufacturing", time: "35m" },
+  { section: "Dept-wise Use Cases", time: "30m" },
+  { section: "Autonomous Factory", time: "20m" },
+  { section: "Transformation Framework", time: "15m" },
+  { section: "Cases + Q&A", time: "30m" },
+];
+
 export default function Masterclass() {
   const [imgError, setImgError] = useState(false);
   const [form, setForm] = useState<RegistrationData>(initialForm);
@@ -138,7 +188,7 @@ export default function Masterclass() {
         email: form.email,
         contact: form.phone,
       },
-      theme: { color: "#0b1d3a" },
+      theme: { color: "#203f78" },
       handler: async (response: any) => {
         const [result, verifyError] = await verifyPayment({
           razorpay_order_id: response.razorpay_order_id,
@@ -179,11 +229,9 @@ export default function Masterclass() {
       <div className="mc-card">
         {/* LEFT PANEL */}
         <div className="mc-left">
-          <div className="mc-left-top">
-            <div className="mc-live-badge">
-              <span className="mc-pulse" />
-              LIVE Masterclass 2026
-            </div>
+          <div className="mc-live-badge">
+            <span className="mc-pulse" />
+            LIVE Masterclass 2026
           </div>
 
           <div className="mc-speaker-visual">
@@ -199,7 +247,7 @@ export default function Masterclass() {
                 )}
                 {imgError && (
                   <div className="mc-photo-fallback">
-                    <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#203f78" strokeWidth="1.2">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(32,63,120,0.35)" strokeWidth="1.2">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx="12" cy="7" r="4" />
                     </svg>
@@ -208,7 +256,6 @@ export default function Masterclass() {
               </div>
             </div>
             <div className="mc-ring-outer" />
-            <div className="mc-ring-outer2" />
           </div>
 
           <div className="mc-speaker-info">
@@ -230,13 +277,19 @@ export default function Masterclass() {
         <div className="mc-right">
           <div className="mc-header">
             <h1 className="mc-title">
-              SMART MANUFACTURING<br />
-              <span className="mc-title-accent">& AI MASTERCLASS</span>
+              SMART MANUFACTURING <span className="mc-title-accent">& AI MASTERCLASS</span>
             </h1>
             <p className="mc-subtitle">
               From Industry 4.0 & 5.0 to AI-Driven Autonomous Factories
             </p>
-
+            <div className="mc-facts-row">
+              {facts.map((f) => (
+                <span key={f.label} className="mc-fact">
+                  {f.icon}
+                  {f.label}
+                </span>
+              ))}
+            </div>
             <div className="mc-learn-strip">
               <span className="mc-learn-strip-label">You'll Learn:</span>
               <div className="mc-learn-strip-tags">
@@ -249,6 +302,8 @@ export default function Masterclass() {
               </div>
             </div>
           </div>
+
+          <div className="mc-divider" />
 
           <div className="mc-info-grid">
             <div className="mc-info-box">
@@ -267,6 +322,37 @@ export default function Masterclass() {
               <div className="mc-info-sublabel">+ GST</div>
             </div>
           </div>
+
+          {/* AGENDA STRIP — instrument-rack style sequence, one row, no scroll */}
+          <div className="mc-agenda">
+            <div className="mc-agenda-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Session Agenda
+            </div>
+            <div className="mc-agenda-track">
+              {agenda.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="mc-agenda-seg"
+                  style={{ flex: parseInt(item.time, 10) }}
+                />
+              ))}
+            </div>
+            <div className="mc-agenda-grid">
+              {agenda.map((item, idx) => (
+                <div key={idx} className="mc-agenda-chip">
+                  <div className="mc-agenda-num">{String(idx + 1).padStart(2, "0")}</div>
+                  <div className="mc-agenda-title">{item.section}</div>
+                  <div className="mc-agenda-time">{item.time}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mc-divider" />
 
           <form onSubmit={handleSubmit} className="mc-form">
             <div className="mc-form-row">
@@ -292,18 +378,18 @@ export default function Masterclass() {
                   disabled={loading}
                 />
               </label>
+              <label className="mc-field">
+                <span className="mc-field-label">Phone</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  placeholder="10-digit mobile"
+                  disabled={loading}
+                />
+              </label>
             </div>
-            <label className="mc-field">
-              <span className="mc-field-label">Phone Number</span>
-              <input
-                type="tel"
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                placeholder="10-digit mobile number"
-                disabled={loading}
-              />
-            </label>
 
             {error && <p className="mc-error">{error}</p>}
 
@@ -311,40 +397,7 @@ export default function Masterclass() {
               {loading ? "Processing Payment..." : "Secure My Seat — ₹4,999 + GST"}
             </button>
           </form>
-
-          <div className="mc-footer-strip">
-            <div className="mc-footer-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-              </svg>
-              4 Hours LIVE
-            </div>
-            <div className="mc-footer-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              Limited Seats
-            </div>
-            <div className="mc-footer-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
-              Certificate
-            </div>
-            <div className="mc-footer-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
-              </svg>
-              Online Session
-            </div>
-          </div>
         </div>
-      </div>
-
-      {/* Floating Badge */}
-      <div className="mc-float-badge">
-        LIMITED<br />SEATS<br />AVAILABLE!
       </div>
 
       {/* Success Modal */}
