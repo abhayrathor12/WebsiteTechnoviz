@@ -57,78 +57,16 @@ const facts = [
   },
 ];
 
-// "You'll learn" strip
-const learnItems = [
-  {
-    label: "Industry 4.0 to 5.0",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M3 21h18" />
-        <path d="M5 21V9l4-3v15" />
-        <path d="M13 21V5l6-2v18" />
-      </svg>
-    ),
-  },
-  {
-    label: "IIoT, AI & ML",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10Z" />
-        <circle cx="9" cy="14" r="1" /><circle cx="13" cy="17" r="1" /><circle cx="15" cy="12" r="1" />
-      </svg>
-    ),
-  },
-  {
-    label: "Digital Twin & Analytics",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M21 16.5V7.5L12 3 3 7.5v9L12 21z" />
-        <path d="M3.27 7.5 12 12l8.73-4.5" />
-        <path d="M12 22V12" />
-      </svg>
-    ),
-  },
-  {
-    label: "Computer Vision & Quality",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-    ),
-  },
-  {
-    label: "Robotics, Cobots & AMRs",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <rect x="9" y="9" width="6" height="6" rx="1" />
-        <path d="M12 9V4" /><circle cx="12" cy="3" r="1" />
-        <path d="M9 12H4" /><path d="M15 12h5" />
-        <path d="M12 15v5" />
-      </svg>
-    ),
-  },
-  {
-    label: "Real Use Cases & Insights",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M3 3v18h18" />
-        <path d="M18 8l-5 5-3-3-5 5" />
-      </svg>
-    ),
-  },
-];
-
-// The session agenda — a real sequence, so numbering it is meaningful.
+// The session agenda — a real sequence, rendered as a table.
 const agenda = [
-  { section: "Manufacturing Evolution", time: "20m" },
-  { section: "Smart Factory Architecture", time: "25m" },
-  { section: "Industry 4.0 Technologies", time: "25m" },
-  { section: "AI in Manufacturing", time: "35m" },
-  { section: "Dept-wise Use Cases", time: "30m" },
-  { section: "Autonomous Factory", time: "20m" },
-  { section: "Transformation Framework", time: "15m" },
-  { section: "Cases + Q&A", time: "30m" },
+  { section: "Manufacturing Evolution", time: "20m", learn: "Industry 1.0 → 5.0, from manual to autonomous manufacturing" },
+  { section: "Smart Factory Architecture", time: "25m", learn: "PLC/SCADA, IIoT, MES, ERP, Edge, Cloud, data flow" },
+  { section: "Industry 4.0 Technologies", time: "25m", learn: "IIoT, digital twins, cloud, cyber-physical systems" },
+  { section: "AI in Manufacturing", time: "35m", learn: "AI/ML basics, predictive maintenance, quality prediction, anomaly detection" },
+  { section: "Dept-wise Use Cases", time: "30m", learn: "AI value in Production, Quality, Maintenance, Energy & Supply Chain" },
+  { section: "Autonomous Factory", time: "20m", learn: "Closed-loop AI, robotics, autonomous decision-making" },
+  { section: "Transformation Framework", time: "15m", learn: "Prioritisation, readiness, SIRI perspective, roadmap" },
+  { section: "Cases + Q&A", time: "30m", learn: "Real case studies, open discussion" },
 ];
 
 export default function Masterclass() {
@@ -247,7 +185,7 @@ export default function Masterclass() {
                 )}
                 {imgError && (
                   <div className="mc-photo-fallback">
-                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(32,63,120,0.35)" strokeWidth="1.2">
+                    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="rgba(32,63,120,0.35)" strokeWidth="1.2">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx="12" cy="7" r="4" />
                     </svg>
@@ -271,41 +209,20 @@ export default function Masterclass() {
               <span>Digital Transformation</span>
             </div>
           </div>
-        </div>
 
-        {/* RIGHT PANEL */}
-        <div className="mc-right">
-          <div className="mc-header">
-            <h1 className="mc-title">
-              SMART MANUFACTURING <span className="mc-title-accent">& AI MASTERCLASS</span>
-            </h1>
-            <p className="mc-subtitle">
-              From Industry 4.0 & 5.0 to AI-Driven Autonomous Factories
-            </p>
-            <div className="mc-facts-row">
-              {facts.map((f) => (
-                <span key={f.label} className="mc-fact">
-                  {f.icon}
-                  {f.label}
-                </span>
-              ))}
-            </div>
-            <div className="mc-learn-strip">
-              <span className="mc-learn-strip-label">You'll Learn:</span>
-              <div className="mc-learn-strip-tags">
-                {learnItems.map((item) => (
-                  <span key={item.label}>
-                    <span className="mc-learn-strip-icon">{item.icon}</span>
-                    {item.label}
-                  </span>
-                ))}
-              </div>
-            </div>
+          {/* Facts — moved here from the right panel header */}
+          <div className="mc-facts-left">
+            {facts.map((f) => (
+              <span key={f.label} className="mc-fact">
+                {f.icon}
+                {f.label}
+              </span>
+            ))}
           </div>
 
-          <div className="mc-divider" />
-
-          <div className="mc-info-grid">
+          {/* Date / Time / Fee — moved here from the right panel to free up
+              width on the right for the agenda table */}
+          <div className="mc-info-grid mc-info-grid--left">
             <div className="mc-info-box">
               <div className="mc-info-label">Date</div>
               <div className="mc-info-value">19<sup>TH</sup></div>
@@ -322,33 +239,51 @@ export default function Masterclass() {
               <div className="mc-info-sublabel">+ GST</div>
             </div>
           </div>
+        </div>
 
-          {/* AGENDA STRIP — instrument-rack style sequence, one row, no scroll */}
+        {/* RIGHT PANEL */}
+        <div className="mc-right">
+          <div className="mc-header">
+            <h1 className="mc-title">
+              SMART MANUFACTURING <span className="mc-title-accent">& AI MASTERCLASS</span>
+            </h1>
+            <p className="mc-subtitle">
+              From Industry 4.0 & 5.0 to AI-Driven Autonomous Factories
+            </p>
+          </div>
+
+          <div className="mc-divider" />
+
+          {/* AGENDA TABLE */}
           <div className="mc-agenda">
-            <div className="mc-agenda-label">
+            {/* <div className="mc-agenda-label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
               Session Agenda
-            </div>
-            <div className="mc-agenda-track">
-              {agenda.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="mc-agenda-seg"
-                  style={{ flex: parseInt(item.time, 10) }}
-                />
-              ))}
-            </div>
-            <div className="mc-agenda-grid">
-              {agenda.map((item, idx) => (
-                <div key={idx} className="mc-agenda-chip">
-                  <div className="mc-agenda-num">{String(idx + 1).padStart(2, "0")}</div>
-                  <div className="mc-agenda-title">{item.section}</div>
-                  <div className="mc-agenda-time">{item.time}</div>
-                </div>
-              ))}
+            </div> */}
+            <div className="mc-agenda-scroll">
+              <table className="mc-agenda-table">
+                <thead>
+                  <tr>
+                    <th className="mc-agenda-col-num">#</th>
+                    <th className="mc-agenda-col-session">Session</th>
+                    <th className="mc-agenda-col-time">Duration</th>
+                    <th>What Participants Learn</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {agenda.map((item, idx) => (
+                    <tr key={idx}>
+                      <td className="mc-agenda-col-num">{String(idx + 1).padStart(2, "0")}</td>
+                      <td className="mc-agenda-col-session">{item.section}</td>
+                      <td className="mc-agenda-col-time">{item.time}</td>
+                      <td className="mc-agenda-col-learn">{item.learn}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
 

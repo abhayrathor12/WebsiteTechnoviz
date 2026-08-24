@@ -52,7 +52,7 @@ html, body {
 .mc-card {
   display: flex;
   flex-direction: row;
-  width: min(96vw, 1240px);
+  width: min(97vw, 1300px);
   height: min(95vh, 940px);
   background: #ffffff;
   border-radius: clamp(14px, 2vh, 22px);
@@ -61,14 +61,16 @@ html, body {
   overflow: hidden;
 }
 
-/* ─── Left Panel ─── */
+/* ─── Left Panel ───
+   Narrower than before (frees width for the right panel) and laid out
+   top-down rather than space-between: badge → photo → speaker info →
+   facts → date/time/fee, with the info grid pinned to the bottom. */
 .mc-left {
-  flex: 0 0 clamp(250px, 27vw, 330px);
+  flex: 0 0 clamp(220px, 24vw, 292px);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: clamp(10px, 2vh, 18px);
-  padding: clamp(18px, 3.2vh, 30px) clamp(18px, 2.2vw, 26px);
+  gap: clamp(10px, 1.8vh, 16px);
+  padding: clamp(16px, 3vh, 28px) clamp(16px, 2vw, 24px);
   background:
     linear-gradient(rgba(32, 63, 120, 0.035) 1px, transparent 1px) 0 0 / 26px 26px,
     linear-gradient(90deg, rgba(32, 63, 120, 0.035) 1px, transparent 1px) 0 0 / 26px 26px,
@@ -90,6 +92,7 @@ html, body {
   padding: 6px 14px;
   border-radius: 999px;
   width: fit-content;
+  flex-shrink: 0;
 }
 
 .mc-pulse {
@@ -105,23 +108,24 @@ html, body {
   50% { opacity: 0.25; }
 }
 
-/* Speaker Visual */
+/* Speaker Visual — sits right under the badge now (no flex:1 centering),
+   and is a touch smaller than before. */
 .mc-speaker-visual {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  flex: 1;
-  min-height: 0;
+  flex: 0 0 auto;
+  margin: 2px 0 4px;
 }
 
 .mc-photo-ring {
-  width: clamp(136px, 26vh, 224px);
-  height: clamp(136px, 26vh, 224px);
+  width: clamp(108px, 18vh, 168px);
+  height: clamp(108px, 18vh, 168px);
   border-radius: 50%;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
   padding: 4px;
-  box-shadow: 0 18px 44px rgba(32, 63, 120, 0.28);
+  box-shadow: 0 14px 34px rgba(32, 63, 120, 0.26);
   position: relative;
   z-index: 2;
 }
@@ -157,8 +161,8 @@ html, body {
 
 .mc-ring-outer {
   position: absolute;
-  width: calc(100% + 34px);
-  height: calc(100% + 34px);
+  width: calc(100% + 26px);
+  height: calc(100% + 26px);
   border: 1px solid rgba(32, 63, 120, 0.18);
   border-radius: 50%;
   top: 50%;
@@ -174,7 +178,7 @@ html, body {
 .mc-speaker-name {
   font-family: var(--font-display);
   color: var(--navy);
-  font-size: clamp(19px, 2.8vh, 25px);
+  font-size: clamp(18px, 2.5vh, 23px);
   margin: 0 0 6px;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -182,9 +186,9 @@ html, body {
 
 .mc-speaker-meta {
   color: rgba(20, 30, 50, 0.75);
-  font-size: clamp(11px, 1.4vh, 13px);
-  margin: 0 0 12px;
-  line-height: 1.55;
+  font-size: clamp(10.5px, 1.3vh, 12.5px);
+  margin: 0 0 11px;
+  line-height: 1.5;
   font-weight: 400;
 }
 
@@ -199,8 +203,66 @@ html, body {
   color: var(--navy);
   padding: 4px 10px;
   border-radius: 6px;
-  font-size: clamp(9.5px, 1.15vh, 11px);
+  font-size: clamp(9px, 1.1vh, 10.5px);
   font-weight: 700;
+}
+
+/* ─── Facts — 2×2 badge grid in the left column ───
+   (previously referenced in JSX as .mc-facts-left but never defined,
+   which is why it rendered as a raw stacked list of unstyled spans) */
+.mc-facts-left {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.mc-fact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(32, 63, 120, 0.07);
+  color: var(--navy);
+  font-size: clamp(9px, 1.05vh, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: clamp(7px, 1.1vh, 9px) 9px;
+  border-radius: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mc-fact svg {
+  flex-shrink: 0;
+  stroke-width: 2.4;
+  color: var(--navy);
+}
+
+/* Info grid when placed in the LEFT column (date/time/fee), pinned to the
+   bottom of .mc-left via margin-top: auto so it anchors the panel. */
+.mc-info-grid--left {
+  margin-top: auto;
+  padding-top: clamp(10px, 1.6vh, 14px);
+  border-top: 1px solid var(--line);
+}
+
+.mc-info-grid--left .mc-info-box {
+  padding: clamp(8px, 1.3vh, 12px) 6px;
+  border-radius: 9px;
+}
+
+.mc-info-grid--left .mc-info-value {
+  font-size: clamp(14px, 2vh, 18px);
+}
+
+.mc-info-grid--left .mc-info-value--gold {
+  font-size: clamp(15px, 2.2vh, 19px);
+}
+
+.mc-info-grid--left .mc-info-label,
+.mc-info-grid--left .mc-info-sublabel {
+  font-size: clamp(7.5px, 0.9vh, 8.5px);
 }
 
 /* ─── Right Panel ─── */
@@ -244,81 +306,14 @@ html, body {
   font-weight: 400;
 }
 
-/* Facts row — replaces old bottom footer strip, sits under subtitle */
+/* Facts row — kept for backward compatibility, unused now that facts live
+   in the left column, but harmless to leave in place. */
 .mc-facts-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 5px 16px;
   margin-top: 8px;
-}
-
-.mc-fact {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--ink-faint);
-  font-size: clamp(10.5px, 1.3vh, 12px);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.mc-fact svg {
-  flex-shrink: 0;
-  stroke-width: 2.2;
-}
-
-/* Compact "What You'll Learn" strip */
-.mc-learn-strip {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 7px;
-  flex-wrap: wrap;
-}
-
-.mc-learn-strip-label {
-  color: var(--navy);
-  font-size: clamp(8.5px, 1vh, 9.5px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  padding-top: 3px;
-  flex-shrink: 0;
-}
-
-.mc-learn-strip-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.mc-learn-strip-tags span {
-  background: rgba(32, 63, 120, 0.08);
-  color: var(--navy);
-  padding: 3px 10px 3px 6px;
-  border-radius: 999px;
-  font-size: clamp(8.5px, 1vh, 9.5px);
-  font-weight: 700;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.mc-learn-strip-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: var(--navy);
-}
-
-.mc-learn-strip-icon svg {
-  display: block;
-  width: 12px;
-  height: 12px;
 }
 
 .mc-divider {
@@ -328,7 +323,7 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Info Grid */
+/* Info Grid (base — reused by the left-panel variant above) */
 .mc-info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -387,13 +382,15 @@ html, body {
   font-weight: 600;
 }
 
-/* ─── Agenda strip (signature element) ───
-   Reads like an instrument rack: 8 sequenced tags, each carrying
-   its own duration readout — the session's own process line. */
+/* ─── Agenda table (replaces the old chip grid) ───
+   Font sizes and padding trimmed down so all 8 rows fit inside the
+   available height without needing the inner scrollbar. */
 .mc-agenda {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
 }
 
 .mc-agenda-label {
@@ -405,65 +402,73 @@ html, body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
+  flex-shrink: 0;
 }
 
 .mc-agenda-label svg {
   flex-shrink: 0;
 }
 
-.mc-agenda-track {
-  display: flex;
-  gap: 3px;
-  height: 5px;
-  border-radius: 3px;
-  overflow: hidden;
+/* Scroll container kept only as a safety net for very short viewports —
+   with the reduced sizes below, all 8 rows now fit without scrolling on
+   the target card size. */
+.mc-agenda-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
-.mc-agenda-seg {
-  background: var(--navy);
-  opacity: 0.25;
+.mc-agenda-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-.mc-agenda-seg:nth-child(odd) { opacity: 0.4; }
-
-.mc-agenda-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 6px;
+.mc-agenda-table thead th {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+  text-align: left;
+  color: var(--navy);
+  font-family: var(--font-mono);
+  font-size: clamp(9.5px, 1.2vh, 11.5px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0 10px clamp(5.5px, 0.9vh, 7px);
+  border-bottom: 1.5px solid var(--navy);
 }
 
-.mc-agenda-chip {
-  border-top: 2px solid var(--navy);
-  background: var(--paper);
-  border-radius: 0 0 7px 7px;
-  padding: clamp(6px, 1vh, 9px) 6px clamp(7px, 1.1vh, 10px);
-  min-width: 0;
+.mc-agenda-table tbody td {
+  padding: clamp(7px, 1.3vh, 11px) 10px;
+  font-size: clamp(12px, 1.5vh, 14.5px);
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.3;
+  border-bottom: 1px solid var(--line);
 }
 
-.mc-agenda-num {
+.mc-agenda-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.mc-agenda-table tbody tr:nth-child(odd) {
+  background: rgba(32, 63, 120, 0.035);
+}
+
+.mc-agenda-col-num {
+  width: 34px;
   font-family: var(--font-mono);
   color: var(--navy);
-  font-size: clamp(8.5px, 1vh, 9.5px);
   font-weight: 700;
 }
 
-.mc-agenda-title {
-  color: var(--ink);
-  font-size: clamp(9.5px, 1.15vh, 11px);
-  font-weight: 700;
-  line-height: 1.25;
-  margin-top: 3px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.mc-agenda-time {
+.mc-agenda-col-time {
+  width: 74px;
   font-family: var(--font-mono);
   color: var(--ink-faint);
-  font-size: clamp(8px, 0.95vh, 9px);
-  margin-top: 4px;
+  text-align: right;
 }
 
 /* ─── Form ─── */
@@ -471,6 +476,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: clamp(9px, 1.3vh, 13px);
+  flex-shrink: 0;
 }
 
 .mc-form-row {
@@ -652,8 +658,16 @@ html, body {
     gap: 14px;
   }
 
-  .mc-speaker-visual { flex: none; margin: 6px 0; }
-  .mc-photo-ring { width: 140px; height: 140px; }
+  .mc-speaker-visual { margin: 6px 0; }
+  .mc-photo-ring { width: 132px; height: 132px; }
+
+  .mc-facts-left {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mc-info-grid--left {
+    margin-top: 4px;
+  }
 
   .mc-right { padding: 22px; gap: 14px; }
 
@@ -662,9 +676,13 @@ html, body {
     font-size: clamp(20px, 5vw, 28px);
   }
 
+  .mc-agenda-scroll {
+    flex: none;
+    overflow-y: visible;
+  }
+
   .mc-form-row { grid-template-columns: 1fr 1fr; }
   .mc-form-row .mc-field:nth-child(3) { grid-column: span 2; }
 
-  .mc-agenda-grid { grid-template-columns: repeat(4, 1fr); }
   .mc-info-grid { grid-template-columns: 1fr; }
 }
