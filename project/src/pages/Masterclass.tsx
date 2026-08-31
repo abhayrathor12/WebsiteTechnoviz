@@ -57,17 +57,23 @@ const facts = [
   },
 ];
 
-// The session agenda — a real sequence, rendered as a table.
+// Session agenda — demo-driven format: Duration / Session / Demo & Coverage
 const agenda = [
-  { section: "Manufacturing Evolution", time: "20m", learn: "Industry 1.0 → 5.0, from manual to autonomous manufacturing" },
-  { section: "Smart Factory Architecture", time: "25m", learn: "PLC/SCADA, IIoT, MES, ERP, Edge, Cloud, data flow" },
-  { section: "Industry 4.0 Technologies", time: "25m", learn: "IIoT, digital twins, cloud, cyber-physical systems" },
-  { section: "AI in Manufacturing", time: "35m", learn: "AI/ML basics, predictive maintenance, quality prediction, anomaly detection" },
-  { section: "Dept-wise Use Cases", time: "30m", learn: "AI value in Production, Quality, Maintenance, Energy & Supply Chain" },
-  { section: "Autonomous Factory", time: "20m", learn: "Closed-loop AI, robotics, autonomous decision-making" },
-  { section: "Transformation Framework", time: "15m", learn: "Prioritisation, readiness, SIRI perspective, roadmap" },
-  { section: "Cases + Q&A", time: "30m", learn: "Real case studies, open discussion" },
+  { time: "20 Min", section: "From Smart to Autonomous Manufacturing", learn: "Connected → Predictive → Intelligent → Autonomous Factory, AI + OT architecture" },
+  { time: "40 Min", section: "LIVE DEMO 1: Predictive AI", learn: "Machine/process data → AI model → anomaly/failure/quality prediction → actionable insights" },
+  { time: "40 Min", section: "LIVE DEMO 2: Generative AI + RAG", learn: "Build a Manufacturing AI Assistant using manuals, SOPs and maintenance knowledge" },
+  { time: "40 Min", section: "LIVE DEMO 3: AI Agents for Manufacturing", learn: "Build an AI Agent → analyse abnormality → recommend action → trigger workflow/report" },
+  { time: "10 Min", section: "Break", learn: "Short break" },
+  { time: "40 Min", section: "LIVE DEMO 4: AI + PLC/SCADA Integration", learn: "PLC/SCADA/IIoT data → AI analysis → recommendation → dashboard/SCADA/action" },
+  { time: "20 Min", section: "Multi-Agent Autonomous Factory", learn: "Production + Quality + Maintenance AI Agents working together" },
+  { time: "30 Min", section: "Interactive Exercise: Build Your AI Use Case", learn: "Problem → Data → AI → Action → Business Benefit" },
 ];
+
+const agendaTotal = {
+  time: "Total: 4 Hours",
+  section: "Demo-Driven Masterclass",
+  learn: "70%+ practical demos, use cases & interactive learning",
+};
 
 export default function Masterclass() {
   const [imgError, setImgError] = useState(false);
@@ -180,6 +186,25 @@ export default function Masterclass() {
             LIVE Masterclass 2026
           </div>
 
+          {/* Date / Time / Fee — now at the top of the left column */}
+          <div className="mc-info-grid mc-info-grid--left">
+            <div className="mc-info-box">
+              <div className="mc-info-label">Date</div>
+              <div className="mc-info-value">26<sup>TH</sup></div>
+              <div className="mc-info-sublabel">SEPTEMBER 2026</div>
+            </div>
+            <div className="mc-info-box">
+              <div className="mc-info-label">Time</div>
+              <div className="mc-info-value">10:00 AM</div>
+              <div className="mc-info-sublabel">IST (4 HOURS LIVE)</div>
+            </div>
+            <div className="mc-info-box mc-info-box--highlight">
+              <div className="mc-info-label">Program Fee</div>
+              <div className="mc-info-value mc-info-value--gold">₹4,999</div>
+              <div className="mc-info-sublabel">+ GST</div>
+            </div>
+          </div>
+
           <div className="mc-speaker-visual">
             <div className="mc-photo-ring">
               <div className="mc-photo-inner">
@@ -204,6 +229,7 @@ export default function Masterclass() {
             <div className="mc-ring-outer" />
           </div>
 
+          {/* Speaker info + facts — now pushed to the bottom of the column */}
           <div className="mc-speaker-info">
             <h2 className="mc-speaker-name">KAPIL KHURANA</h2>
             <p className="mc-speaker-meta">
@@ -218,7 +244,6 @@ export default function Masterclass() {
             </div>
           </div>
 
-          {/* Facts — moved here from the right panel header */}
           <div className="mc-facts-left">
             {facts.map((f) => (
               <span key={f.label} className="mc-fact">
@@ -226,26 +251,6 @@ export default function Masterclass() {
                 {f.label}
               </span>
             ))}
-          </div>
-
-          {/* Date / Time / Fee — moved here from the right panel to free up
-              width on the right for the agenda table */}
-          <div className="mc-info-grid mc-info-grid--left">
-            <div className="mc-info-box">
-              <div className="mc-info-label">Date</div>
-              <div className="mc-info-value">19<sup>TH</sup></div>
-              <div className="mc-info-sublabel">SEPTEMBER 2026</div>
-            </div>
-            <div className="mc-info-box">
-              <div className="mc-info-label">Time</div>
-              <div className="mc-info-value">10:00 AM</div>
-              <div className="mc-info-sublabel">IST (4 HOURS LIVE)</div>
-            </div>
-            <div className="mc-info-box mc-info-box--highlight">
-              <div className="mc-info-label">Program Fee</div>
-              <div className="mc-info-value mc-info-value--gold">₹4,999</div>
-              <div className="mc-info-sublabel">+ GST</div>
-            </div>
           </div>
         </div>
 
@@ -264,33 +269,31 @@ export default function Masterclass() {
 
           {/* AGENDA TABLE */}
           <div className="mc-agenda">
-            {/* <div className="mc-agenda-label">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              Session Agenda
-            </div> */}
             <div className="mc-agenda-scroll">
               <table className="mc-agenda-table">
                 <thead>
                   <tr>
-                    <th className="mc-agenda-col-num">#</th>
-                    <th className="mc-agenda-col-session">Session</th>
                     <th className="mc-agenda-col-time">Duration</th>
-                    <th>What Participants Learn</th>
+                    <th className="mc-agenda-col-session">Session</th>
+                    <th>Demo / Coverage</th>
                   </tr>
                 </thead>
                 <tbody>
                   {agenda.map((item, idx) => (
                     <tr key={idx}>
-                      <td className="mc-agenda-col-num">{String(idx + 1).padStart(2, "0")}</td>
-                      <td className="mc-agenda-col-session">{item.section}</td>
                       <td className="mc-agenda-col-time">{item.time}</td>
+                      <td className="mc-agenda-col-session">{item.section}</td>
                       <td className="mc-agenda-col-learn">{item.learn}</td>
                     </tr>
                   ))}
                 </tbody>
+                <tfoot>
+                  <tr className="mc-agenda-total-row">
+                    <td className="mc-agenda-col-time">{agendaTotal.time}</td>
+                    <td className="mc-agenda-col-session">{agendaTotal.section}</td>
+                    <td className="mc-agenda-col-learn">{agendaTotal.learn}</td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

@@ -16,9 +16,11 @@
   --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
   --font-body: "Inter", ui-sans-serif, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* single source of truth for the speaker photo size, so the outer
+     ring can always match it exactly regardless of containing block */
+  --photo-size: clamp(108px, 18vh, 168px);
 }
-
-
 
 * {
   box-sizing: border-box;
@@ -54,9 +56,8 @@
 }
 
 /* ─── Left Panel ───
-   Narrower than before (frees width for the right panel) and laid out
-   top-down rather than space-between: badge → photo → speaker info →
-   facts → date/time/fee, with the info grid pinned to the bottom. */
+   Layout top-down: badge → date/time/fee → photo → speaker info → facts,
+   with speaker info pinned toward the bottom via margin-top:auto. */
 .mc-left {
   flex: 0 0 clamp(220px, 24vw, 292px);
   display: flex;
@@ -100,20 +101,22 @@
   50% { opacity: 0.25; }
 }
 
-/* Speaker Visual — sits right under the badge now (no flex:1 centering),
-   and is a touch smaller than before. */
+/* Speaker Visual */
 .mc-speaker-visual {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   flex: 0 0 auto;
-  margin: 2px 0 4px;
+  margin: 4px 0 8px;
+  /* reserve enough vertical room for the outer ring so it never
+     gets clipped by neighbouring blocks */
+  padding: 14px 0;
 }
 
 .mc-photo-ring {
-  width: clamp(108px, 18vh, 168px);
-  height: clamp(108px, 18vh, 168px);
+  width: var(--photo-size);
+  height: var(--photo-size);
   border-radius: 50%;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
   padding: 4px;
@@ -138,7 +141,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 5%;
+  object-position: center 20%;
   border-radius: 50%;
   display: block;
 }
@@ -151,20 +154,31 @@
   justify-content: center;
 }
 
+/* FIXED: previously used width/height: calc(100% + 26px), which as an
+   absolutely-positioned element resolves against .mc-speaker-visual
+   (as wide as the whole left column) rather than against the photo
+   itself — that stretched the "ring" into a wide ellipse. Sizing it
+   off the same --photo-size variable as .mc-photo-ring keeps it a
+   true, perfectly centered circle at any viewport size. */
 .mc-ring-outer {
   position: absolute;
-  width: calc(100% + 26px);
-  height: calc(100% + 26px);
-  border: 1px solid rgba(32, 63, 120, 0.18);
+  width: calc(var(--photo-size) + 28px);
+  height: calc(var(--photo-size) + 28px);
+  border: 1px solid rgba(32, 63, 120, 0.16);
   border-radius: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Speaker Info */
+/* Speaker Info — now pinned toward the bottom of the left column, since
+   Date/Time/Fee moved above the photo. */
 .mc-speaker-info {
   flex-shrink: 0;
+  margin-top: auto;
+  text-align: center;
 }
 
 .mc-speaker-name {
@@ -187,6 +201,7 @@
 .mc-speaker-tags {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 7px;
 }
 
@@ -199,9 +214,7 @@
   font-weight: 700;
 }
 
-/* ─── Facts — 2×2 badge grid in the left column ───
-   (previously referenced in JSX as .mc-facts-left but never defined,
-   which is why it rendered as a raw stacked list of unstyled spans) */
+/* ─── Facts — 2×2 badge grid, now the last block in the left column ─── */
 .mc-facts-left {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -231,12 +244,12 @@
   color: var(--navy);
 }
 
-/* Info grid when placed in the LEFT column (date/time/fee), pinned to the
-   bottom of .mc-left via margin-top: auto so it anchors the panel. */
+/* Info grid when placed in the LEFT column (date/time/fee) — now sits near
+   the top of .mc-left, right under the badge, with a bottom rule instead
+   of a top one to separate it from the photo below. */
 .mc-info-grid--left {
-  margin-top: auto;
-  padding-top: clamp(10px, 1.6vh, 14px);
-  border-top: 1px solid var(--line);
+  padding-bottom: clamp(10px, 1.6vh, 14px);
+  border-bottom: 1px solid var(--line);
 }
 
 .mc-info-grid--left .mc-info-box {
@@ -264,7 +277,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: clamp(20px, 3.4vh, 34px) clamp(24px, 3.2vw, 42px);
-  gap: clamp(12px, 1.8vh, 18px);
+  gap: clamp(10px, 1.5vh, 16px);
   overflow: hidden;
   min-width: 0;
 }
@@ -374,9 +387,7 @@
   font-weight: 600;
 }
 
-/* ─── Agenda table (replaces the old chip grid) ───
-   Font sizes and padding trimmed down so all 8 rows fit inside the
-   available height without needing the inner scrollbar. */
+/* ─── Agenda table (Duration / Session / Demo & Coverage + total row) ─── */
 .mc-agenda {
   display: flex;
   flex-direction: column;
@@ -401,13 +412,23 @@
   flex-shrink: 0;
 }
 
-/* Scroll container kept only as a safety net for very short viewports —
-   with the reduced sizes below, all 8 rows now fit without scrolling on
-   the target card size. */
+/* Kept scrollable as a safety net for very short viewports, but the
+   scrollbar itself is now hidden so it never reads as a "scrolling
+   table" — combined with the tighter row padding below, all 8 rows +
+   the total row fit within the card at normal viewport heights, so in
+   practice this never needs to scroll at all. */
 .mc-agenda-scroll {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* old Edge/IE */
+}
+
+.mc-agenda-scroll::-webkit-scrollbar {
+  display: none;              /* Chrome/Safari */
+  width: 0;
+  height: 0;
 }
 
 .mc-agenda-table {
@@ -424,20 +445,20 @@
   text-align: left;
   color: var(--navy);
   font-family: var(--font-mono);
-  font-size: clamp(9.5px, 1.2vh, 11.5px);
+  font-size: clamp(9.5px, 1.15vh, 11px);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 0 10px clamp(5.5px, 0.9vh, 7px);
+  padding: 0 10px clamp(5px, 0.8vh, 6.5px);
   border-bottom: 1.5px solid var(--navy);
 }
 
 .mc-agenda-table tbody td {
-  padding: clamp(7px, 1.3vh, 11px) 10px;
-  font-size: clamp(12px, 1.5vh, 14.5px);
+  padding: clamp(5px, 1.05vh, 8.5px) 10px;
+  font-size: clamp(11px, 1.35vh, 13.5px);
   color: var(--ink);
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.28;
   border-bottom: 1px solid var(--line);
 }
 
@@ -457,10 +478,26 @@
 }
 
 .mc-agenda-col-time {
-  width: 74px;
+  width: 92px;
   font-family: var(--font-mono);
   color: var(--ink-faint);
-  text-align: right;
+  text-align: left;
+}
+
+.mc-agenda-col-session {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Totals row in <tfoot> — visually closes out the table */
+.mc-agenda-total-row td {
+  padding: clamp(6px, 1.05vh, 9px) 10px;
+  font-size: clamp(11px, 1.35vh, 13.5px);
+  font-weight: 800;
+  color: var(--navy);
+  background: rgba(32, 63, 120, 0.09);
+  border-top: 1.5px solid var(--navy);
+  border-bottom: none;
 }
 
 /* ─── Form ─── */
@@ -650,15 +687,19 @@
     gap: 14px;
   }
 
-  .mc-speaker-visual { margin: 6px 0; }
-  .mc-photo-ring { width: 132px; height: 132px; }
+  .mc-speaker-visual { margin: 6px 0; --photo-size: 132px; }
+
+  .mc-speaker-info {
+    margin-top: 0;
+  }
 
   .mc-facts-left {
     grid-template-columns: 1fr 1fr;
   }
 
   .mc-info-grid--left {
-    margin-top: 4px;
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   .mc-right { padding: 22px; gap: 14px; }
