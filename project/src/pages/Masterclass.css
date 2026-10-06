@@ -478,10 +478,14 @@
 }
 
 .mc-agenda-col-time {
-  width: 92px;
+  width: 112px;
   font-family: var(--font-mono);
   color: var(--ink-faint);
   text-align: left;
+}
+
+.mc-agenda-table tbody .mc-agenda-col-time {
+  white-space: nowrap;
 }
 
 .mc-agenda-col-session {

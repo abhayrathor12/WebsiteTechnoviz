@@ -23,7 +23,7 @@ const initialForm: RegistrationData = { name: "", email: "", phone: "" };
 // Facts shown inline under the subtitle (replaces the old bottom footer strip)
 const facts = [
   {
-    label: "4 Hours LIVE",
+    label: "8 Hours LIVE",
     icon: (
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
@@ -57,22 +57,30 @@ const facts = [
   },
 ];
 
-// Session agenda — demo-driven format: Duration / Session / Demo & Coverage
+// Session agenda — full-day format: Time / Session / Coverage & Activity
 const agenda = [
-  { time: "20 Min", section: "From Smart to Autonomous Manufacturing", learn: "Connected → Predictive → Intelligent → Autonomous Factory, AI + OT architecture" },
-  { time: "40 Min", section: "LIVE DEMO 1: Predictive AI", learn: "Machine/process data → AI model → anomaly/failure/quality prediction → actionable insights" },
-  { time: "40 Min", section: "LIVE DEMO 2: Generative AI + RAG", learn: "Build a Manufacturing AI Assistant using manuals, SOPs and maintenance knowledge" },
-  { time: "40 Min", section: "LIVE DEMO 3: AI Agents for Manufacturing", learn: "Build an AI Agent → analyse abnormality → recommend action → trigger workflow/report" },
-  { time: "10 Min", section: "Break", learn: "Short break" },
-  { time: "40 Min", section: "LIVE DEMO 4: AI + PLC/SCADA Integration", learn: "PLC/SCADA/IIoT data → AI analysis → recommendation → dashboard/SCADA/action" },
-  { time: "20 Min", section: "Multi-Agent Autonomous Factory", learn: "Production + Quality + Maintenance AI Agents working together" },
-  { time: "30 Min", section: "Interactive Exercise: Build Your AI Use Case", learn: "Problem → Data → AI → Action → Business Benefit" },
+  { time: "9:30–9:45", section: "Pre-Assessment & Introduction", learn: "15–20 MCQs, participant expectations, manufacturing challenges" },
+  { time: "9:45–10:15", section: "Session 1: From Smart to Autonomous Manufacturing", learn: "Industry 1.0–5.0, Connected → Predictive → Intelligent → Agentic → Autonomous Manufacturing" },
+  { time: "10:15–11:00", section: "Session 2: AI & Predictive AI in Manufacturing", learn: "AI/ML basics, manufacturing data, supervised/unsupervised learning, Predictive AI architecture and use cases" },
+  { time: "11:00–11:20", section: "LIVE DEMO 1: Predictive AI", learn: "Machine/process data → anomaly detection → prediction → actionable insight" },
+  { time: "11:20–11:30", section: "Tea Break", learn: "" },
+  { time: "11:30–12:15", section: "Session 3: Generative AI + RAG", learn: "LLM basics, manufacturing knowledge, RAG, embeddings, vector databases, Manufacturing AI Assistant" },
+  { time: "12:15–12:40", section: "LIVE DEMO 2: Manufacturing RAG Assistant", learn: "Manual/SOP → knowledge base → technical question → contextual answer" },
+  { time: "12:40–1:15", section: "Session 4: AI Agents for Manufacturing", learn: "Agent vs chatbot, tools, memory, reasoning, workflows, event-based agents, human-in-the-loop" },
+  { time: "1:15–2:00", section: "Lunch Break", learn: "" },
+  { time: "2:00–2:30", section: "Session 5: AI + PLC / SCADA / IIoT Integration", learn: "OPC UA, MQTT, APIs, Edge, Historian, AI architecture, AI output to CMMS/MES/SCADA" },
+  { time: "2:30–2:50", section: "LIVE DEMO 3: Connected Industrial AI", learn: "PLC/SCADA data → AI analysis → RAG → Agent → maintenance action" },
+  { time: "2:50–4:05", section: "HANDS-ON PRACTICAL: Build an AI Manufacturing Application", learn: "Participants build a working AI application step-by-step" },
+  { time: "4:05–4:15", section: "Tea Break", learn: "" },
+  { time: "4:15–4:55", section: "Manufacturing AI Use-Case Workshop", learn: "Teams identify real problems and develop AI solution concepts" },
+  { time: "4:55–5:15", section: "Multi-Agent & Autonomous Manufacturing", learn: "Production + Quality + Maintenance Agents, orchestration, governance, journey toward autonomy" },
+  { time: "5:15–5:30", section: "Post-Assessment & Wrap-Up", learn: "Same MCQs, pre/post comparison, key takeaways, Q&A" },
 ];
 
 const agendaTotal = {
-  time: "Total: 4 Hours",
-  section: "Demo-Driven Masterclass",
-  learn: "70%+ practical demos, use cases & interactive learning",
+  time: "Total: Full Day (9:30–5:30)",
+  section: "Hands-On Masterclass",
+  learn: "Live demos, hands-on practical & use-case workshop",
 };
 
 export default function Masterclass() {
@@ -190,13 +198,13 @@ export default function Masterclass() {
           <div className="mc-info-grid mc-info-grid--left">
             <div className="mc-info-box">
               <div className="mc-info-label">Date</div>
-              <div className="mc-info-value">26<sup>TH</sup></div>
-              <div className="mc-info-sublabel">SEPTEMBER 2026</div>
+              <div className="mc-info-value">24<sup>TH</sup></div>
+              <div className="mc-info-sublabel">SAT · OCTOBER 2026</div>
             </div>
             <div className="mc-info-box">
               <div className="mc-info-label">Time</div>
-              <div className="mc-info-value">10:00 AM</div>
-              <div className="mc-info-sublabel">IST (4 HOURS LIVE)</div>
+              <div className="mc-info-value">9:30 AM</div>
+              <div className="mc-info-sublabel">IST (8 HOURS LIVE)</div>
             </div>
             <div className="mc-info-box mc-info-box--highlight">
               <div className="mc-info-label">Program Fee</div>
@@ -273,9 +281,9 @@ export default function Masterclass() {
               <table className="mc-agenda-table">
                 <thead>
                   <tr>
-                    <th className="mc-agenda-col-time">Duration</th>
+                    <th className="mc-agenda-col-time">Time</th>
                     <th className="mc-agenda-col-session">Session</th>
-                    <th>Demo / Coverage</th>
+                    <th>Coverage / Activity</th>
                   </tr>
                 </thead>
                 <tbody>
