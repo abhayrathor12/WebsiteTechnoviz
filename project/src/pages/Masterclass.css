@@ -1,25 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap');
 
 /* ─────────────────────────────────────────────────────────
-   Design tokens — original navy palette
+   Design tokens — navy palette with a gold accent
 ───────────────────────────────────────────────────────── */
 :root {
   --navy: #203f78;
   --navy-deep: #142a54;
-  --paper: #f5f7fa;
+  --navy-ink: #0e1f40;
+  --gold: #ddaf26;
+  --gold-soft: rgba(221, 175, 38, 0.15);
+  --paper: #f3f6fa;
   --panel: #eef2f8;
-  --line: rgba(32, 63, 120, 0.12);
+  --line: rgba(32, 63, 120, 0.11);
   --ink: #1a2740;
-  --ink-soft: rgba(20, 30, 50, 0.65);
-  --ink-faint: rgba(20, 30, 50, 0.55);
+  --ink-soft: rgba(20, 30, 50, 0.68);
+  --ink-faint: rgba(20, 30, 50, 0.5);
 
   --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
   --font-body: "Inter", ui-sans-serif, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 
-  /* single source of truth for the speaker photo size, so the outer
-     ring can always match it exactly regardless of containing block */
-  --photo-size: clamp(108px, 18vh, 168px);
+  /* outer page padding — reused to size the shell to the viewport */
+  --page-pad-y: clamp(8px, 1.6vh, 22px);
+  --page-pad-x: clamp(12px, 1.6vw, 28px);
+  --gap: clamp(8px, 1.5vh, 18px);
+  --radius: 16px;
 }
 
 * {
@@ -28,122 +33,211 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Page shell ───
+   On tablets, laptops and desktops the whole page fits one viewport:
+   the shell is exactly one screen tall (capped on very tall screens) and
+   every size below scales with viewport height. min-height (not height)
+   means an unusually short window scrolls instead of clipping. */
 .mc-page {
-  height: 100vh;
-  height: 100dvh;
-  width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #eef2f8 50%, #e8edf5 100%);
-  padding: clamp(6px, 1.6vh, 16px) clamp(8px, 1.8vw, 20px);
+  padding: var(--page-pad-y) var(--page-pad-x);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(32, 63, 120, 0.08), transparent 50%),
+    var(--paper);
   font-family: var(--font-body);
-  position: relative;
-  overflow: hidden;
+  color: var(--ink);
 }
 
-/* ─── Main Card ─── */
-.mc-card {
-  display: flex;
-  flex-direction: row;
-  width: min(97vw, 1300px);
-  height: min(95vh, 940px);
-  background: #ffffff;
-  border-radius: clamp(14px, 2vh, 22px);
-  border: 1px solid var(--line);
-  box-shadow: 0 32px 70px rgba(32, 63, 120, 0.16);
-  overflow: hidden;
-}
-
-/* ─── Left Panel ───
-   Layout top-down: badge → date/time/fee → photo → speaker info → facts,
-   with speaker info pinned toward the bottom via margin-top:auto. */
-.mc-left {
-  flex: 0 0 clamp(220px, 24vw, 292px);
+.mc-shell {
+  width: min(1440px, 100%);
+  min-width: 0;
+  min-height: min(calc(100dvh - 2 * var(--page-pad-y)), 1000px);
+  margin: auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.8vh, 16px);
-  padding: clamp(16px, 3vh, 28px) clamp(16px, 2vw, 24px);
+  gap: var(--gap);
+}
+
+/* ─── Top bar ─── */
+.mc-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(10px, 1.7vh, 22px) clamp(18px, 2vw, 30px);
+  border-radius: var(--radius);
+  color: #fff;
   background:
-    linear-gradient(rgba(32, 63, 120, 0.035) 1px, transparent 1px) 0 0 / 26px 26px,
-    linear-gradient(90deg, rgba(32, 63, 120, 0.035) 1px, transparent 1px) 0 0 / 26px 26px,
-    linear-gradient(180deg, rgba(32, 63, 120, 0.06) 0%, transparent 55%);
-  position: relative;
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 28px 28px,
+    radial-gradient(ellipse at 90% 0%, rgba(221, 175, 38, 0.18), transparent 55%),
+    linear-gradient(120deg, var(--navy) 0%, var(--navy-deep) 65%, var(--navy-ink) 100%);
+  box-shadow: 0 16px 40px rgba(20, 42, 84, 0.22);
+}
+
+.mc-topbar-copy {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 4px;
+  min-width: 0;
 }
 
 .mc-live-badge {
+  grid-column: 2;
+  grid-row: 1;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--navy);
-  color: #ffffff;
-  font-family: var(--font-mono);
-  font-size: clamp(9.5px, 1.2vh, 11px);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 6px 14px;
+  gap: 7px;
+  padding: 5px 11px;
   border-radius: 999px;
-  width: fit-content;
-  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .mc-pulse {
   width: 6px;
   height: 6px;
-  background: #ffffff;
   border-radius: 50%;
+  background: var(--gold);
   animation: mcPulse 2s infinite;
 }
 
 @keyframes mcPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
+  0% { box-shadow: 0 0 0 0 rgba(221, 175, 38, 0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(221, 175, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(221, 175, 38, 0); }
 }
 
-/* Speaker Visual */
-.mc-speaker-visual {
+.mc-title {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(20px, min(3.4vh, 2.4vw), 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.mc-title-accent {
+  color: var(--gold);
+}
+
+.mc-subtitle {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: clamp(12px, 1.65vh, 15px);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mc-event-meta {
   display: flex;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.mc-event-meta > div {
+  padding: 0 clamp(14px, 1.5vw, 24px);
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.mc-event-meta > div:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.mc-event-meta > div:last-child {
+  padding-right: 0;
+}
+
+.mc-event-meta dt {
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.mc-event-meta dd {
+  margin: 0;
+  font-size: clamp(13px, 1.9vh, 16px);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.mc-event-meta dd small {
+  font-size: 0.75em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ─── Main: side column + agenda ─── */
+.mc-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: clamp(250px, 23vw, 340px) minmax(0, 1fr);
+  gap: var(--gap);
+  min-height: 0;
+}
+
+.mc-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  min-width: 0;
+}
+
+/* Speaker */
+.mc-speaker {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  position: relative;
-  flex: 0 0 auto;
-  margin: 4px 0 8px;
-  /* reserve enough vertical room for the outer ring so it never
-     gets clipped by neighbouring blocks */
-  padding: 14px 0;
+  gap: clamp(8px, 1.3vh, 12px) 14px;
+  padding: clamp(12px, 1.9vh, 20px);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(32, 63, 120, 0.06);
 }
 
 .mc-photo-ring {
-  width: var(--photo-size);
-  height: var(--photo-size);
+  width: clamp(54px, 8.5vh, 84px);
+  height: clamp(54px, 8.5vh, 84px);
+  padding: 3px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-  padding: 4px;
-  box-shadow: 0 14px 34px rgba(32, 63, 120, 0.26);
-  position: relative;
-  z-index: 2;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--navy) 100%);
 }
 
 .mc-photo-inner {
+  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  background: var(--panel);
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: var(--panel);
 }
 
 .mc-speaker-img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  border-radius: 50%;
-  display: block;
 }
 
 .mc-photo-fallback {
@@ -154,441 +248,212 @@
   justify-content: center;
 }
 
-/* FIXED: previously used width/height: calc(100% + 26px), which as an
-   absolutely-positioned element resolves against .mc-speaker-visual
-   (as wide as the whole left column) rather than against the photo
-   itself — that stretched the "ring" into a wide ellipse. Sizing it
-   off the same --photo-size variable as .mc-photo-ring keeps it a
-   true, perfectly centered circle at any viewport size. */
-.mc-ring-outer {
-  position: absolute;
-  width: calc(var(--photo-size) + 28px);
-  height: calc(var(--photo-size) + 28px);
-  border: 1px solid rgba(32, 63, 120, 0.16);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Speaker Info — now pinned toward the bottom of the left column, since
-   Date/Time/Fee moved above the photo. */
-.mc-speaker-info {
-  flex-shrink: 0;
-  margin-top: auto;
-  text-align: center;
+.mc-speaker-role {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
 .mc-speaker-name {
+  margin: 1px 0 3px;
   font-family: var(--font-display);
-  color: var(--navy);
-  font-size: clamp(18px, 2.5vh, 23px);
-  margin: 0 0 6px;
+  font-size: clamp(15px, 2.2vh, 20px);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  color: var(--navy);
 }
 
 .mc-speaker-meta {
-  color: rgba(20, 30, 50, 0.75);
-  font-size: clamp(10.5px, 1.3vh, 12.5px);
-  margin: 0 0 11px;
-  line-height: 1.5;
-  font-weight: 400;
+  margin: 0;
+  font-size: clamp(10.5px, 1.45vh, 12.5px);
+  line-height: 1.45;
+  color: var(--ink-soft);
 }
 
 .mc-speaker-tags {
+  grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 7px;
+  gap: 4px;
 }
 
 .mc-speaker-tags span {
-  background: rgba(32, 63, 120, 0.1);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(32, 63, 120, 0.08);
   color: var(--navy);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: clamp(9px, 1.1vh, 10.5px);
+  font-size: clamp(9.5px, 1.25vh, 11px);
   font-weight: 700;
 }
 
-/* ─── Facts — 2×2 badge grid, now the last block in the left column ─── */
-.mc-facts-left {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 7px;
-  flex-shrink: 0;
-}
-
-.mc-fact {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(32, 63, 120, 0.07);
-  color: var(--navy);
-  font-size: clamp(9px, 1.05vh, 10.5px);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  padding: clamp(7px, 1.1vh, 9px) 9px;
-  border-radius: 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.mc-fact svg {
-  flex-shrink: 0;
-  stroke-width: 2.4;
-  color: var(--navy);
-}
-
-/* Info grid when placed in the LEFT column (date/time/fee) — now sits near
-   the top of .mc-left, right under the badge, with a bottom rule instead
-   of a top one to separate it from the photo below. */
-.mc-info-grid--left {
-  padding-bottom: clamp(10px, 1.6vh, 14px);
-  border-bottom: 1px solid var(--line);
-}
-
-.mc-info-grid--left .mc-info-box {
-  padding: clamp(8px, 1.3vh, 12px) 6px;
-  border-radius: 9px;
-}
-
-.mc-info-grid--left .mc-info-value {
-  font-size: clamp(14px, 2vh, 18px);
-}
-
-.mc-info-grid--left .mc-info-value--gold {
-  font-size: clamp(15px, 2.2vh, 19px);
-}
-
-.mc-info-grid--left .mc-info-label,
-.mc-info-grid--left .mc-info-sublabel {
-  font-size: clamp(7.5px, 0.9vh, 8.5px);
-}
-
-/* ─── Right Panel ─── */
-.mc-right {
+/* Registration — dark card so the call to action stands out */
+.mc-register {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: clamp(10px, 1.8vh, 20px);
+  padding: clamp(14px, 2.1vh, 24px);
+  border-radius: var(--radius);
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(221, 175, 38, 0.16), transparent 60%),
+    linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  box-shadow: 0 16px 40px rgba(20, 42, 84, 0.22);
+}
+
+.mc-register-head {
+  display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  padding: clamp(20px, 3.4vh, 34px) clamp(24px, 3.2vw, 42px);
-  gap: clamp(10px, 1.5vh, 16px);
-  overflow: hidden;
-  min-width: 0;
+  gap: 8px;
 }
 
-.mc-header {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.mc-title {
-  font-family: var(--font-display);
-  color: var(--ink);
-  font-size: clamp(16px, min(3.6vh, 2.35vw), 33px);
-  margin: 0;
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-
-.mc-title-accent {
-  color: var(--navy);
-}
-
-.mc-subtitle {
-  color: var(--ink-soft);
-  margin: 2px 0 0;
-  font-size: clamp(12.5px, 1.65vh, 15px);
-  line-height: 1.4;
-  font-weight: 400;
-}
-
-/* Facts row — kept for backward compatibility, unused now that facts live
-   in the left column, but harmless to leave in place. */
-.mc-facts-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 5px 16px;
-  margin-top: 8px;
-}
-
-.mc-divider {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(90deg, var(--line), transparent 92%);
-  flex-shrink: 0;
-}
-
-/* Info Grid (base — reused by the left-panel variant above) */
-.mc-info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(8px, 1.1vw, 12px);
-}
-
-.mc-info-box {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 11px;
-  padding: clamp(10px, 1.7vh, 15px) 10px;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.mc-info-box:hover {
-  transform: translateY(-2px);
-}
-
-.mc-info-box--highlight {
-  background: rgba(32, 63, 120, 0.08);
-  border-color: rgba(32, 63, 120, 0.25);
-}
-
-.mc-info-label {
-  color: var(--navy);
-  font-size: clamp(9px, 1.05vh, 10px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 4px;
-}
-
-.mc-info-value {
+.mc-eyebrow {
   font-family: var(--font-mono);
-  color: var(--ink);
-  font-size: clamp(19px, 2.7vh, 25px);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.mc-price {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.4vh, 32px);
   font-weight: 700;
   line-height: 1;
-}
-
-.mc-info-value sup {
-  font-size: 9px;
-  margin-left: 1px;
-}
-
-.mc-info-value--gold {
-  color: var(--navy);
-  font-size: clamp(21px, 3vh, 27px);
-}
-
-.mc-info-sublabel {
-  color: var(--ink-faint);
-  font-size: clamp(9px, 1.05vh, 10px);
-  margin-top: 4px;
-  font-weight: 600;
-}
-
-/* ─── Agenda table (Duration / Session / Demo & Coverage + total row) ─── */
-.mc-agenda {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
-  min-height: 0;
-}
-
-.mc-agenda-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--navy);
-  font-size: clamp(9px, 1.05vh, 10px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  flex-shrink: 0;
-}
-
-.mc-agenda-label svg {
-  flex-shrink: 0;
-}
-
-/* Kept scrollable as a safety net for very short viewports, but the
-   scrollbar itself is now hidden so it never reads as a "scrolling
-   table" — combined with the tighter row padding below, all 8 rows +
-   the total row fit within the card at normal viewport heights, so in
-   practice this never needs to scroll at all. */
-.mc-agenda-scroll {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  scrollbar-width: none;      /* Firefox */
-  -ms-overflow-style: none;   /* old Edge/IE */
-}
-
-.mc-agenda-scroll::-webkit-scrollbar {
-  display: none;              /* Chrome/Safari */
-  width: 0;
-  height: 0;
-}
-
-.mc-agenda-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-.mc-agenda-table thead th {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 1;
-  text-align: left;
-  color: var(--navy);
-  font-family: var(--font-mono);
-  font-size: clamp(9.5px, 1.15vh, 11px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0 10px clamp(5px, 0.8vh, 6.5px);
-  border-bottom: 1.5px solid var(--navy);
-}
-
-.mc-agenda-table tbody td {
-  padding: clamp(5px, 1.05vh, 8.5px) 10px;
-  font-size: clamp(11px, 1.35vh, 13.5px);
-  color: var(--ink);
-  font-weight: 500;
-  line-height: 1.28;
-  border-bottom: 1px solid var(--line);
-}
-
-.mc-agenda-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.mc-agenda-table tbody tr:nth-child(odd) {
-  background: rgba(32, 63, 120, 0.035);
-}
-
-.mc-agenda-col-num {
-  width: 34px;
-  font-family: var(--font-mono);
-  color: var(--navy);
-  font-weight: 700;
-}
-
-.mc-agenda-col-time {
-  width: 112px;
-  font-family: var(--font-mono);
-  color: var(--ink-faint);
-  text-align: left;
-}
-
-.mc-agenda-table tbody .mc-agenda-col-time {
+  color: var(--gold);
   white-space: nowrap;
 }
 
-.mc-agenda-col-session {
-  font-weight: 700;
-  color: var(--ink);
+.mc-price span {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
 }
 
-/* Totals row in <tfoot> — visually closes out the table */
-.mc-agenda-total-row td {
-  padding: clamp(6px, 1.05vh, 9px) 10px;
-  font-size: clamp(11px, 1.35vh, 13.5px);
-  font-weight: 800;
-  color: var(--navy);
-  background: rgba(32, 63, 120, 0.09);
-  border-top: 1.5px solid var(--navy);
-  border-bottom: none;
+.mc-includes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-/* ─── Form ─── */
+.mc-includes li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: clamp(4px, 0.75vh, 8px) 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: clamp(10.5px, 1.4vh, 12.5px);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mc-includes svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+/* Form */
 .mc-form {
   display: flex;
   flex-direction: column;
-  gap: clamp(9px, 1.3vh, 13px);
-  flex-shrink: 0;
+  gap: clamp(8px, 1.3vh, 13px);
 }
 
-.mc-form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 0.85fr;
-  gap: 12px;
+.mc-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(7px, 1.2vh, 12px);
 }
 
 .mc-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .mc-field-label {
-  color: var(--ink-soft);
-  font-size: clamp(9.5px, 1.1vh, 10.5px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  /* visually hidden — placeholders carry the hint, label stays for screen readers */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .mc-field input {
-  background: var(--panel);
-  border: 1px solid rgba(32, 63, 120, 0.18);
-  border-radius: 10px;
-  padding: clamp(10px, 1.6vh, 14px) 13px;
-  color: var(--ink);
-  font-size: clamp(13px, 1.6vh, 14.5px);
-  font-weight: 500;
-  font-family: var(--font-body);
-  outline: none;
-  transition: all 0.2s ease;
   width: 100%;
+  padding: clamp(7px, 1.2vh, 11px) 12px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.8vh, 14.5px);
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mc-field input::placeholder {
-  color: rgba(20, 30, 50, 0.35);
+  color: rgba(20, 30, 50, 0.38);
   font-weight: 400;
 }
 
 .mc-field input:focus {
-  border-color: var(--navy);
-  background: rgba(32, 63, 120, 0.05);
-  box-shadow: 0 0 0 3px rgba(32, 63, 120, 0.12);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(221, 175, 38, 0.3);
 }
 
 .mc-field input:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
 .mc-error {
-  color: #d64545;
-  font-size: clamp(11px, 1.3vh, 12.5px);
   margin: 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #c53030;
+  font-size: 12px;
   font-weight: 600;
 }
 
-/* CTA Button */
 .mc-cta {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-  color: #ffffff;
+  width: 100%;
+  padding: clamp(10px, 1.7vh, 15px);
   border: none;
-  border-radius: 12px;
-  padding: clamp(13px, 2vh, 17px);
-  font-size: clamp(13px, 1.6vh, 14.5px);
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 8px 28px rgba(32, 63, 120, 0.3);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  border-radius: 11px;
+  background: var(--gold);
+  color: var(--navy-ink);
   font-family: var(--font-body);
+  font-size: clamp(12.5px, 1.75vh, 14.5px);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(221, 175, 38, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mc-cta:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 12px 36px rgba(32, 63, 120, 0.4);
+  box-shadow: 0 14px 32px rgba(221, 175, 38, 0.4);
 }
 
 .mc-cta:active:not(:disabled) {
@@ -600,25 +465,219 @@
   cursor: not-allowed;
 }
 
-.mc-cta--small {
-  padding: 11px 22px;
-  font-size: 12.5px;
-  margin-top: 6px;
-  width: auto;
-  display: inline-block;
+.mc-secure-note {
+  margin: 0;
+  text-align: center;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ─── Agenda ─── */
+.mc-agenda {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.3vh, 14px);
+  min-width: 0;
+}
+
+.mc-agenda-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.mc-agenda-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.mc-section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(17px, 2.6vh, 24px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.mc-agenda-summary {
+  font-size: clamp(11px, 1.5vh, 13px);
+  font-weight: 600;
+  color: var(--ink-faint);
+}
+
+.mc-legend {
+  display: flex;
+  gap: 14px;
+  font-size: clamp(10.5px, 1.45vh, 12px);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.mc-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.mc-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.mc-legend-swatch--live {
+  background: var(--gold-soft);
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.mc-legend-swatch--break {
+  border: 1.5px dashed rgba(32, 63, 120, 0.35);
+}
+
+.mc-agenda-cols {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 1.2vw, 18px);
+}
+
+.mc-agenda-block {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(32, 63, 120, 0.06);
+}
+
+.mc-agenda-block-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: clamp(7px, 1.15vh, 11px) 16px;
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.8vh, 15px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.mc-agenda-block-range {
+  font-family: var(--font-mono);
+  font-size: clamp(10.5px, 1.45vh, 12px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Rows grow evenly to fill the column, so larger screens get more
+   breathing room instead of empty space under the table. */
+.mc-agenda-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 2px 0;
+  list-style: none;
+}
+
+.mc-agenda-item {
+  flex: 1 0 auto;
+  display: grid;
+  grid-template-columns: clamp(40px, 6.5vh, 50px) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: clamp(3px, 0.8vh, 10px) 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mc-agenda-list > li:last-child {
+  border-bottom: none;
+}
+
+.mc-agenda-item--live {
+  background: var(--gold-soft);
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.mc-agenda-time {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  line-height: 1.25;
+}
+
+.mc-agenda-time b {
+  font-size: clamp(11px, 1.6vh, 13px);
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.mc-agenda-time small {
+  font-size: clamp(9.5px, 1.35vh, 11px);
+  color: var(--ink-faint);
+}
+
+.mc-agenda-session {
+  font-size: clamp(12px, 1.75vh, 14.5px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.mc-agenda-coverage {
+  margin-top: 1px;
+  font-size: clamp(10.5px, 1.55vh, 13px);
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+/* Breaks: a dashed divider with a centred label */
+.mc-agenda-break {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(3px, 0.55vh, 6px) 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mc-agenda-break::before,
+.mc-agenda-break::after {
+  content: "";
+  flex: 1;
+  border-top: 1.5px dashed rgba(32, 63, 120, 0.25);
+}
+
+.mc-agenda-break span {
+  font-family: var(--font-mono);
+  font-size: clamp(9.5px, 1.3vh, 11px);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
 }
 
 /* ─── Success Modal ─── */
 .mc-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(20, 30, 50, 0.45);
-  backdrop-filter: blur(8px);
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
-  z-index: 100;
+  background: rgba(20, 30, 50, 0.45);
+  backdrop-filter: blur(8px);
   animation: mcFadeIn 0.25s ease;
 }
 
@@ -628,11 +687,11 @@
 }
 
 .mc-popup {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 36px 32px;
-  max-width: 380px;
   width: 100%;
+  max-width: 380px;
+  padding: 36px 32px;
+  border-radius: 18px;
+  background: #fff;
   text-align: center;
   box-shadow: 0 30px 60px rgba(32, 63, 120, 0.25);
   animation: mcSlideUp 0.3s ease;
@@ -644,82 +703,241 @@
 }
 
 .mc-popup-icon {
+  margin-bottom: 10px;
   font-size: 44px;
   line-height: 1;
-  margin-bottom: 10px;
 }
 
 .mc-popup h2 {
-  font-family: var(--font-display);
-  color: var(--ink);
   margin: 0 0 8px;
+  font-family: var(--font-display);
   font-size: 21px;
   font-weight: 700;
+  color: var(--ink);
 }
 
 .mc-popup p {
-  color: #4a5568;
-  font-size: 13.5px;
   margin: 0 0 6px;
+  font-size: 13.5px;
   line-height: 1.5;
-  font-family: var(--font-body);
+  color: #4a5568;
 }
 
-/* ─── Responsive (fallback: scroll allowed only below the
-   breakpoint where a two-panel single-screen layout stops
-   being realistic, e.g. a phone with the keyboard open) ─── */
-@media (max-width: 760px) {
-  html, body { overflow: auto; }
+.mc-cta--small {
+  width: auto;
+  margin-top: 8px;
+  padding: 11px 24px;
+  font-size: 12.5px;
+}
 
-  .mc-page {
-    height: auto;
-    min-height: 100vh;
-    min-height: 100dvh;
-    align-items: flex-start;
-    overflow-y: auto;
-    padding: 16px;
+/* ─── Narrow laptops / landscape tablets ─── */
+@media (max-width: 1180px) {
+  .mc-topbar-copy {
+    grid-template-columns: auto;
   }
 
-  .mc-card {
+  .mc-live-badge,
+  .mc-legend {
+    display: none;
+  }
+
+  .mc-cta {
+    font-size: 12px;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* ─── Short laptop windows (e.g. 1280×720 screens with browser chrome) ─── */
+@media (min-width: 1024px) and (max-height: 640px) {
+  .mc-secure-note {
+    display: none;
+  }
+
+  .mc-includes li {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+}
+
+/* ─── Portrait tablets (768–1023px) ───
+   Agenda spans the full width; a compact trainer card and registration
+   bar sit in one row underneath. Type scales with width here, since a
+   portrait screen has height to spare but not width. */
+@media (max-width: 1023px) and (min-width: 768px) and (orientation: portrait) {
+  .mc-topbar {
     flex-direction: column;
-    height: auto;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 20px;
   }
 
-  .mc-left {
-    flex: none;
-    padding: 22px;
-    gap: 14px;
+  .mc-topbar-copy {
+    grid-template-columns: auto;
   }
-
-  .mc-speaker-visual { margin: 6px 0; --photo-size: 132px; }
-
-  .mc-speaker-info {
-    margin-top: 0;
-  }
-
-  .mc-facts-left {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .mc-info-grid--left {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .mc-right { padding: 22px; gap: 14px; }
 
   .mc-title {
+    font-size: clamp(22px, 3.2vw, 28px);
+  }
+
+  .mc-subtitle {
+    font-size: 13px;
+  }
+
+  .mc-event-meta dd {
+    font-size: 14px;
+  }
+
+  .mc-main {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "agenda agenda"
+      "speaker register";
+  }
+
+  .mc-side { display: contents; }
+  .mc-agenda { grid-area: agenda; gap: 8px; }
+  .mc-speaker { grid-area: speaker; align-content: center; padding: 12px 14px; }
+  .mc-register { grid-area: register; padding: 12px 14px; gap: 8px; }
+
+  .mc-agenda-heading {
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+  }
+
+  .mc-legend,
+  .mc-speaker-tags,
+  .mc-includes,
+  .mc-secure-note {
+    display: none;
+  }
+
+  .mc-agenda-block-head { padding: 7px 14px; font-size: 13.5px; }
+  .mc-agenda-item { padding: 4px 12px; gap: 8px; grid-template-columns: 40px minmax(0, 1fr); }
+  .mc-agenda-break { padding: 3px 12px; }
+  .mc-agenda-session { font-size: 12.5px; }
+  .mc-agenda-coverage { font-size: 11px; line-height: 1.3; }
+  .mc-agenda-time b { font-size: 11.5px; }
+  .mc-agenda-time small { font-size: 10px; }
+
+  .mc-photo-ring { width: 56px; height: 56px; }
+  .mc-speaker-meta { font-size: 11px; }
+
+  .mc-price { font-size: 22px; }
+
+  .mc-form { gap: 8px; }
+
+  .mc-form-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mc-field input {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .mc-cta {
+    padding: 10px;
+    font-size: 12.5px;
+  }
+}
+
+/* ─── Phones: single column, normal scrolling ─── */
+@media (max-width: 767px) {
+  .mc-page {
+    padding: 12px;
+  }
+
+  .mc-shell {
+    min-height: 0;
+  }
+
+  .mc-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .mc-topbar-copy {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  .mc-live-badge {
+    display: inline-flex;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .mc-title {
+    grid-row: 2;
     white-space: normal;
-    font-size: clamp(20px, 5vw, 28px);
+    font-size: 26px;
   }
 
-  .mc-agenda-scroll {
-    flex: none;
-    overflow-y: visible;
+  .mc-title-accent {
+    display: block;
   }
 
-  .mc-form-row { grid-template-columns: 1fr 1fr; }
-  .mc-form-row .mc-field:nth-child(3) { grid-column: span 2; }
+  .mc-subtitle {
+    font-size: 14px;
+  }
 
-  .mc-info-grid { grid-template-columns: 1fr; }
+  .mc-event-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .mc-event-meta > div,
+  .mc-event-meta > div:first-child {
+    padding: 0;
+    border-left: none;
+  }
+
+  .mc-event-meta dd {
+    font-size: 15px;
+  }
+
+  .mc-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Trainer → agenda → registration */
+  .mc-side { display: contents; }
+  .mc-speaker { order: 1; }
+  .mc-agenda { order: 2; }
+  .mc-register { order: 3; }
+
+  .mc-agenda-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .mc-agenda-item {
+    grid-template-columns: 46px minmax(0, 1fr);
+    padding: 10px 14px;
+  }
+
+  .mc-agenda-session { font-size: 14px; }
+  .mc-agenda-coverage { font-size: 12.5px; }
+  .mc-agenda-time b { font-size: 13px; }
+  .mc-agenda-time small { font-size: 11px; }
+
+  .mc-field input {
+    padding: 12px 14px;
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
+
+  .mc-cta {
+    padding: 15px;
+    font-size: 14px;
+  }
 }

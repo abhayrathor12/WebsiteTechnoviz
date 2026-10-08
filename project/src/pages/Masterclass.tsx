@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { createOrder, verifyPayment, RegistrationData } from "../api";
 import "./Masterclass.css";
 import kapimage from "../public/kaps.png";
@@ -20,7 +20,7 @@ function loadRazorpayScript(): Promise<boolean> {
 
 const initialForm: RegistrationData = { name: "", email: "", phone: "" };
 
-// Facts shown inline under the subtitle (replaces the old bottom footer strip)
+// Highlights listed in the registration card
 const facts = [
   {
     label: "8 Hours LIVE",
@@ -43,7 +43,7 @@ const facts = [
     label: "Certificate",
     icon: (
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        <circle cx="12" cy="8" r="6" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
       </svg>
     ),
   },
@@ -57,24 +57,46 @@ const facts = [
   },
 ];
 
-// Session agenda — full-day format: Time / Session / Coverage & Activity
-const agenda = [
-  { time: "9:30–9:45", section: "Pre-Assessment & Introduction", learn: "15–20 MCQs, participant expectations, manufacturing challenges" },
-  { time: "9:45–10:15", section: "Session 1: From Smart to Autonomous Manufacturing", learn: "Industry 1.0–5.0, Connected → Predictive → Intelligent → Agentic → Autonomous Manufacturing" },
-  { time: "10:15–11:00", section: "Session 2: AI & Predictive AI in Manufacturing", learn: "AI/ML basics, manufacturing data, supervised/unsupervised learning, Predictive AI architecture and use cases" },
-  { time: "11:00–11:20", section: "LIVE DEMO 1: Predictive AI", learn: "Machine/process data → anomaly detection → prediction → actionable insight" },
-  { time: "11:20–11:30", section: "Tea Break", learn: "" },
-  { time: "11:30–12:15", section: "Session 3: Generative AI + RAG", learn: "LLM basics, manufacturing knowledge, RAG, embeddings, vector databases, Manufacturing AI Assistant" },
-  { time: "12:15–12:40", section: "LIVE DEMO 2: Manufacturing RAG Assistant", learn: "Manual/SOP → knowledge base → technical question → contextual answer" },
-  { time: "12:40–1:15", section: "Session 4: AI Agents for Manufacturing", learn: "Agent vs chatbot, tools, memory, reasoning, workflows, event-based agents, human-in-the-loop" },
-  { time: "1:15–2:00", section: "Lunch Break", learn: "" },
-  { time: "2:00–2:30", section: "Session 5: AI + PLC / SCADA / IIoT Integration", learn: "OPC UA, MQTT, APIs, Edge, Historian, AI architecture, AI output to CMMS/MES/SCADA" },
-  { time: "2:30–2:50", section: "LIVE DEMO 3: Connected Industrial AI", learn: "PLC/SCADA data → AI analysis → RAG → Agent → maintenance action" },
-  { time: "2:50–4:05", section: "HANDS-ON PRACTICAL: Build an AI Manufacturing Application", learn: "Participants build a working AI application step-by-step" },
-  { time: "4:05–4:15", section: "Tea Break", learn: "" },
-  { time: "4:15–4:55", section: "Manufacturing AI Use-Case Workshop", learn: "Teams identify real problems and develop AI solution concepts" },
-  { time: "4:55–5:15", section: "Multi-Agent & Autonomous Manufacturing", learn: "Production + Quality + Maintenance Agents, orchestration, governance, journey toward autonomy" },
-  { time: "5:15–5:30", section: "Post-Assessment & Wrap-Up", learn: "Same MCQs, pre/post comparison, key takeaways, Q&A" },
+// Session agenda — full-day format, split into Morning / Afternoon columns so
+// all 16 slots fit on one screen. "live" = demo / hands-on (highlighted),
+// "break" = rendered as a thin divider instead of a full row.
+type AgendaItem = {
+  start: string;
+  end: string;
+  section: string;
+  learn?: string;
+  kind?: "live" | "break";
+};
+
+const agendaBlocks: { label: string; range: string; items: AgendaItem[] }[] = [
+  {
+    label: "Morning",
+    range: "9:30 – 1:15",
+    items: [
+      { start: "9:30", end: "9:45", section: "Pre-Assessment & Introduction", learn: "15–20 MCQs, participant expectations, manufacturing challenges" },
+      { start: "9:45", end: "10:15", section: "Session 1: From Smart to Autonomous Manufacturing", learn: "Industry 1.0–5.0, Connected → Predictive → Intelligent → Agentic → Autonomous Manufacturing" },
+      { start: "10:15", end: "11:00", section: "Session 2: AI & Predictive AI in Manufacturing", learn: "AI/ML basics, manufacturing data, supervised/unsupervised learning, Predictive AI architecture and use cases" },
+      { start: "11:00", end: "11:20", section: "LIVE DEMO 1: Predictive AI", learn: "Machine/process data → anomaly detection → prediction → actionable insight", kind: "live" },
+      { start: "11:20", end: "11:30", section: "Tea Break", kind: "break" },
+      { start: "11:30", end: "12:15", section: "Session 3: Generative AI + RAG", learn: "LLM basics, manufacturing knowledge, RAG, embeddings, vector databases, Manufacturing AI Assistant" },
+      { start: "12:15", end: "12:40", section: "LIVE DEMO 2: Manufacturing RAG Assistant", learn: "Manual/SOP → knowledge base → technical question → contextual answer", kind: "live" },
+      { start: "12:40", end: "1:15", section: "Session 4: AI Agents for Manufacturing", learn: "Agent vs chatbot, tools, memory, reasoning, workflows, event-based agents, human-in-the-loop" },
+    ],
+  },
+  {
+    label: "Afternoon",
+    range: "1:15 – 5:30",
+    items: [
+      { start: "1:15", end: "2:00", section: "Lunch Break", kind: "break" },
+      { start: "2:00", end: "2:30", section: "Session 5: AI + PLC / SCADA / IIoT Integration", learn: "OPC UA, MQTT, APIs, Edge, Historian, AI architecture, AI output to CMMS/MES/SCADA" },
+      { start: "2:30", end: "2:50", section: "LIVE DEMO 3: Connected Industrial AI", learn: "PLC/SCADA data → AI analysis → RAG → Agent → maintenance action", kind: "live" },
+      { start: "2:50", end: "4:05", section: "HANDS-ON PRACTICAL: Build an AI Manufacturing Application", learn: "Participants build a working AI application step-by-step", kind: "live" },
+      { start: "4:05", end: "4:15", section: "Tea Break", kind: "break" },
+      { start: "4:15", end: "4:55", section: "Manufacturing AI Use-Case Workshop", learn: "Teams identify real problems and develop AI solution concepts" },
+      { start: "4:55", end: "5:15", section: "Multi-Agent & Autonomous Manufacturing", learn: "Production + Quality + Maintenance Agents, orchestration, governance, journey toward autonomy" },
+      { start: "5:15", end: "5:30", section: "Post-Assessment & Wrap-Up", learn: "Same MCQs, pre/post comparison, key takeaways, Q&A" },
+    ],
+  },
 ];
 
 const agendaTotal = {
@@ -89,14 +111,6 @@ export default function Masterclass() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
-  useEffect(() => {
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = prevOverflow;
-    };
-  }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -186,172 +200,206 @@ export default function Masterclass() {
 
   return (
     <div className="mc-page">
-      <div className="mc-card">
-        {/* LEFT PANEL */}
-        <div className="mc-left">
-          <div className="mc-live-badge">
-            <span className="mc-pulse" />
-            LIVE Masterclass 2026
+      <div className="mc-shell">
+        {/* ─── TOP BAR — title + event details ─── */}
+        <header className="mc-topbar">
+          <div className="mc-topbar-copy">
+            <div className="mc-live-badge">
+              <span className="mc-pulse" />
+              LIVE Masterclass 2026
+            </div>
+            <h1 className="mc-title">
+              Smart Manufacturing <span className="mc-title-accent">&amp; AI Masterclass</span>
+            </h1>
+            <p className="mc-subtitle">From Industry 4.0 &amp; 5.0 to AI-Driven Autonomous Factories</p>
           </div>
 
-          {/* Date / Time / Fee — now at the top of the left column */}
-          <div className="mc-info-grid mc-info-grid--left">
-            <div className="mc-info-box">
-              <div className="mc-info-label">Date</div>
-              <div className="mc-info-value">24<sup>TH</sup></div>
-              <div className="mc-info-sublabel">SAT · OCTOBER 2026</div>
+          <dl className="mc-event-meta">
+            <div>
+              <dt>Date</dt>
+              <dd>Sat, 24 Oct 2026</dd>
             </div>
-            <div className="mc-info-box">
-              <div className="mc-info-label">Time</div>
-              <div className="mc-info-value">9:30 AM</div>
-              <div className="mc-info-sublabel">IST (8 HOURS LIVE)</div>
+            <div>
+              <dt>Time</dt>
+              <dd>9:30 AM IST</dd>
             </div>
-            <div className="mc-info-box mc-info-box--highlight">
-              <div className="mc-info-label">Program Fee</div>
-              <div className="mc-info-value mc-info-value--gold">₹4,999</div>
-              <div className="mc-info-sublabel">+ GST</div>
+            <div>
+              <dt>Duration</dt>
+              <dd>8 Hours Live</dd>
             </div>
-          </div>
+            <div>
+              <dt>Fee</dt>
+              <dd>
+                ₹4,999 <small>+ GST</small>
+              </dd>
+            </div>
+          </dl>
+        </header>
 
-          <div className="mc-speaker-visual">
-            <div className="mc-photo-ring">
-              <div className="mc-photo-inner">
-                {!imgError && (
-                  <img
-                    src={kapimage}
-                    alt="Kapil Khurana"
-                    className="mc-speaker-img"
-                    onError={() => setImgError(true)}
-                  />
-                )}
-                {imgError && (
-                  <div className="mc-photo-fallback">
-                    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="rgba(32,63,120,0.35)" strokeWidth="1.2">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </div>
-                )}
+        <main className="mc-main">
+          {/* ─── SIDE — trainer + registration ─── */}
+          <aside className="mc-side">
+            <div className="mc-speaker">
+              <div className="mc-photo-ring">
+                <div className="mc-photo-inner">
+                  {!imgError && (
+                    <img
+                      src={kapimage}
+                      alt="Kapil Khurana"
+                      className="mc-speaker-img"
+                      onError={() => setImgError(true)}
+                    />
+                  )}
+                  {imgError && (
+                    <div className="mc-photo-fallback">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(32,63,120,0.35)" strokeWidth="1.2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="mc-speaker-text">
+                <span className="mc-speaker-role">Your Trainer</span>
+                <h2 className="mc-speaker-name">Kapil Khurana</h2>
+                <p className="mc-speaker-meta">
+                  Certified SIRI Assessor (CSA)
+                  <br />
+                  Author – Digital Revolution: Industry 4.0 &amp; IIoT
+                  <br />
+                  25+ Years of Industry Experience
+                </p>
+              </div>
+              <div className="mc-speaker-tags">
+                <span>Industrial Automation</span>
+                <span>Smart Manufacturing</span>
+                <span>Digital Transformation</span>
               </div>
             </div>
-            <div className="mc-ring-outer" />
-          </div>
 
-          {/* Speaker info + facts — now pushed to the bottom of the column */}
-          <div className="mc-speaker-info">
-            <h2 className="mc-speaker-name">KAPIL KHURANA</h2>
-            <p className="mc-speaker-meta">
-              Certified SIRI Assessor (CSA)<br />
-              Author – Digital Revolution: Industry 4.0 & IIoT<br />
-              25+ Years of Industry Experience
-            </p>
-            <div className="mc-speaker-tags">
-              <span>Industrial Automation</span>
-              <span>Smart Manufacturing</span>
-              <span>Digital Transformation</span>
+            <div id="register" className="mc-register">
+              <div className="mc-register-head">
+                <span className="mc-eyebrow">Registration</span>
+                <div className="mc-price">
+                  ₹4,999 <span>+ GST</span>
+                </div>
+              </div>
+
+              <ul className="mc-includes">
+                {facts.map((f) => (
+                  <li key={f.label}>
+                    {f.icon}
+                    {f.label}
+                  </li>
+                ))}
+              </ul>
+
+              <form onSubmit={handleSubmit} className="mc-form">
+                <div className="mc-form-fields">
+                  <label className="mc-field">
+                    <span className="mc-field-label">Full Name</span>
+                    <input
+                      type="text"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Your full name"
+                      disabled={loading}
+                    />
+                  </label>
+                  <label className="mc-field">
+                    <span className="mc-field-label">Email</span>
+                    <input
+                      type="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="you@company.com"
+                      disabled={loading}
+                    />
+                  </label>
+                  <label className="mc-field">
+                    <span className="mc-field-label">Phone</span>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                      placeholder="10-digit mobile"
+                      disabled={loading}
+                    />
+                  </label>
+                </div>
+
+                {error && <p className="mc-error">{error}</p>}
+
+                <button type="submit" disabled={loading} className="mc-cta">
+                  {loading ? "Processing Payment..." : "Secure My Seat — ₹4,999 + GST"}
+                </button>
+                <p className="mc-secure-note">Secure payment via Razorpay</p>
+              </form>
             </div>
-          </div>
+          </aside>
 
-          <div className="mc-facts-left">
-            {facts.map((f) => (
-              <span key={f.label} className="mc-fact">
-                {f.icon}
-                {f.label}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* RIGHT PANEL */}
-        <div className="mc-right">
-          <div className="mc-header">
-            <h1 className="mc-title">
-              SMART MANUFACTURING <span className="mc-title-accent">& AI MASTERCLASS</span>
-            </h1>
-            <p className="mc-subtitle">
-              From Industry 4.0 & 5.0 to AI-Driven Autonomous Factories
-            </p>
-          </div>
-
-          <div className="mc-divider" />
-
-          {/* AGENDA TABLE */}
-          <div className="mc-agenda">
-            <div className="mc-agenda-scroll">
-              <table className="mc-agenda-table">
-                <thead>
-                  <tr>
-                    <th className="mc-agenda-col-time">Time</th>
-                    <th className="mc-agenda-col-session">Session</th>
-                    <th>Coverage / Activity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {agenda.map((item, idx) => (
-                    <tr key={idx}>
-                      <td className="mc-agenda-col-time">{item.time}</td>
-                      <td className="mc-agenda-col-session">{item.section}</td>
-                      <td className="mc-agenda-col-learn">{item.learn}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr className="mc-agenda-total-row">
-                    <td className="mc-agenda-col-time">{agendaTotal.time}</td>
-                    <td className="mc-agenda-col-session">{agendaTotal.section}</td>
-                    <td className="mc-agenda-col-learn">{agendaTotal.learn}</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-
-          <div className="mc-divider" />
-
-          <form onSubmit={handleSubmit} className="mc-form">
-            <div className="mc-form-row">
-              <label className="mc-field">
-                <span className="mc-field-label">Full Name</span>
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Your full name"
-                  disabled={loading}
-                />
-              </label>
-              <label className="mc-field">
-                <span className="mc-field-label">Email</span>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="you@company.com"
-                  disabled={loading}
-                />
-              </label>
-              <label className="mc-field">
-                <span className="mc-field-label">Phone</span>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  placeholder="10-digit mobile"
-                  disabled={loading}
-                />
-              </label>
+          {/* ─── AGENDA — Morning / Afternoon side by side ─── */}
+          <section id="agenda" className="mc-agenda">
+            <div className="mc-agenda-head">
+              <div className="mc-agenda-heading">
+                <h2 className="mc-section-title">Full-Day Agenda</h2>
+                <span className="mc-agenda-summary">
+                  {agendaTotal.time} · {agendaTotal.section} · {agendaTotal.learn}
+                </span>
+              </div>
+              <div className="mc-legend">
+                <span>
+                  <i className="mc-legend-swatch mc-legend-swatch--live" />
+                  Live demo / hands-on
+                </span>
+                <span>
+                  <i className="mc-legend-swatch mc-legend-swatch--break" />
+                  Break
+                </span>
+              </div>
             </div>
 
-            {error && <p className="mc-error">{error}</p>}
-
-            <button type="submit" disabled={loading} className="mc-cta">
-              {loading ? "Processing Payment..." : "Secure My Seat — ₹4,999 + GST"}
-            </button>
-          </form>
-        </div>
+            <div className="mc-agenda-cols">
+              {agendaBlocks.map((block) => (
+                <div key={block.label} className="mc-agenda-block">
+                  <div className="mc-agenda-block-head">
+                    <span>{block.label}</span>
+                    <span className="mc-agenda-block-range">{block.range}</span>
+                  </div>
+                  <ol className="mc-agenda-list">
+                    {block.items.map((item) =>
+                      item.kind === "break" ? (
+                        <li key={item.start} className="mc-agenda-break">
+                          <span>
+                            {item.section} · {item.start}–{item.end}
+                          </span>
+                        </li>
+                      ) : (
+                        <li
+                          key={item.start}
+                          className={`mc-agenda-item${item.kind === "live" ? " mc-agenda-item--live" : ""}`}
+                        >
+                          <span className="mc-agenda-time">
+                            <b>{item.start}</b>
+                            <small>{item.end}</small>
+                          </span>
+                          <div className="mc-agenda-body">
+                            <div className="mc-agenda-session">{item.section}</div>
+                            <div className="mc-agenda-coverage">{item.learn}</div>
+                          </div>
+                        </li>
+                      )
+                    )}
+                  </ol>
+                </div>
+              ))}
+            </div>
+          </section>
+        </main>
       </div>
 
       {/* Success Modal */}
@@ -360,7 +408,7 @@ export default function Masterclass() {
           <div className="mc-popup">
             <div className="mc-popup-icon">🎉</div>
             <h2>Registration Successful</h2>
-            <p>Your seat for the Smart Manufacturing & AI Masterclass 2026 is confirmed.</p>
+            <p>Your seat for the Smart Manufacturing &amp; AI Masterclass 2026 is confirmed.</p>
             <p>A confirmation will be sent to your email shortly.</p>
             <button onClick={() => setShowSuccess(false)} className="mc-cta mc-cta--small">
               Close
