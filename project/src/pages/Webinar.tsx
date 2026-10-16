@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 // src/pages/WebinarPage.tsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Select from "react-select";
 import * as z from "zod";
 import { Controller } from "react-hook-form";
-import logo from "../public/logo.png";
+import logo from "../public/logo-opt.webp";
 
 
 
@@ -127,6 +129,7 @@ const WebinarPage: React.FC = () => {
 
   return (
     <>
+      <SEO {...PAGE_SEO["/Webinar-Registration"]} path="/Webinar-Registration" />
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-[#203f78] to-[#1a335a] px-3 sm:px-4 py-5 sm:py-6">
         {/* Background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -144,7 +147,7 @@ const WebinarPage: React.FC = () => {
           >
             <img
               src={logo}
-              alt="Company Logo"
+              alt="Technoviz Automation logo"
               className="h-10 sm:h-14 lg:h-16 object-contain"
             />
           </motion.div>

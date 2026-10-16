@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 // src/pages/ProductsPage.tsx
 
 import React, { useState, useEffect } from "react";
@@ -25,6 +27,7 @@ const ProductsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-[#203f78] to-[#1a335a]">
+      <SEO {...PAGE_SEO["/products"]} path="/products" />
       {/* Product Hero Section - Changed from h-screen to min-h-screen */}
       <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-[#203f78] to-[#1a335a] flex flex-col">
         <div className="absolute inset-0">
@@ -156,7 +159,7 @@ const ProductsPage: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-4 lg:mb-6 font-poppins leading-tight">
+                  <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-4 lg:mb-6 font-poppins leading-tight">
                     <span className="relative block">
                       Premium
                       <motion.div
@@ -168,7 +171,7 @@ const ProductsPage: React.FC = () => {
                     <span className="text-transparent bg-clip-text bg-[#ddaf26] block">
                       Digital Services
                     </span>
-                  </h2>
+                  </h1>
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

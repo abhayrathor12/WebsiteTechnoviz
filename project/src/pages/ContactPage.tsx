@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Building2, Globe } from 'lucide-react';
@@ -75,6 +77,7 @@ const ContactPage = () => {
 
   return (
     <div className="pt-20">
+      <SEO {...PAGE_SEO["/contact"]} path="/contact" />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-[#203f78] to-[#2c5aa0] text-white overflow-hidden">
         <div className="container mx-auto px-4">

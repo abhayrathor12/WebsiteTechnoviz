@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { Wifi, Shield, Zap, Globe, Network, Server, Activity, Lock, TrendingUp, Cloud } from 'lucide-react';
 
@@ -72,6 +74,7 @@ export default function NetworkingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <SEO {...PAGE_SEO["/network"]} path="/network" />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#203f78] to-[#2d5aa3] text-white">
         <div className="absolute inset-0 opacity-10">

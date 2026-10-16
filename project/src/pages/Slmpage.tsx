@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { GraduationCap, Eye, EyeOff, Mail, Globe, CheckCircle2, ArrowRight } from 'lucide-react';
 import { toast } from 'react-toastify';
 import api from '../data/api';
-import kapil from '../public/k3-removebg-preview.png';
+import kapil from '../public/k3-removebg-preview.webp';
 import smallogo from '../public/logo-.png';
-import biglogo from '../public/logo1.png';
+import biglogo from '../public/logo1.webp';
 import heroimage from '../public/heroimage.webp';
 import programmeData from '../data/programmeData.json';
-import certimg from '../public/certi.png';
+import certimg from '../public/certi.webp';
 import coe1 from '../public/DSC03518.jpg';
 import coe2 from '../public/DSC03520.jpg';
-import coe3 from '../public/coe3.png';
+import coe3 from '../public/coe3.webp';
 import coe4 from '../public/coe4.jpg';
 import Header from "../components/Header"
 const Login = () => {

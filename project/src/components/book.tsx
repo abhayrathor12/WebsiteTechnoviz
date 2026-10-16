@@ -149,11 +149,11 @@ const BookSection = () => {
             
             {/* Title Section */}
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-4xl font-black text-[#203f78] leading-tight">
+              <h2 className="text-5xl lg:text-4xl font-black text-[#203f78] leading-tight">
   <span className="bg-gradient-to-r from-[#203f78] to-[#2d4f88] bg-clip-text text-transparent ">
     Book “Digital Revolution”
   </span>
-</h1>
+</h2>
 
               <div className="flex items-center space-x-3">
                 <div className="h-1 w-20 bg-gradient-to-r from-[#ddaf26] to-transparent rounded-full" />

@@ -26,33 +26,33 @@ import image from "../pdfs/Image Processing System - Technoviz Automation.pdf"
 
 
 import digital_image from '../public/Digitization.webp';
-import digital_image2 from '../public/digital2.png';
-import digital_image3 from '../public/digital3.png';
-import digital_image4 from '../public/digital4.png';
+import digital_image2 from '../public/digital2.webp';
+import digital_image3 from '../public/digital3.webp';
+import digital_image4 from '../public/digital4.webp';
 import IIOT from '../public/Industry4.0 (1).webp';
 import Indus from '../public/comm1.webp';
 import cyber from '../public/cyber.webp';
 import Automation from '../public/automation1.webp';
 import Aihero from '../public/ai2.webp';
 
-import Oeeimage1 from '../public/Oeeimage.jpg';
-import Oeeimage2 from '../public/oee2.png';
-import Oeeimage3 from '../public/oee3.png';
-import Oeeimage4 from '../public/oee4.png';
-import emsimage1 from '../public/emsimage.jpg';
-import emsimage2 from '../public/ems2.png';
-import emsimage3 from '../public/ems3.png';
+import Oeeimage1 from '../public/Oeeimage.webp';
+import Oeeimage2 from '../public/oee2.webp';
+import Oeeimage3 from '../public/oee3.webp';
+import Oeeimage4 from '../public/oee4.webp';
+import emsimage1 from '../public/emsimage.webp';
+import emsimage2 from '../public/ems2.webp';
+import emsimage3 from '../public/ems3.webp';
 import emsimage4 from '../public/ems4.png';
 
-import immerimage1 from '../public/immersizimage.jpg';
-import immerimage2 from '../public/immersi2.png';
-import immerimage3 from '../public/immersi3.png';
-import immerimage4 from '../public/immersi4.png';
-import utilityimage1 from '../public/utilityimage.jpg';
+import immerimage1 from '../public/immersizimage.webp';
+import immerimage2 from '../public/immersi2.webp';
+import immerimage3 from '../public/immersi3.webp';
+import immerimage4 from '../public/immersi4.webp';
+import utilityimage1 from '../public/utilityimage.webp';
 import utilityimage2 from '../public/utility2.jpg';
 import utilityimage3 from '../public/utility3.jpg';
-import utilityimage4 from '../public/utility4.jpg';
-import visionimage1 from '../public/visionimage.jpg';
+import utilityimage4 from '../public/utility4.webp';
+import visionimage1 from '../public/visionimage.webp';
 
 
 

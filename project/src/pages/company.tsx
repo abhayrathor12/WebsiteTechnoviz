@@ -1,10 +1,12 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState } from 'react';
 import { Download, ArrowRight, Factory, Shield, Cpu, Cloud, Eye, X, ChevronLeft, ChevronRight, FileText, Package, Settings, Network, Zap, Server } from 'lucide-react';
 import { Link } from "react-router-dom";
 import vid2 from "../public/vid3.mp4"
-import whatwedo from "../public/image122.png"
+import whatwedo from "../public/image122.webp"
 import about from "../public/about2.jpg"
-import our from "../public/comp01.png"
+import our from "../public/comp01.webp"
 import tech from "../pdfs/Technoviz Automation.pdf"
 import quality from "../pdfs/Technoviz Quality Inspection brochure.pdf"
 import utility from "../pdfs/Technibiz Utility360 Brochure.pdf"
@@ -131,6 +133,7 @@ const Company = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <SEO {...PAGE_SEO["/company"]} path="/company" />
       {/* Header */}
       <header className="bg-white shadow-lg sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -140,7 +143,7 @@ const Company = () => {
                 <Factory className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900">Technoviz</h1>
+                <p className="text-lg sm:text-xl font-bold text-gray-900">Technoviz</p>
                 <p className="text-xs sm:text-sm text-gray-600">Automation Solutions</p>
               </div>
             </div>
@@ -160,12 +163,12 @@ const Company = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
             {/* Left side - Text content */}
             <div className="text-center lg:text-left order-2 lg:order-1">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 lg:mb-6">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 lg:mb-6">
                 Smart Solutions for
                 <span className="block bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
                   Industry 4.0
                 </span>
-              </h2>
+              </h1>
               <p className="text-sm sm:text-base lg:text-lg text-blue-100 mb-4 sm:mb-6 max-w-md mx-auto lg:mx-0">
                 Leveraging Big Data, IoT, Cloud Services, and Cyber Security to create intelligent manufacturing solutions that drive sustainable and efficient operations.
               </p>

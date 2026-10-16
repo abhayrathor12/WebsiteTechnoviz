@@ -1,3 +1,6 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
+import { loadRazorpayScript } from "../utils/razorpay";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
@@ -6,7 +9,7 @@ import Select from "react-select";
 import * as z from "zod";
 import { Controller } from "react-hook-form";
 import logo from "../public/aurex.png";
-import sumeet from "../public/summet.png";
+import sumeet from "../public/summet.webp";
 // import mentorPhoto from "../public/sumeet.jpg";
 
 const formSchema = z.object({
@@ -168,6 +171,10 @@ const WebinarPage: React.FC = () => {
                 },
             };
 
+            if (!(await loadRazorpayScript())) {
+                throw new Error("Could not load Razorpay checkout");
+            }
+
             const razorpay = new window.Razorpay(options);
 
             razorpay.open();
@@ -182,6 +189,7 @@ const WebinarPage: React.FC = () => {
 
     return (
         <>
+            <SEO {...PAGE_SEO["/Aurex-Webinar-Registration"]} path="/Aurex-Webinar-Registration" />
             <div className="min-h-screen flex flex-col font-sans" style={{ background: "#f0f2f5" }}>
 
                 {/* ── MAIN CONTENT ── */}

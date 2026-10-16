@@ -246,6 +246,10 @@ const Hero: React.FC = () => {
       <div className="carousel-content relative z-10 flex-1 flex items-center pb-4">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
+            {/* The page's one H1, kept outside the carousel so Google always sees the same main heading */}
+            <h1 className="text-sm md:text-base font-semibold uppercase tracking-[0.2em] text-white/80 mb-4">
+              Industry 4.0 &amp; Industrial Automation Solutions
+            </h1>
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeSlide}

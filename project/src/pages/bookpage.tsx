@@ -1,11 +1,14 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import { ArrowRight, Star, PlayCircle } from 'lucide-react';
-import book12 from "../public/book12.jpg";
+import book12 from "../public/book12.webp";
 import book122 from "../public/boook4.webp";
 import { Link } from "react-router-dom";
 
 const BookPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <SEO {...PAGE_SEO["/book"]} path="/book" />
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-6">
         <div className="max-w-7xl mx-auto pt-4">

@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import {
     Activity,
@@ -36,7 +38,7 @@ import {
     Wifi,
     X,
 } from "lucide-react";
-import technovizlogo from "../public/logo1.png"
+import technovizlogo from "../public/logo1.webp"
 import aurexlogo from "../public/aurex.png"
 
 // ---------------------------------------------------------------------------
@@ -328,6 +330,7 @@ export default function Ideathon() {
                     "'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             }}
         >
+            <SEO {...PAGE_SEO["/Ideathon"]} path="/Ideathon" />
             {/* Clean, simple, highly-legible font for the whole page */}
             <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');`}</style>
 

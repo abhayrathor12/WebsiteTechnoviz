@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -30,6 +32,7 @@ const ServicesPage: React.FC = () => {
 
   return (
     <div className="pt-6">
+      <SEO {...PAGE_SEO["/services"]} path="/services" />
       {/* Revolutionary Hero Section */}
       <section className="relative min-h-[80vh] sm:min-h-screen overflow-hidden bg-gradient-to-br from-[#203f78] via-[#1a335a] to-[#203f78]">
         {/* Animated Background */}

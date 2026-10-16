@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, ArrowRight, BookOpen, UserCheck, Lightbulb, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../public/Techlogo.png";
+import logo from "../public/Techlogo.webp";
 import { services, products } from "../data/mockData";
 import { SiPython, SiReact, SiMysql, SiAndroid } from "react-icons/si";
 import AZuree from "../public/az.png";

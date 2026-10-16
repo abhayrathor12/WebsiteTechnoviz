@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -17,7 +19,7 @@ import { FaIndustry, FaCheckCircle, FaExclamationTriangle, FaChartBar, FaChartPi
 import { MdDashboard, MdProductionQuantityLimits } from "react-icons/md";
 import { AiFillThunderbolt } from "react-icons/ai";
 import client from "../types/mqtt";
-import logo from "../public/logo.jpg";
+import logo from "../public/logo.webp";
 
 interface MQTTStatus {
   ProductionValue: number;
@@ -127,6 +129,7 @@ const MQTTDashboard: React.FC = () => {
 
   return (
     <div className="h-screen w-screen bg-gradient-to-br from-gray-900 via-[#203f78] to-[#1a335a] relative overflow-hidden flex items-center justify-center">
+      <SEO {...PAGE_SEO["/Live-Production"]} path="/Live-Production" />
       {/* Animated Background Blobs - Hidden on mobile */}
       <motion.div
         className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-[#203f78]/30 to-[#2a4d8a]/30 rounded-full blur-3xl hidden sm:block"
@@ -161,7 +164,7 @@ const MQTTDashboard: React.FC = () => {
 
           {/* Center: Logo */}
           <div className="flex items-center justify-center flex-shrink-0">
-            <img src={logo} alt="Logo" className="h-6 sm:h-8 md:h-10 w-auto object-contain" />
+            <img src={logo} alt="Technoviz Automation logo" className="h-6 sm:h-8 md:h-10 w-auto object-contain" />
             <span className="text-[10px] sm:text-xs text-gray-300 ml-1 sm:ml-2 font-semibold hidden xs:inline">TechnoViz</span>
           </div>
 

@@ -1,23 +1,10 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import { useState, FormEvent } from "react";
 import { createOrder, verifyPayment, RegistrationData } from "../api";
 import "./Masterclass.css";
-import kapimage from "../public/kaps.png";
-const RAZORPAY_SCRIPT_SRC = "https://checkout.razorpay.com/v1/checkout.js";
-
-function loadRazorpayScript(): Promise<boolean> {
-  return new Promise((resolve) => {
-    if ((window as any).Razorpay) {
-      resolve(true);
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = RAZORPAY_SCRIPT_SRC;
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
-}
-
+import { loadRazorpayScript } from "../utils/razorpay";
+import kapimage from "../public/kaps.webp";
 const initialForm: RegistrationData = { name: "", email: "", phone: "" };
 
 // Highlights listed in the registration card
@@ -200,6 +187,7 @@ export default function Masterclass() {
 
   return (
     <div className="mc-page">
+      <SEO {...PAGE_SEO["/Smart-Manufacturing-AI-Masterclass"]} path="/Smart-Manufacturing-AI-Masterclass" />
       <div className="mc-shell">
         {/* ─── TOP BAR — title + event details ─── */}
         <header className="mc-topbar">

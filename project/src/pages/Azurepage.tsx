@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { Cloud, Server, Database, Lock, Zap, Globe, BarChart3, Code, Cpu, Shield, GitBranch, Boxes } from 'lucide-react';
 import { Link } from "react-router-dom";
@@ -45,6 +47,7 @@ const AzurePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <SEO {...PAGE_SEO["/azure"]} path="/azure" />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#203f78] to-[#1a3260] text-white">
         <div className="absolute inset-0 overflow-hidden">

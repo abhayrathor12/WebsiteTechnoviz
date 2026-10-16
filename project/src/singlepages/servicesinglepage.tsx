@@ -18,13 +18,20 @@ import {
 } from 'lucide-react';
 import { services } from '../data/singlepagemockdata';
 import { useParams, Link } from 'react-router-dom';
+import SEO, { fitDescription, withBrand } from '../components/SEO';
+import { SERVICE_SEO } from '../seo/pages.js';
 
 const SingleServicePage: React.FC = () => {
 const { slug } = useParams<{ slug: string }>();
   const service = services.find((s) => s.slug === slug);
 
   if (!service) {
-    return <div className="text-center py-20">Service not found.</div>;
+    return (
+      <div className="text-center py-20">
+        <SEO title="Service Not Found | Technoviz Automation" description="The service you are looking for could not be found." noindex />
+        Service not found.
+      </div>
+    );
   }
 
   // Get other services for the "Explore More Services" section
@@ -67,6 +74,12 @@ const { slug } = useParams<{ slug: string }>();
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title={SERVICE_SEO[service.slug]?.title ?? withBrand(service.seo_meta_title)}
+        description={SERVICE_SEO[service.slug]?.description ?? fitDescription(service.short_description, service.seo_description)}
+        path={`/services/${service.slug}`}
+        image={service.hero_image}
+      />
       {/* Enhanced Hero Section with #203f78 theme */}
       <section ref={heroRef} className="relative bg-gradient-to-br from-[#203f78] via-[#2d4a8a] to-[#1a3564] py-20 overflow-hidden">
         {/* Animated Background Pattern */}

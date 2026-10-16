@@ -1,7 +1,9 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Lightbulb, GraduationCap, Brain, Zap, Users, Award, TrendingUp, CheckCircle, ArrowRight } from 'lucide-react';
 import { Link } from "react-router-dom";
-import book122 from "../public/book122.jpg";
+import book122 from "../public/book122.webp";
 
 const knowledgeData = [
   {
@@ -87,6 +89,7 @@ const FloatingIcon = ({ Icon, delay, x, y }) => {
 const KnowledgePage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <SEO {...PAGE_SEO["/learning"]} path="/learning" />
       {/* Hero Section */}
       <section className="relative overflow-hidden" style={{ backgroundColor: '#203f78' }}>
         <div className="absolute inset-0 overflow-hidden">

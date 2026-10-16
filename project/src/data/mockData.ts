@@ -1,5 +1,5 @@
 import { Service, Product, CaseStudy, BlogPost, Job } from '../types';
-import Case1 from '../public/Case-1.jpg';
+import Case1 from '../public/Case-1.webp';
 import CaseS1 from '../public/Case-Study-1-Tech3.webp.bv.webp';
 import CaseS2 from '../public/cases2.webp';
 import CaseS3 from '../public/caseS4.webp';
@@ -19,12 +19,12 @@ import {
   Check,
   BarChart,
 } from "lucide-react";
-import Oeeimage from '../public/Oeeimage.jpg';
-import emsimage from '../public/emsimage.jpg';
+import Oeeimage from '../public/Oeeimage.webp';
+import emsimage from '../public/emsimage.webp';
 
-import immerimage from '../public/immersizimage.jpg';
-import utilityimage from '../public/utilityimage.jpg';
-import visionimage from '../public/visionimage.jpg';
+import immerimage from '../public/immersizimage.webp';
+import utilityimage from '../public/utilityimage.webp';
+import visionimage from '../public/visionimage.webp';
 import digital_image from '../public/Digitization.webp';
 import aiinn from '../public/ai2.webp';
 import IIOT from '../public/Industry4.0 (1).webp';

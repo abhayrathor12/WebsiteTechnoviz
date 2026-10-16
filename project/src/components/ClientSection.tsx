@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Maruti from '../public/Maruti.png';
+import Maruti from '../public/Maruti.webp';
 import Honda from '../public/Honda.png';
 import MultiTech from '../public/multi.png';
 import Jubilant from '../public/jubilent.png';

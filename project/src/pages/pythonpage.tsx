@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import { Code, Database, Brain, Zap, Globe, BarChart3, ChevronRight, Check } from 'lucide-react';
 import pyt from "../public/python.webp";
 import jav from "../public/java.png";
@@ -33,6 +35,7 @@ const PythonPage = () => {
 
   return (
     <div className="bg-gradient-to-b from-slate-50 to-white">
+      <SEO {...PAGE_SEO["/python"]} path="/python" />
       {/* Hero Section */}
       <div className="relative min-h-[60vh] sm:min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#203f78] via-[#2a5294] to-[#1a3361]">
         {/* Animated Background Grid */}

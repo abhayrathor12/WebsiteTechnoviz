@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Calendar, TrendingUp, Award, ArrowRight, Star, Users, Target, Lightbulb, Search, BookOpen, Filter, X, ChevronDown, Edit, FileText, PenTool, User } from 'lucide-react';
 import { caseStudies, blogPosts as mockBlogPosts } from '../data/mockData';
@@ -189,6 +191,7 @@ const CaseStudiesAndBlogsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <SEO {...PAGE_SEO["/case-studies"]} path="/case-studies" />
       {/* Hero Section */}
       <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #203f78 0%, #1a2b5c 50%, #0f1937 100%)' }}>
         <div className="absolute inset-0 bg-black/10"></div>

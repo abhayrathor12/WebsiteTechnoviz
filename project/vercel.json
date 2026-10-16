@@ -1,5 +1,13 @@
 {
+  "trailingSlash": false,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/sitemap.xml", "destination": "https://websitebackend.pythonanywhere.com/sitemap.xml" },
+    { "source": "/(.*)", "destination": "/api/render?path=$1" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
   ]
 }

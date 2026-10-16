@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowUpRight } from 'lucide-react';
-import Oeeimage from '../public/Oeeimage.jpg';
-import emsimage from '../public/emsimage.jpg';
-import digitalimage from '../public/Digitalimage.jpg';
-import immerimage from '../public/immersizimage.jpg';
-import utilityimage from '../public/utilityimage.jpg';
-import visionimage from '../public/visionimage.jpg';
+import Oeeimage from '../public/Oeeimage.webp';
+import emsimage from '../public/emsimage.webp';
+import digitalimage from '../public/Digitalimage.webp';
+import immerimage from '../public/immersizimage.webp';
+import utilityimage from '../public/utilityimage.webp';
+import visionimage from '../public/visionimage.webp';
 
 const products = [
   {

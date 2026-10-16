@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { Code, Zap, Box, Layers, RefreshCw, GitBranch, Cpu, Rocket } from 'lucide-react';
 import { Link } from "react-router-dom";
@@ -166,6 +168,7 @@ const ReactPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <SEO {...PAGE_SEO["/react"]} path="/react" />
       {/* Hero Section */}
       <div className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #203f78 0%, #1a3360 100%)' }}>
         <div className="absolute inset-0 opacity-10">

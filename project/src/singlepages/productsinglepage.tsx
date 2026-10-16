@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
+import SEO, { fitDescription, withBrand } from "../components/SEO";
+import { PRODUCT_SEO } from "../seo/pages.js";
 import {
   ArrowLeft, Star, CheckCircle, Mail, ExternalLink, Lightbulb, Award, Zap,
   ChevronLeft, ChevronRight, ArrowRight, Package, FileText, Download
@@ -18,6 +20,7 @@ const SingleProductPage = () => {
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center text-gray-600">
+        <SEO title="Product Not Found | Technoviz Automation" description="The product you are looking for could not be found." noindex />
         <p>Product not found.</p>
       </div>
     );
@@ -109,6 +112,12 @@ const SingleProductPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title={PRODUCT_SEO[product.slug]?.title ?? withBrand(product.seo_meta_title)}
+        description={PRODUCT_SEO[product.slug]?.description ?? fitDescription(product.tagline, product.seo_description)}
+        path={`/products/${product.slug}`}
+        image={product.hero_image}
+      />
       {/* Back Navigation */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

@@ -1,35 +1,37 @@
+import { lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./MainLayout";
 import BlankLayout from "./BlankLayout";
 
-// Pages
+// Pages. The homepage loads right away; every other page downloads only when visited.
 import HomePage from "./pages/HomePage";
-import ServicesPage from "./pages/ServicesPage";
-import ContactPage from "./pages/ContactPage";
-import ProductsPage from "./pages/ProductsPage";
-import BlogPages from "./pages/BlogPages";
-import Casestudies from "./pages/Casestudies";
-import SingleServicePage from "./singlepages/servicesinglepage";
-import SingleProductPage from "./singlepages/productsinglepage";
-import SingleBlogPage from "./singlepages/blogsinglepage";
-import CompanyPage from "./pages/company";
-import BookPage from "./pages/bookpage";
-import CoePage from "./pages/coepage";
-import PythonPage from "./pages/pythonpage";
-import ReactPage from "./pages/reactpage";
-import AzurePage from "./pages/Azurepage";
-import NetworkingPage from "./pages/networkingpage";
-import MysqlPage from "./pages/mysqlpage";
-import AndroidPage from "./pages/andriodpage";
-import KnowledgePage from "./pages/knowledgepage";
-import Webinar from "./pages/Webinar";
-import Paymentpage from "./pages/PaymentPage";
-import MQTTDashboard from "./pages/MqttDashboard";
-import MasterclassPage from "./pages/Masterclass";
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const BlogPages = lazy(() => import("./pages/BlogPages"));
+const Casestudies = lazy(() => import("./pages/Casestudies"));
+const SingleServicePage = lazy(() => import("./singlepages/servicesinglepage"));
+const SingleProductPage = lazy(() => import("./singlepages/productsinglepage"));
+const SingleBlogPage = lazy(() => import("./singlepages/blogsinglepage"));
+const CompanyPage = lazy(() => import("./pages/company"));
+const BookPage = lazy(() => import("./pages/bookpage"));
+const CoePage = lazy(() => import("./pages/coepage"));
+const PythonPage = lazy(() => import("./pages/pythonpage"));
+const ReactPage = lazy(() => import("./pages/reactpage"));
+const AzurePage = lazy(() => import("./pages/Azurepage"));
+const NetworkingPage = lazy(() => import("./pages/networkingpage"));
+const MysqlPage = lazy(() => import("./pages/mysqlpage"));
+const AndroidPage = lazy(() => import("./pages/andriodpage"));
+const KnowledgePage = lazy(() => import("./pages/knowledgepage"));
+const Webinar = lazy(() => import("./pages/Webinar"));
+const Paymentpage = lazy(() => import("./pages/PaymentPage"));
+const MQTTDashboard = lazy(() => import("./pages/MqttDashboard"));
+const MasterclassPage = lazy(() => import("./pages/Masterclass"));
 // Components
 import ScrollToTop from "./components/ScrollToTop";
-import Ideathon from "./pages/IdeathonPage";
+const Ideathon = lazy(() => import("./pages/IdeathonPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 const App: React.FC = () => {
   return (
     <Router>
@@ -59,6 +61,7 @@ const App: React.FC = () => {
           <Route path="/mysql" element={<MysqlPage />} />
           <Route path="/android" element={<AndroidPage />} />
           <Route path="/learning" element={<KnowledgePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
 
         {/* ===================== */}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Live-Production
+
+Sitemap: https://www.technovizautomation.com/sitemap.xml

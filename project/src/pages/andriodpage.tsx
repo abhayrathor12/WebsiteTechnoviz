@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { Smartphone, Cpu, Code, Zap, Globe, Shield, Layers, TrendingUp } from 'lucide-react';
 import { Link } from "react-router-dom";
@@ -13,6 +15,7 @@ export default function AndroidPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <SEO {...PAGE_SEO["/android"]} path="/android" />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#203f78] to-[#2d5aa8]">
         <div className="absolute inset-0 opacity-10">

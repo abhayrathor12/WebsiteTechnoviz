@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import PageLoader from "./components/PageLoader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Chatbot from "./components/Chatbot";
@@ -10,7 +12,9 @@ const MainLayout: React.FC = () => {
       <Header />
 
       <main>
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
         <Chatbot />
       </main>
 

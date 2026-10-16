@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import  { useRef, useEffect } from 'react';
 import { Award, Users, BookOpen, TrendingUp, Building, Target, Lightbulb, Globe, Briefcase, GraduationCap } from 'lucide-react';
 import * as THREE from 'three';
@@ -260,6 +262,7 @@ const CoePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO {...PAGE_SEO["/coe"]} path="/coe" />
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-[#203f78] via-[#2a4a88] to-[#203f78] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>

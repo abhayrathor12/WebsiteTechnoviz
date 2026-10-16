@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { Database, Shield, Zap, Server, TrendingUp, Code, Lock, Globe, BarChart3, CheckCircle } from 'lucide-react';
 import { Link } from "react-router-dom";
@@ -39,6 +41,7 @@ export default function MySQLPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
+      <SEO {...PAGE_SEO["/mysql"]} path="/mysql" />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#203f78] via-[#2a5294] to-[#1a2f5a]">
         <div className="absolute inset-0 opacity-10">

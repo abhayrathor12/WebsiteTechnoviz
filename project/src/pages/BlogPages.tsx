@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Search, Calendar, User, ArrowRight, BookOpen, Filter, X, ChevronDown, Edit, FileText, PenTool } from 'lucide-react';
 
@@ -5,7 +7,7 @@ import { Search, Calendar, User, ArrowRight, BookOpen, Filter, X, ChevronDown, E
 import { blogPosts as mockBlogPosts } from '../data/mockData';
 
 // API fetch
-import { fetchBlogs, BlogPost } from "../data/blogAPI";
+import { fetchBlogs, mergeBlogPosts, BlogPost } from "../data/blogAPI";
 
 import { Link } from 'react-router-dom';
 
@@ -88,7 +90,7 @@ const BlogsPage: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Combined posts: mock + API
-  const [allBlogPosts, setAllBlogPosts] = useState<BlogPost[]>(mockBlogPosts);
+  const [allBlogPosts, setAllBlogPosts] = useState<BlogPost[]>(() => mergeBlogPosts(mockBlogPosts, []));
   const [loadingApi, setLoadingApi] = useState(true);
 
   // Fetch API blogs on mount
@@ -96,11 +98,11 @@ const BlogsPage: React.FC = () => {
     const loadApiBlogs = async () => {
       try {
         const apiPosts = await fetchBlogs();
-        setAllBlogPosts([...mockBlogPosts, ...apiPosts]);
+        setAllBlogPosts(mergeBlogPosts(mockBlogPosts, apiPosts));
       } catch (err) {
         console.error("Failed to load API blogs:", err);
         // Fall back to just mock data
-        setAllBlogPosts(mockBlogPosts);
+        setAllBlogPosts(mergeBlogPosts(mockBlogPosts, []));
       } finally {
         setLoadingApi(false);
       }
@@ -192,6 +194,7 @@ const BlogsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20">
+      <SEO {...PAGE_SEO["/blogs"]} path="/blogs" />
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-[#203f78] via-[#203f78]/90 to-[#203f78]/80 overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>

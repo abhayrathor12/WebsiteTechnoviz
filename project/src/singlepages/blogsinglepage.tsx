@@ -13,7 +13,7 @@ import {
 import { services } from "../data/mockData";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import SEO, { SITE_URL, withBrand } from "../components/SEO";
 // Import mock blogs (original static data)
 import { blogPosts as mockBlogPosts } from "../data/singlepageblogdata";
 
@@ -246,6 +246,11 @@ const SingleBlogPage = () => {
   if (error || !blogPost) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <SEO
+          title="Blog Post Not Found | Technoviz Automation"
+          description="The article you are looking for could not be found."
+          noindex
+        />
         <div className="text-center">
           <h1 className="text-3xl font-bold text-[#203f78] mb-4">
             {error || "Blog Post Not Found"}
@@ -263,60 +268,43 @@ const SingleBlogPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{blogPost.seo_title || blogPost.title}</title>
-
-        <meta
-          name="description"
-          content={blogPost.seo_description || blogPost.excerpt}
-        />
-
-        <link
-          rel="canonical"
-          href={`https://www.technovizautomation.com/blogs/${blogPost.slug}`}
-        />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={blogPost.seo_title || blogPost.title} />
-        <meta property="og:description" content={blogPost.seo_description || blogPost.excerpt} />
-        <meta property="og:image" content={blogPost.featured_image} />
-        <meta property="og:url" content={`https://www.technovizautomation.com/blogs/${blogPost.slug}`} />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={blogPost.seo_title || blogPost.title} />
-        <meta name="twitter:description" content={blogPost.seo_description || blogPost.excerpt} />
-        <meta name="twitter:image" content={blogPost.featured_image} />
-
-        {/* Structured Data */}
+      <SEO
+        title={withBrand(blogPost.seo_meta_title || blogPost.title)}
+        description={blogPost.seo_description || blogPost.excerpt}
+        path={`/blogs/${blogPost.slug}`}
+        image={blogPost.featured_image}
+        type="article"
+      >
+        <meta property="article:published_time" content={blogPost.publish_date} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: blogPost.title,
-            description: blogPost.excerpt,
+            description: blogPost.seo_description || blogPost.excerpt,
             image: blogPost.featured_image,
             author: {
               "@type": "Organization",
               name: blogPost.author,
+              url: SITE_URL,
             },
             publisher: {
               "@type": "Organization",
               name: "Technoviz Automation",
               logo: {
                 "@type": "ImageObject",
-                url: "https://www.technovizautomation.com/logo.png",
+                url: `${SITE_URL}/logo.png`,
               },
             },
             datePublished: blogPost.publish_date,
+            keywords: blogPost.tags.join(", "),
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://www.technovizautomation.com/blogs/${blogPost.slug}`,
+              "@id": `${SITE_URL}/blogs/${blogPost.slug}`,
             },
           })}
         </script>
-      </Helmet>
+      </SEO>
 
       <div className="min-h-screen bg-gray-50">
         {/* Header Navigation */}

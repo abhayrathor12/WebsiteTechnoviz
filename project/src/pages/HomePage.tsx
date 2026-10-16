@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../seo/pages.js";
 import React, { Suspense, lazy } from "react";
 import { useInView } from "react-intersection-observer";
 import Hero from "../components/Hero";
@@ -32,6 +34,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
+      <SEO {...PAGE_SEO["/"]} path="/" />
       {/* Hero loads instantly */}
       <Hero />
 

@@ -3,13 +3,23 @@ import { Calendar, User, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from "react-router-dom";
 import { useInView } from 'react-intersection-observer';
-import { blogPosts } from '../data/mockData'; 
+import { useEffect, useState } from 'react';
+import { blogPosts as localPosts } from '../data/mockData';
+import { fetchBlogs, mergeBlogPosts, BlogPost } from '../data/blogAPI';
 const BlogLayout = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
- 
+
+  // Show the newest posts from the backend; fall back to the local posts if it is unreachable
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(() => mergeBlogPosts(localPosts as BlogPost[], []));
+  useEffect(() => {
+    fetchBlogs()
+      .then((apiPosts) => setBlogPosts(mergeBlogPosts(localPosts as BlogPost[], apiPosts)))
+      .catch((err) => console.error("Failed to load latest blogs:", err));
+  }, []);
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -97,7 +107,7 @@ const BlogLayout = () => {
         {/* Right Column - Blog List with Images */}
         <div className="space-y-4">
           {blogPosts.slice(1,4).map((post, index) => (
-            <div key={post.id} className="group cursor-pointer">
+            <div key={post.slug} className="group cursor-pointer">
               <div className="flex gap-4 items-start">
                 {/* Blog Image */}
                 <div className="w-32 h-24 flex-shrink-0 relative overflow-hidden rounded-lg">
@@ -147,7 +157,7 @@ const BlogLayout = () => {
               </div>
 
               {/* Divider (except for last item) */}
-              {index < blogPosts.slice(1).length - 1 && (
+              {index < blogPosts.slice(1, 4).length - 1 && (
                 <div className="border-b border-gray-200 mt-4"></div>
               )}
             </div>
