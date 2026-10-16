@@ -1,3 +1,5 @@
+
+
 // Server-side renderer for every page of the site (see the rewrite in vercel.json).
 //
 // The site is a React app, so the plain HTML file is an empty shell. This function
@@ -241,7 +243,7 @@ function renderHtml(template, page) {
   // Drop the homepage defaults from index.html and put this page's tags in their place
   let html = template
     .replace(/<title>[\s\S]*?<\/title>\s*/, "")
-    .replace(/<meta data-default-seo[^>]*>\s*/g, "")
+    .replace(/<(meta|link) data-default-seo[^>]*>\s*/g, "")
     .replace("</head>", `    ${headTags(page)}\n  </head>`);
 
   const content = bodyContent(page);
