@@ -1,5 +1,9 @@
 {
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/about-technoviz-automation-solution", "destination": "/company", "permanent": true },
+    { "source": "/industrial-communication-solution", "destination": "/services/industrial-communication", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "https://websitebackend.pythonanywhere.com/sitemap.xml" },
     { "source": "/(.*)", "destination": "/api/render?path=$1" }
