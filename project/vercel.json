@@ -2,7 +2,8 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/about-technoviz-automation-solution", "destination": "/company", "permanent": true },
-    { "source": "/industrial-communication-solution", "destination": "/services/industrial-communication", "permanent": true }
+    { "source": "/industrial-communication-solution", "destination": "/services/industrial-communication", "permanent": true },
+    { "source": "/industrial-iot-business-models-a-journey-into-innovation", "destination": "/blogs/industrial-iot-business-models", "permanent": true }
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "https://websitebackend.pythonanywhere.com/sitemap.xml" },
