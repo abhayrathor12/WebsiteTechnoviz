@@ -44,9 +44,8 @@ const facts = [
   },
 ];
 
-// Session agenda — full-day format, split into Morning / Afternoon columns so
-// all 16 slots fit on one screen. "live" = demo / hands-on (highlighted),
-// "break" = rendered as a thin divider instead of a full row.
+// Session agenda — full-day format, shown as Morning / Afternoon blocks.
+// "live" = demo / hands-on (highlighted), "break" = thin divider instead of a full row.
 type AgendaItem = {
   start: string;
   end: string;
@@ -189,148 +188,82 @@ export default function Masterclass() {
     <div className="mc-page">
       <SEO {...PAGE_SEO["/Smart-Manufacturing-AI-Masterclass"]} path="/Smart-Manufacturing-AI-Masterclass" />
       <div className="mc-shell">
-        {/* ─── TOP BAR — title + event details ─── */}
-        <header className="mc-topbar">
-          <div className="mc-topbar-copy">
-            <div className="mc-live-badge">
-              <span className="mc-pulse" />
-              LIVE Masterclass 2026
+        {/* ─── LEFT — scrolls: title, trainer, full agenda ─── */}
+        <div className="mc-content">
+          <header className="mc-topbar">
+            <div className="mc-topbar-copy">
+              <div className="mc-live-badge">
+                <span className="mc-pulse" />
+                LIVE Masterclass 2026
+              </div>
+              <h1 className="mc-title">
+                Smart Manufacturing <span className="mc-title-accent">&amp; AI Masterclass</span>
+              </h1>
+              <p className="mc-subtitle">From Industry 4.0 &amp; 5.0 to AI-Driven Autonomous Factories</p>
             </div>
-            <h1 className="mc-title">
-              Smart Manufacturing <span className="mc-title-accent">&amp; AI Masterclass</span>
-            </h1>
-            <p className="mc-subtitle">From Industry 4.0 &amp; 5.0 to AI-Driven Autonomous Factories</p>
+
+            <dl className="mc-event-meta">
+              <div>
+                <dt>Date</dt>
+                <dd>Sat, 24 Oct 2026</dd>
+              </div>
+              <div>
+                <dt>Time</dt>
+                <dd>9:30 AM IST</dd>
+              </div>
+              <div>
+                <dt>Duration</dt>
+                <dd>8 Hours Live</dd>
+              </div>
+              <div>
+                <dt>Fee</dt>
+                <dd>
+                  ₹4,999 <small>+ GST</small>
+                </dd>
+              </div>
+            </dl>
+          </header>
+
+          <div className="mc-speaker">
+            <div className="mc-photo-ring">
+              <div className="mc-photo-inner">
+                {!imgError && (
+                  <img
+                    src={kapimage}
+                    alt="Kapil Khurana"
+                    className="mc-speaker-img"
+                    onError={() => setImgError(true)}
+                  />
+                )}
+                {imgError && (
+                  <div className="mc-photo-fallback">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(32,63,120,0.35)" strokeWidth="1.2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="mc-speaker-text">
+              <span className="mc-speaker-role">Your Trainer</span>
+              <h2 className="mc-speaker-name">Kapil Khurana</h2>
+              <p className="mc-speaker-meta">
+                Certified SIRI Assessor (CSA)
+                <br />
+                Author – Digital Revolution: Industry 4.0 &amp; IIoT
+                <br />
+                25+ Years of Industry Experience
+              </p>
+            </div>
+            <div className="mc-speaker-tags">
+              <span>Industrial Automation</span>
+              <span>Smart Manufacturing</span>
+              <span>Digital Transformation</span>
+            </div>
           </div>
 
-          <dl className="mc-event-meta">
-            <div>
-              <dt>Date</dt>
-              <dd>Sat, 24 Oct 2026</dd>
-            </div>
-            <div>
-              <dt>Time</dt>
-              <dd>9:30 AM IST</dd>
-            </div>
-            <div>
-              <dt>Duration</dt>
-              <dd>8 Hours Live</dd>
-            </div>
-            <div>
-              <dt>Fee</dt>
-              <dd>
-                ₹4,999 <small>+ GST</small>
-              </dd>
-            </div>
-          </dl>
-        </header>
-
-        <main className="mc-main">
-          {/* ─── SIDE — trainer + registration ─── */}
-          <aside className="mc-side">
-            <div className="mc-speaker">
-              <div className="mc-photo-ring">
-                <div className="mc-photo-inner">
-                  {!imgError && (
-                    <img
-                      src={kapimage}
-                      alt="Kapil Khurana"
-                      className="mc-speaker-img"
-                      onError={() => setImgError(true)}
-                    />
-                  )}
-                  {imgError && (
-                    <div className="mc-photo-fallback">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(32,63,120,0.35)" strokeWidth="1.2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="mc-speaker-text">
-                <span className="mc-speaker-role">Your Trainer</span>
-                <h2 className="mc-speaker-name">Kapil Khurana</h2>
-                <p className="mc-speaker-meta">
-                  Certified SIRI Assessor (CSA)
-                  <br />
-                  Author – Digital Revolution: Industry 4.0 &amp; IIoT
-                  <br />
-                  25+ Years of Industry Experience
-                </p>
-              </div>
-              <div className="mc-speaker-tags">
-                <span>Industrial Automation</span>
-                <span>Smart Manufacturing</span>
-                <span>Digital Transformation</span>
-              </div>
-            </div>
-
-            <div id="register" className="mc-register">
-              <div className="mc-register-head">
-                <span className="mc-eyebrow">Registration</span>
-                <div className="mc-price">
-                  ₹4,999 <span>+ GST</span>
-                </div>
-              </div>
-
-              <ul className="mc-includes">
-                {facts.map((f) => (
-                  <li key={f.label}>
-                    {f.icon}
-                    {f.label}
-                  </li>
-                ))}
-              </ul>
-
-              <form onSubmit={handleSubmit} className="mc-form">
-                <div className="mc-form-fields">
-                  <label className="mc-field">
-                    <span className="mc-field-label">Full Name</span>
-                    <input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Your full name"
-                      disabled={loading}
-                    />
-                  </label>
-                  <label className="mc-field">
-                    <span className="mc-field-label">Email</span>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="you@company.com"
-                      disabled={loading}
-                    />
-                  </label>
-                  <label className="mc-field">
-                    <span className="mc-field-label">Phone</span>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="10-digit mobile"
-                      disabled={loading}
-                    />
-                  </label>
-                </div>
-
-                {error && <p className="mc-error">{error}</p>}
-
-                <button type="submit" disabled={loading} className="mc-cta">
-                  {loading ? "Processing Payment..." : "Secure My Seat — ₹4,999 + GST"}
-                </button>
-                <p className="mc-secure-note">Secure payment via Razorpay</p>
-              </form>
-            </div>
-          </aside>
-
-          {/* ─── AGENDA — Morning / Afternoon side by side ─── */}
+          {/* Agenda — Morning then Afternoon, everything visible, just scroll */}
           <section id="agenda" className="mc-agenda">
             <div className="mc-agenda-head">
               <div className="mc-agenda-heading">
@@ -387,7 +320,73 @@ export default function Masterclass() {
               ))}
             </div>
           </section>
-        </main>
+        </div>
+
+        {/* ─── RIGHT — registration, sticky top right ─── */}
+        <aside className="mc-side">
+          <div id="register" className="mc-register">
+            <div className="mc-register-head">
+              <span className="mc-eyebrow">Registration</span>
+              <div className="mc-price">
+                ₹4,999 <span>+ GST</span>
+              </div>
+            </div>
+
+            <ul className="mc-includes">
+              {facts.map((f) => (
+                <li key={f.label}>
+                  {f.icon}
+                  {f.label}
+                </li>
+              ))}
+            </ul>
+
+            <form onSubmit={handleSubmit} className="mc-form">
+              <div className="mc-form-fields">
+                <label className="mc-field">
+                  <span className="mc-field-label">Full Name</span>
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Your full name"
+                    disabled={loading}
+                  />
+                </label>
+                <label className="mc-field">
+                  <span className="mc-field-label">Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="you@company.com"
+                    disabled={loading}
+                  />
+                </label>
+                <label className="mc-field">
+                  <span className="mc-field-label">Phone</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="10-digit mobile"
+                    disabled={loading}
+                  />
+                </label>
+              </div>
+
+              {error && <p className="mc-error">{error}</p>}
+
+              <button type="submit" disabled={loading} className="mc-cta">
+                {loading ? "Processing Payment..." : "Secure My Seat — ₹4,999 + GST"}
+              </button>
+              <p className="mc-secure-note">Secure payment via Razorpay</p>
+            </form>
+          </div>
+        </aside>
       </div>
 
       {/* Success Modal */}
