@@ -3,7 +3,10 @@
   "redirects": [
     { "source": "/about-technoviz-automation-solution", "destination": "/company", "permanent": true },
     { "source": "/industrial-communication-solution", "destination": "/services/industrial-communication", "permanent": true },
-    { "source": "/industrial-iot-business-models-a-journey-into-innovation", "destination": "/blogs/industrial-iot-business-models", "permanent": true }
+    { "source": "/industrial-iot-business-models-a-journey-into-innovation", "destination": "/blogs/industrial-iot-business-models", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact", "permanent": true },
+    { "source": "/tag/:slug*", "destination": "/blogs", "permanent": true },
+    { "source": "/category/:slug*", "destination": "/blogs", "permanent": true }
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "https://websitebackend.pythonanywhere.com/sitemap.xml" },

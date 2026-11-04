@@ -10,7 +10,7 @@ const initialForm: RegistrationData = { name: "", email: "", phone: "" };
 // Highlights listed in the registration card
 const facts = [
   {
-    label: "8 Hours LIVE",
+    label: "7.5 Hours LIVE",
     icon: (
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
@@ -58,36 +58,36 @@ type AgendaItem = {
 const agendaBlocks: { label: string; range: string; items: AgendaItem[] }[] = [
   {
     label: "Morning",
-    range: "9:30 – 1:15",
+    range: "10:00 – 1:20",
     items: [
-      { start: "9:30", end: "9:45", section: "Pre-Assessment & Introduction", learn: "15–20 MCQs, participant expectations, manufacturing challenges" },
-      { start: "9:45", end: "10:15", section: "Session 1: From Smart to Autonomous Manufacturing", learn: "Industry 1.0–5.0, Connected → Predictive → Intelligent → Agentic → Autonomous Manufacturing" },
-      { start: "10:15", end: "11:00", section: "Session 2: AI & Predictive AI in Manufacturing", learn: "AI/ML basics, manufacturing data, supervised/unsupervised learning, Predictive AI architecture and use cases" },
-      { start: "11:00", end: "11:20", section: "LIVE DEMO 1: Predictive AI", learn: "Machine/process data → anomaly detection → prediction → actionable insight", kind: "live" },
-      { start: "11:20", end: "11:30", section: "Tea Break", kind: "break" },
-      { start: "11:30", end: "12:15", section: "Session 3: Generative AI + RAG", learn: "LLM basics, manufacturing knowledge, RAG, embeddings, vector databases, Manufacturing AI Assistant" },
-      { start: "12:15", end: "12:40", section: "LIVE DEMO 2: Manufacturing RAG Assistant", learn: "Manual/SOP → knowledge base → technical question → contextual answer", kind: "live" },
-      { start: "12:40", end: "1:15", section: "Session 4: AI Agents for Manufacturing", learn: "Agent vs chatbot, tools, memory, reasoning, workflows, event-based agents, human-in-the-loop" },
+      { start: "10:00", end: "10:10", section: "Pre-Assessment & Introduction", learn: "15–20 MCQs, participant expectations, manufacturing challenges" },
+      { start: "10:10", end: "10:35", section: "Session 1: From Smart to Autonomous Manufacturing", learn: "Industry 1.0–5.0, Connected → Predictive → Intelligent → Agentic → Autonomous Manufacturing" },
+      { start: "10:35", end: "11:15", section: "Session 2: AI & Predictive AI in Manufacturing", learn: "AI/ML basics, manufacturing data, supervised/unsupervised learning, Predictive AI architecture and use cases" },
+      { start: "11:15", end: "11:35", section: "LIVE DEMO 1: Predictive AI", learn: "Machine/process data → anomaly detection → prediction → actionable insight", kind: "live" },
+      { start: "11:35", end: "11:45", section: "Tea Break", kind: "break" },
+      { start: "11:45", end: "12:25", section: "Session 3: Generative AI + RAG", learn: "LLM basics, manufacturing knowledge, RAG, embeddings, vector databases, Manufacturing AI Assistant" },
+      { start: "12:25", end: "12:50", section: "LIVE DEMO 2: Manufacturing RAG Assistant", learn: "Manual/SOP → knowledge base → technical question → contextual answer", kind: "live" },
+      { start: "12:50", end: "1:20", section: "Session 4: AI Agents for Manufacturing", learn: "Agent vs chatbot, tools, memory, reasoning, workflows, event-based agents, human-in-the-loop" },
     ],
   },
   {
     label: "Afternoon",
-    range: "1:15 – 5:30",
+    range: "1:20 – 5:30",
     items: [
-      { start: "1:15", end: "2:00", section: "Lunch Break", kind: "break" },
-      { start: "2:00", end: "2:30", section: "Session 5: AI + PLC / SCADA / IIoT Integration", learn: "OPC UA, MQTT, APIs, Edge, Historian, AI architecture, AI output to CMMS/MES/SCADA" },
-      { start: "2:30", end: "2:50", section: "LIVE DEMO 3: Connected Industrial AI", learn: "PLC/SCADA data → AI analysis → RAG → Agent → maintenance action", kind: "live" },
-      { start: "2:50", end: "4:05", section: "HANDS-ON PRACTICAL: Build an AI Manufacturing Application", learn: "Participants build a working AI application step-by-step", kind: "live" },
-      { start: "4:05", end: "4:15", section: "Tea Break", kind: "break" },
-      { start: "4:15", end: "4:55", section: "Manufacturing AI Use-Case Workshop", learn: "Teams identify real problems and develop AI solution concepts" },
-      { start: "4:55", end: "5:15", section: "Multi-Agent & Autonomous Manufacturing", learn: "Production + Quality + Maintenance Agents, orchestration, governance, journey toward autonomy" },
-      { start: "5:15", end: "5:30", section: "Post-Assessment & Wrap-Up", learn: "Same MCQs, pre/post comparison, key takeaways, Q&A" },
+      { start: "1:20", end: "2:20", section: "Lunch Break", kind: "break" },
+      { start: "2:20", end: "2:50", section: "Session 5: AI + PLC / SCADA / IIoT Integration", learn: "OPC UA, MQTT, APIs, Edge, Historian, AI architecture, AI output to CMMS/MES/SCADA" },
+      { start: "2:50", end: "3:10", section: "LIVE DEMO 3: Connected Industrial AI", learn: "PLC/SCADA data → AI analysis → RAG → Agent → maintenance action", kind: "live" },
+      { start: "3:10", end: "3:45", section: "HANDS-ON PRACTICAL: Build an AI Manufacturing Application", learn: "Participants build a working AI application step-by-step", kind: "live" },
+      { start: "3:45", end: "4:15", section: "Manufacturing AI Use-Case Workshop", learn: "Teams identify real problems and develop AI solution concepts" },
+      { start: "4:15", end: "4:25", section: "Tea Break", kind: "break" },
+      { start: "4:25", end: "5:00", section: "Multi-Agent & Autonomous Manufacturing", learn: "Production + Quality + Maintenance Agents, orchestration, governance, journey toward autonomy" },
+      { start: "5:00", end: "5:30", section: "Post-Assessment & Wrap-Up", learn: "Same MCQs, pre/post comparison, key takeaways, Q&A" },
     ],
   },
 ];
 
 const agendaTotal = {
-  time: "Total: Full Day (9:30–5:30)",
+  time: "Total: Full Day (10:00–5:30)",
   section: "Hands-On Masterclass",
   learn: "Live demos, hands-on practical & use-case workshop",
 };
@@ -205,15 +205,15 @@ export default function Masterclass() {
           <dl className="mc-event-meta">
             <div>
               <dt>Date</dt>
-              <dd>Sat, 24 Oct 2026</dd>
+              <dd>Sat, 21 Nov 2026</dd>
             </div>
             <div>
               <dt>Time</dt>
-              <dd>9:30 AM IST</dd>
+              <dd>10:00 AM IST</dd>
             </div>
             <div>
               <dt>Duration</dt>
-              <dd>8 Hours Live</dd>
+              <dd>7.5 Hours Live</dd>
             </div>
             <div>
               <dt>Fee</dt>
