@@ -21,7 +21,7 @@ const initialForm: RegistrationData = {
 // Registration card highlights
 const facts = [
   {
-    label: "8 Hours LIVE",
+    label: "7.5 Hours LIVE",
     icon: (
       
       
@@ -377,7 +377,7 @@ export default function Masterclass() {
             <dl className="mc-event-meta">
               <div>
                 <dt>Date</dt>
-                <dd>Sat, 24 Oct 2026</dd>
+                <dd>Sat, 21 Nov 2026</dd>
               </div>
 
               <div>
@@ -387,7 +387,7 @@ export default function Masterclass() {
 
               <div>
                 <dt>Duration</dt>
-                <dd>8 Hours Live</dd>
+                <dd>7.5 Hours Live</dd>
               </div>
 
               <div>

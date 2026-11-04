@@ -77,9 +77,9 @@ html {
   position: sticky;
   top: var(--page-pad-y);
   align-self: start;
-  max-height: calc(100dvh - 2 * var(--page-pad-y));
-  overflow-y: auto;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   border-radius: var(--radius);
 }
 
@@ -860,7 +860,7 @@ html {
   width: 100%;
   min-width: 0;
   overflow: hidden;
-  padding: 22px 5px 20px;
+  padding: 12px 5px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
@@ -868,10 +868,10 @@ html {
 }
 
 .mc-client-logos-title {
-  margin: 0 0 16px;
+  margin: 0 0 8px;
   color: var(--navy);
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.3;
   text-align: center;
@@ -900,9 +900,9 @@ html {
 
 .mc-client-logo {
   display: block;
-  flex: 0 0 165px;
-  width: 165px;
-  height: 100px;
+  flex: 0 0 90px;
+  width: 90px;
+  height: 48px;
   object-fit: contain;
   object-position: center;
   filter: none !important;
@@ -936,9 +936,9 @@ html {
 
 @media (max-width: 1023px) {
   .mc-client-logo {
-    flex-basis: 145px;
-    width: 145px;
-    height: 90px;
+    flex-basis: 90px;
+    width: 90px;
+    height: 48px;
   }
 }
 
@@ -946,12 +946,12 @@ html {
 
 @media (max-width: 767px) {
   .mc-client-logos {
-    padding: 18px 6px;
+    padding: 12px 6px;
   }
 
   .mc-client-logos-title {
-    font-size: 18px;
-    margin-bottom: 13px;
+    font-size: 15px;
+    margin-bottom: 8px;
   }
 
   .mc-client-logos-group {
@@ -960,9 +960,9 @@ html {
   }
 
   .mc-client-logo {
-    flex-basis: 125px;
-    width: 125px;
-    height: 78px;
+    flex-basis: 80px;
+    width: 80px;
+    height: 44px;
   }
 }
 
