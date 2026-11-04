@@ -56,10 +56,10 @@ html {
 }
 
 .mc-shell {
-  width: min(1320px, 100%);
+  width: min(1680px, 100%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(300px, 28vw, 380px);
+  grid-template-columns: minmax(0, 1fr) clamp(300px, 26vw, 440px);
   gap: var(--gap);
   align-items: start;
 }
@@ -867,7 +867,8 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 12px 5px;
+  container-type: inline-size;
+  padding: 16px 0;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
@@ -887,6 +888,8 @@ html {
 .mc-client-logos-viewport {
   width: 100%;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
 }
 
 .mc-client-logos-track {
@@ -901,15 +904,20 @@ html {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 8px;
-  padding-right: 8px;
+  gap: 16px;
+  padding-right: 16px;
 }
 
 .mc-client-logo {
   display: block;
-  flex: 0 0 clamp(90px, 16vh, 170px);
-  width: clamp(90px, 16vh, 170px);
-  height: clamp(48px, 9vh, 96px);
+  /* fallback for older browsers */
+  flex: 0 0 100px;
+  width: 100px;
+  height: 56px;
+  /* about 3 logos visible, scaled to the box width */
+  flex: 0 0 clamp(80px, 28cqi, 140px);
+  width: clamp(80px, 28cqi, 140px);
+  height: clamp(44px, 16cqi, 80px);
   object-fit: contain;
   object-position: center;
   filter: none !important;
