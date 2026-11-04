@@ -80,6 +80,8 @@ html {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-height: calc(100vh - 2 * var(--page-pad-y));
+  min-height: calc(100dvh - 2 * var(--page-pad-y));
   border-radius: var(--radius);
 }
 
@@ -784,6 +786,7 @@ html {
     position: static;
     max-height: none;
     overflow: visible;
+    min-height: 0;
   }
 }
 
@@ -860,6 +863,10 @@ html {
   width: 100%;
   min-width: 0;
   overflow: hidden;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 12px 5px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -900,9 +907,9 @@ html {
 
 .mc-client-logo {
   display: block;
-  flex: 0 0 90px;
-  width: 90px;
-  height: 48px;
+  flex: 0 0 clamp(90px, 16vh, 170px);
+  width: clamp(90px, 16vh, 170px);
+  height: clamp(48px, 9vh, 96px);
   object-fit: contain;
   object-position: center;
   filter: none !important;
@@ -935,6 +942,10 @@ html {
 /* Tablet */
 
 @media (max-width: 1023px) {
+  .mc-client-logos {
+    flex: none;
+  }
+
   .mc-client-logo {
     flex-basis: 90px;
     width: 90px;
