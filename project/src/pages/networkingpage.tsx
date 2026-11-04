@@ -1,4 +1,4 @@
-import SEO from "../components/SEO";
+ import SEO from "../components/SEO";
 import { PAGE_SEO } from "../seo/pages.js";
 import React, { useState, useEffect } from 'react';
 import { Wifi, Shield, Zap, Globe, Network, Server, Activity, Lock, TrendingUp, Cloud } from 'lucide-react';
@@ -13,7 +13,7 @@ export default function NetworkingPage() {
       setActiveNode(prev => (prev + 1) % 6);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, []);    
 
   useEffect(() => {
     const connectInterval = setInterval(() => {
