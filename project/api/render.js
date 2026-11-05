@@ -116,6 +116,11 @@ async function resolvePage(path) {
 
   if (pagePath) return { ...PAGE_SEO[pagePath], path: pagePath };
 
+  // Master Portal sub-pages (/masterportal/dashboard etc.) are React routes, not 404s
+  if (path.toLowerCase().startsWith("/masterportal/")) {
+    return { ...PAGE_SEO["/masterportal"], path: "/masterportal" };
+  }
+
   const [, section, slug, extra] = path.split("/");
   if (!slug || extra !== undefined) return null;
 

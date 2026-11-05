@@ -111,6 +111,11 @@ export const PAGE_SEO = {
     "title": "Live Production Dashboard | Technoviz Automation",
     "description": "Live production monitoring dashboard.",
     "noindex": true
+  },
+  "/masterportal": {
+    "title": "Masterclass Portal | Technoviz Automation",
+    "description": "Participant portal for the Smart Manufacturing & AI Masterclass: evaluations, results and certificate.",
+    "noindex": true
   }
 };
 
