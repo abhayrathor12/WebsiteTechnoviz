@@ -18,13 +18,10 @@ const initialForm: RegistrationData = {
   phone: "",
 };
 
-// Registration card highlights
 const facts = [
   {
     label: "7.5 Hours LIVE",
     icon: (
-      
-      
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
         <polyline points="12 6 12 12 16 14" />
@@ -63,7 +60,6 @@ const facts = [
   },
 ];
 
-// Full-day session agenda
 type AgendaItem = {
   start: string;
   end: string;
@@ -197,7 +193,6 @@ const agendaTotal = {
   learn: "Live demos, hands-on practical & use-case workshop",
 };
 
-// Client logo data
 const clientLogos = [
   { name: "APL", src: "/clientlogo/Apl.png" },
   { name: "Carrier", src: "/clientlogo/carrier.png" },
@@ -226,9 +221,7 @@ export default function Masterclass() {
   }
 
   function validate(): string | null {
-    if (!form.name.trim()) {
-      return "Please enter your name.";
-    }
+    if (!form.name.trim()) return "Please enter your name.";
 
     if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) {
       return "Please enter a valid email.";
@@ -348,14 +341,9 @@ export default function Masterclass() {
       />
 
       <div className="mc-shell">
-
-        {/* LEFT SIDE — title, trainer and agenda */}
-
         <div className="mc-content">
-
           <header className="mc-topbar">
             <div className="mc-topbar-copy">
-
               <div className="mc-live-badge">
                 <span className="mc-pulse" />
                 LIVE Masterclass 2026
@@ -371,7 +359,6 @@ export default function Masterclass() {
               <p className="mc-subtitle">
                 From Industry 4.0 &amp; 5.0 to AI-Driven Autonomous Factories
               </p>
-
             </div>
 
             <dl className="mc-event-meta">
@@ -379,33 +366,24 @@ export default function Masterclass() {
                 <dt>Date</dt>
                 <dd>Sat, 21 Nov 2026</dd>
               </div>
-
               <div>
                 <dt>Time</dt>
                 <dd>10:00 AM IST</dd>
               </div>
-
               <div>
                 <dt>Duration</dt>
                 <dd>7.5 Hours Live</dd>
               </div>
-
               <div>
                 <dt>Fee</dt>
-                <dd>
-                  ₹4,999 <small>+ GST</small>
-                </dd>
+                <dd>₹4,999 <small>+ GST</small></dd>
               </div>
             </dl>
           </header>
 
-          {/* Trainer section */}
-
           <div className="mc-speaker">
-
             <div className="mc-photo-ring">
               <div className="mc-photo-inner">
-
                 {!imgError && (
                   <img
                     src={kapimage}
@@ -430,14 +408,12 @@ export default function Masterclass() {
                     </svg>
                   </div>
                 )}
-
               </div>
             </div>
 
             <div className="mc-speaker-text">
               <span className="mc-speaker-role">Your Trainer</span>
               <h2 className="mc-speaker-name">Kapil Khurana</h2>
-
               <p className="mc-speaker-meta">
                 Certified SIRI Assessor (CSA)
                 <br />
@@ -452,18 +428,217 @@ export default function Masterclass() {
               <span>Smart Manufacturing</span>
               <span>Digital Transformation</span>
             </div>
-
           </div>
 
-          {/* Full-day agenda */}
+          <section className="mc-feature-section mc-siri-section" aria-labelledby="mc-siri-title">
+            <div className="mc-feature-heading">
+              <span className="mc-feature-eyebrow">INDUSTRY 4.0</span>
+              <h2 id="mc-siri-title" className="mc-section-title">About SIRI</h2>
+              <p>
+                Understand where your manufacturing organization stands on its
+                Industry 4.0 journey and discover a structured path towards
+                digital transformation.
+              </p>
+            </div>
+
+            <div className="mc-siri-layout">
+              <div className="mc-siri-visual" aria-label="Smart Industry Readiness Index">
+                <div className="mc-siri-brand">
+                  <div className="mc-siri-mark" aria-hidden="true">
+                    <span /><span /><span /><span />
+                  </div>
+                  <div className="mc-siri-logo-text">
+                    <strong>SMART</strong>
+                    <strong>INDUSTRY</strong>
+                    <strong>READINESS</strong>
+                    <strong>INDEX</strong>
+                  </div>
+                </div>
+                <p className="mc-siri-tagline">
+                  CATALYSING THE TRANSFORMATION OF MANUFACTURING
+                </p>
+                <span className="mc-siri-certified">Certified Framework</span>
+              </div>
+
+              <div className="mc-siri-copy">
+                <h3>What is SIRI?</h3>
+                <p>
+                  The Smart Industry Readiness Index (SIRI) is a comprehensive
+                  framework developed to help organizations assess their
+                  Industry 4.0 readiness. It provides a structured approach to
+                  evaluate and improve manufacturing capabilities in the
+                  digital age.
+                </p>
+
+                <div className="mc-feature-points">
+                  <div className="mc-feature-point">
+                    <span className="mc-point-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <h4>Assessment Framework</h4>
+                      <p>Systematic evaluation of digital transformation readiness across multiple dimensions.</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-feature-point">
+                    <span className="mc-point-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <h4>Global Standard</h4>
+                      <p>Internationally recognized benchmark for Industry 4.0 adoption.</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-feature-point">
+                    <span className="mc-point-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <h4>Continuous Improvement</h4>
+                      <p>Roadmap for progressive enhancement of smart manufacturing capabilities.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mc-assessor-card">
+              <div className="mc-assessor-icon" aria-hidden="true">✦</div>
+              <div className="mc-assessor-copy">
+                <span className="mc-feature-eyebrow">CERTIFIED EXPERTISE</span>
+                <h3>Kapil Khurana</h3>
+                <h4>Founder &amp; Director</h4>
+
+                <div className="mc-assessor-credential">
+                  <strong>SIRI Certified Assessor (CSA) | IIT Delhi</strong>
+                  <p>Certified in Smart Industry Readiness Index Assessment and Implementation.</p>
+                </div>
+
+                <p className="mc-assessor-description">
+                  As a SIRI certified professional, Kapil Khurana brings
+                  extensive expertise in Industry 4.0 transformation and smart
+                  manufacturing implementations. His certification
+                  demonstrates a deep understanding of digital readiness
+                  assessment frameworks and strategic implementation
+                  methodologies.
+                </p>
+
+                <ul className="mc-assessor-benefits">
+                  <li>Leading digital transformation initiatives</li>
+                  <li>Driving Industry 4.0 adoption strategies</li>
+                  <li>Expertise in smart manufacturing excellence</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section className="mc-feature-section mc-book-section" aria-labelledby="mc-book-title">
+            <div className="mc-book-layout">
+              <div className="mc-book-visual-wrap" aria-label="Digital Revolution book artwork">
+                <span className="mc-book-new">NEW</span>
+
+                <div className="mc-book-cover">
+                  <span className="mc-book-author">KAPIL KHURANA</span>
+                  <div className="mc-book-cover-rule" />
+                  <h3>DIGITAL<br />REVOLUTION</h3>
+                  <p className="mc-book-cover-subtitle">
+                    A GUIDE TO SUCCESS IN THE TECHNOLOGY-DRIVEN WORLD
+                  </p>
+
+                  <div className="mc-book-illustration" aria-hidden="true">
+                    <div className="mc-book-illustration-screen">
+                      <span /><span /><span />
+                    </div>
+                    <div className="mc-book-illustration-base" />
+                  </div>
+
+                  <div className="mc-book-cover-footer">
+                    INDUSTRY 4.0 &amp; INDUSTRIAL IoT
+                  </div>
+                </div>
+
+                <span className="mc-book-spine">DIGITAL REVOLUTION 4.0</span>
+              </div>
+
+              <div className="mc-book-content">
+                <span className="mc-feature-eyebrow">FEATURED BOOK</span>
+                <h2 id="mc-book-title">
+                  Book <em>“Digital Revolution”</em>
+                </h2>
+                <h3 className="mc-book-industry">Industry 4.0</h3>
+
+                <p className="mc-book-byline">
+                  by <strong>Kapil Khurana</strong>
+                  <span>•</span>
+                  Technoviz Automation
+                </p>
+
+                <p className="mc-book-description">
+                  Navigate the digital transformation reshaping our world.
+                  From workplace evolution to global connectivity, discover
+                  strategies to harness innovation while addressing the
+                  challenges of technological disruption.
+                </p>
+
+                <div className="mc-book-topics">
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">✧</span>
+                    <div>
+                      <h4>Digital Transformation</h4>
+                      <p>Navigate the digital age</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">⌑</span>
+                    <div>
+                      <h4>Cyber Security</h4>
+                      <p>Protect your digital assets</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">⚙</span>
+                    <div>
+                      <h4>Industrial Automation</h4>
+                      <p>Future of manufacturing</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">↗</span>
+                    <div>
+                      <h4>Industry Evolution</h4>
+                      <p>Stay ahead of trends</p>
+                    </div>
+                  </div>
+                </div>
+
+                <a className="mc-book-cta" href="#register">
+                  Enquire About the Book <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="mc-book-stats">
+              <div className="mc-book-stat">
+                <span className="mc-book-stat-icon" aria-hidden="true">☆</span>
+                <strong>4.8/5</strong>
+                <small>Rating</small>
+              </div>
+              <div className="mc-book-stat">
+                <span className="mc-book-stat-icon" aria-hidden="true">♧</span>
+                <strong>10K+</strong>
+                <small>Readers</small>
+              </div>
+              <div className="mc-book-stat">
+                <span className="mc-book-stat-icon" aria-hidden="true">♙</span>
+                <strong>Bestseller</strong>
+                <small>Status</small>
+              </div>
+            </div>
+          </section>
 
           <section id="agenda" className="mc-agenda">
-
             <div className="mc-agenda-head">
-
               <div className="mc-agenda-heading">
                 <h2 className="mc-section-title">Full-Day Agenda</h2>
-
                 <span className="mc-agenda-summary">
                   {agendaTotal.time} · {agendaTotal.section} · {agendaTotal.learn}
                 </span>
@@ -474,46 +649,34 @@ export default function Masterclass() {
                   <i className="mc-legend-swatch mc-legend-swatch--live" />
                   Live demo / hands-on
                 </span>
-
                 <span>
                   <i className="mc-legend-swatch mc-legend-swatch--break" />
                   Break
                 </span>
               </div>
-
             </div>
 
             <div className="mc-agenda-cols">
-
               {agendaBlocks.map((block) => (
                 <div key={block.label} className="mc-agenda-block">
-
                   <div className="mc-agenda-block-head">
                     <span>{block.label}</span>
-                    <span className="mc-agenda-block-range">
-                      {block.range}
-                    </span>
+                    <span className="mc-agenda-block-range">{block.range}</span>
                   </div>
 
                   <ol className="mc-agenda-list">
-
                     {block.items.map((item) =>
                       item.kind === "break" ? (
-
                         <li key={item.start} className="mc-agenda-break">
                           <span>
                             {item.section} · {item.start}–{item.end}
                           </span>
                         </li>
-
                       ) : (
-
                         <li
                           key={item.start}
                           className={`mc-agenda-item${
-                            item.kind === "live"
-                              ? " mc-agenda-item--live"
-                              : ""
+                            item.kind === "live" ? " mc-agenda-item--live" : ""
                           }`}
                         >
                           <span className="mc-agenda-time">
@@ -522,39 +685,23 @@ export default function Masterclass() {
                           </span>
 
                           <div className="mc-agenda-body">
-                            <div className="mc-agenda-session">
-                              {item.section}
-                            </div>
-
-                            <div className="mc-agenda-coverage">
-                              {item.learn}
-                            </div>
+                            <div className="mc-agenda-session">{item.section}</div>
+                            <div className="mc-agenda-coverage">{item.learn}</div>
                           </div>
                         </li>
-
                       )
                     )}
-
                   </ol>
                 </div>
               ))}
-
             </div>
           </section>
-
         </div>
 
-        {/* RIGHT SIDE — sticky registration and client logos */}
-
         <aside className="mc-side">
-
-          {/* Registration form */}
-
           <div id="register" className="mc-register">
-
             <div className="mc-register-head">
               <span className="mc-eyebrow">Registration</span>
-
               <div className="mc-price">
                 ₹4,999 <span>+ GST</span>
               </div>
@@ -570,12 +717,9 @@ export default function Masterclass() {
             </ul>
 
             <form onSubmit={handleSubmit} className="mc-form">
-
               <div className="mc-form-fields">
-
                 <label className="mc-field">
                   <span className="mc-field-label">Full Name</span>
-
                   <input
                     type="text"
                     name="name"
@@ -588,7 +732,6 @@ export default function Masterclass() {
 
                 <label className="mc-field">
                   <span className="mc-field-label">Email</span>
-
                   <input
                     type="email"
                     name="email"
@@ -601,7 +744,6 @@ export default function Masterclass() {
 
                 <label className="mc-field">
                   <span className="mc-field-label">Phone</span>
-
                   <input
                     type="tel"
                     name="phone"
@@ -611,16 +753,11 @@ export default function Masterclass() {
                     disabled={loading}
                   />
                 </label>
-
               </div>
 
               {error && <p className="mc-error" role="alert">{error}</p>}
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="mc-cta"
-              >
+              <button type="submit" disabled={loading} className="mc-cta">
                 {loading
                   ? "Processing Payment..."
                   : "Secure My Seat — ₹4,999 + GST"}
@@ -629,23 +766,14 @@ export default function Masterclass() {
               <p className="mc-secure-note">
                 Secure payment via Razorpay
               </p>
-
             </form>
           </div>
 
-          {/* Our Trusted Clients — animated logo slider */}
-
-          <section
-            className="mc-client-logos"
-            aria-label="Our trusted clients"
-          >
-            <h2 className="mc-client-logos-title">
-              Our Trusted Clients
-            </h2>
+          <section className="mc-client-logos" aria-label="Our trusted clients">
+            <h2 className="mc-client-logos-title">Our Trusted Clients</h2>
 
             <div className="mc-client-logos-viewport">
               <div className="mc-client-logos-track">
-
                 {[0, 1].map((groupIndex) => (
                   <div
                     className="mc-client-logos-group"
@@ -664,16 +792,11 @@ export default function Masterclass() {
                     ))}
                   </div>
                 ))}
-
               </div>
             </div>
           </section>
-
         </aside>
-
       </div>
-
-      {/* Success Modal */}
 
       {showSuccess && (
         <div className="mc-overlay">
@@ -683,30 +806,23 @@ export default function Masterclass() {
             aria-modal="true"
             aria-labelledby="mc-success-title"
           >
-
             <div className="mc-popup-icon">🎉</div>
-
             <h2 id="mc-success-title">Registration Successful</h2>
-
             <p>
               Your seat for the Smart Manufacturing &amp; AI Masterclass 2026 is confirmed.
             </p>
-
             <p>
               A confirmation will be sent to your email shortly.
             </p>
-
             <button
               onClick={() => setShowSuccess(false)}
               className="mc-cta mc-cta--small"
             >
               Close
             </button>
-
           </div>
         </div>
       )}
-
     </div>
   );
 }
