@@ -1,4 +1,3 @@
-
 import SEO from "../components/SEO";
 import { PAGE_SEO } from "../seo/pages.js";
 import { useState } from "react";
@@ -342,6 +341,8 @@ export default function Masterclass() {
 
       <div className="mc-shell">
         <div className="mc-content">
+
+          {/* HEADER */}
           <header className="mc-topbar">
             <div className="mc-topbar-copy">
               <div className="mc-live-badge">
@@ -381,6 +382,7 @@ export default function Masterclass() {
             </dl>
           </header>
 
+          {/* TRAINER */}
           <div className="mc-speaker">
             <div className="mc-photo-ring">
               <div className="mc-photo-inner">
@@ -430,211 +432,9 @@ export default function Masterclass() {
             </div>
           </div>
 
-          <section className="mc-feature-section mc-siri-section" aria-labelledby="mc-siri-title">
-            <div className="mc-feature-heading">
-              <span className="mc-feature-eyebrow">INDUSTRY 4.0</span>
-              <h2 id="mc-siri-title" className="mc-section-title">About SIRI</h2>
-              <p>
-                Understand where your manufacturing organization stands on its
-                Industry 4.0 journey and discover a structured path towards
-                digital transformation.
-              </p>
-            </div>
-
-            <div className="mc-siri-layout">
-              <div className="mc-siri-visual" aria-label="Smart Industry Readiness Index">
-                <div className="mc-siri-brand">
-                  <div className="mc-siri-mark" aria-hidden="true">
-                    <span /><span /><span /><span />
-                  </div>
-                  <div className="mc-siri-logo-text">
-                    <strong>SMART</strong>
-                    <strong>INDUSTRY</strong>
-                    <strong>READINESS</strong>
-                    <strong>INDEX</strong>
-                  </div>
-                </div>
-                <p className="mc-siri-tagline">
-                  CATALYSING THE TRANSFORMATION OF MANUFACTURING
-                </p>
-                <span className="mc-siri-certified">Certified Framework</span>
-              </div>
-
-              <div className="mc-siri-copy">
-                <h3>What is SIRI?</h3>
-                <p>
-                  The Smart Industry Readiness Index (SIRI) is a comprehensive
-                  framework developed to help organizations assess their
-                  Industry 4.0 readiness. It provides a structured approach to
-                  evaluate and improve manufacturing capabilities in the
-                  digital age.
-                </p>
-
-                <div className="mc-feature-points">
-                  <div className="mc-feature-point">
-                    <span className="mc-point-icon" aria-hidden="true">✓</span>
-                    <div>
-                      <h4>Assessment Framework</h4>
-                      <p>Systematic evaluation of digital transformation readiness across multiple dimensions.</p>
-                    </div>
-                  </div>
-
-                  <div className="mc-feature-point">
-                    <span className="mc-point-icon" aria-hidden="true">✓</span>
-                    <div>
-                      <h4>Global Standard</h4>
-                      <p>Internationally recognized benchmark for Industry 4.0 adoption.</p>
-                    </div>
-                  </div>
-
-                  <div className="mc-feature-point">
-                    <span className="mc-point-icon" aria-hidden="true">✓</span>
-                    <div>
-                      <h4>Continuous Improvement</h4>
-                      <p>Roadmap for progressive enhancement of smart manufacturing capabilities.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mc-assessor-card">
-              <div className="mc-assessor-icon" aria-hidden="true">✦</div>
-              <div className="mc-assessor-copy">
-                <span className="mc-feature-eyebrow">CERTIFIED EXPERTISE</span>
-                <h3>Kapil Khurana</h3>
-                <h4>Founder &amp; Director</h4>
-
-                <div className="mc-assessor-credential">
-                  <strong>SIRI Certified Assessor (CSA) | IIT Delhi</strong>
-                  <p>Certified in Smart Industry Readiness Index Assessment and Implementation.</p>
-                </div>
-
-                <p className="mc-assessor-description">
-                  As a SIRI certified professional, Kapil Khurana brings
-                  extensive expertise in Industry 4.0 transformation and smart
-                  manufacturing implementations. His certification
-                  demonstrates a deep understanding of digital readiness
-                  assessment frameworks and strategic implementation
-                  methodologies.
-                </p>
-
-                <ul className="mc-assessor-benefits">
-                  <li>Leading digital transformation initiatives</li>
-                  <li>Driving Industry 4.0 adoption strategies</li>
-                  <li>Expertise in smart manufacturing excellence</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className="mc-feature-section mc-book-section" aria-labelledby="mc-book-title">
-            <div className="mc-book-layout">
-              <div className="mc-book-visual-wrap" aria-label="Digital Revolution book artwork">
-                <span className="mc-book-new">NEW</span>
-
-                <div className="mc-book-cover">
-                  <span className="mc-book-author">KAPIL KHURANA</span>
-                  <div className="mc-book-cover-rule" />
-                  <h3>DIGITAL<br />REVOLUTION</h3>
-                  <p className="mc-book-cover-subtitle">
-                    A GUIDE TO SUCCESS IN THE TECHNOLOGY-DRIVEN WORLD
-                  </p>
-
-                  <div className="mc-book-illustration" aria-hidden="true">
-                    <div className="mc-book-illustration-screen">
-                      <span /><span /><span />
-                    </div>
-                    <div className="mc-book-illustration-base" />
-                  </div>
-
-                  <div className="mc-book-cover-footer">
-                    INDUSTRY 4.0 &amp; INDUSTRIAL IoT
-                  </div>
-                </div>
-
-                <span className="mc-book-spine">DIGITAL REVOLUTION 4.0</span>
-              </div>
-
-              <div className="mc-book-content">
-                <span className="mc-feature-eyebrow">FEATURED BOOK</span>
-                <h2 id="mc-book-title">
-                  Book <em>“Digital Revolution”</em>
-                </h2>
-                <h3 className="mc-book-industry">Industry 4.0</h3>
-
-                <p className="mc-book-byline">
-                  by <strong>Kapil Khurana</strong>
-                  <span>•</span>
-                  Technoviz Automation
-                </p>
-
-                <p className="mc-book-description">
-                  Navigate the digital transformation reshaping our world.
-                  From workplace evolution to global connectivity, discover
-                  strategies to harness innovation while addressing the
-                  challenges of technological disruption.
-                </p>
-
-                <div className="mc-book-topics">
-                  <div className="mc-book-topic">
-                    <span className="mc-book-topic-icon" aria-hidden="true">✧</span>
-                    <div>
-                      <h4>Digital Transformation</h4>
-                      <p>Navigate the digital age</p>
-                    </div>
-                  </div>
-
-                  <div className="mc-book-topic">
-                    <span className="mc-book-topic-icon" aria-hidden="true">⌑</span>
-                    <div>
-                      <h4>Cyber Security</h4>
-                      <p>Protect your digital assets</p>
-                    </div>
-                  </div>
-
-                  <div className="mc-book-topic">
-                    <span className="mc-book-topic-icon" aria-hidden="true">⚙</span>
-                    <div>
-                      <h4>Industrial Automation</h4>
-                      <p>Future of manufacturing</p>
-                    </div>
-                  </div>
-
-                  <div className="mc-book-topic">
-                    <span className="mc-book-topic-icon" aria-hidden="true">↗</span>
-                    <div>
-                      <h4>Industry Evolution</h4>
-                      <p>Stay ahead of trends</p>
-                    </div>
-                  </div>
-                </div>
-
-                <a className="mc-book-cta" href="#register">
-                  Enquire About the Book <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="mc-book-stats">
-              <div className="mc-book-stat">
-                <span className="mc-book-stat-icon" aria-hidden="true">☆</span>
-                <strong>4.8/5</strong>
-                <small>Rating</small>
-              </div>
-              <div className="mc-book-stat">
-                <span className="mc-book-stat-icon" aria-hidden="true">♧</span>
-                <strong>10K+</strong>
-                <small>Readers</small>
-              </div>
-              <div className="mc-book-stat">
-                <span className="mc-book-stat-icon" aria-hidden="true">♙</span>
-                <strong>Bestseller</strong>
-                <small>Status</small>
-              </div>
-            </div>
-          </section>
-
+          {/* =================================
+              AGENDA - MOVED BEFORE SIRI
+          ================================= */}
           <section id="agenda" className="mc-agenda">
             <div className="mc-agenda-head">
               <div className="mc-agenda-heading">
@@ -696,8 +496,253 @@ export default function Masterclass() {
               ))}
             </div>
           </section>
+
+          {/* =================================
+              ABOUT SIRI - REDESIGNED
+          ================================= */}
+          <section
+            className="mc-feature-section mc-siri-section"
+            aria-labelledby="mc-siri-title"
+          >
+            <div className="mc-feature-heading">
+              <span className="mc-feature-eyebrow">INDUSTRY 4.0</span>
+              <h2 id="mc-siri-title" className="mc-section-title">
+                About SIRI
+              </h2>
+              <p>
+                Understand where your manufacturing organization stands on its
+                Industry 4.0 journey and discover a structured path towards
+                digital transformation.
+              </p>
+            </div>
+
+            <div className="mc-siri-layout">
+              <div
+                className="mc-siri-visual"
+                aria-label="Smart Industry Readiness Index"
+              >
+                <div className="mc-siri-brand">
+                  <div className="mc-siri-mark" aria-hidden="true">
+                    <span /><span /><span /><span />
+                  </div>
+                  <div className="mc-siri-logo-text">
+                    <strong>SMART</strong>
+                    <strong>INDUSTRY</strong>
+                    <strong>READINESS</strong>
+                    <strong>INDEX</strong>
+                  </div>
+                </div>
+
+                <p className="mc-siri-tagline">
+                  CATALYSING THE TRANSFORMATION OF MANUFACTURING
+                </p>
+                <span className="mc-siri-certified">Certified Framework</span>
+              </div>
+
+              <div className="mc-siri-copy">
+                <h3>What is SIRI?</h3>
+                <p>
+                  The Smart Industry Readiness Index (SIRI) is a comprehensive
+                  framework developed to help organizations assess their
+                  Industry 4.0 readiness. It provides a structured approach to
+                  evaluate and improve manufacturing capabilities in the
+                  digital age.
+                </p>
+
+                <div className="mc-feature-points">
+                  <div className="mc-feature-point">
+                    <span className="mc-point-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <h4>Assessment Framework</h4>
+                      <p>
+                        Systematic evaluation of digital transformation
+                        readiness across multiple dimensions.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mc-feature-point">
+                    <span className="mc-point-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <h4>Global Standard</h4>
+                      <p>
+                        Internationally recognized benchmark for Industry 4.0
+                        adoption.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mc-feature-point">
+                    <span className="mc-point-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <h4>Continuous Improvement</h4>
+                      <p>
+                        Roadmap for progressive enhancement of smart
+                        manufacturing capabilities.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mc-assessor-card">
+              <div className="mc-assessor-icon" aria-hidden="true">✦</div>
+
+              <div className="mc-assessor-copy">
+                <span className="mc-feature-eyebrow">CERTIFIED EXPERTISE</span>
+                <h3>Kapil Khurana</h3>
+                <h4>Founder &amp; Director</h4>
+
+                <div className="mc-assessor-credential">
+                  <strong>SIRI Certified Assessor (CSA) | IIT Delhi</strong>
+                  <p>
+                    Certified in Smart Industry Readiness Index Assessment and
+                    Implementation.
+                  </p>
+                </div>
+
+                <p className="mc-assessor-description">
+                  As a SIRI certified professional, Kapil Khurana brings
+                  extensive expertise in Industry 4.0 transformation and smart
+                  manufacturing implementations. His certification
+                  demonstrates a deep understanding of digital readiness
+                  assessment frameworks and strategic implementation
+                  methodologies.
+                </p>
+
+                <ul className="mc-assessor-benefits">
+                  <li>Leading digital transformation initiatives</li>
+                  <li>Driving Industry 4.0 adoption strategies</li>
+                  <li>Expertise in smart manufacturing excellence</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* =================================
+              DIGITAL REVOLUTION BOOK
+          ================================= */}
+          <section
+            className="mc-feature-section mc-book-section"
+            aria-labelledby="mc-book-title"
+          >
+            <div className="mc-book-layout">
+              <div
+                className="mc-book-visual-wrap"
+                aria-label="Digital Revolution book artwork"
+              >
+                <span className="mc-book-new">NEW</span>
+
+                <div className="mc-book-cover">
+                  <span className="mc-book-author">KAPIL KHURANA</span>
+                  <div className="mc-book-cover-rule" />
+                  <h3>DIGITAL<br />REVOLUTION</h3>
+                  <p className="mc-book-cover-subtitle">
+                    A GUIDE TO SUCCESS IN THE TECHNOLOGY-DRIVEN WORLD
+                  </p>
+
+                  <div className="mc-book-illustration" aria-hidden="true">
+                    <div className="mc-book-illustration-screen">
+                      <span /><span /><span />
+                    </div>
+                    <div className="mc-book-illustration-base" />
+                  </div>
+
+                  <div className="mc-book-cover-footer">
+                    INDUSTRY 4.0 &amp; INDUSTRIAL IoT
+                  </div>
+                </div>
+
+                <span className="mc-book-spine">DIGITAL REVOLUTION 4.0</span>
+              </div>
+
+              <div className="mc-book-content">
+                <span className="mc-feature-eyebrow">FEATURED BOOK</span>
+
+                <h2 id="mc-book-title">
+                  Book <em>“Digital Revolution”</em>
+                </h2>
+
+                <h3 className="mc-book-industry">Industry 4.0</h3>
+
+                <p className="mc-book-byline">
+                  by <strong>Kapil Khurana</strong>
+                  <span>•</span>
+                  Technoviz Automation
+                </p>
+
+                <p className="mc-book-description">
+                  Navigate the digital transformation reshaping our world.
+                  From workplace evolution to global connectivity, discover
+                  strategies to harness innovation while addressing the
+                  challenges of technological disruption.
+                </p>
+
+                <div className="mc-book-topics">
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">✧</span>
+                    <div>
+                      <h4>Digital Transformation</h4>
+                      <p>Navigate the digital age</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">⌑</span>
+                    <div>
+                      <h4>Cyber Security</h4>
+                      <p>Protect your digital assets</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">⚙</span>
+                    <div>
+                      <h4>Industrial Automation</h4>
+                      <p>Future of manufacturing</p>
+                    </div>
+                  </div>
+
+                  <div className="mc-book-topic">
+                    <span className="mc-book-topic-icon" aria-hidden="true">↗</span>
+                    <div>
+                      <h4>Industry Evolution</h4>
+                      <p>Stay ahead of trends</p>
+                    </div>
+                  </div>
+                </div>
+
+                <a className="mc-book-cta" href="#register">
+                  Enquire About the Book <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="mc-book-stats">
+              <div className="mc-book-stat">
+                <span className="mc-book-stat-icon" aria-hidden="true">☆</span>
+                <strong>4.8/5</strong>
+                <small>Rating</small>
+              </div>
+
+              <div className="mc-book-stat">
+                <span className="mc-book-stat-icon" aria-hidden="true">♧</span>
+                <strong>10K+</strong>
+                <small>Readers</small>
+              </div>
+
+              <div className="mc-book-stat">
+                <span className="mc-book-stat-icon" aria-hidden="true">♙</span>
+                <strong>Bestseller</strong>
+                <small>Status</small>
+              </div>
+            </div>
+          </section>
+
         </div>
 
+        {/* REGISTRATION - UNCHANGED */}
         <aside className="mc-side">
           <div id="register" className="mc-register">
             <div className="mc-register-head">
@@ -769,6 +814,7 @@ export default function Masterclass() {
             </form>
           </div>
 
+          {/* CLIENT LOGO SLIDER - UNCHANGED */}
           <section className="mc-client-logos" aria-label="Our trusted clients">
             <h2 className="mc-client-logos-title">Our Trusted Clients</h2>
 
@@ -798,6 +844,7 @@ export default function Masterclass() {
         </aside>
       </div>
 
+      {/* SUCCESS MODAL */}
       {showSuccess && (
         <div className="mc-overlay">
           <div
