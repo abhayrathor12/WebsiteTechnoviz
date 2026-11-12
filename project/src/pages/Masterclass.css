@@ -1212,48 +1212,42 @@ html {
   gap: 32px;
 }
 
-/* LEFT BOOK SHOWCASE */
+/* LEFT BOOK SHOWCASE
+   Uses the real book photo (book_techno.webp). The photo has a white
+   background, so mix-blend-mode: multiply drops the white and lets the
+   panel gradient show through. --book-zoom crops the empty margins of
+   the photo; raise it to zoom in, lower it to zoom out. */
 
 .mc-book-visual-wrap {
+  --book-zoom: 205%;
   position: relative;
-  display: flex;
-  min-height: 440px;
-  align-items: center;
-  justify-content: center;
-  padding: 35px 20px;
+  min-height: 420px;
   overflow: hidden;
-  border: none;
+  border: 1px solid rgba(32,63,120,.1);
   border-radius: 16px;
   background:
-    radial-gradient(circle at 50% 40%, rgba(75,145,205,.32), transparent 45%),
-    radial-gradient(circle at 10% 90%, rgba(221,175,38,.17), transparent 40%),
-    linear-gradient(145deg, #203f78, #142a54 65%, #0e1f40);
-  perspective: 1200px;
+    radial-gradient(circle at 50% 45%, #fff 0%, transparent 60%),
+    radial-gradient(circle at 12% 92%, rgba(221,175,38,.16), transparent 42%),
+    linear-gradient(160deg, #e9eff8, #dbe5f3);
   isolation: isolate;
 }
 
-.mc-book-visual-wrap::before {
+.mc-book-img {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 310px;
-  height: 310px;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  content: "";
+  width: var(--book-zoom);
+  max-width: none;
+  height: auto;
+  transform: translate(-49.4%, -49%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+  transition: transform .4s ease;
 }
 
-.mc-book-visual-wrap::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 245px;
-  height: 245px;
-  border: 1px dashed rgba(255,255,255,.18);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  content: "";
+.mc-book-visual-wrap:hover .mc-book-img {
+  transform: translate(-49.4%, -50%) scale(1.03);
 }
 
 /* NEW BADGE */
@@ -1268,165 +1262,14 @@ html {
   height: 49px;
   align-items: center;
   justify-content: center;
-  border: 3px solid rgba(255,255,255,.7);
+  border: 3px solid rgba(255,255,255,.85);
   border-radius: 50%;
   background: var(--gold);
   color: var(--navy-deep);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 800;
-  box-shadow: 0 7px 18px rgba(0,0,0,.2);
-}
-
-/* 3D BOOK COVER */
-
-.mc-book-cover {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  width: min(235px, 82%);
-  min-height: 340px;
-  flex-direction: column;
-  padding: 23px 20px 17px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 3px 9px 9px 3px;
-  background:
-    linear-gradient(145deg, transparent 0 40%, rgba(30,123,194,.25) 40% 48%, transparent 48%),
-    linear-gradient(155deg, #10275b, #07183e 75%, #123c79);
-  color: #fff;
-  box-shadow:
-    15px 20px 32px rgba(0,0,0,.32),
-    -5px 0 0 #0b1c42,
-    -8px 0 0 #142a54;
-  transform: rotateY(-12deg) rotateZ(-3deg);
-  transition: transform .4s ease, box-shadow .4s ease;
-}
-
-.mc-book-visual-wrap:hover .mc-book-cover {
-  transform: rotateY(-3deg) rotateZ(0deg) translateY(-7px);
-  box-shadow:
-    19px 24px 36px rgba(0,0,0,.35),
-    -5px 0 0 #0b1c42,
-    -8px 0 0 #142a54;
-}
-
-.mc-book-cover::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 6px;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,.2), rgba(0,0,0,.25));
-  content: "";
-}
-
-.mc-book-author {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .08em;
-}
-
-.mc-book-cover-rule {
-  width: 100%;
-  height: 2px;
-  margin: 14px 0;
-  background: linear-gradient(90deg, #28a5e5, transparent);
-}
-
-.mc-book-cover h3 {
-  margin: 0;
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 31px;
-  font-weight: 700;
-  line-height: .98;
-  letter-spacing: .015em;
-}
-
-.mc-book-cover-subtitle {
-  max-width: 175px;
-  margin: 11px 0 0;
-  color: rgba(255,255,255,.8);
-  font-size: 8px;
-  font-weight: 600;
-  line-height: 1.7;
-}
-
-.mc-book-illustration {
-  position: relative;
-  display: flex;
-  height: 85px;
-  align-items: center;
-  justify-content: center;
-  margin-top: auto;
-}
-
-.mc-book-illustration-screen {
-  display: flex;
-  width: 90px;
-  height: 53px;
-  align-items: flex-end;
-  justify-content: space-evenly;
-  padding: 8px;
-  border: 2px solid #35a7e4;
-  border-radius: 5px;
-  background: rgba(25,122,190,.2);
-}
-
-.mc-book-illustration-screen span {
-  width: 10px;
-  border-radius: 2px 2px 0 0;
-  background: #4fc0f0;
-}
-
-.mc-book-illustration-screen span:nth-child(1) {
-  height: 16px;
-}
-
-.mc-book-illustration-screen span:nth-child(2) {
-  height: 27px;
-}
-
-.mc-book-illustration-screen span:nth-child(3) {
-  height: 20px;
-}
-
-.mc-book-illustration-base {
-  position: absolute;
-  bottom: 6px;
-  width: 110px;
-  height: 4px;
-  border-radius: 50%;
-  background: #39a8e5;
-}
-
-.mc-book-cover-footer {
-  margin-top: 9px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255,255,255,.25);
-  color: #8bd8ff;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-align: center;
-}
-
-.mc-book-spine {
-  position: absolute;
-  right: 8px;
-  bottom: 48px;
-  z-index: 3;
-  padding: 10px 5px;
-  background: #0b1d43;
-  color: #d9e8fa;
-  font-family: var(--font-mono);
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  writing-mode: vertical-rl;
-  box-shadow: 4px 5px 10px rgba(0,0,0,.2);
+  box-shadow: 0 7px 18px rgba(20,42,84,.22);
 }
 
 /* RIGHT BOOK CONTENT */
@@ -1790,12 +1633,8 @@ html {
   }
 
   .mc-book-visual-wrap {
+    --book-zoom: 200%;
     min-height: 380px;
-  }
-
-  .mc-book-cover {
-    width: 195px;
-    min-height: 300px;
   }
 }
 
@@ -1840,12 +1679,8 @@ html {
   }
 
   .mc-book-visual-wrap {
+    --book-zoom: 195%;
     min-height: 350px;
-  }
-
-  .mc-book-cover {
-    width: 180px;
-    min-height: 275px;
   }
 
   .mc-book-content h2 {
@@ -2087,12 +1922,9 @@ html {
   }
 
   .mc-book-visual-wrap {
-    min-height: 320px;
-  }
-
-  .mc-book-cover {
-    width: 195px;
-    min-height: 280px;
+    --book-zoom: 170%;
+    min-height: 0;
+    aspect-ratio: 6 / 5;
   }
 
   .mc-book-content {
@@ -2339,12 +2171,7 @@ html {
   }
 
   .mc-book-visual-wrap {
-    min-height: 285px;
-  }
-
-  .mc-book-cover {
-    width: 175px;
-    min-height: 255px;
+    --book-zoom: 165%;
   }
 
   .mc-book-topics {

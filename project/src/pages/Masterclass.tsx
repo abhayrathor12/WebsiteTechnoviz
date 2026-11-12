@@ -10,6 +10,7 @@ import {
 import "./Masterclass.css";
 import { loadRazorpayScript } from "../utils/razorpay";
 import kapimage from "../public/kaps.webp";
+import bookImage from "../public/book_techno.webp";
 
 const initialForm: RegistrationData = {
   name: "",
@@ -634,27 +635,13 @@ export default function Masterclass() {
               >
                 <span className="mc-book-new">NEW</span>
 
-                <div className="mc-book-cover">
-                  <span className="mc-book-author">KAPIL KHURANA</span>
-                  <div className="mc-book-cover-rule" />
-                  <h3>DIGITAL<br />REVOLUTION</h3>
-                  <p className="mc-book-cover-subtitle">
-                    A GUIDE TO SUCCESS IN THE TECHNOLOGY-DRIVEN WORLD
-                  </p>
-
-                  <div className="mc-book-illustration" aria-hidden="true">
-                    <div className="mc-book-illustration-screen">
-                      <span /><span /><span />
-                    </div>
-                    <div className="mc-book-illustration-base" />
-                  </div>
-
-                  <div className="mc-book-cover-footer">
-                    INDUSTRY 4.0 &amp; INDUSTRIAL IoT
-                  </div>
-                </div>
-
-                <span className="mc-book-spine">DIGITAL REVOLUTION 4.0</span>
+                <img
+                  src={bookImage}
+                  alt="Digital Revolution: Industry 4.0 & Industrial IoT by Kapil Khurana, front cover and spine"
+                  className="mc-book-img"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
               <div className="mc-book-content">
@@ -713,7 +700,7 @@ export default function Masterclass() {
                   </div>
                 </div>
 
-                <a className="mc-book-cta" href="#register">
+                <a className="mc-book-cta" href="https://www.amazon.in/Digital-Revolution-Technology-Integration-Industrial/dp/B0D6YGJ1RR">
                   Enquire About the Book <span aria-hidden="true">→</span>
                 </a>
               </div>
