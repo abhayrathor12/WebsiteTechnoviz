@@ -1,7 +1,8 @@
 // Base URL of your Django backend, e.g. https://api.technovizautomation.com/api
 // Set VITE_API_BASE_URL in a .env file at the project root.
 // const API_BASE_URL = "http://192.168.1.60:8257/api";
-const API_BASE_URL = "https://websiteBackend.pythonanywhere.com/api";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://websiteBackend.pythonanywhere.com/api";
 
 export type SafeResult<T> = [T | null, string | null];
 
@@ -70,5 +71,13 @@ export function verifyPayment(payload: {
   return safe<VerifyPaymentResponse>("/verify-payment/", {
     method: "POST",
     body: JSON.stringify(payload),
+  });
+}
+
+/** TESTING ONLY: register without Razorpay (backend needs MASTERCLASS_SKIP_PAYMENT=1). */
+export function testRegister(registration_data: RegistrationData) {
+  return safe<VerifyPaymentResponse>("/test-register/", {
+    method: "POST",
+    body: JSON.stringify({ registration_data }),
   });
 }

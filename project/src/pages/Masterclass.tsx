@@ -1,7 +1,10 @@
 import SEO from "../components/SEO";
 import { PAGE_SEO } from "../seo/pages.js";
 import { useState, FormEvent } from "react";
-import { createOrder, verifyPayment, RegistrationData } from "../api";
+import { createOrder, verifyPayment, testRegister, RegistrationData } from "../api";
+
+// TESTING ONLY: VITE_SKIP_PAYMENT=1 skips Razorpay so the emails can be tested.
+const SKIP_PAYMENT = import.meta.env.VITE_SKIP_PAYMENT === "1";
 import "./Masterclass.css";
 import { loadRazorpayScript } from "../utils/razorpay";
 import kapimage from "../public/kaps.webp";
@@ -122,6 +125,18 @@ export default function Masterclass() {
     }
 
     setLoading(true);
+
+    if (SKIP_PAYMENT) {
+      const [result, testError] = await testRegister(form);
+      setLoading(false);
+      if (testError || !result?.success) {
+        setError(testError || result?.message || "Test registration failed.");
+        return;
+      }
+      setShowSuccess(true);
+      setForm(initialForm);
+      return;
+    }
 
     const scriptLoaded = await loadRazorpayScript();
     if (!scriptLoaded) {
