@@ -36,11 +36,16 @@ async function safe<T>(
   }
 }
 
-export interface RegistrationData {
+export type RegistrationData = {
   name: string;
   email: string;
   phone: string;
-}
+
+  // Optional fields
+  company_email?: string;
+  pin_code?: string;
+  company_name?: string;
+};
 
 export interface CreateOrderResponse {
   order_id: string;
