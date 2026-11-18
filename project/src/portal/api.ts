@@ -51,7 +51,13 @@ export interface EvaluationProgress {
 
 export interface Progress {
   evaluations: EvaluationProgress[];
+  /** Evaluations open when the user's webinar starts */
+  waiting_for_webinar: boolean;
+  evaluations_locked_until: string | null; // ISO date-time, null = webinar not scheduled yet
+  schedule_message: string | null;
   all_done: boolean;
+  /** Admin switches this on per user; until then downloads are blocked */
+  certificate_enabled: boolean;
   certificate_downloaded: boolean;
   linkedin_downloaded: boolean;
   /** Only when all evaluations are done */
@@ -180,11 +186,6 @@ export async function downloadFile(path: string, filename: string): Promise<stri
 }
 
 export const portalApi = {
-  register: (name: string, email: string, password: string) =>
-    request<{ message: string }>("/register/", {
-      method: "POST",
-      body: { name, email, password },
-    }),
   login: (email: string, password: string) =>
     request<{ token: string; user: PortalUser }>("/login/", {
       method: "POST",
@@ -192,6 +193,25 @@ export const portalApi = {
     }),
   logout: () => request<{ message: string }>("/logout/", { method: "POST" }),
   me: () => request<PortalUser>("/me/"),
+  changePassword: (current_password: string, new_password: string) =>
+    request<{ message: string }>("/change-password/", {
+      method: "POST",
+      body: { current_password, new_password },
+    }),
+
+  // Forgot password: OTP by email -> verify -> new password
+  forgotPassword: (email: string) =>
+    request<{ message: string; expires_in: number }>("/forgot-password/", {
+      method: "POST",
+      body: { email },
+    }),
+  verifyOtp: (email: string, otp: string) =>
+    request<{ reset_token: string }>("/verify-otp/", { method: "POST", body: { email, otp } }),
+  resetPassword: (email: string, reset_token: string, password: string) =>
+    request<{ message: string }>("/reset-password/", {
+      method: "POST",
+      body: { email, reset_token, password },
+    }),
 
   // Participant
   progress: () => request<Progress>("/progress/"),

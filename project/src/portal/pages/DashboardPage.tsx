@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Award, CheckCircle2, Lock, PlayCircle } from "lucide-react";
+import { Award, CalendarClock, CheckCircle2, Lock, PlayCircle } from "lucide-react";
 
 import { useAuth } from "../AuthContext";
 import { PORTAL_BASE } from "../constants";
@@ -29,7 +29,7 @@ export default function DashboardPage() {
       <header className="mp-page-head">
         <p className="mp-eyebrow">My Results</p>
         <h1>Welcome, {user?.name}</h1>
-        <p>Complete the evaluations in order. Each one unlocks after you submit the previous one.</p>
+        <p>Complete the Pre Assessment to unlock your certificate.</p>
       </header>
 
       {loading ? (
@@ -64,12 +64,26 @@ export default function DashboardPage() {
             </div>
           </div>
 
+          {progress?.waiting_for_webinar && (
+            <div className="mp-card mp-card--accent mp-cta-card">
+              <CalendarClock size={28} />
+              <div>
+                <h2>Evaluations open when your webinar starts</h2>
+                <p>{progress.schedule_message}</p>
+              </div>
+            </div>
+          )}
+
           {progress?.all_done && (
             <div className="mp-card mp-card--accent mp-cta-card">
               <Award size={28} />
               <div>
                 <h2>All evaluations completed!</h2>
-                <p>Download your certificate and the LinkedIn guide.</p>
+                <p>
+                  {progress.certificate_enabled
+                    ? "Download your certificate and the LinkedIn guide."
+                    : "Your certificate is waiting for approval from the Technoviz team."}
+                </p>
               </div>
               <Link to={`${PORTAL_BASE}/certificate`} className="mp-btn mp-btn--primary mp-btn--inline">
                 Go to Certificate

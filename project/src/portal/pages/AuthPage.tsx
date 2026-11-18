@@ -3,9 +3,18 @@ import type { FormEvent } from "react";
 
 import { useAuth } from "../AuthContext";
 import { portalApi } from "../api";
+import PasswordInput from "../components/PasswordInput";
 import { useDialog } from "../DialogContext";
 
-type Tab = "login" | "register";
+// Portal accounts are created automatically after the Masterclass payment
+// (login details are emailed), so there is no Register form here.
+type View = "login" | "forgot-email" | "forgot-otp" | "forgot-reset";
+
+const OTP_SECONDS = 120;
+
+function formatTimer(seconds: number) {
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+}
 
 export default function AuthPage() {
   const { login, notice, clearNotice } = useAuth();
@@ -17,24 +26,41 @@ export default function AuthPage() {
     clearNotice();
     dialog.alert(notice);
   }, [notice, clearNotice, dialog]);
-  const [tab, setTab] = useState<Tab>("login");
+
+  const [view, setView] = useState<View>("login");
   const [busy, setBusy] = useState(false);
 
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // Forgot password
+  const [otp, setOtp] = useState("");
+  const [secondsLeft, setSecondsLeft] = useState(0);
+  const [resetToken, setResetToken] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+
+  // OTP countdown
+  useEffect(() => {
+    if (view !== "forgot-otp" || secondsLeft <= 0) return;
+    const id = window.setTimeout(() => setSecondsLeft((s) => s - 1), 1000);
+    return () => window.clearTimeout(id);
+  }, [view, secondsLeft]);
 
   /** Every message to the user is shown as a popup */
   function showError(title: string, message: string) {
     dialog.alert({ title, message, tone: "warn" });
   }
 
-  function switchTab(next: Tab) {
-    setTab(next);
+  function goTo(next: View) {
+    setView(next);
     setPassword("");
+    setOtp("");
+    setNewPassword("");
     setConfirm("");
   }
+
+  // ─── Login ───
 
   async function handleLogin(e: FormEvent) {
     e.preventDefault();
@@ -51,16 +77,11 @@ export default function AuthPage() {
       dialog.alert({
         title: "Account not active",
         message: (
-          <>
-            <p>
-              Your account is deactivated right now because you have already downloaded your
-              certificate. If you want to access the portal again, contact{" "}
-              <a href="mailto:support@technovizautomation.com">support@technovizautomation.com</a>.
-            </p>
-            <p className="mp-dialog-note">
-              If you just registered, please wait for activation.
-            </p>
-          </>
+          <p>
+            Your account is deactivated right now because you have already downloaded your
+            certificate. If you want to access the portal again, contact{" "}
+            <a href="mailto:support@technovizautomation.com">support@technovizautomation.com</a>.
+          </p>
         ),
         tone: "warn",
       });
@@ -69,38 +90,75 @@ export default function AuthPage() {
     }
   }
 
-  async function handleRegister(e: FormEvent) {
+  // ─── Forgot password ───
+
+  async function sendOtp(e?: FormEvent) {
+    e?.preventDefault();
+    if (!/^\S+@\S+\.\S+$/.test(email.trim())) {
+      showError("Invalid email", "Please enter the email you used for the Masterclass.");
+      return;
+    }
+    setBusy(true);
+    const { data, error } = await portalApi.forgotPassword(email.trim());
+    setBusy(false);
+    if (!data) {
+      showError("Could not send the OTP", error || "Something went wrong. Please try again.");
+      return;
+    }
+    setOtp("");
+    setSecondsLeft(data.expires_in || OTP_SECONDS);
+    setView("forgot-otp");
+    dialog.alert({ title: "OTP sent", message: data.message, tone: "info" });
+  }
+
+  async function handleVerify(e: FormEvent) {
     e.preventDefault();
-    if (!name.trim()) return showError("Missing details", "Please enter your full name.");
-    if (!/^\S+@\S+\.\S+$/.test(email.trim()))
-      return showError("Invalid email", "Please enter a valid email address.");
-    if (password.length < 8)
+    if (secondsLeft <= 0) {
+      showError("OTP expired", "This OTP has expired. Please click Resend OTP to get a new one.");
+      return;
+    }
+    if (!/^\d{6}$/.test(otp.trim())) {
+      showError("Invalid OTP", "Please enter the 6-digit OTP from your email.");
+      return;
+    }
+    setBusy(true);
+    const { data, error } = await portalApi.verifyOtp(email.trim(), otp.trim());
+    setBusy(false);
+    if (!data) {
+      showError("OTP not accepted", error || "Something went wrong. Please try again.");
+      return;
+    }
+    setResetToken(data.reset_token);
+    goTo("forgot-reset");
+  }
+
+  async function handleReset(e: FormEvent) {
+    e.preventDefault();
+    if (newPassword.length < 8)
       return showError("Password too short", "Password must be at least 8 characters.");
-    if (password !== confirm)
+    if (newPassword !== confirm)
       return showError("Passwords do not match", "Please type the same password in both fields.");
 
     setBusy(true);
-    const { data, error: err, status } = await portalApi.register(
-      name.trim(),
-      email.trim(),
-      password
-    );
+    const { data, error } = await portalApi.resetPassword(email.trim(), resetToken, newPassword);
     setBusy(false);
     if (!data) {
-      const title =
-        status === 403
-          ? "Email not registered for the Masterclass"
-          : status === 400 && err?.includes("already exists")
-            ? "Account already exists"
-            : "Registration failed";
-      showError(title, err || "Something went wrong. Please try again.");
+      showError("Could not change the password", error || "Something went wrong. Please try again.");
+      if (error?.includes("start again")) goTo("forgot-email");
       return;
     }
-    setTab("login");
-    setPassword("");
-    setConfirm("");
-    dialog.alert({ title: "Registration successful", message: data.message, tone: "success" });
+    setResetToken("");
+    goTo("login");
+    dialog.alert({ title: "Password changed", message: data.message, tone: "success" });
   }
+
+  const backToLogin = (
+    <p className="mp-form-foot">
+      <button type="button" className="mp-link" onClick={() => goTo("login")} disabled={busy}>
+        Back to Login
+      </button>
+    </p>
+  );
 
   return (
     <div className="mp-auth">
@@ -110,38 +168,22 @@ export default function AuthPage() {
           Smart Manufacturing <span>&amp; AI Masterclass</span>
         </h1>
         <p>
-          Take your session evaluations, see your marks, and download your certificate once
-          you complete all evaluations.
+          Watch the welcome video, take the Pre Assessment, see your marks, and download your
+          certificate.
         </p>
         <ul>
-          <li>Register with the same email you used to pay for the Masterclass</li>
-          <li>Your account is activated by the admin before you can log in</li>
-          <li>Evaluations unlock one by one as you complete them</li>
+          <li>Your login details are emailed to you after you register for the Masterclass</li>
+          <li>The Pre Assessment opens when your webinar starts</li>
         </ul>
       </section>
 
       <section className="mp-auth-card">
-        <div className="mp-tabs" role="tablist">
-          <button
-            role="tab"
-            aria-selected={tab === "login"}
-            className={tab === "login" ? "is-active" : ""}
-            onClick={() => switchTab("login")}
-          >
-            Login
-          </button>
-          <button
-            role="tab"
-            aria-selected={tab === "register"}
-            className={tab === "register" ? "is-active" : ""}
-            onClick={() => switchTab("register")}
-          >
-            Register
-          </button>
-        </div>
-
-        {tab === "login" ? (
+        {view === "login" && (
           <form className="mp-form" onSubmit={handleLogin} noValidate>
+            <div className="mp-auth-head">
+              <h2>Login</h2>
+              <p>Use the email and password from your Masterclass Portal email.</p>
+            </div>
             <label className="mp-field">
               <span>Email</span>
               <input
@@ -155,8 +197,7 @@ export default function AuthPage() {
             </label>
             <label className="mp-field">
               <span>Password</span>
-              <input
-                type="password"
+              <PasswordInput
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -164,29 +205,26 @@ export default function AuthPage() {
                 disabled={busy}
               />
             </label>
+            <button
+              type="button"
+              className="mp-link mp-forgot-link"
+              onClick={() => goTo("forgot-email")}
+              disabled={busy}
+            >
+              Forgot password?
+            </button>
             <button type="submit" className="mp-btn mp-btn--primary" disabled={busy}>
               {busy ? "Logging in..." : "Login"}
             </button>
-            <p className="mp-form-foot">
-              New here?{" "}
-              <button type="button" className="mp-link" onClick={() => switchTab("register")}>
-                Create an account
-              </button>
-            </p>
           </form>
-        ) : (
-          <form className="mp-form" onSubmit={handleRegister} noValidate>
-            <label className="mp-field">
-              <span>Full Name</span>
-              <input
-                type="text"
-                autoComplete="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name to print on your certificate"
-                disabled={busy}
-              />
-            </label>
+        )}
+
+        {view === "forgot-email" && (
+          <form className="mp-form" onSubmit={sendOtp} noValidate>
+            <div className="mp-auth-head">
+              <h2>Forgot password</h2>
+              <p>Enter your email. We will send you an OTP to reset your password.</p>
+            </div>
             <label className="mp-field">
               <span>Email</span>
               <input
@@ -194,41 +232,103 @@ export default function AuthPage() {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email used for the Masterclass payment"
-                disabled={busy}
-              />
-            </label>
-            <label className="mp-field">
-              <span>Password</span>
-              <input
-                type="password"
-                autoComplete="new-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="At least 8 characters"
-                disabled={busy}
-              />
-            </label>
-            <label className="mp-field">
-              <span>Confirm Password</span>
-              <input
-                type="password"
-                autoComplete="new-password"
-                value={confirm}
-                onChange={(e) => setConfirm(e.target.value)}
-                placeholder="Repeat your password"
+                placeholder="Email used for the Masterclass"
                 disabled={busy}
               />
             </label>
             <button type="submit" className="mp-btn mp-btn--primary" disabled={busy}>
-              {busy ? "Registering..." : "Register"}
+              {busy ? "Sending..." : "Send OTP"}
+            </button>
+            {backToLogin}
+          </form>
+        )}
+
+        {view === "forgot-otp" && (
+          <form className="mp-form" onSubmit={handleVerify} noValidate>
+            <div className="mp-auth-head">
+              <h2>Enter OTP</h2>
+              <p>
+                We sent a 6-digit OTP to <strong>{email.trim()}</strong>.
+              </p>
+            </div>
+            <label className="mp-field">
+              <span>OTP</span>
+              <input
+                className="mp-otp-input"
+                type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                maxLength={6}
+                value={otp}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                placeholder="••••••"
+                disabled={busy}
+                autoFocus
+              />
+            </label>
+            <p className={`mp-otp-timer${secondsLeft <= 0 ? " is-expired" : ""}`}>
+              {secondsLeft > 0 ? (
+                <>
+                  OTP expires in <strong>{formatTimer(secondsLeft)}</strong>
+                </>
+              ) : (
+                "OTP expired. Please request a new one."
+              )}
+            </p>
+            <button
+              type="submit"
+              className="mp-btn mp-btn--primary"
+              disabled={busy || secondsLeft <= 0}
+            >
+              {busy ? "Checking..." : "Verify OTP"}
             </button>
             <p className="mp-form-foot">
-              Already registered?{" "}
-              <button type="button" className="mp-link" onClick={() => switchTab("login")}>
-                Login
+              Didn&apos;t get it?{" "}
+              <button
+                type="button"
+                className="mp-link"
+                onClick={() => sendOtp()}
+                disabled={busy || secondsLeft > 0}
+                title={secondsLeft > 0 ? "Available when the current OTP expires" : undefined}
+              >
+                Resend OTP
               </button>
             </p>
+            {backToLogin}
+          </form>
+        )}
+
+        {view === "forgot-reset" && (
+          <form className="mp-form" onSubmit={handleReset} noValidate>
+            <div className="mp-auth-head">
+              <h2>Set a new password</h2>
+              <p>OTP verified. Choose a new password for {email.trim()}.</p>
+            </div>
+            <label className="mp-field">
+              <span>New Password</span>
+              <PasswordInput
+                autoComplete="new-password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="At least 8 characters"
+                disabled={busy}
+                autoFocus
+              />
+            </label>
+            <label className="mp-field">
+              <span>Confirm New Password</span>
+              <PasswordInput
+                autoComplete="new-password"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
+                placeholder="Repeat the new password"
+                disabled={busy}
+              />
+            </label>
+            <button type="submit" className="mp-btn mp-btn--primary" disabled={busy}>
+              {busy ? "Saving..." : "Change Password"}
+            </button>
+            {backToLogin}
           </form>
         )}
       </section>

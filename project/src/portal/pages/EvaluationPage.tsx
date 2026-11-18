@@ -161,7 +161,7 @@ export default function EvaluationPage() {
       message:
         `You scored ${result.score} out of ${result.total}. ` +
         (isLast
-          ? "You have completed all evaluations. Your certificate is now unlocked!"
+          ? "You have completed the Pre Assessment. Open the Certificate tab to see your certificate status."
           : "The next evaluation is now unlocked. Scroll down to see your answers."),
       tone: "success",
     });

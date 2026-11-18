@@ -11,7 +11,10 @@ import PortalLayout from "./components/PortalLayout";
 import AuthPage from "./pages/AuthPage";
 import DashboardPage from "./pages/DashboardPage";
 import CertificatePage from "./pages/CertificatePage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 import EvaluationPage from "./pages/EvaluationPage";
+import WelcomePage from "./pages/WelcomePage";
+import LabPage from "./pages/LabPage";
 import QuestionManagerPage from "./pages/admin/QuestionManagerPage";
 import { PORTAL_BASE } from "./constants";
 import "./portal.css";
@@ -84,6 +87,22 @@ export default function PortalApp() {
               }
             />
             <Route
+              path="welcome"
+              element={
+                <RequireRole admin={false}>
+                  <WelcomePage />
+                </RequireRole>
+              }
+            />
+            <Route
+              path="lab"
+              element={
+                <RequireRole admin={false}>
+                  <LabPage />
+                </RequireRole>
+              }
+            />
+            <Route
               path="certificate"
               element={
                 <RequireRole admin={false}>
@@ -91,6 +110,9 @@ export default function PortalApp() {
                 </RequireRole>
               }
             />
+
+            {/* Both roles */}
+            <Route path="change-password" element={<ChangePasswordPage />} />
 
             {/* Admin pages */}
             <Route

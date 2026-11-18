@@ -6,10 +6,13 @@ import {
   BarChart3,
   CheckCircle2,
   ClipboardList,
+  FlaskConical,
+  KeyRound,
   Lock,
   LogOut,
   Menu,
   PlayCircle,
+  Video,
   X,
 } from "lucide-react";
 
@@ -36,12 +39,12 @@ function ParticipantNav() {
 
   return (
     <>
-      <NavLink to={`${PORTAL_BASE}/dashboard`} className={linkClass}>
-        <BarChart3 size={17} />
-        <span>My Results</span>
+      {/* Order: Welcome, Pre Assessment, Lab, My Results, Certificate */}
+      <NavLink to={`${PORTAL_BASE}/welcome`} className={linkClass}>
+        <Video size={17} />
+        <span>Welcome</span>
       </NavLink>
 
-      <p className="mp-nav-heading">Evaluations</p>
       {EVALUATIONS.map((ev) => {
         const state = statusOf(ev.slug);
         if (state === "locked") {
@@ -59,7 +62,16 @@ function ParticipantNav() {
         );
       })}
 
-      <p className="mp-nav-heading">Completion</p>
+      <NavLink to={`${PORTAL_BASE}/lab`} className={linkClass}>
+        <FlaskConical size={17} />
+        <span>Lab</span>
+      </NavLink>
+
+      <NavLink to={`${PORTAL_BASE}/dashboard`} className={linkClass}>
+        <BarChart3 size={17} />
+        <span>My Results</span>
+      </NavLink>
+
       {progress?.all_done ? (
         <NavLink to={`${PORTAL_BASE}/certificate`} className={linkClass}>
           <Award size={17} />
@@ -119,7 +131,15 @@ function LayoutShell() {
           <span>Masterclass Portal</span>
         </div>
 
-        <nav className="mp-nav">{user.is_admin ? <AdminNav /> : <ParticipantNav />}</nav>
+        <nav className="mp-nav">
+          {user.is_admin ? <AdminNav /> : <ParticipantNav />}
+
+          <p className="mp-nav-heading">Account</p>
+          <NavLink to={`${PORTAL_BASE}/change-password`} className={linkClass}>
+            <KeyRound size={17} />
+            <span>Change Password</span>
+          </NavLink>
+        </nav>
 
         <div className="mp-userbox">
           <div className="mp-avatar" aria-hidden>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Award, CheckCircle2, Download, Eye, FileText, Lock } from "lucide-react";
+import { Award, CheckCircle2, Download, Eye, FileText, Hourglass, Lock } from "lucide-react";
 
 import { useAuth } from "../AuthContext";
 import { downloadFile } from "../api";
@@ -109,10 +109,33 @@ export default function CertificatePage() {
         <div className="mp-card mp-empty">
           <Lock size={32} className="mp-empty-icon" />
           <h2>Certificate locked</h2>
-          <p>Complete all 7 evaluations to unlock your certificate and the LinkedIn guide.</p>
+          <p>Complete the Pre Assessment to unlock your certificate and the LinkedIn guide.</p>
           <Link to={`${PORTAL_BASE}/dashboard`} className="mp-btn mp-btn--primary mp-btn--inline">
             Back to My Results
           </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (!progress.certificate_enabled) {
+    return (
+      <div className="mp-page">
+        <header className="mp-page-head">
+          <p className="mp-eyebrow">Completion</p>
+          <h1>Congratulations! 🎉</h1>
+          <p>You have completed all evaluations.</p>
+        </header>
+        <div className="mp-card mp-empty">
+          <Hourglass size={32} className="mp-empty-icon" />
+          <h2>Certificate waiting for approval</h2>
+          <p>
+            Your certificate and the LinkedIn guide will be available here once the Technoviz team
+            activates your certificate. Please check back later.
+          </p>
+          <button className="mp-btn mp-btn--primary mp-btn--inline" onClick={refresh}>
+            Check again
+          </button>
         </div>
       </div>
     );

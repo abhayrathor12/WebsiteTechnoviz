@@ -288,6 +288,123 @@
   text-align: center;
 }
 
+/* Login / forgot password */
+.mp-auth-head h2 {
+  margin: 0 0 4px;
+  color: var(--mp-navy);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.mp-auth-head p {
+  margin: 0;
+  color: var(--mp-ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.mp-forgot-link {
+  justify-self: end;
+  margin-top: -4px;
+  font-size: 13.5px;
+}
+
+/* Welcome video */
+.mp-video-card {
+  padding: 12px;
+}
+
+.mp-video-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #0b1220;
+  aspect-ratio: 16 / 9;
+}
+
+.mp-video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Password field with show / hide eye button */
+.mp-password-wrap {
+  position: relative;
+}
+
+.mp-field .mp-password-wrap input {
+  padding-right: 46px;
+}
+
+.mp-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--mp-ink-soft);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.mp-password-toggle:hover:not(:disabled) {
+  color: var(--mp-navy);
+  background: rgba(32, 63, 120, 0.08);
+}
+
+.mp-password-toggle:focus-visible {
+  outline: 2px solid var(--mp-navy);
+  outline-offset: 1px;
+}
+
+.mp-password-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.mp-otp-input {
+  font-size: 22px !important;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  text-align: center;
+}
+
+.mp-otp-timer {
+  margin: -4px 0 0;
+  color: var(--mp-ink-soft);
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.mp-otp-timer strong {
+  color: var(--mp-navy);
+  font-variant-numeric: tabular-nums;
+}
+
+.mp-otp-timer.is-expired {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.mp-link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mp-password-card {
+  max-width: 480px;
+}
+
 /* ─── Logged-in layout ─── */
 
 .mp-shell {
