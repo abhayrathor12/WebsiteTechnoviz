@@ -1,6 +1,7 @@
 // Base URL of your Django backend, e.g. https://api.technovizautomation.com/api
 // Set VITE_API_BASE_URL in a .env file at the project root.
-// const API_BASE_URL = "http://192.168.1.60:8257/api";
+// Local testing: run the dev server with VITE_API_BASE_URL set, e.g. http://192.168.1.60:8257/api
+// Without it, the live backend is used.
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "https://websiteBackend.pythonanywhere.com/api";
 
@@ -37,11 +38,16 @@ async function safe<T>(
   }
 }
 
-export interface RegistrationData {
+export type RegistrationData = {
   name: string;
   email: string;
   phone: string;
-}
+
+  // Optional fields
+  company_email?: string;
+  pin_code?: string;
+  company_name?: string;
+};
 
 export interface CreateOrderResponse {
   order_id: string;
@@ -62,6 +68,15 @@ export function createOrder() {
   });
 }
 
+/** TESTING ONLY: register without Razorpay. The backend allows it only when
+ *  MASTERCLASS_SKIP_PAYMENT=1 is set there; otherwise it returns 404. */
+export function testRegister(registration_data: RegistrationData) {
+  return safe<VerifyPaymentResponse>("/test-register/", {
+    method: "POST",
+    body: JSON.stringify({ registration_data }),
+  });
+}
+
 export function verifyPayment(payload: {
   razorpay_order_id: string;
   razorpay_payment_id: string;
@@ -71,13 +86,5 @@ export function verifyPayment(payload: {
   return safe<VerifyPaymentResponse>("/verify-payment/", {
     method: "POST",
     body: JSON.stringify(payload),
-  });
-}
-
-/** TESTING ONLY: register without Razorpay (backend needs MASTERCLASS_SKIP_PAYMENT=1). */
-export function testRegister(registration_data: RegistrationData) {
-  return safe<VerifyPaymentResponse>("/test-register/", {
-    method: "POST",
-    body: JSON.stringify({ registration_data }),
   });
 }

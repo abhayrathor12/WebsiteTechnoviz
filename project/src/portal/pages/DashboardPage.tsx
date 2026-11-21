@@ -68,7 +68,7 @@ export default function DashboardPage() {
             <div className="mp-card mp-card--accent mp-cta-card">
               <CalendarClock size={28} />
               <div>
-                <h2>Evaluations open when your webinar starts</h2>
+                <h2>Evaluations open when your masterclass starts</h2>
                 <p>{progress.schedule_message}</p>
               </div>
             </div>

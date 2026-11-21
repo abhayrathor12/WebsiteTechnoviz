@@ -62,6 +62,10 @@ const App: React.FC = () => {
           <Route path="/mysql" element={<MysqlPage />} />
           <Route path="/android" element={<AndroidPage />} />
           <Route path="/learning" element={<KnowledgePage />} />
+          <Route
+            path="/Smart-Manufacturing-AI-Masterclass"
+            element={<MasterclassPage />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
@@ -91,12 +95,6 @@ const App: React.FC = () => {
           <Route
             path="/Live-Production"
             element={<MQTTDashboard />}
-          />
-        </Route>
-        <Route element={<BlankLayout />}>
-          <Route
-            path="/Smart-Manufacturing-AI-Masterclass"
-            element={<MasterclassPage />}
           />
         </Route>
         <Route element={<BlankLayout />}>

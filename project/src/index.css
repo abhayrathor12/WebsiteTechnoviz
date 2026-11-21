@@ -16,3 +16,44 @@
     display: none;             /* Chrome, Safari, Opera */
   }
 
+
+/* Navbar "Masterclass" link – navy pill button, light sweeps across it, gentle float */
+.nav-shine {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  padding: 0.4rem 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, #203f78, #2c5a9e);
+  box-shadow: 0 4px 14px rgba(32, 63, 120, 0.35);
+  animation: navShineFloat 2.4s ease-in-out infinite;
+}
+.nav-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-20deg);
+  animation: navShineSweep 2.8s ease-in-out infinite;
+}
+.nav-shine:hover,
+.nav-shine.is-active {
+  color: #203f78;
+  background: linear-gradient(135deg, #ddaf26, #e9c24a);
+  box-shadow: 0 4px 14px rgba(221, 175, 38, 0.45);
+}
+@keyframes navShineSweep {
+  0% { left: -60%; }
+  55%, 100% { left: 130%; }
+}
+@keyframes navShineFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-shine, .nav-shine::after { animation: none; }
+}
+

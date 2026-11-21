@@ -7,6 +7,9 @@ import { services, products } from "../data/mockData";
 import { SiPython, SiReact, SiMysql, SiAndroid } from "react-icons/si";
 import AZuree from "../public/az.png";
 
+// Masterclass navbar link: navy button with a light sweep + gentle float (see .nav-shine in index.css)
+const MASTERCLASS_LINK_STYLE = "nav-shine";
+
 const megaMenuContent = {
   services: {
     title: "Our Services",
@@ -140,7 +143,9 @@ const Header: React.FC = () => {
     { name: "Learning", path: "/learning", hasDropdown: true, isHoverOnly: false },
     { name: "SLM", path: "/slm", hasDropdown: true, isHoverOnly: true }, // hover only, no link
     { name: "Contact", path: "/contact", hasDropdown: false, isHoverOnly: false },
+    { name: "Masterclass", path: "/Smart-Manufacturing-AI-Masterclass", hasDropdown: false, isHoverOnly: false, highlight: true },
   ];
+
 
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (location.pathname === "/") {
@@ -302,7 +307,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-5">
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-5 lg:mx-4">
             {navItems.map((item) => (
               <div
                 key={item.name}
@@ -326,8 +331,9 @@ const Header: React.FC = () => {
                   <Link
                     to={item.path}
                     onClick={item.name === "Home" ? handleHomeClick : undefined}
-                    className={`flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
-                      }`}
+                    className={item.highlight
+                      ? `${MASTERCLASS_LINK_STYLE} ${location.pathname === item.path ? "is-active" : ""} relative flex items-center text-sm font-bold`
+                      : `relative flex items-center space-x-1 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] ${location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"}`}
                   >
                     <span>{item.name}</span>
                     {item.hasDropdown && (
@@ -355,9 +361,8 @@ const Header: React.FC = () => {
                   {phoneNumber}
                 </span>
               </a>
-              {/* Divider */}
+              {/* Webinar button hidden for now – uncomment the divider + Link to bring it back
               <div className="w-px h-full bg-[#ddaf26]/40 self-stretch" />
-              {/* Webinar button segment */}
               <Link
                 to="/Webinar-Registration"
                 className="flex items-center gap-1.5 px-4 py-2.5 bg-[#ddaf26] hover:bg-[#c9a020] transition-colors duration-200 group"
@@ -367,6 +372,7 @@ const Header: React.FC = () => {
                 </span>
                 <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 transition-transform duration-200" />
               </Link>
+              */}
             </div>
           </div>
 
@@ -526,10 +532,11 @@ const Header: React.FC = () => {
                           }
                           setIsMenuOpen(false);
                         }}
-                        className={`block text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] py-2 ${location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"
-                          }`}
+                        className={item.highlight
+                          ? `${MASTERCLASS_LINK_STYLE} ${location.pathname === item.path ? "is-active" : ""} inline-flex self-start items-center text-sm font-bold my-1`
+                          : `flex items-center gap-2 text-sm font-medium transition-colors duration-200 hover:text-[#ddaf26] py-2 ${location.pathname === item.path ? "text-[#ddaf26]" : "text-gray-700"}`}
                       >
-                        {item.name}
+                        <span>{item.name}</span>
                       </Link>
                     )}
                   </div>
@@ -537,6 +544,7 @@ const Header: React.FC = () => {
 
                 {/* Mobile CTA block */}
                 <div className="pt-4 border-t border-gray-200 space-y-3">
+                  {/* Webinar button hidden for now – uncomment to bring it back
                   <Link
                     to="/Webinar-Registration"
                     onClick={() => setIsMenuOpen(false)}
@@ -545,6 +553,7 @@ const Header: React.FC = () => {
                     Register for Webinar
                     <ArrowRight className="w-4 h-4" />
                   </Link>
+                  */}
                   <a
                     href={`tel:${phoneNumber.replace(/\s/g, "")}`}
                     className="flex items-center justify-center gap-2 w-full bg-[#0B2B5A] hover:bg-[#0a2550] text-white px-6 py-3 rounded-lg font-semibold text-sm transition-colors duration-200"

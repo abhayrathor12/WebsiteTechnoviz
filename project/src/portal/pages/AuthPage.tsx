@@ -173,7 +173,7 @@ export default function AuthPage() {
         </p>
         <ul>
           <li>Your login details are emailed to you after you register for the Masterclass</li>
-          <li>The Pre Assessment opens when your webinar starts</li>
+          <li>The Pre Assessment opens when your masterclass starts</li>
         </ul>
       </section>
 
