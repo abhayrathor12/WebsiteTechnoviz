@@ -62,7 +62,7 @@ type RazorpayConstructor = new (options: Record<string, unknown>) => RazorpayIns
 const SKIP_PAYMENT = import.meta.env.VITE_SKIP_PAYMENT === "1";
 
 const MASTERCLASS_NAME = "Smart Manufacturing & AI Masterclass 2026";
-const EVENT_DATE = "Sat, 21 Nov 2026";
+const EVENT_DATE = "Sat, 12 Dec 2026";
 const PRICE_LABEL = "₹4,999";
 const PRICE_TOTAL = "₹5,898.82";
 
