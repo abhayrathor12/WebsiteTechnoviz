@@ -15,6 +15,7 @@ import ChangePasswordPage from "./pages/ChangePasswordPage";
 import EvaluationPage from "./pages/EvaluationPage";
 import WelcomePage from "./pages/WelcomePage";
 import LabPage from "./pages/LabPage";
+import KnowledgeCheckPage from "./pages/KnowledgeCheckPage";
 import QuestionManagerPage from "./pages/admin/QuestionManagerPage";
 import { PORTAL_BASE } from "./constants";
 import "./portal.css";
@@ -91,6 +92,14 @@ export default function PortalApp() {
               element={
                 <RequireRole admin={false}>
                   <WelcomePage />
+                </RequireRole>
+              }
+            />
+            <Route
+              path="knowledge-check"
+              element={
+                <RequireRole admin={false}>
+                  <KnowledgeCheckPage />
                 </RequireRole>
               }
             />

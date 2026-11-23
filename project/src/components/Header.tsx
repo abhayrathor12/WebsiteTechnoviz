@@ -108,7 +108,7 @@ const megaMenuContent = {
         icon: <span className="text-2xl">🔧</span>,
         title: "PLC to Cloud IIoT Smart Manufacturing",
         description: "Programmable Logic Controller Structured Learning Modules designed for practical industrial automation and control training.",
-        link: "https://slm.technovizautomation.com" // external link to SLM frontend
+        link: "https://slm.technovizautomation.com/login" // external link to SLM frontend
       },
     ],
   },

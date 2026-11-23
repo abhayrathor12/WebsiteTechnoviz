@@ -49,6 +49,33 @@ export interface EvaluationProgress {
   submitted_at: string | null;
 }
 
+// ─── Knowledge Check (Pre-Masterclass Questions) ───
+// The questions come from the backend (portal/knowledge_check.py).
+
+export interface KnowledgeQuestion {
+  key: string;
+  text: string;
+  type: "single" | "multi" | "text";
+  options?: string[];
+  hint?: string;
+  required?: boolean;
+  /** Extra text box shown when this option is picked (e.g. "Other") */
+  other?: { key: string; label: string; when: string };
+  /** Extra (optional) text box shown for every option except "unless" */
+  detail?: { key: string; label: string; unless: string };
+}
+
+export type KnowledgeAnswers = Record<string, string | string[]>;
+
+export interface KnowledgeCheckData {
+  questions: KnowledgeQuestion[];
+  answers: KnowledgeAnswers | null;
+  submitted_at: string | null;
+  updated_at: string | null;
+  /** e.g. "Sat, 12 Dec 2026 at 10:00 AM IST", null when not scheduled yet */
+  masterclass_when: string | null;
+}
+
 export interface Progress {
   evaluations: EvaluationProgress[];
   /** Evaluations open when the user's webinar starts */
@@ -56,6 +83,8 @@ export interface Progress {
   evaluations_locked_until: string | null; // ISO date-time, null = webinar not scheduled yet
   schedule_message: string | null;
   all_done: boolean;
+  /** Pre-Masterclass Questions saved at least once */
+  knowledge_check_done: boolean;
   /** Admin switches this on per user; until then downloads are blocked */
   certificate_enabled: boolean;
   certificate_downloaded: boolean;
@@ -215,6 +244,9 @@ export const portalApi = {
 
   // Participant
   progress: () => request<Progress>("/progress/"),
+  knowledgeCheck: () => request<KnowledgeCheckData>("/knowledge-check/"),
+  saveKnowledgeCheck: (answers: KnowledgeAnswers) =>
+    request<KnowledgeCheckData>("/knowledge-check/", { method: "POST", body: { answers } }),
   evaluation: (slug: string) =>
     request<OpenEvaluation | EvaluationResult>(`/evaluations/${slug}/`),
   submitEvaluation: (slug: string, answers: Record<number, OptionKey>) =>

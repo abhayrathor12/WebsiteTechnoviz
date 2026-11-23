@@ -1423,3 +1423,48 @@
     font-size: 14.5px;
   }
 }
+
+/* ─── Knowledge Check (Pre-Masterclass Questions) ─── */
+
+.mp-kc-saved { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.mp-kc-saved svg { flex-shrink: 0; }
+
+.mp-kc-optional { color: var(--mp-ink-soft); font-weight: 400; font-size: 0.9em; }
+.mp-kc-hint { margin: -4px 0 10px; color: var(--mp-ink-soft); font-size: 13px; }
+
+/* Round (single choice) or square (multi choice) tick in front of each option */
+.mp-kc-mark {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b9c4d8;
+  border-radius: 50%;
+  background: #fff;
+  color: #fff;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.mp-kc-mark.is-box { border-radius: 5px; }
+.mp-choice.is-selected .mp-kc-mark { border-color: var(--mp-navy); background: var(--mp-navy); }
+
+.mp-kc-text { margin-top: 12px; }
+.mp-kc-text textarea { resize: vertical; min-height: 84px; }
+
+.mp-kc-closing { margin-top: 18px; color: var(--mp-ink); font-size: 14.5px; line-height: 1.6; }
+.mp-kc-closing p { margin: 0; }
+.mp-kc-sign { margin-top: 14px !important; color: var(--mp-ink-soft); font-size: 13.5px; }
+.mp-kc-sign strong { color: var(--mp-navy); font-size: 14.5px; }
+.mp-kc-sign a { color: var(--mp-navy); font-weight: 600; text-decoration: none; }
+
+@media (max-width: 640px) {
+  .mp-kc-choices { grid-template-columns: 1fr; }
+}
+
+/* Submitted Knowledge Check: answers are read-only */
+.mp-choice.is-locked { cursor: default; }
+.mp-choice.is-locked:not(.is-selected) { opacity: 0.55; }
+.mp-choice.is-locked:hover { border-color: #d5dce8; }
+.mp-choice.is-locked.is-selected:hover { border-color: var(--mp-navy); }
+.mp-kc-text input[readonly],
+.mp-kc-text textarea[readonly] { background: #f6f8fb; resize: none; }

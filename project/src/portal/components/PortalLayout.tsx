@@ -6,6 +6,7 @@ import {
   BarChart3,
   CheckCircle2,
   ClipboardList,
+  ListChecks,
   FlaskConical,
   KeyRound,
   Lock,
@@ -39,10 +40,20 @@ function ParticipantNav() {
 
   return (
     <>
-      {/* Order: Welcome, Pre Assessment, Lab, My Results, Certificate */}
+      {/* Order: Welcome, Knowledge Check, Pre Assessment, Lab, My Results, Certificate */}
       <NavLink to={`${PORTAL_BASE}/welcome`} className={linkClass}>
         <Video size={17} />
         <span>Welcome</span>
+      </NavLink>
+
+      {/* Always open (answers can be updated any time); tick once submitted */}
+      <NavLink to={`${PORTAL_BASE}/knowledge-check`} className={linkClass}>
+        {progress?.knowledge_check_done ? (
+          <CheckCircle2 size={17} className="mp-nav-done" />
+        ) : (
+          <ListChecks size={17} />
+        )}
+        <span>Knowledge Check</span>
       </NavLink>
 
       {EVALUATIONS.map((ev) => {
