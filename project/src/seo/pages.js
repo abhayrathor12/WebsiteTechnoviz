@@ -107,6 +107,10 @@ export const PAGE_SEO = {
     "title": "Smart Manufacturing & AI Masterclass 2026 | Technoviz",
     "description": "Join the live Smart Manufacturing & AI Masterclass 2026 by Technoviz Automation. Learn practical Industry 4.0 and AI use cases for the shop floor."
   },
+  "/verify-certificate": {
+    "title": "Verify a Certificate | Technoviz Automation",
+    "description": "Check a Smart Manufacturing & AI Masterclass certificate issued by Technoviz Automation. Enter the Certificate ID or scan the QR code on the certificate."
+  },
   "/Live-Production": {
     "title": "Live Production Dashboard | Technoviz Automation",
     "description": "Live production monitoring dashboard.",

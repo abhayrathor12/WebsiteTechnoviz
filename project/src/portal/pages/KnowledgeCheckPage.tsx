@@ -244,34 +244,6 @@ export default function KnowledgeCheckPage() {
             })}
           </ol>
 
-          <div className="mp-card mp-kc-closing">
-            <p>
-              Your inputs will help us make the session more relevant, practical and interactive.
-              {data.masterclass_when ? (
-                <>
-                  {" "}We look forward to having you with us on <strong>{data.masterclass_when}</strong>.
-                </>
-              ) : (
-                " We look forward to having you with us at the Masterclass."
-              )}
-            </p>
-            <p className="mp-kc-sign">
-              Regards,
-              <br />
-              <strong>Kapil Khurana</strong>
-              <br />
-              Certified SIRI Assessor (CSA)
-              <br />
-              Author – Digital Revolution: Industry 4.0 &amp; IIoT
-              <br />
-              25+ Years of Industry Experience
-              <br />
-              Technoviz Automation Solutions Pvt. Ltd.
-              <br />
-              <a href="tel:+919999765380">+91-9999765380</a>
-            </p>
-          </div>
-
           {!locked && (
           <div className="mp-submitbar">
             <span>

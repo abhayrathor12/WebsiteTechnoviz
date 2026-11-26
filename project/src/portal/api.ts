@@ -95,9 +95,27 @@ export interface Progress {
 
 export interface CertificateInfo {
   name: string;
-  completed_on: string; // YYYY-MM-DD
+  completed_on: string; // YYYY-MM-DD (the masterclass date)
   certificate_id: string;
+  /** Website /verify-certificate link that the QR code opens */
+  verify_url: string;
+  /** QR code rows, "1" = dark module */
+  qr: string[];
 }
+
+/** Public certificate check (website /verify-certificate page) */
+export type CertificateVerification =
+  | {
+      status: "verified";
+      certificate_id: string;
+      name: string;
+      course: string;
+      format: string;
+      completed_on: string; // YYYY-MM-DD
+      issued_by: string;
+      trainer: string;
+    }
+  | { status: "not_issued"; certificate_id: string; message: string };
 
 export type Options = Record<OptionKey, string>;
 
@@ -247,6 +265,10 @@ export const portalApi = {
   knowledgeCheck: () => request<KnowledgeCheckData>("/knowledge-check/"),
   saveKnowledgeCheck: (answers: KnowledgeAnswers) =>
     request<KnowledgeCheckData>("/knowledge-check/", { method: "POST", body: { answers } }),
+  verifyCertificate: (certificateId: string) =>
+    request<CertificateVerification>(
+      `/verify-certificate/${encodeURIComponent(certificateId)}/`
+    ),
   evaluation: (slug: string) =>
     request<OpenEvaluation | EvaluationResult>(`/evaluations/${slug}/`),
   submitEvaluation: (slug: string, answers: Record<number, OptionKey>) =>

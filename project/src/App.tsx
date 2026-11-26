@@ -29,6 +29,7 @@ const Paymentpage = lazy(() => import("./pages/PaymentPage"));
 const MQTTDashboard = lazy(() => import("./pages/MqttDashboard"));
 const MasterclassPage = lazy(() => import("./pages/Masterclass"));
 const PortalApp = lazy(() => import("./portal/PortalApp"));
+const VerifyCertificatePage = lazy(() => import("./pages/VerifyCertificatePage"));
 // Components
 import ScrollToTop from "./components/ScrollToTop";
 const Ideathon = lazy(() => import("./pages/IdeathonPage"));
@@ -66,6 +67,7 @@ const App: React.FC = () => {
             path="/Smart-Manufacturing-AI-Masterclass"
             element={<MasterclassPage />}
           />
+          <Route path="/verify-certificate" element={<VerifyCertificatePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 

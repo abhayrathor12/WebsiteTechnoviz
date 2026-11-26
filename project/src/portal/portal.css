@@ -1256,106 +1256,18 @@
   font-size: 20px;
 }
 
-/* ─── Certificate preview (same layout as the PDF, scales with its width) ─── */
+/* ─── Certificate preview (SVG drawn like the PDF; scales with its width) ─── */
 
 .mp-cert {
-  container-type: inline-size;
   width: 100%;
   margin-bottom: 20px;
+  overflow: hidden;
   border-radius: 6px;
   box-shadow: 0 8px 28px rgba(20, 42, 84, 0.18);
   user-select: none;
 }
 
-.mp-cert-frame {
-  aspect-ratio: 297 / 210;
-  padding: 1.6cqw;
-  border: 1.2cqw solid var(--mp-navy);
-  border-radius: 6px;
-  background: #fbfaf6;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.mp-cert-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border: 0.25cqw solid var(--mp-gold);
-}
-
-.mp-cert-band {
-  display: grid;
-  gap: 0.6cqw;
-  padding: 2.2cqw 2cqw 1.8cqw;
-  border-bottom: 0.5cqw solid var(--mp-gold);
-  background: var(--mp-navy);
-  text-align: center;
-}
-
-.mp-cert-band strong { color: #fff; font-size: 3.5cqw; letter-spacing: 0.02em; line-height: 1.1; }
-.mp-cert-band span { color: var(--mp-gold); font-size: 1.45cqw; }
-
-.mp-cert-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 4cqw;
-  text-align: center;
-}
-
-.mp-cert-body p { margin: 0; }
-.mp-cert-soft { color: #5b6478; font-size: 1.8cqw; }
-
-.mp-cert-name {
-  margin: 1.4cqw 0 2cqw !important;
-  padding: 0 3cqw 0.8cqw;
-  border-bottom: 0.18cqw solid var(--mp-gold);
-  color: var(--mp-navy-deep);
-  font-size: 4.4cqw;
-  font-weight: 700;
-  line-height: 1.2;
-  overflow-wrap: anywhere;
-}
-
-.mp-cert-course {
-  margin: 1.2cqw 0 0.8cqw !important;
-  color: var(--mp-navy);
-  font-size: 2.6cqw;
-  font-weight: 700;
-}
-
-.mp-cert-small { color: #5b6478; font-size: 1.55cqw; }
-
-.mp-cert-footer {
-  display: flex;
-  justify-content: space-around;
-  padding: 0 4cqw;
-}
-
-.mp-cert-footer div {
-  display: grid;
-  gap: 0.8cqw;
-  min-width: 22cqw;
-  text-align: center;
-}
-
-.mp-cert-footer strong {
-  padding-bottom: 0.6cqw;
-  border-bottom: 0.1cqw solid #5b6478;
-  color: #1a2740;
-  font-size: 1.55cqw;
-}
-
-.mp-cert-footer span { color: #5b6478; font-size: 1.3cqw; }
-
-.mp-cert-id {
-  margin: 2.4cqw 0 1.6cqw;
-  color: #5b6478;
-  font-size: 1.1cqw;
-  text-align: center;
-}
+.mp-cert svg { display: block; width: 100%; height: auto; }
 
 /* ─── Tablet & mobile ─── */
 
@@ -1451,11 +1363,6 @@
 .mp-kc-text { margin-top: 12px; }
 .mp-kc-text textarea { resize: vertical; min-height: 84px; }
 
-.mp-kc-closing { margin-top: 18px; color: var(--mp-ink); font-size: 14.5px; line-height: 1.6; }
-.mp-kc-closing p { margin: 0; }
-.mp-kc-sign { margin-top: 14px !important; color: var(--mp-ink-soft); font-size: 13.5px; }
-.mp-kc-sign strong { color: var(--mp-navy); font-size: 14.5px; }
-.mp-kc-sign a { color: var(--mp-navy); font-weight: 600; text-decoration: none; }
 
 @media (max-width: 640px) {
   .mp-kc-choices { grid-template-columns: 1fr; }
