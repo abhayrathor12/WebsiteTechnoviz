@@ -2,7 +2,7 @@
 // Set VITE_API_BASE_URL in a .env file at the project root.
 // Local testing: run the dev server with VITE_API_BASE_URL set, e.g. http://192.168.1.60:8257/api
 // Without it, the live backend is used.
-const API_BASE_URL =
+export const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "https://websiteBackend.pythonanywhere.com/api";
 
 export type SafeResult<T> = [T | null, string | null];

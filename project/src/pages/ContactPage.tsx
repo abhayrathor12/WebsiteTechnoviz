@@ -1,8 +1,9 @@
 import SEO from "../components/SEO";
 import { PAGE_SEO } from "../seo/pages.js";
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Building2, Globe } from 'lucide-react';
+import { API_BASE_URL } from "../api";
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Building2, Globe, Loader2, X } from 'lucide-react';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -13,13 +14,20 @@ const ContactPage = () => {
     interestedIn: '',
     message: ''
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successName, setSuccessName] = useState<string | null>(null); // set -> thank-you popup is open
+  const [errorMessage, setErrorMessage] = useState('');
+  const submittingRef = useRef(false); // blocks a second request even on a fast double click
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setIsSubmitting(true);
+    setErrorMessage('');
 
     try {
-      const response = await fetch("https://websitebackend.pythonanywhere.com/api/con/create/", {
+      const response = await fetch(`${API_BASE_URL}/con/create/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +36,7 @@ const ContactPage = () => {
       });
 
       if (response.ok) {
-        setIsSubmitted(true);
+        setSuccessName(formData.name.trim());
         setFormData({
           name: "",
           email: "",
@@ -37,14 +45,25 @@ const ContactPage = () => {
           interestedIn: "",
           message: "",
         });
-        setTimeout(() => setIsSubmitted(false), 3000);
       } else {
-        console.error("Failed to submit form");
+        setErrorMessage("We couldn't send your message. Please check the details and try again.");
       }
     } catch (error) {
       console.error("Error:", error);
+      setErrorMessage("Network error. Please check your connection and try again.");
+    } finally {
+      submittingRef.current = false;
+      setIsSubmitting(false);
     }
   };
+
+  // Close the thank-you popup with Esc
+  useEffect(() => {
+    if (successName === null) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setSuccessName(null);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [successName]);
 
   const handleChange = (e) => {
     setFormData({
@@ -303,15 +322,22 @@ const ContactPage = () => {
                   />
                 </div>
 
+                {errorMessage && (
+                  <p role="alert" className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+                    {errorMessage}
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  disabled={isSubmitted}
-                  className="w-full bg-[#203f78] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#ddaf26] transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                  className="w-full bg-[#203f78] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#ddaf26] transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-[#203f78] disabled:hover:translate-y-0"
                 >
-                  {isSubmitted ? (
+                  {isSubmitting ? (
                     <>
-                      <CheckCircle className="w-5 h-5" />
-                      Message Sent Successfully!
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending...
                     </>
                   ) : (
                     <>
@@ -325,6 +351,59 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Thank-you popup after the form is sent */}
+      <AnimatePresence>
+        {successName !== null && (
+          <motion.div
+            key="contact-success"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4"
+            onClick={() => setSuccessName(null)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="contact-success-title"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md rounded-2xl bg-white p-8 text-center shadow-2xl"
+            >
+              <button
+                type="button"
+                onClick={() => setSuccessName(null)}
+                aria-label="Close"
+                className="absolute right-4 top-4 rounded-full p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+                <CheckCircle className="h-9 w-9 text-green-600" />
+              </div>
+              <h3 id="contact-success-title" className="text-2xl font-bold text-[#203f78]">
+                Thank you{successName ? `, ${successName}` : ''}!
+              </h3>
+              <p className="mt-3 text-gray-600">
+                Your message has been sent successfully. Our team will get back to you within 24 hours.
+              </p>
+              <p className="mt-2 text-sm text-gray-500">A confirmation email is on its way to your inbox.</p>
+              <button
+                type="button"
+                autoFocus
+                onClick={() => setSuccessName(null)}
+                className="mt-6 w-full rounded-lg bg-[#203f78] px-6 py-3 font-semibold text-white transition hover:bg-[#ddaf26]"
+              >
+                OK
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Contact Information Section - Redesigned */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-gray-50">

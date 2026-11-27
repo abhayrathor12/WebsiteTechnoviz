@@ -10,7 +10,7 @@ export const PORTAL_BASE = "/masterportal";
  *  Paste a YouTube or Google Drive share link here (the Drive file must be shared as
  *  "Anyone with the link"). Empty = a "video coming soon" placeholder is shown. */
 export const WELCOME_VIDEO_URL =
-  "https://drive.google.com/file/d/1yJBONuhn3Sc8In25nW8nmGpEnIYl_ED5/view?usp=sharing";
+  "https://drive.google.com/file/d/1PROE8AMepRqinvT6vE7qgBGmMrzVkXsp/view?usp=sharing";
 
 /** Turns a YouTube / Google Drive link into an embeddable URL; other links are used as-is. */
 export function welcomeEmbedUrl(url: string): string {
